@@ -1,11 +1,19 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 
 namespace PMS_v1
 {
+    /// <summary>
+    /// A panel with rounded corners and a soft drop shadow.
+    /// The shadow + body are rendered once into a cached bitmap and re-used on
+    /// every paint. The cache is rebuilt lazily only when the size or a visual
+    /// property changes, so ordinary repaints (page switches, hover, scrolling)
+    /// cost a single bitmap blit instead of several anti-aliased path fills.
+    /// </summary>
     public class RoundedPanel : Panel
     {
         private int borderRadius = 20;
@@ -18,6 +26,12 @@ namespace PMS_v1
         private int shadowOpacity = 60;          // 0-255
         private Color shadowColor = Color.Black;
 
+        private bool paintParentContent = false;
+
+        // Cached render of shadow + body (transparent outside the shape)
+        private Bitmap? cache;
+        private bool cacheDirty = true;
+
         // ---------- Shape ----------
 
         [Category("Appearance")]
@@ -26,7 +40,7 @@ namespace PMS_v1
         public int BorderRadius
         {
             get { return borderRadius; }
-            set { borderRadius = Math.Max(0, value); Invalidate(); }
+            set { borderRadius = Math.Max(0, value); InvalidateCache(); }
         }
 
         [Category("Appearance")]
@@ -34,7 +48,7 @@ namespace PMS_v1
         public Color BorderColor
         {
             get { return borderColor; }
-            set { borderColor = value; Invalidate(); }
+            set { borderColor = value; InvalidateCache(); }
         }
 
         [Category("Appearance")]
@@ -43,7 +57,7 @@ namespace PMS_v1
         public int BorderThickness
         {
             get { return borderThickness; }
-            set { borderThickness = Math.Max(0, value); Invalidate(); }
+            set { borderThickness = Math.Max(0, value); InvalidateCache(); }
         }
 
         // ---------- Shadow ----------
@@ -54,7 +68,7 @@ namespace PMS_v1
         public int ShadowSize
         {
             get { return shadowSize; }
-            set { shadowSize = Math.Max(0, value); PerformLayout(); Invalidate(); }
+            set { shadowSize = Math.Max(0, value); PerformLayout(); InvalidateCache(); }
         }
 
         [Category("Appearance")]
@@ -63,7 +77,7 @@ namespace PMS_v1
         public int ShadowOffsetX
         {
             get { return shadowOffsetX; }
-            set { shadowOffsetX = value; PerformLayout(); Invalidate(); }
+            set { shadowOffsetX = value; PerformLayout(); InvalidateCache(); }
         }
 
         [Category("Appearance")]
@@ -72,7 +86,7 @@ namespace PMS_v1
         public int ShadowOffsetY
         {
             get { return shadowOffsetY; }
-            set { shadowOffsetY = value; PerformLayout(); Invalidate(); }
+            set { shadowOffsetY = value; PerformLayout(); InvalidateCache(); }
         }
 
         [Category("Appearance")]
@@ -81,7 +95,7 @@ namespace PMS_v1
         public int ShadowOpacity
         {
             get { return shadowOpacity; }
-            set { shadowOpacity = Math.Max(0, Math.Min(255, value)); Invalidate(); }
+            set { shadowOpacity = Math.Max(0, Math.Min(255, value)); InvalidateCache(); }
         }
 
         [Category("Appearance")]
@@ -89,7 +103,21 @@ namespace PMS_v1
         public Color ShadowColor
         {
             get { return shadowColor; }
-            set { shadowColor = value; Invalidate(); }
+            set { shadowColor = value; InvalidateCache(); }
+        }
+
+        /// <summary>
+        /// When true, the parent's Paint handlers also run behind this panel
+        /// (the old behaviour). Leave false unless the parent draws custom
+        /// graphics in its Paint event that must show through the corners and
+        /// shadow - it is much more expensive.
+        /// </summary>
+        [Category("Appearance")]
+        [DefaultValue(false)]
+        public bool PaintParentContent
+        {
+            get { return paintParentContent; }
+            set { paintParentContent = value; Invalidate(); }
         }
 
         public RoundedPanel()
@@ -97,6 +125,7 @@ namespace PMS_v1
             BackColor = Color.White;
             SetStyle(ControlStyles.UserPaint |
                      ControlStyles.AllPaintingInWmPaint |
+                     ControlStyles.OptimizedDoubleBuffer |
                      ControlStyles.ResizeRedraw, true);
         }
 
@@ -123,6 +152,39 @@ namespace PMS_v1
             }
         }
 
+        // ---------- Cache ----------
+
+        private void InvalidateCache()
+        {
+            cacheDirty = true;
+            Invalidate();
+        }
+
+        private void EnsureCache()
+        {
+            if (cache != null && !cacheDirty &&
+                cache.Width == Width && cache.Height == Height)
+                return;
+
+            cache?.Dispose();
+            cache = null;
+
+            if (Width <= 0 || Height <= 0)
+            {
+                cacheDirty = false;
+                return;
+            }
+
+            // Premultiplied ARGB is the fastest format to blit with GDI+
+            cache = new Bitmap(Width, Height, PixelFormat.Format32bppPArgb);
+            using (var g = Graphics.FromImage(cache))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                RenderShape(g);
+            }
+            cacheDirty = false;
+        }
+
         private GraphicsPath GetPath(RectangleF rect, float radius)
         {
             float maxRadius = Math.Min(rect.Width, rect.Height) / 2f;
@@ -144,28 +206,9 @@ namespace PMS_v1
             return path;
         }
 
-        // Paint the parent's background so corners and shadow blend in
-        protected override void OnPaintBackground(PaintEventArgs e)
+        // The expensive part: runs only when the cache is rebuilt
+        private void RenderShape(Graphics g)
         {
-            if (Parent == null)
-            {
-                base.OnPaintBackground(e);
-                return;
-            }
-
-            var state = e.Graphics.Save();
-            e.Graphics.TranslateTransform(-Left, -Top);
-            var pe = new PaintEventArgs(e.Graphics, new Rectangle(Location, Size));
-            InvokePaintBackground(Parent, pe);
-            InvokePaint(Parent, pe);
-            e.Graphics.Restore(state);
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            var g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-
             float inset = BorderThickness / 2f;
             var rect = new RectangleF(
                 PadX + inset,
@@ -206,10 +249,59 @@ namespace PMS_v1
             }
         }
 
+        // ---------- Painting ----------
+
+        // Paint the parent's background so corners and shadow blend in
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            if (Parent == null)
+            {
+                base.OnPaintBackground(e);
+                return;
+            }
+
+            var state = e.Graphics.Save();
+            e.Graphics.TranslateTransform(-Left, -Top);
+            var pe = new PaintEventArgs(e.Graphics, new Rectangle(Location, Size));
+            InvokePaintBackground(Parent, pe);
+            if (PaintParentContent)
+                InvokePaint(Parent, pe);
+            e.Graphics.Restore(state);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            EnsureCache();
+
+            if (cache != null)
+            {
+                // Explicit destination size avoids DPI-based scaling of the bitmap
+                e.Graphics.DrawImage(cache, 0, 0, cache.Width, cache.Height);
+            }
+
+            base.OnPaint(e);   // keep the Paint event working for subscribers
+        }
+
+        protected override void OnBackColorChanged(EventArgs e)
+        {
+            base.OnBackColorChanged(e);
+            InvalidateCache();
+        }
+
         protected override void OnParentBackColorChanged(EventArgs e)
         {
             base.OnParentBackColorChanged(e);
             Invalidate();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                cache?.Dispose();
+                cache = null;
+            }
+            base.Dispose(disposing);
         }
     }
 

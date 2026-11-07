@@ -2,8 +2,6 @@ using Krypton.Toolkit;
 using pms_UI.User_Controls;
 using PMS_v1.Pages;
 using PMS_v1.UserControls;
-using System.Configuration;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace pms_UI
 {
@@ -70,14 +68,50 @@ namespace pms_UI
         }
         private readonly Dictionary<string, UserControl> _pages = new();
 
+        private UserControl? _current;
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            // Runs after the window is on screen and the UI is idle
+            BeginInvoke(() =>
+            {
+                PreloadPage("Units", () => new Units());
+                // PreloadPage("Leasing", () => new LeasingModule());
+                // PreloadPage("Personnel", () => new Personnel());
+            });
+        }
+
+        private void PreloadPage(string key, Func<UserControl> create)
+        {
+            if (_pages.ContainsKey(key)) return;
+
+            var page = create();
+            page.Dock = DockStyle.Fill;
+            page.Visible = false;            // built but hidden, so it costs almost nothing
+            pnlContent.Controls.Add(page);
+            _pages[key] = page;
+        }
+
         private void ShowPage(string key, Func<UserControl> create)
         {
             if (!_pages.TryGetValue(key, out var page))
-                _pages[key] = page = create();
+            {
+                page = create();
+                page.Dock = DockStyle.Fill;
+                page.Visible = false;
+                pnlContent.Controls.Add(page);
+                _pages[key] = page;
+            }
+            if (_current == page) return;
 
-            pnlContent.Controls.Clear();   // don't dispose, since the page is reused
-            page.Dock = DockStyle.Fill;
-            pnlContent.Controls.Add(page);
+            pnlContent.SuspendLayout();
+            page.Visible = true;
+            page.BringToFront();
+            if (_current != null) _current.Visible = false;
+            _current = page;
+            pnlContent.ResumeLayout(true);
         }
 
         private void SideMenu_PageRequested(string page)
@@ -110,14 +144,5 @@ namespace pms_UI
             Close();
         }
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                var cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED: paints the form as one buffered layer
-                return cp;
-            }
-        }
     }
 }

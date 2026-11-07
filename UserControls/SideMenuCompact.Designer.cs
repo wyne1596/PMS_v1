@@ -234,8 +234,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Transparent;
-            BackgroundImage = Resources.Resources.SideMenu;
+            BackColor = Color.SteelBlue;
             BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(pnlMenu);
             Controls.Add(pnlFoot);

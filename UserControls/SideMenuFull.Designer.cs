@@ -270,7 +270,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = PMS_v1.Resources.Resources.SideMenu;
+            BackColor = Color.SteelBlue;
             BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(pnlFoot);
             Controls.Add(pnlMenu);

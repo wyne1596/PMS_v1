@@ -43,13 +43,13 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1150, 90);
+            panel1.Size = new Size(1170, 90);
             panel1.TabIndex = 1;
             // 
             // pictureBox1
             // 
             pictureBox1.Dock = DockStyle.Right;
-            pictureBox1.Location = new Point(1054, 0);
+            pictureBox1.Location = new Point(1074, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(96, 90);
             pictureBox1.TabIndex = 2;
@@ -69,6 +69,7 @@
             btnHamburger.TabIndex = 1;
             btnHamburger.Text = "☰";
             btnHamburger.UseVisualStyleBackColor = false;
+            btnHamburger.Click += btnHamburger_Click;
             // 
             // Header
             // 
@@ -76,7 +77,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Name = "Header";
-            Size = new Size(1150, 90);
+            Size = new Size(1170, 90);
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

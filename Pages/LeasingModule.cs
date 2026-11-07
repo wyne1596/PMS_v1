@@ -32,7 +32,7 @@ namespace PMS_v1.Pages
         }
 
         // 🎨 MASTER MODULE SURFACE SHADOW PAINTER
-        private void LeasingModule_Paint(object sender, PaintEventArgs e)
+        private void LeasingModule_Paint(object? sender, PaintEventArgs e)
         {
             if (pnlCommandActionRow == null) return;
 

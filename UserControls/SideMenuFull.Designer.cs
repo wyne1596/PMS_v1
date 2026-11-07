@@ -39,7 +39,7 @@
             btnPayment = new Button();
             btnBilling = new Button();
             btnLeasing = new Button();
-            btnProperty = new Button();
+            btnUnits = new Button();
             btnDashboard = new Button();
             pnlFoot.SuspendLayout();
             pnlMenu.SuspendLayout();
@@ -124,7 +124,7 @@
             pnlMenu.Controls.Add(btnPayment);
             pnlMenu.Controls.Add(btnBilling);
             pnlMenu.Controls.Add(btnLeasing);
-            pnlMenu.Controls.Add(btnProperty);
+            pnlMenu.Controls.Add(btnUnits);
             pnlMenu.Controls.Add(btnDashboard);
             pnlMenu.Dock = DockStyle.Fill;
             pnlMenu.Location = new Point(0, 149);
@@ -228,24 +228,24 @@
             btnLeasing.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLeasing.UseVisualStyleBackColor = true;
             // 
-            // btnProperty
+            // btnUnits
             // 
-            btnProperty.Dock = DockStyle.Top;
-            btnProperty.FlatAppearance.BorderSize = 0;
-            btnProperty.FlatStyle = FlatStyle.Flat;
-            btnProperty.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnProperty.ForeColor = Color.White;
-            btnProperty.Image = PMS_v1.Resources.Resources.Property;
-            btnProperty.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProperty.Location = new Point(0, 100);
-            btnProperty.Name = "btnProperty";
-            btnProperty.Padding = new Padding(50, 0, 0, 0);
-            btnProperty.Size = new Size(290, 80);
-            btnProperty.TabIndex = 1;
-            btnProperty.Text = " Properties";
-            btnProperty.TextAlign = ContentAlignment.MiddleLeft;
-            btnProperty.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnProperty.UseVisualStyleBackColor = true;
+            btnUnits.Dock = DockStyle.Top;
+            btnUnits.FlatAppearance.BorderSize = 0;
+            btnUnits.FlatStyle = FlatStyle.Flat;
+            btnUnits.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnUnits.ForeColor = Color.White;
+            btnUnits.Image = PMS_v1.Resources.Resources.Property;
+            btnUnits.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUnits.Location = new Point(0, 100);
+            btnUnits.Name = "btnUnits";
+            btnUnits.Padding = new Padding(50, 0, 0, 0);
+            btnUnits.Size = new Size(290, 80);
+            btnUnits.TabIndex = 1;
+            btnUnits.Text = " Units";
+            btnUnits.TextAlign = ContentAlignment.MiddleLeft;
+            btnUnits.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnUnits.UseVisualStyleBackColor = true;
             // 
             // btnDashboard
             // 
@@ -290,7 +290,7 @@
         private Panel pnlDivider;
         private Panel pnlFoot;
         private Panel pnlMenu;
-        private Button btnProperty;
+        private Button btnUnits;
         private Button btnDashboard;
         private Button btnBilling;
         private Button btnLeasing;

@@ -15,7 +15,9 @@ namespace PMS_v1.UserControls
         {
             InitializeComponent();
 
-            btnHamburger.Click += (s, e) => MenuToggleClicked?.Invoke(this, EventArgs.Empty);
         }
+
+        private void btnHamburger_Click(object sender, EventArgs e)
+            => MenuToggleClicked?.Invoke(this, EventArgs.Empty);
     }
 }

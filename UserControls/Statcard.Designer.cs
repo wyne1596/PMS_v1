@@ -42,13 +42,19 @@
             // 
             // roundedPanel1
             // 
-            roundedPanel1.BackColor = Color.Transparent;
+            roundedPanel1.BackColor = Color.White;
+            roundedPanel1.BorderColor = Color.Transparent;
+            roundedPanel1.BorderRadius = 15;
             roundedPanel1.Controls.Add(tableLayoutPanel1);
             roundedPanel1.Controls.Add(panel1);
             roundedPanel1.Dock = DockStyle.Fill;
             roundedPanel1.Location = new Point(0, 0);
             roundedPanel1.Name = "roundedPanel1";
             roundedPanel1.Padding = new Padding(10);
+            roundedPanel1.ShadowColor = Color.Black;
+            roundedPanel1.ShadowOffsetX = 1;
+            roundedPanel1.ShadowOpacity = 40;
+            roundedPanel1.ShadowSize = 3;
             roundedPanel1.Size = new Size(215, 140);
             roundedPanel1.TabIndex = 0;
             // 
@@ -60,12 +66,12 @@
             tableLayoutPanel1.Controls.Add(lblValue, 0, 0);
             tableLayoutPanel1.Controls.Add(label1, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(90, 10);
+            tableLayoutPanel1.Location = new Point(94, 15);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(115, 120);
+            tableLayoutPanel1.Size = new Size(107, 110);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // lblValue
@@ -73,10 +79,10 @@
             lblValue.AutoSize = true;
             lblValue.Dock = DockStyle.Bottom;
             lblValue.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblValue.Location = new Point(3, 26);
+            lblValue.Location = new Point(3, 21);
             lblValue.Name = "lblValue";
             lblValue.Padding = new Padding(0, 0, 10, 0);
-            lblValue.Size = new Size(109, 34);
+            lblValue.Size = new Size(101, 34);
             lblValue.TabIndex = 0;
             lblValue.Text = "00";
             lblValue.TextAlign = ContentAlignment.MiddleRight;
@@ -87,10 +93,10 @@
             label1.Dock = DockStyle.Top;
             label1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(3, 60);
+            label1.Location = new Point(3, 55);
             label1.Name = "label1";
             label1.Padding = new Padding(0, 0, 15, 0);
-            label1.Size = new Size(109, 20);
+            label1.Size = new Size(101, 20);
             label1.TabIndex = 1;
             label1.Text = "caption";
             label1.TextAlign = ContentAlignment.MiddleRight;
@@ -99,10 +105,10 @@
             // 
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(10, 10);
+            panel1.Location = new Point(14, 15);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(10, 30, 10, 30);
-            panel1.Size = new Size(80, 120);
+            panel1.Size = new Size(80, 110);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -110,7 +116,7 @@
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(10, 30);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(60, 60);
+            pictureBox1.Size = new Size(60, 50);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 

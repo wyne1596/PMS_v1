@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace PMS_v1.Pages
 {
-    public partial class Properties : UserControl
+    public partial class Units : UserControl
     {
-        public Properties()
+        public Units()
         {
             InitializeComponent();
         }

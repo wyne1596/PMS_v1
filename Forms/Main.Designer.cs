@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             pnlRight = new Panel();
             pnlContent = new Panel();
             header1 = new PMS_v1.UserControls.Header();
             pnlSideMenu = new Panel();
-            sideMenuCompact1 = new PMS_v1.UserControls.SideMenuCompact();
             sideMenuFull1 = new pms_UI.User_Controls.SideMenuFull();
+            sideMenuCompact1 = new PMS_v1.UserControls.SideMenuCompact();
             pnlRight.SuspendLayout();
             pnlSideMenu.SuspendLayout();
             SuspendLayout();
@@ -68,7 +67,6 @@
             // pnlSideMenu
             // 
             pnlSideMenu.BackColor = Color.SteelBlue;
-            pnlSideMenu.BackgroundImage = PMS_v1.Resources.Resources.SideMenu;
             pnlSideMenu.BackgroundImageLayout = ImageLayout.Stretch;
             pnlSideMenu.Controls.Add(sideMenuCompact1);
             pnlSideMenu.Controls.Add(sideMenuFull1);
@@ -78,26 +76,25 @@
             pnlSideMenu.Size = new Size(290, 977);
             pnlSideMenu.TabIndex = 0;
             // 
-            // sideMenuCompact1
-            // 
-            sideMenuCompact1.BackColor = Color.Transparent;
-            sideMenuCompact1.BackgroundImage = (Image)resources.GetObject("sideMenuCompact1.BackgroundImage");
-            sideMenuCompact1.BackgroundImageLayout = ImageLayout.Stretch;
-            sideMenuCompact1.Dock = DockStyle.Left;
-            sideMenuCompact1.Location = new Point(290, 0);
-            sideMenuCompact1.Name = "sideMenuCompact1";
-            sideMenuCompact1.Size = new Size(80, 977);
-            sideMenuCompact1.TabIndex = 1;
-            // 
             // sideMenuFull1
             // 
-            sideMenuFull1.BackgroundImage = (Image)resources.GetObject("sideMenuFull1.BackgroundImage");
+            sideMenuFull1.BackColor = Color.SteelBlue;
             sideMenuFull1.BackgroundImageLayout = ImageLayout.Stretch;
             sideMenuFull1.Dock = DockStyle.Left;
             sideMenuFull1.Location = new Point(0, 0);
             sideMenuFull1.Name = "sideMenuFull1";
             sideMenuFull1.Size = new Size(290, 977);
             sideMenuFull1.TabIndex = 0;
+            // 
+            // sideMenuCompact1
+            // 
+            sideMenuCompact1.BackColor = Color.SteelBlue;
+            sideMenuCompact1.BackgroundImageLayout = ImageLayout.Stretch;
+            sideMenuCompact1.Dock = DockStyle.Left;
+            sideMenuCompact1.Location = new Point(290, 0);
+            sideMenuCompact1.Name = "sideMenuCompact1";
+            sideMenuCompact1.Size = new Size(119, 977);
+            sideMenuCompact1.TabIndex = 1;
             // 
             // Main
             // 

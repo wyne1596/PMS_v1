@@ -33,10 +33,12 @@
             lblPage = new Label();
             lblLoc = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
+            statcard1 = new PMS_v1.UserControls.Statcard();
             tableLayoutPanel3 = new TableLayoutPanel();
             btnSearch = new Krypton.Toolkit.ButtonSpecAny();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -100,6 +102,7 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.Controls.Add(statcard1, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 78);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -107,6 +110,16 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Size = new Size(1039, 148);
             tableLayoutPanel2.TabIndex = 1;
+            // 
+            // statcard1
+            // 
+            statcard1.CardCaption = "caption";
+            statcard1.CardIcon = null;
+            statcard1.CardNumber = "00";
+            statcard1.Location = new Point(3, 3);
+            statcard1.Name = "statcard1";
+            statcard1.Size = new Size(253, 142);
+            statcard1.TabIndex = 0;
             // 
             // tableLayoutPanel3
             // 
@@ -140,6 +153,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -152,5 +166,6 @@
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
         private Krypton.Toolkit.ButtonSpecAny btnSearch;
+        private UserControls.Statcard statcard1;
     }
 }

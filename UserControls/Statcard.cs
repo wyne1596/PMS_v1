@@ -15,6 +15,7 @@ namespace PMS_v1.UserControls
         {
             InitializeComponent();
         }
+
         [Category("Custom Properties")]
         [Description("Sets the big counter number on the stat card.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -64,5 +65,6 @@ namespace PMS_v1.UserControls
                 this.Invalidate();
             }
         }
+
     }
 }

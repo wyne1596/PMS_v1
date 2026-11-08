@@ -13,9 +13,12 @@ namespace PMS_v1.Pages
     {
         public LeasingModule()
         {
-            
             InitializeComponent();
-
+            ConfigureLeaseGrid();
+            PopulateSampleRows();
+            LayoutCommandActionRow();
+            pnlCommandActionRow.Resize += (_, _) => LayoutCommandActionRow();
+            dgvLeases.CellPainting += DgvLeases_CellPainting;
         }
 
         private void LeasingModule_Load(object sender, EventArgs e)
@@ -25,6 +28,138 @@ namespace PMS_v1.Pages
         private void btnNewLease_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ConfigureLeaseGrid()
+        {
+            txtSearchInput.Text = "⌕  Search tenant, unit or lease...";
+            cmbFilterDropdown.Text = "Filter";
+            btnNewLease.Values.Text = "＋  New Lease";
+
+            dgvLeases.AutoGenerateColumns = false;
+            dgvLeases.AllowUserToAddRows = false;
+            dgvLeases.AllowUserToDeleteRows = false;
+            dgvLeases.AllowUserToResizeRows = false;
+            dgvLeases.MultiSelect = false;
+            dgvLeases.ReadOnly = true;
+            dgvLeases.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLeases.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvLeases.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvLeases.EnableHeadersVisualStyles = false;
+            dgvLeases.RowTemplate.Height = 42;
+            dgvLeases.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(74, 151, 196),
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                SelectionBackColor = Color.FromArgb(74, 151, 196),
+                SelectionForeColor = Color.White
+            };
+            dgvLeases.DefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.White,
+                ForeColor = Color.FromArgb(44, 49, 53),
+                Font = new Font("Segoe UI", 9F),
+                Alignment = DataGridViewContentAlignment.MiddleLeft,
+                Padding = new Padding(12, 0, 8, 0),
+                SelectionBackColor = Color.White,
+                SelectionForeColor = Color.FromArgb(44, 49, 53)
+            };
+            dgvLeases.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.White,
+                SelectionBackColor = Color.White,
+                SelectionForeColor = Color.FromArgb(44, 49, 53)
+            };
+
+            dgvLeases.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Tenant",
+                HeaderText = "TENANT",
+                FillWeight = 38,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+            dgvLeases.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Unit",
+                HeaderText = "UNIT",
+                FillWeight = 18,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+            dgvLeases.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "LeaseEnds",
+                HeaderText = "LEASE ENDS",
+                FillWeight = 27,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+            dgvLeases.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Status",
+                HeaderText = "STATUS",
+                FillWeight = 17,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
+                    Padding = new Padding(4, 0, 4, 0)
+                }
+            });
+        }
+
+        private void PopulateSampleRows()
+        {
+            statCardActive.CardNumber = "12";
+            statCardPending.CardNumber = "22";
+            statCardExpired.CardNumber = "5";
+            statCardTerminated.CardNumber = "0";
+
+            dgvLeases.Rows.Add("Sophia Leigh R. Manoguid", "A-101", "April 15, 2026", "Active");
+            dgvLeases.Rows.Add("Alexis N. Prado", "B-009", "September 11, 2026", "Pending");
+            dgvLeases.Rows.Add("Shella Mith C. Belarmino", "C-220", "January 6, 2026", "Expired");
+            dgvLeases.Rows.Add("Wyne Benjamin Constantino", "D-069", "May 9, 2026", "Terminated");
+        }
+
+        private void LayoutCommandActionRow()
+        {
+            const int gap = 14;
+            int width = pnlCommandActionRow.ClientSize.Width;
+            int buttonWidth = Math.Min(172, Math.Max(110, (int)(width * 0.18)));
+            int filterWidth = Math.Min(150, Math.Max(96, (int)(width * 0.16)));
+            int searchWidth = Math.Max(120, width - buttonWidth - filterWidth - gap * 2);
+            int top = Math.Max(0, (pnlCommandActionRow.ClientSize.Height - 40) / 2);
+
+            txtSearchInput.SetBounds(0, top + 3, searchWidth, 34);
+            cmbFilterDropdown.SetBounds(searchWidth + gap, top + 3, filterWidth, 34);
+            btnNewLease.SetBounds(searchWidth + gap * 2 + filterWidth, top, buttonWidth, 40);
+        }
+
+        private void DgvLeases_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != dgvLeases.Columns["Status"].Index)
+                return;
+
+            e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
+
+            string status = Convert.ToString(e.FormattedValue) ?? string.Empty;
+            Font font = e.CellStyle.Font ?? dgvLeases.Font;
+            Size textSize = TextRenderer.MeasureText(status, font);
+            int badgeWidth = Math.Min(e.CellBounds.Width - 8, textSize.Width + 14);
+            int badgeHeight = Math.Min(24, e.CellBounds.Height - 8);
+            var badgeBounds = new Rectangle(
+                e.CellBounds.Left + (e.CellBounds.Width - badgeWidth) / 2,
+                e.CellBounds.Top + (e.CellBounds.Height - badgeHeight) / 2,
+                badgeWidth,
+                badgeHeight);
+
+            using (var badge = new SolidBrush(Color.FromArgb(218, 237, 248)))
+                e.Graphics.FillRectangle(badge, badgeBounds);
+
+            TextRenderer.DrawText(e.Graphics, status, font, badgeBounds,
+                Color.FromArgb(45, 93, 120),
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
+            e.Handled = true;
         }
     }
 }

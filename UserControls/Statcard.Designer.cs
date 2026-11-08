@@ -44,18 +44,19 @@
             // 
             roundedPanel1.BackColor = Color.White;
             roundedPanel1.BorderColor = Color.Transparent;
-            roundedPanel1.BorderRadius = 15;
+            roundedPanel1.BorderRadius = 10;
             roundedPanel1.Controls.Add(tableLayoutPanel1);
             roundedPanel1.Controls.Add(panel1);
             roundedPanel1.Dock = DockStyle.Fill;
             roundedPanel1.Location = new Point(0, 0);
             roundedPanel1.Name = "roundedPanel1";
-            roundedPanel1.Padding = new Padding(10);
+            roundedPanel1.Padding = new Padding(8);
             roundedPanel1.ShadowColor = Color.Black;
-            roundedPanel1.ShadowOffsetX = 1;
-            roundedPanel1.ShadowOpacity = 40;
-            roundedPanel1.ShadowSize = 3;
-            roundedPanel1.Size = new Size(215, 140);
+            roundedPanel1.ShadowOffsetX = 0;
+            roundedPanel1.ShadowOffsetY = 2;
+            roundedPanel1.ShadowOpacity = 32;
+            roundedPanel1.ShadowSize = 4;
+            roundedPanel1.Size = new Size(240, 96);
             roundedPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -66,12 +67,12 @@
             tableLayoutPanel1.Controls.Add(lblValue, 0, 0);
             tableLayoutPanel1.Controls.Add(label1, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(94, 15);
+            tableLayoutPanel1.Location = new Point(74, 13);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(107, 110);
+            tableLayoutPanel1.Size = new Size(132, 70);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // lblValue
@@ -105,18 +106,18 @@
             // 
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(14, 15);
+            panel1.Location = new Point(14, 13);
             panel1.Name = "panel1";
-            panel1.Padding = new Padding(10, 30, 10, 30);
-            panel1.Size = new Size(80, 110);
+            panel1.Padding = new Padding(6, 16, 6, 16);
+            panel1.Size = new Size(60, 70);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Location = new Point(10, 30);
+            pictureBox1.Location = new Point(6, 16);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(60, 50);
+            pictureBox1.Size = new Size(48, 38);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -126,7 +127,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(roundedPanel1);
             Name = "Statcard";
-            Size = new Size(215, 140);
+            Size = new Size(240, 96);
             roundedPanel1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();

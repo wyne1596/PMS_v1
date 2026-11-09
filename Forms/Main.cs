@@ -121,7 +121,9 @@ namespace pms_UI
                 //case "Dashboard": ShowPage(new DashboardPage()); break;
                 case "Units": ShowPage("Units", () => new Units()); break;
                 case "Leasing": ShowPage("Leasing", () => new LeasingModule()); break;
+                case "Billing": ShowPage("Billing", () => new BillingModule()); break;
                 case "Payment": ShowPage("Payment", () => new PaymentModule()); break;
+                case "Maintenance": ShowPage("Maintenance", () => new MaintenanceModule()); break;
                 //case "Tenants": ShowPage(new TenantsPage()); break;
                 //case "Leasing": ShowPage(new LeasingPage()); break;
                 //case "Billing": ShowPage(new BillingPage()); break;

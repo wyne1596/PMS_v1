@@ -25,7 +25,7 @@
             statCardActive = new PMS_v1.UserControls.Statcard();
             statCardPending = new PMS_v1.UserControls.Statcard();
             statCardExpired = new PMS_v1.UserControls.Statcard();
-            statCardTerminated = new PMS_v1.UserControls.Statcard();
+            statCardTerminated = new PMS_v1.UserControls.AppearanceIconStatcard();
             pnlCommandActionRow = new Panel();
             txtSearchInput = new Krypton.Toolkit.KryptonTextBox();
             cmbFilterDropdown = new Krypton.Toolkit.KryptonComboBox();
@@ -151,7 +151,7 @@
             // statCardTerminated
             // 
             statCardTerminated.CardCaption = "Terminated";
-            statCardTerminated.CardIcon = Resources.Resources.remove;
+            statCardTerminated.BackgroundImage = Resources.Resources.remove;
             statCardTerminated.CardNumber = "00";
             statCardTerminated.Dock = DockStyle.Fill;
             statCardTerminated.Location = new Point(839, 0);
@@ -272,7 +272,7 @@
         private PMS_v1.UserControls.Statcard statCardActive;
         private PMS_v1.UserControls.Statcard statCardPending;
         private PMS_v1.UserControls.Statcard statCardExpired;
-        private PMS_v1.UserControls.Statcard statCardTerminated;
+        private PMS_v1.UserControls.AppearanceIconStatcard statCardTerminated;
         private System.Windows.Forms.Panel pnlCommandActionRow;
         private Krypton.Toolkit.KryptonTextBox txtSearchInput;
         private Krypton.Toolkit.KryptonComboBox cmbFilterDropdown;

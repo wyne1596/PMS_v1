@@ -14,6 +14,8 @@ namespace PMS_v1.Pages
         public LeasingModule()
         {
             InitializeComponent();
+            PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
+                tlpMainSkeleton, pnlHeaderBlock, tlpMetricsRow, pnlCommandActionRow, roundedPanelTable);
             ConfigureLeaseGrid();
             PopulateSampleRows();
             LayoutCommandActionRow();
@@ -123,16 +125,8 @@ namespace PMS_v1.Pages
 
         private void LayoutCommandActionRow()
         {
-            const int gap = 14;
-            int width = pnlCommandActionRow.ClientSize.Width;
-            int buttonWidth = Math.Min(172, Math.Max(110, (int)(width * 0.18)));
-            int filterWidth = Math.Min(150, Math.Max(96, (int)(width * 0.16)));
-            int searchWidth = Math.Max(120, width - buttonWidth - filterWidth - gap * 2);
-            int top = Math.Max(0, (pnlCommandActionRow.ClientSize.Height - 40) / 2);
-
-            txtSearchInput.SetBounds(0, top + 3, searchWidth, 34);
-            cmbFilterDropdown.SetBounds(searchWidth + gap, top + 3, filterWidth, 34);
-            btnNewLease.SetBounds(searchWidth + gap * 2 + filterWidth, top, buttonWidth, 40);
+            PMS_v1.UserControls.ModulePageLayout.LayoutActions(
+                pnlCommandActionRow, txtSearchInput, cmbFilterDropdown, btnNewLease);
         }
 
         private void DgvLeases_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)

@@ -10,7 +10,10 @@ namespace PMS_v1.Pages
         public PaymentModule()
         {
             InitializeComponent();
-            statCardRefunded.CardIcon = CreateRefundIcon();
+            PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
+                tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
+            if (statCardRefunded.CardIcon is null)
+                statCardRefunded.CardIcon = CreateRefundIcon();
             ConfigurePaymentGrid();
             PopulateSampleRows();
             LayoutActionRow();
@@ -120,16 +123,8 @@ namespace PMS_v1.Pages
 
         private void LayoutActionRow()
         {
-            const int gap = 14;
-            int width = pnlActions.ClientSize.Width;
-            int buttonWidth = Math.Min(210, Math.Max(140, (int)(width * 0.21)));
-            int filterWidth = Math.Min(150, Math.Max(96, (int)(width * 0.16)));
-            int searchWidth = Math.Max(120, width - buttonWidth - filterWidth - gap * 2);
-            int top = Math.Max(0, (pnlActions.ClientSize.Height - 40) / 2);
-
-            txtSearch.SetBounds(0, top + 3, searchWidth, 34);
-            cmbFilter.SetBounds(searchWidth + gap, top + 3, filterWidth, 34);
-            btnNewTransaction.SetBounds(searchWidth + gap * 2 + filterWidth, top, buttonWidth, 40);
+            PMS_v1.UserControls.ModulePageLayout.LayoutActions(
+                pnlActions, txtSearch, cmbFilter, btnNewTransaction);
         }
 
         private void DgvPayments_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)

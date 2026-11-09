@@ -24,7 +24,7 @@ namespace PMS_v1.UserControls
             var tip = new ToolTip();
             tip.SetToolTip(btnDashboard, "Dashboard");
             tip.SetToolTip(btnUnits, "Units");
-            tip.SetToolTip(btnLeasing, "Tenants");
+            tip.SetToolTip(btnLeasing, "Leasing");
             tip.SetToolTip(btnBilling, "Billing");
             tip.SetToolTip(btnPayment, "Payment");
             tip.SetToolTip(btnMaintenance, "Maintenance");
@@ -34,7 +34,7 @@ namespace PMS_v1.UserControls
 
             btnDashboard.Click += (s, e) => PageRequested?.Invoke("Dashboard");
             btnUnits.Click += (s, e) => PageRequested?.Invoke("Units");
-            btnLeasing.Click += (s, e) => PageRequested?.Invoke("Tenants");
+            btnLeasing.Click += (s, e) => PageRequested?.Invoke("Leasing");
             btnBilling.Click += (s, e) => PageRequested?.Invoke("Billing");
             btnPayment.Click += (s, e) => PageRequested?.Invoke("Payment");
             btnMaintenance.Click += (s, e) => PageRequested?.Invoke("Maintenance");

@@ -33,12 +33,10 @@
             lblPage = new Label();
             lblLoc = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
-            statcard1 = new PMS_v1.UserControls.Statcard();
             tableLayoutPanel3 = new TableLayoutPanel();
             btnSearch = new Krypton.Toolkit.ButtonSpecAny();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -51,13 +49,14 @@
             tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 0, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.5542164F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.6144581F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 67.83132F));
-            tableLayoutPanel1.Size = new Size(1045, 905);
+            tableLayoutPanel1.Size = new Size(914, 679);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // panel1
@@ -65,10 +64,11 @@
             panel1.Controls.Add(lblPage);
             panel1.Controls.Add(lblLoc);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 3);
+            panel1.Location = new Point(3, 2);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Padding = new Padding(15, 0, 0, 0);
-            panel1.Size = new Size(1039, 69);
+            panel1.Padding = new Padding(13, 0, 0, 0);
+            panel1.Size = new Size(908, 52);
             panel1.TabIndex = 0;
             // 
             // lblPage
@@ -76,9 +76,9 @@
             lblPage.AutoSize = true;
             lblPage.Dock = DockStyle.Top;
             lblPage.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPage.Location = new Point(15, 31);
+            lblPage.Location = new Point(13, 25);
             lblPage.Name = "lblPage";
-            lblPage.Size = new Size(77, 34);
+            lblPage.Size = new Size(61, 26);
             lblPage.TabIndex = 1;
             lblPage.Text = "Units";
             // 
@@ -88,10 +88,10 @@
             lblLoc.Dock = DockStyle.Top;
             lblLoc.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblLoc.ForeColor = Color.DimGray;
-            lblLoc.Location = new Point(15, 0);
+            lblLoc.Location = new Point(13, 0);
             lblLoc.Name = "lblLoc";
-            lblLoc.Padding = new Padding(3, 0, 0, 11);
-            lblLoc.Size = new Size(104, 31);
+            lblLoc.Padding = new Padding(3, 0, 0, 8);
+            lblLoc.Size = new Size(85, 25);
             lblLoc.TabIndex = 0;
             lblLoc.Text = "Home / Units";
             // 
@@ -102,24 +102,14 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.Controls.Add(statcard1, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 78);
+            tableLayoutPanel2.Location = new Point(3, 58);
+            tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1039, 148);
+            tableLayoutPanel2.Size = new Size(908, 111);
             tableLayoutPanel2.TabIndex = 1;
-            // 
-            // statcard1
-            // 
-            statcard1.CardCaption = "caption";
-            statcard1.CardIcon = null;
-            statcard1.CardNumber = "00";
-            statcard1.Location = new Point(3, 3);
-            statcard1.Name = "statcard1";
-            statcard1.Size = new Size(253, 142);
-            statcard1.TabIndex = 0;
             // 
             // tableLayoutPanel3
             // 
@@ -128,11 +118,12 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.5042515F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.5042515F));
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 232);
+            tableLayoutPanel3.Location = new Point(3, 173);
+            tableLayoutPanel3.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(1039, 107);
+            tableLayoutPanel3.Size = new Size(908, 80);
             tableLayoutPanel3.TabIndex = 2;
             // 
             // btnSearch
@@ -145,15 +136,15 @@
             // 
             // Units
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Units";
-            Size = new Size(1045, 905);
+            Size = new Size(914, 679);
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 

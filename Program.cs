@@ -15,16 +15,16 @@ namespace pms_UI
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            while (true)
-            {
-                var login = new Login();
-                if (login.ShowDialog() != DialogResult.OK) break;
+            //while (true)
+            //{
+            //    var login = new Login();
+            //    if (login.ShowDialog() != DialogResult.OK) break;
 
                 var main = new Main();
                 Application.Run(main);
 
-                if (!main.LoggedOut) break;   // closed with X, so exit the app
-            }
+            //    if (!main.LoggedOut) break;   // closed with X, so exit the app
+            //}
         }
     }
 }

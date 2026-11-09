@@ -12,7 +12,6 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
             ConfigureMaintenanceGrid();
-            PopulateSampleRows();
             LayoutActionRow();
 
             pnlActions.Resize += (_, _) => LayoutActionRow();
@@ -34,16 +33,16 @@ namespace PMS_v1.Pages
         private void ConfigureMaintenanceGrid()
         {
             statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardNumber = "12";
+            statCardCompleted.CardNumber = "00";
             statCardCompleted.CardIcon = PMS_v1.Resources.Resources.check;
             statCardScheduled.CardCaption = "Scheduled";
-            statCardScheduled.CardNumber = "22";
+            statCardScheduled.CardNumber = "00";
             statCardScheduled.CardIcon = PMS_v1.Resources.Resources.clock;
             statCardInProgress.CardCaption = "In Progress";
-            statCardInProgress.CardNumber = "5";
+            statCardInProgress.CardNumber = "00";
             statCardInProgress.CardIcon = CreateInProgressIcon();
             statCardCanceled.CardCaption = "Canceled";
-            statCardCanceled.CardNumber = "0";
+            statCardCanceled.CardNumber = "00";
 
             txtSearch.Text = SearchPlaceholder;
             cmbFilter.Items.AddRange(new object[] { "All Statuses", "Completed", "Scheduled", "In Progress", "Canceled" });
@@ -119,14 +118,6 @@ namespace PMS_v1.Pages
                     Padding = new Padding(4, 0, 4, 0)
                 }
             });
-        }
-
-        private void PopulateSampleRows()
-        {
-            dgvRequests.Rows.Add("MR-001", "A-101", "Leaking pipe", "Completed");
-            dgvRequests.Rows.Add("MR-002", "B-009", "Broken lock", "Scheduled");
-            dgvRequests.Rows.Add("MR-003", "C-220", "Light fixture", "In Progress");
-            dgvRequests.Rows.Add("MR-004", "D-069", "Light fixture", "Canceled");
         }
 
         private void LayoutActionRow()

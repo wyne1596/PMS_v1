@@ -115,7 +115,7 @@ namespace PMS_v1.Pages
             // 
             statCardCompleted.CardCaption = "Completed";
             statCardCompleted.CardIcon = Resources.Resources.check;
-            statCardCompleted.CardNumber = "12";
+            statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
             statCardCompleted.Location = new Point(8, 0);
             statCardCompleted.Margin = new Padding(8, 0, 8, 0);
@@ -127,7 +127,7 @@ namespace PMS_v1.Pages
             // 
             statCardScheduled.CardCaption = "Scheduled";
             statCardScheduled.CardIcon = Resources.Resources.clock;
-            statCardScheduled.CardNumber = "22";
+            statCardScheduled.CardNumber = "00";
             statCardScheduled.Dock = DockStyle.Fill;
             statCardScheduled.Location = new Point(274, 0);
             statCardScheduled.Margin = new Padding(8, 0, 8, 0);
@@ -139,7 +139,7 @@ namespace PMS_v1.Pages
             // 
             statCardInProgress.CardCaption = "In Progress";
             statCardInProgress.CardIcon = Resources.Resources.hourglass;
-            statCardInProgress.CardNumber = "5";
+            statCardInProgress.CardNumber = "00";
             statCardInProgress.Dock = DockStyle.Fill;
             statCardInProgress.Location = new Point(540, 0);
             statCardInProgress.Margin = new Padding(8, 0, 8, 0);
@@ -151,7 +151,7 @@ namespace PMS_v1.Pages
             // 
             statCardCanceled.BackgroundImage = Resources.Resources.remove;
             statCardCanceled.CardCaption = "Canceled";
-            statCardCanceled.CardNumber = "0";
+            statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
             statCardCanceled.Location = new Point(806, 0);
             statCardCanceled.Margin = new Padding(8, 0, 8, 0);

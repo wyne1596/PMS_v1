@@ -14,7 +14,6 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
             ConfigureBillingGrid();
-            PopulateSampleRows();
             LayoutActionRow();
 
             pnlActions.Resize += (_, _) => LayoutActionRow();
@@ -118,15 +117,6 @@ namespace PMS_v1.Pages
                     Padding = new Padding(4, 0, 4, 0)
                 }
             });
-        }
-
-        private void PopulateSampleRows()
-        {
-            dgvBills.Rows.Add("B-001", "Sophia Leigh R. Manoguid", "5,000", "Paid");
-            dgvBills.Rows.Add("B-002", "Alexis N. Prado", "10,000", "Unpaid");
-            dgvBills.Rows.Add("B-003", "Shella Mith C. Belarmino", "6,356", "Partially Paid");
-            dgvBills.Rows.Add("B-004", "Wyne Benjamin Constantino", "6,767", "Overdue");
-            dgvBills.Rows.Add("B-005", "Ryan Villanueva", "1,234", "Canceled");
         }
 
         private void LayoutActionRow()

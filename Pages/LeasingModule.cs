@@ -17,7 +17,6 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMainSkeleton, pnlHeaderBlock, tlpMetricsRow, pnlCommandActionRow, roundedPanelTable);
             ConfigureLeaseGrid();
-            PopulateSampleRows();
             LayoutCommandActionRow();
             pnlCommandActionRow.Resize += (_, _) => LayoutCommandActionRow();
             dgvLeases.CellPainting += DgvLeases_CellPainting;
@@ -108,19 +107,6 @@ namespace PMS_v1.Pages
                     Padding = new Padding(4, 0, 4, 0)
                 }
             });
-        }
-
-        private void PopulateSampleRows()
-        {
-            statCardActive.CardNumber = "12";
-            statCardPending.CardNumber = "22";
-            statCardExpired.CardNumber = "5";
-            statCardTerminated.CardNumber = "0";
-
-            dgvLeases.Rows.Add("Sophia Leigh R. Manoguid", "A-101", "April 15, 2026", "Active");
-            dgvLeases.Rows.Add("Alexis N. Prado", "B-009", "September 11, 2026", "Pending");
-            dgvLeases.Rows.Add("Shella Mith C. Belarmino", "C-220", "January 6, 2026", "Expired");
-            dgvLeases.Rows.Add("Wyne Benjamin Constantino", "D-069", "May 9, 2026", "Terminated");
         }
 
         private void LayoutCommandActionRow()

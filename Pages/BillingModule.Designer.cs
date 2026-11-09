@@ -108,7 +108,7 @@ namespace PMS_v1.Pages
             // 
             statCardPaid.BackgroundImage = Resources.Resources.check;
             statCardPaid.CardCaption = "Paid";
-            statCardPaid.CardNumber = "12";
+            statCardPaid.CardNumber = "00";
             statCardPaid.Dock = DockStyle.Fill;
             statCardPaid.Location = new Point(8, 0);
             statCardPaid.Margin = new Padding(8, 0, 8, 0);
@@ -120,7 +120,7 @@ namespace PMS_v1.Pages
             // 
             statCardPartiallyPaid.BackgroundImage = Resources.Resources.clock;
             statCardPartiallyPaid.CardCaption = "Partially Paid";
-            statCardPartiallyPaid.CardNumber = "22";
+            statCardPartiallyPaid.CardNumber = "00";
             statCardPartiallyPaid.Dock = DockStyle.Fill;
             statCardPartiallyPaid.Location = new Point(221, 0);
             statCardPartiallyPaid.Margin = new Padding(8, 0, 8, 0);
@@ -132,7 +132,7 @@ namespace PMS_v1.Pages
             // 
             statCardUnpaid.BackgroundImage = Resources.Resources.exclamation;
             statCardUnpaid.CardCaption = "Unpaid";
-            statCardUnpaid.CardNumber = "5";
+            statCardUnpaid.CardNumber = "00";
             statCardUnpaid.Dock = DockStyle.Fill;
             statCardUnpaid.Location = new Point(434, 0);
             statCardUnpaid.Margin = new Padding(8, 0, 8, 0);
@@ -144,7 +144,7 @@ namespace PMS_v1.Pages
             // 
             statCardOverdue.BackgroundImage = Resources.Resources.remove;
             statCardOverdue.CardCaption = "Overdue";
-            statCardOverdue.CardNumber = "0";
+            statCardOverdue.CardNumber = "00";
             statCardOverdue.Dock = DockStyle.Fill;
             statCardOverdue.Location = new Point(647, 0);
             statCardOverdue.Margin = new Padding(8, 0, 8, 0);
@@ -156,7 +156,7 @@ namespace PMS_v1.Pages
             // 
             statCardCanceled.BackgroundImage = Resources.Resources.remove;
             statCardCanceled.CardCaption = "Canceled";
-            statCardCanceled.CardNumber = "10";
+            statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
             statCardCanceled.Location = new Point(860, 0);
             statCardCanceled.Margin = new Padding(8, 0, 8, 0);

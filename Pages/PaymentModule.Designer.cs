@@ -115,7 +115,7 @@ namespace PMS_v1.Pages
             // 
             statCardCompleted.CardCaption = "Completed";
             statCardCompleted.CardIcon = Resources.Resources.check;
-            statCardCompleted.CardNumber = "12";
+            statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
             statCardCompleted.Location = new Point(8, 0);
             statCardCompleted.Margin = new Padding(8, 0, 8, 0);
@@ -127,7 +127,7 @@ namespace PMS_v1.Pages
             // 
             statCardPending.CardCaption = "Pending";
             statCardPending.CardIcon = Resources.Resources.clock;
-            statCardPending.CardNumber = "22";
+            statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
             statCardPending.Location = new Point(274, 0);
             statCardPending.Margin = new Padding(8, 0, 8, 0);
@@ -139,7 +139,7 @@ namespace PMS_v1.Pages
             // 
             statCardFailed.CardCaption = "Failed";
             statCardFailed.CardIcon = Resources.Resources.remove;
-            statCardFailed.CardNumber = "5";
+            statCardFailed.CardNumber = "00";
             statCardFailed.Dock = DockStyle.Fill;
             statCardFailed.Location = new Point(540, 0);
             statCardFailed.Margin = new Padding(8, 0, 8, 0);
@@ -152,7 +152,7 @@ namespace PMS_v1.Pages
             statCardRefunded.BackgroundImage = Resources.Resources.swap;
             statCardRefunded.CardCaption = "Refunded";
             statCardRefunded.CardIcon = Resources.Resources.swap;
-            statCardRefunded.CardNumber = "0";
+            statCardRefunded.CardNumber = "00";
             statCardRefunded.Dock = DockStyle.Fill;
             statCardRefunded.Location = new Point(806, 0);
             statCardRefunded.Margin = new Padding(8, 0, 8, 0);

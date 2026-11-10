@@ -78,6 +78,7 @@ namespace pms_UI
             BeginInvoke(() =>
             {
                 PreloadPage("Units", () => new Units());
+                ShowPage("Dashboard", () => new Dashboard());
                 // PreloadPage("Leasing", () => new LeasingModule());
                 // PreloadPage("Personnel", () => new Personnel());
             });
@@ -118,8 +119,9 @@ namespace pms_UI
         {
             switch (page)
             {
-                //case "Dashboard": ShowPage(new DashboardPage()); break;
+                case "Dashboard": ShowPage("Dashboard", () => new Dashboard()); break;
                 case "Units": ShowPage("Units", () => new Units()); break;
+                case "Properties": ShowPage("Properties", () => new PropertiesModule()); break;
                 case "Leasing": ShowPage("Leasing", () => new LeasingModule()); break;
                 case "Billing": ShowPage("Billing", () => new BillingModule()); break;
                 case "Payment": ShowPage("Payment", () => new PaymentModule()); break;

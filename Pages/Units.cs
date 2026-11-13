@@ -1,4 +1,7 @@
-﻿namespace PMS_v1.Pages
+﻿using MySql.Data.MySqlClient;
+using PMS_v1.Database;
+
+namespace PMS_v1.Pages
 {
     public partial class Units : UserControl
     {
@@ -14,6 +17,7 @@
             ConfigureUnitActions();
             LayoutActionRow();
             pnlActions.Resize += (_, _) => LayoutActionRow();
+            LoadStats();
         }
 
         private void ConfigureUnitActions()
@@ -48,6 +52,35 @@
         {
             PMS_v1.UserControls.ModulePageLayout.LayoutActions(
                 pnlActions, txtSearch, cmbFilter, btnNewProperty);
+        }
+
+        // Load stats
+        private void LoadStats()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                                    COUNT(*) AS TotalUnits,
+                                    COUNT(CASE WHEN STATUS = 'Vacant' THEN 1 END) AS VacantUnits,
+                                    COUNT(CASE WHEN STATUS = 'Occupied' THEN 1 END) AS OccupiedUnits,
+                                    COUNT(CASE WHEN STATUS = 'Under Maintenance' THEN 1 END) AS MaintenanceUnits
+                               FROM Units";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        statCardTotalUnits.CardNumber = reader["TotalUnits"].ToString();
+                        statCardVacantUnits.CardNumber = reader["VacantUnits"].ToString();
+                        statCardOccupiedUnits.CardNumber = reader["OccupiedUnits"].ToString();
+                        statCardMaintenanceUnits.CardNumber = reader["MaintenanceUnits"].ToString();    
+                    }
+                }
+            }
         }
     }
 }

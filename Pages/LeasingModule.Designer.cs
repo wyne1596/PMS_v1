@@ -19,8 +19,8 @@
         {
             tlpMainSkeleton = new TableLayoutPanel();
             pnlHeaderBlock = new Panel();
-            lblBreadcrumb = new Label();
             lblModuleTitle = new Label();
+            lblBreadcrumb = new Label();
             tlpMetricsRow = new TableLayoutPanel();
             statCardActive = new PMS_v1.UserControls.Statcard();
             statCardPending = new PMS_v1.UserControls.Statcard();
@@ -30,13 +30,14 @@
             txtSearchInput = new Krypton.Toolkit.KryptonTextBox();
             cmbFilterDropdown = new Krypton.Toolkit.KryptonComboBox();
             btnNewLease = new Krypton.Toolkit.KryptonButton();
-            roundedPanelTable = new PMS_v1.RoundedPanel();
+            roundedPanelTable = new RoundedPanel();
             dgvLeases = new DataGridView();
             tlpMainSkeleton.SuspendLayout();
             pnlHeaderBlock.SuspendLayout();
             tlpMetricsRow.SuspendLayout();
             pnlCommandActionRow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cmbFilterDropdown).BeginInit();
+            roundedPanelTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvLeases).BeginInit();
             SuspendLayout();
             // 
@@ -52,45 +53,48 @@
             tlpMainSkeleton.Location = new Point(0, 0);
             tlpMainSkeleton.Name = "tlpMainSkeleton";
             tlpMainSkeleton.RowCount = 4;
-            tlpMainSkeleton.Padding = new Padding(42, 18, 42, 12);
-            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
-            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
-            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMainSkeleton.Size = new Size(1150, 938);
+            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
+            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Percent, 18.5542164F));
+            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Percent, 13.6144581F));
+            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Percent, 67.83132F));
+            tlpMainSkeleton.Size = new Size(1194, 1207);
             tlpMainSkeleton.TabIndex = 0;
             // 
             // pnlHeaderBlock
             // 
-            pnlHeaderBlock.Controls.Add(lblBreadcrumb);
             pnlHeaderBlock.Controls.Add(lblModuleTitle);
+            pnlHeaderBlock.Controls.Add(lblBreadcrumb);
             pnlHeaderBlock.Dock = DockStyle.Fill;
             pnlHeaderBlock.Location = new Point(3, 3);
             pnlHeaderBlock.Name = "pnlHeaderBlock";
-            pnlHeaderBlock.Size = new Size(1144, 73);
+            pnlHeaderBlock.Padding = new Padding(15, 0, 0, 0);
+            pnlHeaderBlock.Size = new Size(1188, 69);
             pnlHeaderBlock.TabIndex = 0;
-            // 
-            // lblBreadcrumb
-            // 
-            lblBreadcrumb.AutoSize = true;
-            lblBreadcrumb.Font = new Font("Segoe UI", 8.5F);
-            lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
-            lblBreadcrumb.Location = new Point(0, 20);
-            lblBreadcrumb.Name = "lblBreadcrumb";
-            lblBreadcrumb.Size = new Size(91, 15);
-            lblBreadcrumb.TabIndex = 0;
-            lblBreadcrumb.Text = "Home / Leasing";
             // 
             // lblModuleTitle
             // 
             lblModuleTitle.AutoSize = true;
-            lblModuleTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblModuleTitle.ForeColor = Color.FromArgb(33, 37, 41);
-            lblModuleTitle.Location = new Point(0, 43);
+            lblModuleTitle.Dock = DockStyle.Top;
+            lblModuleTitle.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblModuleTitle.ForeColor = Color.FromArgb(51, 51, 51);
+            lblModuleTitle.Location = new Point(15, 31);
             lblModuleTitle.Name = "lblModuleTitle";
-            lblModuleTitle.Size = new Size(124, 41);
+            lblModuleTitle.Size = new Size(117, 34);
             lblModuleTitle.TabIndex = 1;
             lblModuleTitle.Text = "Leasing";
+            // 
+            // lblBreadcrumb
+            // 
+            lblBreadcrumb.AutoSize = true;
+            lblBreadcrumb.Dock = DockStyle.Top;
+            lblBreadcrumb.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
+            lblBreadcrumb.Location = new Point(15, 0);
+            lblBreadcrumb.Name = "lblBreadcrumb";
+            lblBreadcrumb.Padding = new Padding(3, 0, 0, 11);
+            lblBreadcrumb.Size = new Size(125, 31);
+            lblBreadcrumb.TabIndex = 0;
+            lblBreadcrumb.Text = "Home / Leasing";
             // 
             // tlpMetricsRow
             // 
@@ -104,12 +108,11 @@
             tlpMetricsRow.Controls.Add(statCardExpired, 2, 0);
             tlpMetricsRow.Controls.Add(statCardTerminated, 3, 0);
             tlpMetricsRow.Dock = DockStyle.Fill;
-            tlpMetricsRow.Location = new Point(42, 114);
-            tlpMetricsRow.Margin = new Padding(0, 0, 0, 0);
+            tlpMetricsRow.Location = new Point(3, 78);
             tlpMetricsRow.Name = "tlpMetricsRow";
             tlpMetricsRow.RowCount = 1;
             tlpMetricsRow.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetricsRow.Size = new Size(1110, 110);
+            tlpMetricsRow.Size = new Size(1188, 204);
             tlpMetricsRow.TabIndex = 1;
             // 
             // statCardActive
@@ -118,10 +121,10 @@
             statCardActive.CardIcon = Resources.Resources.check;
             statCardActive.CardNumber = "00";
             statCardActive.Dock = DockStyle.Fill;
-            statCardActive.Location = new Point(8, 0);
-            statCardActive.Margin = new Padding(8, 0, 8, 0);
+            statCardActive.Location = new Point(15, 0);
+            statCardActive.Margin = new Padding(15, 0, 7, 0);
             statCardActive.Name = "statCardActive";
-            statCardActive.Size = new Size(261, 110);
+            statCardActive.Size = new Size(275, 204);
             statCardActive.TabIndex = 0;
             // 
             // statCardPending
@@ -130,10 +133,10 @@
             statCardPending.CardIcon = Resources.Resources.clock;
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
-            statCardPending.Location = new Point(285, 0);
-            statCardPending.Margin = new Padding(8, 0, 8, 0);
+            statCardPending.Location = new Point(304, 0);
+            statCardPending.Margin = new Padding(7, 0, 7, 0);
             statCardPending.Name = "statCardPending";
-            statCardPending.Size = new Size(261, 110);
+            statCardPending.Size = new Size(283, 204);
             statCardPending.TabIndex = 1;
             // 
             // statCardExpired
@@ -142,22 +145,23 @@
             statCardExpired.CardIcon = Resources.Resources.exclamation;
             statCardExpired.CardNumber = "00";
             statCardExpired.Dock = DockStyle.Fill;
-            statCardExpired.Location = new Point(562, 0);
-            statCardExpired.Margin = new Padding(8, 0, 8, 0);
+            statCardExpired.Location = new Point(601, 0);
+            statCardExpired.Margin = new Padding(7, 0, 7, 0);
             statCardExpired.Name = "statCardExpired";
-            statCardExpired.Size = new Size(261, 110);
+            statCardExpired.Size = new Size(283, 204);
             statCardExpired.TabIndex = 2;
             // 
             // statCardTerminated
             // 
-            statCardTerminated.CardCaption = "Terminated";
             statCardTerminated.BackgroundImage = Resources.Resources.remove;
+            statCardTerminated.CardCaption = "Terminated";
+            statCardTerminated.CardIcon = Resources.Resources.remove;
             statCardTerminated.CardNumber = "00";
             statCardTerminated.Dock = DockStyle.Fill;
-            statCardTerminated.Location = new Point(839, 0);
-            statCardTerminated.Margin = new Padding(8, 0, 8, 0);
+            statCardTerminated.Location = new Point(898, 0);
+            statCardTerminated.Margin = new Padding(7, 0, 15, 0);
             statCardTerminated.Name = "statCardTerminated";
-            statCardTerminated.Size = new Size(263, 110);
+            statCardTerminated.Size = new Size(275, 204);
             statCardTerminated.TabIndex = 3;
             // 
             // pnlCommandActionRow
@@ -166,47 +170,67 @@
             pnlCommandActionRow.Controls.Add(cmbFilterDropdown);
             pnlCommandActionRow.Controls.Add(btnNewLease);
             pnlCommandActionRow.Dock = DockStyle.Fill;
-            pnlCommandActionRow.Location = new Point(45, 258);
+            pnlCommandActionRow.Location = new Point(15, 288);
+            pnlCommandActionRow.Margin = new Padding(15, 3, 15, 3);
             pnlCommandActionRow.Name = "pnlCommandActionRow";
-            pnlCommandActionRow.Size = new Size(1042, 66);
+            pnlCommandActionRow.Size = new Size(1164, 148);
             pnlCommandActionRow.TabIndex = 2;
             // 
             // txtSearchInput
             // 
-            txtSearchInput.Location = new Point(0, 14);
+            txtSearchInput.Location = new Point(0, 19);
+            txtSearchInput.Margin = new Padding(3, 4, 3, 4);
             txtSearchInput.Name = "txtSearchInput";
-            txtSearchInput.Size = new Size(580, 34);
+            txtSearchInput.Size = new Size(663, 34);
+            txtSearchInput.StateActive.Border.Color1 = Color.FromArgb(74, 151, 196);
+            txtSearchInput.StateActive.Border.Color2 = Color.FromArgb(74, 151, 196);
             txtSearchInput.StateCommon.Back.Color1 = Color.White;
             txtSearchInput.StateCommon.Border.Color1 = Color.FromArgb(222, 226, 230);
-            txtSearchInput.StateCommon.Border.Rounding = 12F;
+            txtSearchInput.StateCommon.Border.Color2 = Color.FromArgb(222, 226, 230);
+            txtSearchInput.StateCommon.Border.Rounding = 8F;
+            txtSearchInput.StateCommon.Content.Color1 = Color.FromArgb(51, 51, 51);
+            txtSearchInput.StateCommon.Content.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearchInput.TabIndex = 0;
             txtSearchInput.Text = "Search tenant, unit or lease...";
             // 
             // cmbFilterDropdown
             // 
             cmbFilterDropdown.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            cmbFilterDropdown.Location = new Point(700, 14);
+            cmbFilterDropdown.Location = new Point(773, 19);
+            cmbFilterDropdown.Margin = new Padding(3, 4, 3, 4);
             cmbFilterDropdown.Name = "cmbFilterDropdown";
-            cmbFilterDropdown.Size = new Size(150, 34);
+            cmbFilterDropdown.Size = new Size(171, 32);
+            cmbFilterDropdown.StateActive.ComboBox.Border.Color1 = Color.FromArgb(74, 151, 196);
+            cmbFilterDropdown.StateActive.ComboBox.Border.Color2 = Color.FromArgb(74, 151, 196);
             cmbFilterDropdown.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbFilterDropdown.StateCommon.ComboBox.Border.Color1 = Color.FromArgb(222, 226, 230);
-            cmbFilterDropdown.StateCommon.ComboBox.Border.Rounding = 12F;
+            cmbFilterDropdown.StateCommon.ComboBox.Border.Color2 = Color.FromArgb(222, 226, 230);
+            cmbFilterDropdown.StateCommon.ComboBox.Border.Rounding = 8F;
+            cmbFilterDropdown.StateCommon.ComboBox.Content.Color1 = Color.FromArgb(51, 51, 51);
+            cmbFilterDropdown.StateCommon.ComboBox.Content.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbFilterDropdown.TabIndex = 1;
             cmbFilterDropdown.Text = "Filter";
             // 
             // btnNewLease
             // 
             btnNewLease.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnNewLease.Location = new Point(870, 12);
+            btnNewLease.Location = new Point(967, 16);
+            btnNewLease.Margin = new Padding(3, 4, 3, 4);
             btnNewLease.Name = "btnNewLease";
-            btnNewLease.Size = new Size(172, 40);
+            btnNewLease.Size = new Size(197, 53);
             btnNewLease.StateCommon.Back.Color1 = Color.FromArgb(141, 198, 63);
             btnNewLease.StateCommon.Back.Color2 = Color.FromArgb(91, 154, 42);
             btnNewLease.StateCommon.Back.ColorAngle = 90F;
             btnNewLease.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
-            btnNewLease.StateCommon.Border.Rounding = 12F;
+            btnNewLease.StateCommon.Border.Color1 = Color.FromArgb(91, 154, 42);
+            btnNewLease.StateCommon.Border.Color2 = Color.FromArgb(91, 154, 42);
+            btnNewLease.StateCommon.Border.Rounding = 8F;
             btnNewLease.StateCommon.Content.ShortText.Color1 = Color.White;
-            btnNewLease.StateCommon.Content.ShortText.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            btnNewLease.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNewLease.StatePressed.Back.Color1 = Color.FromArgb(104, 168, 48);
+            btnNewLease.StatePressed.Back.Color2 = Color.FromArgb(74, 130, 34);
+            btnNewLease.StateTracking.Back.Color1 = Color.FromArgb(160, 212, 82);
+            btnNewLease.StateTracking.Back.Color2 = Color.FromArgb(106, 170, 52);
             btnNewLease.TabIndex = 2;
             btnNewLease.Values.DropDownArrowColor = Color.Empty;
             btnNewLease.Values.Text = "+   New Lease";
@@ -215,17 +239,17 @@
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 8;
-            roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Margin = new Padding(8, 8, 8, 8);
-            roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(5);
-            roundedPanelTable.ShadowColor = Color.Black;
-            roundedPanelTable.ShadowOffsetY = 2;
-            roundedPanelTable.ShadowOpacity = 28;
-            roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.TabIndex = 3;
+            roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvLeases);
+            roundedPanelTable.Dock = DockStyle.Fill;
+            roundedPanelTable.Location = new Point(15, 442);
+            roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
+            roundedPanelTable.Name = "roundedPanelTable";
+            roundedPanelTable.ShadowColor = Color.Black;
+            roundedPanelTable.ShadowOpacity = 32;
+            roundedPanelTable.ShadowSize = 4;
+            roundedPanelTable.Size = new Size(1164, 762);
+            roundedPanelTable.TabIndex = 3;
             // 
             // dgvLeases
             // 
@@ -234,24 +258,27 @@
             dgvLeases.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvLeases.ColumnHeadersHeight = 42;
             dgvLeases.Dock = DockStyle.Fill;
+            dgvLeases.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dgvLeases.GridColor = Color.FromArgb(233, 236, 239);
-            dgvLeases.Location = new Point(9, 9);
+            dgvLeases.Location = new Point(4, 6);
             dgvLeases.Margin = new Padding(0);
             dgvLeases.Name = "dgvLeases";
             dgvLeases.RowHeadersVisible = false;
+            dgvLeases.RowHeadersWidth = 51;
             dgvLeases.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvLeases.Size = new Size(1018, 532);
+            dgvLeases.Size = new Size(1156, 750);
             dgvLeases.TabIndex = 3;
             // 
             // LeasingModule
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(237, 240, 241);
+            BackColor = Color.FromArgb(236, 240, 241);
             Controls.Add(tlpMainSkeleton);
-            MinimumSize = new Size(0, 0);
+            DoubleBuffered = true;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "LeasingModule";
-            Size = new Size(1150, 938);
+            Size = new Size(1194, 1207);
             tlpMainSkeleton.ResumeLayout(false);
             pnlHeaderBlock.ResumeLayout(false);
             pnlHeaderBlock.PerformLayout();
@@ -259,6 +286,7 @@
             pnlCommandActionRow.ResumeLayout(false);
             pnlCommandActionRow.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)cmbFilterDropdown).EndInit();
+            roundedPanelTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvLeases).EndInit();
             ResumeLayout(false);
         }
@@ -268,7 +296,6 @@
         private System.Windows.Forms.Label lblBreadcrumb;
         private System.Windows.Forms.Label lblModuleTitle;
         private System.Windows.Forms.TableLayoutPanel tlpMetricsRow;
-        // 🚀 Cleaned-up 4 Statcard Fields
         private PMS_v1.UserControls.Statcard statCardActive;
         private PMS_v1.UserControls.Statcard statCardPending;
         private PMS_v1.UserControls.Statcard statCardExpired;

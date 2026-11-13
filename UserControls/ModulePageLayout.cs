@@ -22,21 +22,22 @@ namespace PMS_v1.UserControls
             metrics.SuspendLayout();
 
             pageLayout.Dock = DockStyle.Fill;
-            pageLayout.Padding = new Padding(42, 18, 42, 12);
+            pageLayout.Padding = Padding.Empty;
+            pageLayout.Margin = new Padding(3, 2, 3, 2);
             pageLayout.ColumnCount = 1;
             pageLayout.RowCount = 4;
             pageLayout.ColumnStyles.Clear();
             pageLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             pageLayout.RowStyles.Clear();
-            pageLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
-            pageLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
-            pageLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            pageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            pageLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
+            pageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 18.5542164F));
+            pageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 13.6144581F));
+            pageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 67.83132F));
 
             header.Dock = DockStyle.Fill;
-            header.Margin = new Padding(3);
+            header.Margin = new Padding(3, 2, 3, 2);
             metrics.Dock = DockStyle.Fill;
-            metrics.Margin = Padding.Empty;
+            metrics.Margin = new Padding(3, 2, 3, 2);
             metrics.ColumnCount = metrics.Controls.Count;
             metrics.ColumnStyles.Clear();
 
@@ -47,19 +48,58 @@ namespace PMS_v1.UserControls
                     metrics.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, columnWidth));
             }
 
-            foreach (Control card in metrics.Controls)
+            int cardCount = metrics.Controls.Count;
+            for (int i = 0; i < cardCount; i++)
             {
+                Control card = metrics.GetControlFromPosition(i, 0) ?? metrics.Controls[i];
                 card.Dock = DockStyle.Fill;
-                card.Margin = new Padding(8, 0, 8, 0);
+                card.Margin = new Padding(i == 0 ? 13 : 6, 0, i == cardCount - 1 ? 13 : 6, 0);
             }
 
             actions.Dock = DockStyle.Fill;
-            actions.Margin = new Padding(3);
+            actions.Margin = new Padding(13, 2, 13, 2);
             content.Dock = DockStyle.Fill;
-            content.Margin = new Padding(8);
+            content.Margin = new Padding(13, 2, 13, 2);
+
+            if (content is RoundedPanel roundedContent)
+            {
+                foreach (Control child in roundedContent.Controls)
+                {
+                    if (child is DataGridView grid)
+                        FitGridToRoundedPanel(roundedContent, grid);
+                }
+            }
 
             metrics.ResumeLayout(true);
             pageLayout.ResumeLayout(true);
+        }
+
+        // For DataGridViews: fills the rounded panel and clips the grid corners so the header follows the curve.
+        internal static void FitGridToRoundedPanel(RoundedPanel panel, DataGridView grid)
+        {
+            panel.Padding = Padding.Empty;
+            grid.Dock = DockStyle.Fill;
+
+            void ClipCorners()
+            {
+                if (grid.Width <= 0 || grid.Height <= 0) return;
+
+                int d = Math.Max(1, panel.BorderRadius * 2);
+                d = Math.Min(d, Math.Min(grid.Width, grid.Height));
+                using var path = new System.Drawing.Drawing2D.GraphicsPath();
+                path.AddArc(0, 0, d, d, 180, 90);
+                path.AddArc(grid.Width - d, 0, d, d, 270, 90);
+                path.AddArc(grid.Width - d, grid.Height - d, d, d, 0, 90);
+                path.AddArc(0, grid.Height - d, d, d, 90, 90);
+                path.CloseFigure();
+
+                Region? old = grid.Region;
+                grid.Region = new Region(path);
+                old?.Dispose();
+            }
+
+            grid.SizeChanged += (_, _) => ClipCorners();
+            ClipCorners();
         }
 
         internal static void LayoutActions(Control actionRow, Control search, Control filter, Control action)

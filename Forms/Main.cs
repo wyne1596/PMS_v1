@@ -118,18 +118,12 @@ namespace pms_UI
         {
             switch (page)
             {
-                //case "Dashboard": ShowPage(new DashboardPage()); break;
+                case "Dashboard": ShowPage("Dashboard", () => new DashboardModule()); break;
                 case "Units": ShowPage("Units", () => new Units()); break;
                 case "Leasing": ShowPage("Leasing", () => new LeasingModule()); break;
                 case "Billing": ShowPage("Billing", () => new BillingModule()); break;
                 case "Payment": ShowPage("Payment", () => new PaymentModule()); break;
                 case "Maintenance": ShowPage("Maintenance", () => new MaintenanceModule()); break;
-                //case "Tenants": ShowPage(new TenantsPage()); break;
-                //case "Leasing": ShowPage(new LeasingPage()); break;
-                //case "Billing": ShowPage(new BillingPage()); break;
-                //case "Payment": ShowPage(new PaymentPage()); break;
-                //case "Maintenance": ShowPage(new MaintenancePage()); break;
-                //case "Reports": ShowPage(new ReportsPage()); break;
                 //case "Settings": ShowPage(new SettingsPage()); break;
                 case "Logout": Logout(); break;
             }

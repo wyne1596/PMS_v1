@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using PMS_v1.Database;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +22,7 @@ namespace PMS_v1.Pages
             LayoutCommandActionRow();
             pnlCommandActionRow.Resize += (_, _) => LayoutCommandActionRow();
             dgvLeases.CellPainting += DgvLeases_CellPainting;
+            LoadStats();
         }
 
         private void LeasingModule_Load(object sender, EventArgs e)
@@ -140,6 +143,35 @@ namespace PMS_v1.Pages
                 Color.FromArgb(45, 93, 120),
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
             e.Handled = true;
+        }
+
+        //Load statcards
+        private void LoadStats()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                                    COUNT(CASE WHEN STATUS = 'Active' THEN 1 END) AS Active,
+                                    COUNT(CASE WHEN STATUS = 'Pending' THEN 1 END) AS Pending,
+                                    COUNT(CASE WHEN STATUS = 'Expired' THEN 1 END) AS Expired,
+                                    COUNT(CASE WHEN STATUS = 'Terminated' THEN 1 END) AS Terminate
+                               FROM lease";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        statCardActive.CardNumber = reader["Active"].ToString();
+                        statCardPending.CardNumber = reader["Pending"].ToString();
+                        statCardExpired.CardNumber = reader["Expired"].ToString();
+                        statCardTerminated.CardNumber = reader["Terminate"].ToString();
+                    }
+                }
+            }
         }
     }
 }

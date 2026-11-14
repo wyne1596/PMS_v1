@@ -56,9 +56,9 @@
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 18.55422F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 5.38869238F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 76.0600739F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 13.60424F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 3.26855135F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 83.03887F));
             tlpMain.Size = new Size(1194, 1207);
             tlpMain.TabIndex = 0;
             // 
@@ -118,7 +118,7 @@
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1188, 204);
+            tlpMetrics.Size = new Size(1188, 148);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardUnpaid
@@ -130,7 +130,7 @@
             statCardUnpaid.Location = new Point(15, 0);
             statCardUnpaid.Margin = new Padding(15, 0, 7, 0);
             statCardUnpaid.Name = "statCardUnpaid";
-            statCardUnpaid.Size = new Size(275, 204);
+            statCardUnpaid.Size = new Size(275, 148);
             statCardUnpaid.TabIndex = 0;
             // 
             // statCardExpired
@@ -142,7 +142,7 @@
             statCardExpired.Location = new Point(304, 0);
             statCardExpired.Margin = new Padding(7, 0, 7, 0);
             statCardExpired.Name = "statCardExpired";
-            statCardExpired.Size = new Size(283, 204);
+            statCardExpired.Size = new Size(283, 148);
             statCardExpired.TabIndex = 1;
             // 
             // statCardOverdue
@@ -154,7 +154,7 @@
             statCardOverdue.Location = new Point(601, 0);
             statCardOverdue.Margin = new Padding(7, 0, 7, 0);
             statCardOverdue.Name = "statCardOverdue";
-            statCardOverdue.Size = new Size(283, 204);
+            statCardOverdue.Size = new Size(283, 148);
             statCardOverdue.TabIndex = 2;
             // 
             // statCardRepairs
@@ -166,7 +166,7 @@
             statCardRepairs.Location = new Point(898, 0);
             statCardRepairs.Margin = new Padding(7, 0, 15, 0);
             statCardRepairs.Name = "statCardRepairs";
-            statCardRepairs.Size = new Size(275, 204);
+            statCardRepairs.Size = new Size(275, 148);
             statCardRepairs.TabIndex = 3;
             // 
             // lblRecentTransactions
@@ -175,10 +175,11 @@
             lblRecentTransactions.Dock = DockStyle.Fill;
             lblRecentTransactions.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRecentTransactions.ForeColor = Color.FromArgb(51, 51, 51);
-            lblRecentTransactions.Location = new Point(0, 285);
+            lblRecentTransactions.Location = new Point(0, 229);
             lblRecentTransactions.Margin = new Padding(0);
             lblRecentTransactions.Name = "lblRecentTransactions";
-            lblRecentTransactions.Size = new Size(1194, 60);
+            lblRecentTransactions.Padding = new Padding(15, 0, 0, 0);
+            lblRecentTransactions.Size = new Size(1194, 37);
             lblRecentTransactions.TabIndex = 2;
             lblRecentTransactions.Text = "Recent Transactions";
             lblRecentTransactions.TextAlign = ContentAlignment.BottomLeft;
@@ -190,13 +191,13 @@
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvRecent);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(15, 348);
+            roundedPanelTable.Location = new Point(15, 269);
             roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
             roundedPanelTable.Name = "roundedPanelTable";
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 32;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1164, 856);
+            roundedPanelTable.Size = new Size(1164, 935);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvRecent
@@ -242,7 +243,7 @@
             dgvRecent.RowHeadersWidth = 51;
             dgvRecent.RowTemplate.Height = 46;
             dgvRecent.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRecent.Size = new Size(1156, 844);
+            dgvRecent.Size = new Size(1156, 923);
             dgvRecent.TabIndex = 0;
             // 
             // colTenant

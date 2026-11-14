@@ -68,7 +68,7 @@ namespace PMS_v1.Pages
             pnlHeader.Dock = DockStyle.Fill;
             pnlHeader.Location = new Point(3, 3);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Padding = new Padding(17, 0, 0, 0);
+            pnlHeader.Padding = new Padding(15, 0, 0, 0);
             pnlHeader.Size = new Size(1308, 68);
             pnlHeader.TabIndex = 0;
             // 
@@ -78,7 +78,7 @@ namespace PMS_v1.Pages
             lblTitle.Dock = DockStyle.Top;
             lblTitle.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
-            lblTitle.Location = new Point(17, 31);
+            lblTitle.Location = new Point(15, 31);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(100, 37);
             lblTitle.TabIndex = 1;
@@ -90,10 +90,10 @@ namespace PMS_v1.Pages
             lblBreadcrumb.Dock = DockStyle.Top;
             lblBreadcrumb.Font = new Font("Century Gothic", 8.5F);
             lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
-            lblBreadcrumb.Location = new Point(17, 0);
+            lblBreadcrumb.Location = new Point(15, 0);
             lblBreadcrumb.Name = "lblBreadcrumb";
-            lblBreadcrumb.Padding = new Padding(0, 0, 0, 11);
-            lblBreadcrumb.Size = new Size(107, 31);
+            lblBreadcrumb.Padding = new Padding(3, 0, 0, 11);
+            lblBreadcrumb.Size = new Size(110, 31);
             lblBreadcrumb.TabIndex = 0;
             lblBreadcrumb.Text = "Home / Billing";
             // 

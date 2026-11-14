@@ -80,7 +80,6 @@
             // 
             // pnlLogo
             // 
-            pnlLogo.BackgroundImage = Resources.Resources.HeaderBlack;
             pnlLogo.BackgroundImageLayout = ImageLayout.Center;
             pnlLogo.Dock = DockStyle.Top;
             pnlLogo.Location = new Point(0, 0);

@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic.ApplicationServices;
 using PMS_v1.Forms;
+using PMS_v1.OOP_CC105;
 
 namespace pms_UI
 {
@@ -20,11 +21,13 @@ namespace pms_UI
             //    var login = new Login();
             //    if (login.ShowDialog() != DialogResult.OK) break;
 
-                var main = new Main();
-                Application.Run(main);
+            var main = new Main();
+            Application.Run(main);
 
             //    if (!main.LoggedOut) break;   // closed with X, so exit the app
             //}
+
+
         }
     }
 }

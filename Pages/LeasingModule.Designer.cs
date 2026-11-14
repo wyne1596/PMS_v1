@@ -69,7 +69,7 @@
             pnlHeaderBlock.Dock = DockStyle.Fill;
             pnlHeaderBlock.Location = new Point(3, 3);
             pnlHeaderBlock.Name = "pnlHeaderBlock";
-            pnlHeaderBlock.Padding = new Padding(17, 0, 0, 0);
+            pnlHeaderBlock.Padding = new Padding(15, 0, 0, 0);
             pnlHeaderBlock.Size = new Size(1308, 68);
             pnlHeaderBlock.TabIndex = 0;
             // 
@@ -79,7 +79,7 @@
             lblModuleTitle.Dock = DockStyle.Top;
             lblModuleTitle.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
             lblModuleTitle.ForeColor = Color.FromArgb(33, 37, 41);
-            lblModuleTitle.Location = new Point(17, 31);
+            lblModuleTitle.Location = new Point(15, 31);
             lblModuleTitle.Name = "lblModuleTitle";
             lblModuleTitle.Size = new Size(127, 37);
             lblModuleTitle.TabIndex = 1;
@@ -91,10 +91,10 @@
             lblBreadcrumb.Dock = DockStyle.Top;
             lblBreadcrumb.Font = new Font("Century Gothic", 8.5F);
             lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
-            lblBreadcrumb.Location = new Point(17, 0);
+            lblBreadcrumb.Location = new Point(15, 0);
             lblBreadcrumb.Name = "lblBreadcrumb";
-            lblBreadcrumb.Padding = new Padding(0, 0, 0, 11);
-            lblBreadcrumb.Size = new Size(122, 31);
+            lblBreadcrumb.Padding = new Padding(3, 0, 0, 11);
+            lblBreadcrumb.Size = new Size(125, 31);
             lblBreadcrumb.TabIndex = 0;
             lblBreadcrumb.Text = "Home / Leasing";
             // 

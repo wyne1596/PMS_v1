@@ -56,9 +56,9 @@
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 18.5542164F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 13.6144581F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 67.83132F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 18.55422F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 5.38869238F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 76.0600739F));
             tlpMain.Size = new Size(1194, 1207);
             tlpMain.TabIndex = 0;
             // 
@@ -178,7 +178,7 @@
             lblRecentTransactions.Location = new Point(0, 285);
             lblRecentTransactions.Margin = new Padding(0);
             lblRecentTransactions.Name = "lblRecentTransactions";
-            lblRecentTransactions.Size = new Size(1194, 154);
+            lblRecentTransactions.Size = new Size(1194, 60);
             lblRecentTransactions.TabIndex = 2;
             lblRecentTransactions.Text = "Recent Transactions";
             lblRecentTransactions.TextAlign = ContentAlignment.BottomLeft;
@@ -190,13 +190,13 @@
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvRecent);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(15, 442);
+            roundedPanelTable.Location = new Point(15, 348);
             roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
             roundedPanelTable.Name = "roundedPanelTable";
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 32;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1164, 762);
+            roundedPanelTable.Size = new Size(1164, 856);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvRecent
@@ -242,7 +242,7 @@
             dgvRecent.RowHeadersWidth = 51;
             dgvRecent.RowTemplate.Height = 46;
             dgvRecent.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRecent.Size = new Size(1156, 750);
+            dgvRecent.Size = new Size(1156, 844);
             dgvRecent.TabIndex = 0;
             // 
             // colTenant
@@ -307,12 +307,12 @@
         private PMS_v1.UserControls.Statcard statCardExpired;
         private PMS_v1.UserControls.Statcard statCardOverdue;
         private PMS_v1.UserControls.Statcard statCardRepairs;
-        private Label lblRecentTransactions;
         private PMS_v1.RoundedPanel roundedPanelTable;
         private DataGridView dgvRecent;
         private DataGridViewTextBoxColumn colTenant;
         private DataGridViewTextBoxColumn colUnit;
         private DataGridViewTextBoxColumn colLeaseEnds;
         private DataGridViewTextBoxColumn colStatus;
+        private Label lblRecentTransactions;
     }
 }

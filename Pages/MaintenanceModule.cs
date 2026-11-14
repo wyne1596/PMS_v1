@@ -4,7 +4,6 @@ namespace PMS_v1.Pages
 {
     public partial class MaintenanceModule : UserControl
     {
-        private const string SearchPlaceholder = "⌕  Search maintenance requests...";
 
         public MaintenanceModule()
         {
@@ -12,20 +11,9 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
             ConfigureMaintenanceGrid();
-            PopulateSampleRows();
             LayoutActionRow();
 
             pnlActions.Resize += (_, _) => LayoutActionRow();
-            txtSearch.Enter += (_, _) =>
-            {
-                if (txtSearch.Text == SearchPlaceholder)
-                    txtSearch.Text = string.Empty;
-            };
-            txtSearch.Leave += (_, _) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtSearch.Text))
-                    txtSearch.Text = SearchPlaceholder;
-            };
             txtSearch.TextChanged += (_, _) => ApplyRequestFilters();
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyRequestFilters();
             dgvRequests.CellPainting += DgvRequests_CellPainting;
@@ -34,18 +22,17 @@ namespace PMS_v1.Pages
         private void ConfigureMaintenanceGrid()
         {
             statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardNumber = "12";
+            statCardCompleted.CardNumber = "00";
             statCardCompleted.CardIcon = PMS_v1.Resources.Resources.check;
             statCardScheduled.CardCaption = "Scheduled";
-            statCardScheduled.CardNumber = "22";
+            statCardScheduled.CardNumber = "00";
             statCardScheduled.CardIcon = PMS_v1.Resources.Resources.clock;
             statCardInProgress.CardCaption = "In Progress";
-            statCardInProgress.CardNumber = "5";
+            statCardInProgress.CardNumber = "00";
             statCardInProgress.CardIcon = CreateInProgressIcon();
             statCardCanceled.CardCaption = "Canceled";
-            statCardCanceled.CardNumber = "0";
+            statCardCanceled.CardNumber = "00";
 
-            txtSearch.Text = SearchPlaceholder;
             cmbFilter.Items.AddRange(new object[] { "All Statuses", "Completed", "Scheduled", "In Progress", "Canceled" });
             cmbFilter.SelectedIndex = 0;
 
@@ -64,7 +51,7 @@ namespace PMS_v1.Pages
             {
                 BackColor = Color.FromArgb(74, 151, 196),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Font = new Font("Century Gothic", 9F, FontStyle.Bold),
                 Alignment = DataGridViewContentAlignment.MiddleCenter,
                 SelectionBackColor = Color.FromArgb(74, 151, 196),
                 SelectionForeColor = Color.White
@@ -73,7 +60,7 @@ namespace PMS_v1.Pages
             {
                 BackColor = Color.White,
                 ForeColor = Color.FromArgb(44, 49, 53),
-                Font = new Font("Segoe UI", 9F),
+                Font = new Font("Century Gothic", 9F),
                 Alignment = DataGridViewContentAlignment.MiddleLeft,
                 Padding = new Padding(12, 0, 8, 0),
                 SelectionBackColor = Color.White,
@@ -121,14 +108,6 @@ namespace PMS_v1.Pages
             });
         }
 
-        private void PopulateSampleRows()
-        {
-            dgvRequests.Rows.Add("MR-001", "A-101", "Leaking pipe", "Completed");
-            dgvRequests.Rows.Add("MR-002", "B-009", "Broken lock", "Scheduled");
-            dgvRequests.Rows.Add("MR-003", "C-220", "Light fixture", "In Progress");
-            dgvRequests.Rows.Add("MR-004", "D-069", "Light fixture", "Canceled");
-        }
-
         private void LayoutActionRow()
         {
             PMS_v1.UserControls.ModulePageLayout.LayoutActions(
@@ -137,7 +116,7 @@ namespace PMS_v1.Pages
 
         private void ApplyRequestFilters()
         {
-            string searchText = txtSearch.Text == SearchPlaceholder ? string.Empty : txtSearch.Text.Trim();
+            string searchText = txtSearch.Text.Trim();
             string selectedStatus = cmbFilter.SelectedIndex <= 0 ? string.Empty : cmbFilter.Text;
 
             foreach (DataGridViewRow row in dgvRequests.Rows)

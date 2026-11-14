@@ -15,7 +15,6 @@ namespace PMS_v1.Pages
             if (statCardRefunded.CardIcon is null)
                 statCardRefunded.CardIcon = CreateRefundIcon();
             ConfigurePaymentGrid();
-            PopulateSampleRows();
             LayoutActionRow();
             pnlActions.Resize += (_, _) => LayoutActionRow();
             dgvPayments.CellPainting += DgvPayments_CellPainting;
@@ -23,18 +22,17 @@ namespace PMS_v1.Pages
 
         private void ConfigurePaymentGrid()
         {
-            txtSearch.Text = "⌕  Search transaction...";
             cmbFilter.Text = "Filter";
             btnNewTransaction.Values.Text = "＋  New Transaction";
 
             statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardNumber = "12";
+            statCardCompleted.CardNumber = "00";
             statCardPending.CardCaption = "Pending";
-            statCardPending.CardNumber = "22";
+            statCardPending.CardNumber = "00";
             statCardFailed.CardCaption = "Failed";
-            statCardFailed.CardNumber = "5";
+            statCardFailed.CardNumber = "00";
             statCardRefunded.CardCaption = "Refunded";
-            statCardRefunded.CardNumber = "0";
+            statCardRefunded.CardNumber = "00";
 
             dgvPayments.AutoGenerateColumns = false;
             dgvPayments.AllowUserToAddRows = false;
@@ -51,7 +49,7 @@ namespace PMS_v1.Pages
             {
                 BackColor = Color.FromArgb(74, 151, 196),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Font = new Font("Century Gothic", 9F, FontStyle.Bold),
                 Alignment = DataGridViewContentAlignment.MiddleCenter,
                 SelectionBackColor = Color.FromArgb(74, 151, 196),
                 SelectionForeColor = Color.White
@@ -60,7 +58,7 @@ namespace PMS_v1.Pages
             {
                 BackColor = Color.White,
                 ForeColor = Color.FromArgb(44, 49, 53),
-                Font = new Font("Segoe UI", 9F),
+                Font = new Font("Century Gothic", 9F),
                 Alignment = DataGridViewContentAlignment.MiddleLeft,
                 Padding = new Padding(12, 0, 8, 0),
                 SelectionBackColor = Color.White,
@@ -111,14 +109,6 @@ namespace PMS_v1.Pages
                     Padding = new Padding(4, 0, 4, 0)
                 }
             });
-        }
-
-        private void PopulateSampleRows()
-        {
-            dgvPayments.Rows.Add("PAY-001", "Sophia Leigh R. Manoguid", "5,000", "Completed");
-            dgvPayments.Rows.Add("PAY-002", "Alexis N. Prado", "10,000", "Pending");
-            dgvPayments.Rows.Add("PAY-003", "Shella Mith C. Belarmino", "6,356", "Failed");
-            dgvPayments.Rows.Add("PAY-004", "Wyne Benjamin Constantino", "6,767", "Refunded");
         }
 
         private void LayoutActionRow()

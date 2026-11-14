@@ -1,161 +1,258 @@
-﻿namespace PMS_v1.Pages
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace PMS_v1.Pages
 {
     partial class Units
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
+            if (disposing && components != null)
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
-            panel1 = new Panel();
-            lblPage = new Label();
-            lblLoc = new Label();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            btnSearch = new Krypton.Toolkit.ButtonSpecAny();
-            tableLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
+            tlpMain = new TableLayoutPanel();
+            pnlHeader = new Panel();
+            lblTitle = new Label();
+            lblBreadcrumb = new Label();
+            tlpMetrics = new TableLayoutPanel();
+            statCardTotalUnits = new PMS_v1.UserControls.AppearanceIconStatcard();
+            statCardVacantUnits = new PMS_v1.UserControls.AppearanceIconStatcard();
+            statCardOccupiedUnits = new PMS_v1.UserControls.AppearanceIconStatcard();
+            statCardMaintenanceUnits = new PMS_v1.UserControls.AppearanceIconStatcard();
+            pnlActions = new Panel();
+            txtSearch = new Krypton.Toolkit.KryptonTextBox();
+            cmbFilter = new Krypton.Toolkit.KryptonComboBox();
+            btnNewProperty = new Krypton.Toolkit.KryptonButton();
+            tlpMain.SuspendLayout();
+            pnlHeader.SuspendLayout();
+            tlpMetrics.SuspendLayout();
+            pnlActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbFilter).BeginInit();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpMain
             // 
-            tableLayoutPanel1.AutoScroll = true;
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 1);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 0, 2);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.5542164F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.6144581F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 67.83132F));
-            tableLayoutPanel1.Size = new Size(1194, 1207);
-            tableLayoutPanel1.TabIndex = 1;
+            tlpMain.ColumnCount = 1;
+            tlpMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tlpMain.Controls.Add(pnlHeader, 0, 0);
+            tlpMain.Controls.Add(tlpMetrics, 0, 1);
+            tlpMain.Controls.Add(pnlActions, 0, 2);
+            tlpMain.Dock = DockStyle.Fill;
+            tlpMain.Location = new Point(0, 0);
+            tlpMain.Name = "tlpMain";
+            tlpMain.RowCount = 4;
+            tlpMain.RowStyles.Add(new RowStyle());
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpMain.Size = new Size(1314, 1251);
+            tlpMain.TabIndex = 0;
             // 
-            // panel1
+            // pnlHeader
             // 
-            panel1.Controls.Add(lblPage);
-            panel1.Controls.Add(lblLoc);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Padding = new Padding(15, 0, 0, 0);
-            panel1.Size = new Size(1188, 69);
-            panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
+            pnlHeader.AutoSize = true;
+            pnlHeader.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(lblBreadcrumb);
+            pnlHeader.Dock = DockStyle.Fill;
+            pnlHeader.Location = new Point(3, 3);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Padding = new Padding(17, 0, 0, 0);
+            pnlHeader.Size = new Size(1308, 68);
+            pnlHeader.TabIndex = 0;
             // 
-            // lblPage
+            // lblTitle
             // 
-            lblPage.AutoSize = true;
-            lblPage.Dock = DockStyle.Top;
-            lblPage.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPage.ForeColor = Color.FromArgb(51, 51, 51);
-            lblPage.Location = new Point(15, 31);
-            lblPage.Name = "lblPage";
-            lblPage.Size = new Size(77, 34);
-            lblPage.TabIndex = 1;
-            lblPage.Text = "Units";
+            lblTitle.AutoSize = true;
+            lblTitle.Dock = DockStyle.Top;
+            lblTitle.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
+            lblTitle.Location = new Point(17, 31);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(83, 37);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Units";
             // 
-            // lblLoc
+            // lblBreadcrumb
             // 
-            lblLoc.AutoSize = true;
-            lblLoc.Dock = DockStyle.Top;
-            lblLoc.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLoc.ForeColor = Color.FromArgb(108, 117, 125);
-            lblLoc.Location = new Point(15, 0);
-            lblLoc.Name = "lblLoc";
-            lblLoc.Padding = new Padding(3, 0, 0, 11);
-            lblLoc.Size = new Size(104, 31);
-            lblLoc.TabIndex = 0;
-            lblLoc.Text = "Home / Units";
+            lblBreadcrumb.AutoSize = true;
+            lblBreadcrumb.Dock = DockStyle.Top;
+            lblBreadcrumb.Font = new Font("Century Gothic", 8.5F);
+            lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
+            lblBreadcrumb.Location = new Point(17, 0);
+            lblBreadcrumb.Name = "lblBreadcrumb";
+            lblBreadcrumb.Padding = new Padding(0, 0, 0, 11);
+            lblBreadcrumb.Size = new Size(101, 31);
+            lblBreadcrumb.TabIndex = 0;
+            lblBreadcrumb.Text = "Home / Units";
             // 
-            // tableLayoutPanel2
+            // tlpMetrics
             // 
-            tableLayoutPanel2.ColumnCount = 4;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 78);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1188, 204);
-            tableLayoutPanel2.TabIndex = 1;
+            tlpMetrics.ColumnCount = 4;
+            tlpMetrics.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpMetrics.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpMetrics.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpMetrics.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tlpMetrics.Controls.Add(statCardTotalUnits, 0, 0);
+            tlpMetrics.Controls.Add(statCardVacantUnits, 1, 0);
+            tlpMetrics.Controls.Add(statCardOccupiedUnits, 2, 0);
+            tlpMetrics.Controls.Add(statCardMaintenanceUnits, 3, 0);
+            tlpMetrics.Dock = DockStyle.Fill;
+            tlpMetrics.Location = new Point(3, 77);
+            tlpMetrics.Name = "tlpMetrics";
+            tlpMetrics.RowCount = 1;
+            tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpMetrics.Size = new Size(1308, 154);
+            tlpMetrics.TabIndex = 1;
             // 
-            // tableLayoutPanel3
+            // statCardTotalUnits
             // 
-            tableLayoutPanel3.ColumnCount = 3;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60.9914932F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.5042515F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.5042515F));
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 288);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(1188, 148);
-            tableLayoutPanel3.TabIndex = 2;
+            statCardTotalUnits.BackgroundImage = Resources.Resources.circle;
+            statCardTotalUnits.CardCaption = "Total Units";
+            statCardTotalUnits.CardIcon = Resources.Resources.circle;
+            statCardTotalUnits.CardNumber = "00";
+            statCardTotalUnits.Dock = DockStyle.Fill;
+            statCardTotalUnits.Location = new Point(15, 0);
+            statCardTotalUnits.Margin = new Padding(15, 0, 7, 0);
+            statCardTotalUnits.Name = "statCardTotalUnits";
+            statCardTotalUnits.Size = new Size(305, 154);
+            statCardTotalUnits.TabIndex = 0;
             // 
-            // btnSearch
+            // statCardVacantUnits
             // 
-            btnSearch.Edge = Krypton.Toolkit.PaletteRelativeEdgeAlign.Near;
-            btnSearch.Image = Resources.Resources.Search;
-            btnSearch.Style = Krypton.Toolkit.PaletteButtonStyle.LowProfile;
-            btnSearch.ToolTipShadow = false;
-            btnSearch.UniqueName = "10437e8b346441a98f6afb9b5e57af75";
+            statCardVacantUnits.BackgroundImage = Resources.Resources.circle__1_;
+            statCardVacantUnits.CardCaption = "Vacant Units";
+            statCardVacantUnits.CardIcon = Resources.Resources.circle__1_;
+            statCardVacantUnits.CardNumber = "00";
+            statCardVacantUnits.Dock = DockStyle.Fill;
+            statCardVacantUnits.Location = new Point(334, 0);
+            statCardVacantUnits.Margin = new Padding(7, 0, 7, 0);
+            statCardVacantUnits.Name = "statCardVacantUnits";
+            statCardVacantUnits.Size = new Size(313, 154);
+            statCardVacantUnits.TabIndex = 1;
+            // 
+            // statCardOccupiedUnits
+            // 
+            statCardOccupiedUnits.BackgroundImage = Resources.Resources.familiar_group_of_four_persons_composed_by_two_women_with_male_and_female_kids_in_a_house;
+            statCardOccupiedUnits.CardCaption = "Occupied Units";
+            statCardOccupiedUnits.CardIcon = Resources.Resources.familiar_group_of_four_persons_composed_by_two_women_with_male_and_female_kids_in_a_house;
+            statCardOccupiedUnits.CardNumber = "00";
+            statCardOccupiedUnits.Dock = DockStyle.Fill;
+            statCardOccupiedUnits.Location = new Point(661, 0);
+            statCardOccupiedUnits.Margin = new Padding(7, 0, 7, 0);
+            statCardOccupiedUnits.Name = "statCardOccupiedUnits";
+            statCardOccupiedUnits.Size = new Size(313, 154);
+            statCardOccupiedUnits.TabIndex = 2;
+            // 
+            // statCardMaintenanceUnits
+            // 
+            statCardMaintenanceUnits.BackgroundImage = Resources.Resources.hourglass;
+            statCardMaintenanceUnits.CardCaption = "Under Maintenance";
+            statCardMaintenanceUnits.CardIcon = Resources.Resources.hourglass;
+            statCardMaintenanceUnits.CardNumber = "00";
+            statCardMaintenanceUnits.Dock = DockStyle.Fill;
+            statCardMaintenanceUnits.Location = new Point(988, 0);
+            statCardMaintenanceUnits.Margin = new Padding(7, 0, 15, 0);
+            statCardMaintenanceUnits.Name = "statCardMaintenanceUnits";
+            statCardMaintenanceUnits.Size = new Size(305, 154);
+            statCardMaintenanceUnits.TabIndex = 3;
+            // 
+            // pnlActions
+            // 
+            pnlActions.Controls.Add(txtSearch);
+            pnlActions.Controls.Add(cmbFilter);
+            pnlActions.Controls.Add(btnNewProperty);
+            pnlActions.Dock = DockStyle.Fill;
+            pnlActions.Location = new Point(15, 237);
+            pnlActions.Margin = new Padding(15, 3, 15, 3);
+            pnlActions.Name = "pnlActions";
+            pnlActions.Size = new Size(1284, 90);
+            pnlActions.TabIndex = 2;
+            // 
+            // txtSearch
+            // 
+            txtSearch.CueHint.Color1 = Color.FromArgb(125, 130, 134);
+            txtSearch.CueHint.CueHintText = "⌕  Search properties...";
+            txtSearch.CueHint.Font = new Font("Century Gothic", 8.5F);
+            txtSearch.Location = new Point(0, 31);
+            txtSearch.Margin = new Padding(3, 5, 3, 5);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(758, 35);
+            txtSearch.StateCommon.Back.Color1 = Color.White;
+            txtSearch.StateCommon.Border.Color1 = Color.FromArgb(222, 226, 230);
+            txtSearch.StateCommon.Border.Rounding = 12F;
+            txtSearch.TabIndex = 0;
+            // 
+            // cmbFilter
+            // 
+            cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFilter.Location = new Point(914, 31);
+            cmbFilter.Margin = new Padding(3, 5, 3, 5);
+            cmbFilter.Name = "cmbFilter";
+            cmbFilter.Size = new Size(195, 34);
+            cmbFilter.StateCommon.ComboBox.Back.Color1 = Color.White;
+            cmbFilter.StateCommon.ComboBox.Border.Color1 = Color.FromArgb(222, 226, 230);
+            cmbFilter.StateCommon.ComboBox.Border.Rounding = 12F;
+            cmbFilter.TabIndex = 1;
+            // 
+            // btnNewProperty
+            // 
+            btnNewProperty.Location = new Point(1136, 27);
+            btnNewProperty.Margin = new Padding(3, 5, 3, 5);
+            btnNewProperty.Name = "btnNewProperty";
+            btnNewProperty.Size = new Size(225, 71);
+            btnNewProperty.StateCommon.Back.Color1 = Color.FromArgb(141, 198, 63);
+            btnNewProperty.StateCommon.Back.Color2 = Color.FromArgb(91, 154, 42);
+            btnNewProperty.StateCommon.Back.ColorAngle = 90F;
+            btnNewProperty.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
+            btnNewProperty.StateCommon.Border.Rounding = 12F;
+            btnNewProperty.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnNewProperty.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            btnNewProperty.TabIndex = 2;
+            btnNewProperty.Values.DropDownArrowColor = Color.Empty;
+            btnNewProperty.Values.Text = "＋  New Property";
             // 
             // Units
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(236, 240, 241);
-            Controls.Add(tableLayoutPanel1);
-            DoubleBuffered = true;
+            Controls.Add(tlpMain);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Units";
-            Size = new Size(1194, 1207);
-            tableLayoutPanel1.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            Size = new Size(1314, 1251);
+            tlpMain.ResumeLayout(false);
+            tlpMain.PerformLayout();
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
+            tlpMetrics.ResumeLayout(false);
+            pnlActions.ResumeLayout(false);
+            pnlActions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)cmbFilter).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
-        private Label lblPage;
-        private Label lblLoc;
-        private TableLayoutPanel tableLayoutPanel2;
-        private TableLayoutPanel tableLayoutPanel3;
-        private Krypton.Toolkit.ButtonSpecAny btnSearch;
-        private UserControls.Statcard statcard1;
+        private TableLayoutPanel tlpMain;
+        private Panel pnlHeader;
+        private Label lblBreadcrumb;
+        private Label lblTitle;
+        private TableLayoutPanel tlpMetrics;
+        private UserControls.AppearanceIconStatcard statCardTotalUnits;
+        private UserControls.AppearanceIconStatcard statCardVacantUnits;
+        private UserControls.AppearanceIconStatcard statCardOccupiedUnits;
+        private UserControls.AppearanceIconStatcard statCardMaintenanceUnits;
+        private Panel pnlActions;
+        private Krypton.Toolkit.KryptonTextBox txtSearch;
+        private Krypton.Toolkit.KryptonComboBox cmbFilter;
+        private Krypton.Toolkit.KryptonButton btnNewProperty;
     }
 }

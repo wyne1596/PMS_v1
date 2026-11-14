@@ -52,47 +52,49 @@ namespace PMS_v1.Pages
             tlpMain.Location = new Point(0, 0);
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 18.5542164F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 13.6144581F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 67.83132F));
-            tlpMain.Size = new Size(1194, 1207);
+            tlpMain.RowStyles.Add(new RowStyle());
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tlpMain.Size = new Size(1314, 1251);
             tlpMain.TabIndex = 0;
             // 
             // pnlHeader
             // 
+            pnlHeader.AutoSize = true;
+            pnlHeader.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Controls.Add(lblBreadcrumb);
             pnlHeader.Dock = DockStyle.Fill;
             pnlHeader.Location = new Point(3, 3);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Padding = new Padding(15, 0, 0, 0);
-            pnlHeader.Size = new Size(1188, 69);
+            pnlHeader.Padding = new Padding(17, 0, 0, 0);
+            pnlHeader.Size = new Size(1308, 68);
             pnlHeader.TabIndex = 0;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Dock = DockStyle.Top;
-            lblTitle.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.ForeColor = Color.FromArgb(51, 51, 51);
-            lblTitle.Location = new Point(15, 31);
+            lblTitle.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
+            lblTitle.Location = new Point(17, 31);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(94, 34);
-            lblTitle.TabIndex = 0;
+            lblTitle.Size = new Size(100, 37);
+            lblTitle.TabIndex = 1;
             lblTitle.Text = "Billing";
             // 
             // lblBreadcrumb
             // 
             lblBreadcrumb.AutoSize = true;
             lblBreadcrumb.Dock = DockStyle.Top;
-            lblBreadcrumb.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBreadcrumb.Font = new Font("Century Gothic", 8.5F);
             lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
-            lblBreadcrumb.Location = new Point(15, 0);
+            lblBreadcrumb.Location = new Point(17, 0);
             lblBreadcrumb.Name = "lblBreadcrumb";
-            lblBreadcrumb.Padding = new Padding(3, 0, 0, 11);
-            lblBreadcrumb.Size = new Size(110, 31);
-            lblBreadcrumb.TabIndex = 1;
+            lblBreadcrumb.Padding = new Padding(0, 0, 0, 11);
+            lblBreadcrumb.Size = new Size(107, 31);
+            lblBreadcrumb.TabIndex = 0;
             lblBreadcrumb.Text = "Home / Billing";
             // 
             // tlpMetrics
@@ -109,11 +111,11 @@ namespace PMS_v1.Pages
             tlpMetrics.Controls.Add(statCardOverdue, 3, 0);
             tlpMetrics.Controls.Add(statCardCanceled, 4, 0);
             tlpMetrics.Dock = DockStyle.Fill;
-            tlpMetrics.Location = new Point(3, 78);
+            tlpMetrics.Location = new Point(3, 77);
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1188, 204);
+            tlpMetrics.Size = new Size(1308, 154);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardPaid
@@ -121,12 +123,12 @@ namespace PMS_v1.Pages
             statCardPaid.BackgroundImage = Resources.Resources.check;
             statCardPaid.CardCaption = "Paid";
             statCardPaid.CardIcon = Resources.Resources.check;
-            statCardPaid.CardNumber = "12";
+            statCardPaid.CardNumber = "00";
             statCardPaid.Dock = DockStyle.Fill;
             statCardPaid.Location = new Point(15, 0);
             statCardPaid.Margin = new Padding(15, 0, 7, 0);
             statCardPaid.Name = "statCardPaid";
-            statCardPaid.Size = new Size(215, 204);
+            statCardPaid.Size = new Size(239, 154);
             statCardPaid.TabIndex = 0;
             // 
             // statCardPartiallyPaid
@@ -134,12 +136,12 @@ namespace PMS_v1.Pages
             statCardPartiallyPaid.BackgroundImage = Resources.Resources.clock;
             statCardPartiallyPaid.CardCaption = "Partially Paid";
             statCardPartiallyPaid.CardIcon = Resources.Resources.clock;
-            statCardPartiallyPaid.CardNumber = "22";
+            statCardPartiallyPaid.CardNumber = "00";
             statCardPartiallyPaid.Dock = DockStyle.Fill;
-            statCardPartiallyPaid.Location = new Point(244, 0);
+            statCardPartiallyPaid.Location = new Point(268, 0);
             statCardPartiallyPaid.Margin = new Padding(7, 0, 7, 0);
             statCardPartiallyPaid.Name = "statCardPartiallyPaid";
-            statCardPartiallyPaid.Size = new Size(223, 204);
+            statCardPartiallyPaid.Size = new Size(247, 154);
             statCardPartiallyPaid.TabIndex = 1;
             // 
             // statCardUnpaid
@@ -147,12 +149,12 @@ namespace PMS_v1.Pages
             statCardUnpaid.BackgroundImage = Resources.Resources.exclamation;
             statCardUnpaid.CardCaption = "Unpaid";
             statCardUnpaid.CardIcon = Resources.Resources.exclamation;
-            statCardUnpaid.CardNumber = "5";
+            statCardUnpaid.CardNumber = "00";
             statCardUnpaid.Dock = DockStyle.Fill;
-            statCardUnpaid.Location = new Point(481, 0);
+            statCardUnpaid.Location = new Point(529, 0);
             statCardUnpaid.Margin = new Padding(7, 0, 7, 0);
             statCardUnpaid.Name = "statCardUnpaid";
-            statCardUnpaid.Size = new Size(223, 204);
+            statCardUnpaid.Size = new Size(247, 154);
             statCardUnpaid.TabIndex = 2;
             // 
             // statCardOverdue
@@ -160,12 +162,12 @@ namespace PMS_v1.Pages
             statCardOverdue.BackgroundImage = Resources.Resources.remove;
             statCardOverdue.CardCaption = "Overdue";
             statCardOverdue.CardIcon = Resources.Resources.remove;
-            statCardOverdue.CardNumber = "0";
+            statCardOverdue.CardNumber = "00";
             statCardOverdue.Dock = DockStyle.Fill;
-            statCardOverdue.Location = new Point(718, 0);
+            statCardOverdue.Location = new Point(790, 0);
             statCardOverdue.Margin = new Padding(7, 0, 7, 0);
             statCardOverdue.Name = "statCardOverdue";
-            statCardOverdue.Size = new Size(223, 204);
+            statCardOverdue.Size = new Size(247, 154);
             statCardOverdue.TabIndex = 3;
             // 
             // statCardCanceled
@@ -173,12 +175,12 @@ namespace PMS_v1.Pages
             statCardCanceled.BackgroundImage = Resources.Resources.remove;
             statCardCanceled.CardCaption = "Canceled";
             statCardCanceled.CardIcon = Resources.Resources.remove;
-            statCardCanceled.CardNumber = "10";
+            statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
-            statCardCanceled.Location = new Point(955, 0);
+            statCardCanceled.Location = new Point(1051, 0);
             statCardCanceled.Margin = new Padding(7, 0, 15, 0);
             statCardCanceled.Name = "statCardCanceled";
-            statCardCanceled.Size = new Size(218, 204);
+            statCardCanceled.Size = new Size(242, 154);
             statCardCanceled.TabIndex = 4;
             // 
             // pnlActions
@@ -187,26 +189,24 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewBill);
             pnlActions.Dock = DockStyle.Fill;
-            pnlActions.Location = new Point(15, 288);
+            pnlActions.Location = new Point(15, 237);
             pnlActions.Margin = new Padding(15, 3, 15, 3);
             pnlActions.Name = "pnlActions";
-            pnlActions.Size = new Size(1164, 148);
+            pnlActions.Size = new Size(1284, 90);
             pnlActions.TabIndex = 2;
             // 
             // txtSearch
             // 
+            txtSearch.CueHint.Color1 = Color.FromArgb(125, 130, 134);
+            txtSearch.CueHint.CueHintText = "⌕  Search bill or tenant...";
+            txtSearch.CueHint.Font = new Font("Century Gothic", 8.5F);
             txtSearch.Location = new Point(0, 23);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(663, 33);
-            txtSearch.StateActive.Border.Color1 = Color.FromArgb(74, 151, 196);
-            txtSearch.StateActive.Border.Color2 = Color.FromArgb(74, 151, 196);
+            txtSearch.Size = new Size(663, 35);
             txtSearch.StateCommon.Back.Color1 = Color.White;
             txtSearch.StateCommon.Border.Color1 = Color.FromArgb(222, 226, 230);
-            txtSearch.StateCommon.Border.Color2 = Color.FromArgb(222, 226, 230);
-            txtSearch.StateCommon.Border.Rounding = 8F;
-            txtSearch.StateCommon.Content.Color1 = Color.FromArgb(51, 51, 51);
-            txtSearch.StateCommon.Content.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.StateCommon.Border.Rounding = 12F;
             txtSearch.TabIndex = 0;
             // 
             // cmbFilter
@@ -215,15 +215,10 @@ namespace PMS_v1.Pages
             cmbFilter.Location = new Point(800, 23);
             cmbFilter.Margin = new Padding(3, 4, 3, 4);
             cmbFilter.Name = "cmbFilter";
-            cmbFilter.Size = new Size(171, 32);
-            cmbFilter.StateActive.ComboBox.Border.Color1 = Color.FromArgb(74, 151, 196);
-            cmbFilter.StateActive.ComboBox.Border.Color2 = Color.FromArgb(74, 151, 196);
+            cmbFilter.Size = new Size(171, 34);
             cmbFilter.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbFilter.StateCommon.ComboBox.Border.Color1 = Color.FromArgb(222, 226, 230);
-            cmbFilter.StateCommon.ComboBox.Border.Color2 = Color.FromArgb(222, 226, 230);
-            cmbFilter.StateCommon.ComboBox.Border.Rounding = 8F;
-            cmbFilter.StateCommon.ComboBox.Content.Color1 = Color.FromArgb(51, 51, 51);
-            cmbFilter.StateCommon.ComboBox.Content.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbFilter.StateCommon.ComboBox.Border.Rounding = 12F;
             cmbFilter.TabIndex = 1;
             // 
             // btnNewBill
@@ -236,15 +231,9 @@ namespace PMS_v1.Pages
             btnNewBill.StateCommon.Back.Color2 = Color.FromArgb(91, 154, 42);
             btnNewBill.StateCommon.Back.ColorAngle = 90F;
             btnNewBill.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
-            btnNewBill.StateCommon.Border.Color1 = Color.FromArgb(91, 154, 42);
-            btnNewBill.StateCommon.Border.Color2 = Color.FromArgb(91, 154, 42);
-            btnNewBill.StateCommon.Border.Rounding = 8F;
+            btnNewBill.StateCommon.Border.Rounding = 12F;
             btnNewBill.StateCommon.Content.ShortText.Color1 = Color.White;
-            btnNewBill.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNewBill.StatePressed.Back.Color1 = Color.FromArgb(104, 168, 48);
-            btnNewBill.StatePressed.Back.Color2 = Color.FromArgb(74, 130, 34);
-            btnNewBill.StateTracking.Back.Color1 = Color.FromArgb(160, 212, 82);
-            btnNewBill.StateTracking.Back.Color2 = Color.FromArgb(106, 170, 52);
+            btnNewBill.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             btnNewBill.TabIndex = 2;
             btnNewBill.Values.DropDownArrowColor = Color.Empty;
             btnNewBill.Values.Text = "＋  New Bill";
@@ -253,16 +242,17 @@ namespace PMS_v1.Pages
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 10;
+            roundedPanelTable.BorderRadius = 8;
             roundedPanelTable.Controls.Add(dgvBills);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(15, 442);
+            roundedPanelTable.Location = new Point(15, 333);
             roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
             roundedPanelTable.Name = "roundedPanelTable";
+            roundedPanelTable.Padding = new Padding(6, 7, 6, 7);
             roundedPanelTable.ShadowColor = Color.Black;
-            roundedPanelTable.ShadowOpacity = 32;
+            roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1164, 762);
+            roundedPanelTable.Size = new Size(1284, 915);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvBills
@@ -272,28 +262,27 @@ namespace PMS_v1.Pages
             dgvBills.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvBills.ColumnHeadersHeight = 42;
             dgvBills.Dock = DockStyle.Fill;
-            dgvBills.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dgvBills.GridColor = Color.FromArgb(233, 236, 239);
-            dgvBills.Location = new Point(4, 6);
+            dgvBills.Location = new Point(10, 13);
             dgvBills.Margin = new Padding(0);
             dgvBills.Name = "dgvBills";
             dgvBills.RowHeadersVisible = false;
             dgvBills.RowHeadersWidth = 51;
             dgvBills.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBills.Size = new Size(1156, 750);
+            dgvBills.Size = new Size(1264, 889);
             dgvBills.TabIndex = 0;
             // 
             // BillingModule
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(236, 240, 241);
+            BackColor = Color.FromArgb(237, 240, 241);
             Controls.Add(tlpMain);
-            DoubleBuffered = true;
             Margin = new Padding(3, 4, 3, 4);
             Name = "BillingModule";
-            Size = new Size(1194, 1207);
+            Size = new Size(1314, 1251);
             tlpMain.ResumeLayout(false);
+            tlpMain.PerformLayout();
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
             tlpMetrics.ResumeLayout(false);

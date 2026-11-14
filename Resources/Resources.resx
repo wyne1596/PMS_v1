@@ -127,11 +127,17 @@
   <data name="Maintenance" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Maintenance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="EyeClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>EyeClose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hourglass" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>hourglass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Property" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Property.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="circle (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>circle (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,8 +148,14 @@
   <data name="check" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>check.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="swap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>swap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="check3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>check3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>btnGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,17 +175,17 @@
   <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Header Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Header Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EyeClosed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>EyeClosed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Reports" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Reports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bill1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>bill1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SideMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SideMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LoginEye" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>LoginEye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,17 +199,14 @@
   <data name="DividerCompact" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>DividerCompact.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Payment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Payment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Bill" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Lease" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Lease.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EyeClosed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>EyeClosed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Payment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Payment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>check1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,16 +220,16 @@
   <data name="Divider" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Divider.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SideMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SideMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>check2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EyeClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>EyeClose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Header Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Header Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="swap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>swap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="familiar-group-of-four-persons-composed-by-two-women-with-male-and-female-kids-in-a-house" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>familiar-group-of-four-persons-composed-by-two-women-with-male-and-female-kids-in-a-house.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

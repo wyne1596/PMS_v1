@@ -6,7 +6,6 @@ namespace PMS_v1.Pages
 {
     public partial class BillingModule : UserControl
     {
-        private const string SearchPlaceholder = "⌕  Search bill or tenant...";
 
         public BillingModule()
         {
@@ -14,20 +13,9 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
             ConfigureBillingGrid();
-            PopulateSampleRows();
             LayoutActionRow();
 
             pnlActions.Resize += (_, _) => LayoutActionRow();
-            txtSearch.Enter += (_, _) =>
-            {
-                if (txtSearch.Text == SearchPlaceholder)
-                    txtSearch.Text = string.Empty;
-            };
-            txtSearch.Leave += (_, _) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtSearch.Text))
-                    txtSearch.Text = SearchPlaceholder;
-            };
             txtSearch.TextChanged += (_, _) => ApplyBillFilters();
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyBillFilters();
             dgvBills.CellPainting += DgvBills_CellPainting;
@@ -35,7 +23,6 @@ namespace PMS_v1.Pages
 
         private void ConfigureBillingGrid()
         {
-            txtSearch.Text = SearchPlaceholder;
             cmbFilter.Items.AddRange(new object[]
             {
                 "All Statuses", "Paid", "Partially Paid", "Unpaid", "Overdue", "Canceled"
@@ -58,7 +45,7 @@ namespace PMS_v1.Pages
             {
                 BackColor = Color.FromArgb(74, 151, 196),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Font = new Font("Century Gothic", 9F, FontStyle.Bold),
                 Alignment = DataGridViewContentAlignment.MiddleCenter,
                 SelectionBackColor = Color.FromArgb(74, 151, 196),
                 SelectionForeColor = Color.White
@@ -67,7 +54,7 @@ namespace PMS_v1.Pages
             {
                 BackColor = Color.White,
                 ForeColor = Color.FromArgb(44, 49, 53),
-                Font = new Font("Segoe UI", 9F),
+                Font = new Font("Century Gothic", 9F),
                 Alignment = DataGridViewContentAlignment.MiddleLeft,
                 Padding = new Padding(12, 0, 8, 0),
                 SelectionBackColor = Color.White,
@@ -120,15 +107,6 @@ namespace PMS_v1.Pages
             });
         }
 
-        private void PopulateSampleRows()
-        {
-            dgvBills.Rows.Add("B-001", "Sophia Leigh R. Manoguid", "5,000", "Paid");
-            dgvBills.Rows.Add("B-002", "Alexis N. Prado", "10,000", "Unpaid");
-            dgvBills.Rows.Add("B-003", "Shella Mith C. Belarmino", "6,356", "Partially Paid");
-            dgvBills.Rows.Add("B-004", "Wyne Benjamin Constantino", "6,767", "Overdue");
-            dgvBills.Rows.Add("B-005", "Ryan Villanueva", "1,234", "Canceled");
-        }
-
         private void LayoutActionRow()
         {
             PMS_v1.UserControls.ModulePageLayout.LayoutActions(
@@ -137,7 +115,7 @@ namespace PMS_v1.Pages
 
         private void ApplyBillFilters()
         {
-            string searchText = txtSearch.Text == SearchPlaceholder ? string.Empty : txtSearch.Text.Trim();
+            string searchText = txtSearch.Text.Trim();
             string selectedStatus = cmbFilter.SelectedIndex <= 0 ? string.Empty : cmbFilter.Text;
 
             foreach (DataGridViewRow row in dgvBills.Rows)

@@ -3,14 +3,14 @@ using PMS_v1.Database;
 
 namespace PMS_v1.Pages
 {
-    public partial class Units : UserControl
+    public partial class UnitsModule : UserControl
     {
 
         public event Action<string>? PropertySearchChanged;
         public event Action<string>? UnitAvailabilityChanged;
         public event EventHandler? NewPropertyRequested;
 
-        public Units()
+        public UnitsModule()
         {
             InitializeComponent();
             ConfigureUnitActions();

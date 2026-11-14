@@ -77,7 +77,7 @@ namespace pms_UI
             // Runs after the window is on screen and the UI is idle
             BeginInvoke(() =>
             {
-                PreloadPage("Units", () => new Units());
+                PreloadPage("Units", () => new UnitsModule());
                 // PreloadPage("Leasing", () => new LeasingModule());
                 // PreloadPage("Personnel", () => new Personnel());
             });
@@ -119,7 +119,7 @@ namespace pms_UI
             switch (page)
             {
                 case "Dashboard": ShowPage("Dashboard", () => new DashboardModule()); break;
-                case "Units": ShowPage("Units", () => new Units()); break;
+                case "Units": ShowPage("Units", () => new UnitsModule()); break;
                 case "Leasing": ShowPage("Leasing", () => new LeasingModule()); break;
                 case "Billing": ShowPage("Billing", () => new BillingModule()); break;
                 case "Payment": ShowPage("Payment", () => new PaymentModule()); break;

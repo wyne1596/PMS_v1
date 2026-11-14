@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace PMS_v1.Pages
 {
-    partial class Units
+    partial class UnitsModule
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -220,13 +220,13 @@ namespace PMS_v1.Pages
             btnNewProperty.Values.DropDownArrowColor = Color.Empty;
             btnNewProperty.Values.Text = "＋  New Property";
             // 
-            // Units
+            // UnitsModule
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tlpMain);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "Units";
+            Name = "UnitsModule";
             Size = new Size(1314, 1251);
             tlpMain.ResumeLayout(false);
             tlpMain.PerformLayout();

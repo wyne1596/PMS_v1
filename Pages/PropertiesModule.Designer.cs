@@ -20,7 +20,6 @@ namespace PMS_v1.Pages
         {
             tlpMain = new TableLayoutPanel();
             pnlHeader = new Panel();
-            lblBreadcrumb = new Label();
             lblTitle = new Label();
             lblBreadcrumb = new Label();
             tlpMetrics = new TableLayoutPanel();
@@ -64,25 +63,24 @@ namespace PMS_v1.Pages
             // 
             pnlHeader.AutoSize = true;
             pnlHeader.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Controls.Add(lblBreadcrumb);
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Dock = DockStyle.Fill;
-            pnlHeader.Location = new Point(3, 3);
+            pnlHeader.Location = new Point(45, 21);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Padding = new Padding(17, 0, 0, 0);
-            pnlHeader.Size = new Size(1308, 68);
+            pnlHeader.Size = new Size(1224, 72);
             pnlHeader.TabIndex = 0;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Dock = DockStyle.Top;
-            lblTitle.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
-            lblTitle.Location = new Point(17, 31);
+            lblTitle.Location = new Point(17, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(160, 37);
+            lblTitle.Size = new Size(164, 41);
             lblTitle.TabIndex = 1;
             lblTitle.Text = "Properties";
             // 
@@ -92,23 +90,12 @@ namespace PMS_v1.Pages
             lblBreadcrumb.Dock = DockStyle.Top;
             lblBreadcrumb.Font = new Font("Century Gothic", 8.5F);
             lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
-            lblBreadcrumb.Location = new Point(17, 0);
+            lblBreadcrumb.Location = new Point(17, 41);
             lblBreadcrumb.Name = "lblBreadcrumb";
             lblBreadcrumb.Padding = new Padding(0, 0, 0, 11);
             lblBreadcrumb.Size = new Size(140, 31);
             lblBreadcrumb.TabIndex = 0;
             lblBreadcrumb.Text = "Home / Properties";
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
-            lblTitle.Location = new Point(0, 43);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(108, 32);
-            lblTitle.TabIndex = 1;
-            lblTitle.Text = "Properties";
             // 
             // tlpMetrics
             // 
@@ -122,11 +109,11 @@ namespace PMS_v1.Pages
             tlpMetrics.Controls.Add(statCardUnitsOccupied, 2, 0);
             tlpMetrics.Controls.Add(statCardTotalTenants, 3, 0);
             tlpMetrics.Dock = DockStyle.Fill;
-            tlpMetrics.Location = new Point(3, 77);
+            tlpMetrics.Location = new Point(45, 99);
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1308, 154);
+            tlpMetrics.Size = new Size(1224, 154);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardTotalProperties
@@ -139,7 +126,7 @@ namespace PMS_v1.Pages
             statCardTotalProperties.Location = new Point(15, 0);
             statCardTotalProperties.Margin = new Padding(15, 0, 7, 0);
             statCardTotalProperties.Name = "statCardTotalProperties";
-            statCardTotalProperties.Size = new Size(305, 154);
+            statCardTotalProperties.Size = new Size(284, 154);
             statCardTotalProperties.TabIndex = 0;
             // 
             // statCardTotalUnits
@@ -149,10 +136,10 @@ namespace PMS_v1.Pages
             statCardTotalUnits.CardIcon = Resources.Resources.Lease;
             statCardTotalUnits.CardNumber = "00";
             statCardTotalUnits.Dock = DockStyle.Fill;
-            statCardTotalUnits.Location = new Point(334, 0);
+            statCardTotalUnits.Location = new Point(313, 0);
             statCardTotalUnits.Margin = new Padding(7, 0, 7, 0);
             statCardTotalUnits.Name = "statCardTotalUnits";
-            statCardTotalUnits.Size = new Size(313, 154);
+            statCardTotalUnits.Size = new Size(292, 154);
             statCardTotalUnits.TabIndex = 1;
             // 
             // statCardUnitsOccupied
@@ -162,10 +149,10 @@ namespace PMS_v1.Pages
             statCardUnitsOccupied.CardIcon = Resources.Resources.check;
             statCardUnitsOccupied.CardNumber = "00";
             statCardUnitsOccupied.Dock = DockStyle.Fill;
-            statCardUnitsOccupied.Location = new Point(661, 0);
+            statCardUnitsOccupied.Location = new Point(619, 0);
             statCardUnitsOccupied.Margin = new Padding(7, 0, 7, 0);
             statCardUnitsOccupied.Name = "statCardUnitsOccupied";
-            statCardUnitsOccupied.Size = new Size(313, 154);
+            statCardUnitsOccupied.Size = new Size(292, 154);
             statCardUnitsOccupied.TabIndex = 2;
             // 
             // statCardTotalTenants
@@ -175,10 +162,10 @@ namespace PMS_v1.Pages
             statCardTotalTenants.CardIcon = Resources.Resources.Payment;
             statCardTotalTenants.CardNumber = "00";
             statCardTotalTenants.Dock = DockStyle.Fill;
-            statCardTotalTenants.Location = new Point(988, 0);
+            statCardTotalTenants.Location = new Point(925, 0);
             statCardTotalTenants.Margin = new Padding(7, 0, 15, 0);
             statCardTotalTenants.Name = "statCardTotalTenants";
-            statCardTotalTenants.Size = new Size(305, 154);
+            statCardTotalTenants.Size = new Size(284, 154);
             statCardTotalTenants.TabIndex = 3;
             // 
             // pnlActions
@@ -187,10 +174,10 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewProperty);
             pnlActions.Dock = DockStyle.Fill;
-            pnlActions.Location = new Point(15, 237);
+            pnlActions.Location = new Point(57, 259);
             pnlActions.Margin = new Padding(15, 3, 15, 3);
             pnlActions.Name = "pnlActions";
-            pnlActions.Size = new Size(1284, 90);
+            pnlActions.Size = new Size(1200, 90);
             pnlActions.TabIndex = 2;
             // 
             // txtSearch

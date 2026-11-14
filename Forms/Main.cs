@@ -78,8 +78,8 @@ namespace pms_UI
             BeginInvoke(() =>
             {
                 PreloadPage("Units", () => new UnitsModule());
-                // PreloadPage("Leasing", () => new LeasingModule());
-                // PreloadPage("Personnel", () => new Personnel());
+                PreloadPage("Leasing", () => new LeasingModule());
+                
             });
         }
 
@@ -124,13 +124,6 @@ namespace pms_UI
                 case "Billing": ShowPage("Billing", () => new BillingModule()); break;
                 case "Payment": ShowPage("Payment", () => new PaymentModule()); break;
                 case "Maintenance": ShowPage("Maintenance", () => new MaintenanceModule()); break;
-                //case "Tenants": ShowPage(new TenantsPage()); break;
-                //case "Leasing": ShowPage(new LeasingPage()); break;
-                //case "Billing": ShowPage(new BillingPage()); break;
-                //case "Payment": ShowPage(new PaymentPage()); break;
-                //case "Maintenance": ShowPage(new MaintenancePage()); break;
-                //case "Reports": ShowPage(new ReportsPage()); break;
-                //case "Settings": ShowPage(new SettingsPage()); break;
                 case "Logout": Logout(); break;
             }
         }

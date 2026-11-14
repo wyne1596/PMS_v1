@@ -56,8 +56,6 @@ namespace PMS_v1.UserControls
                 if (this.pictureBox1 != null)
                 {
                     this.pictureBox1.Image = value;
-
-                    // 🎯 Clean alignment trick: Centers and scales the icon without clipping
                     this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                     this.pictureBox1.Invalidate();
                 }

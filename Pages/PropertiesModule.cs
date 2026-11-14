@@ -2,6 +2,7 @@ namespace PMS_v1.Pages
 {
     public partial class PropertiesModule : UserControl
     {
+        private const string SearchPlaceholder = "⌕  Search properties...";
 
         public event Action<string>? PropertySearchChanged;
         public event Action<string>? PropertyStatusChanged;
@@ -17,6 +18,7 @@ namespace PMS_v1.Pages
 
         private void ConfigurePropertyActions()
         {
+            txtSearch.Text = SearchPlaceholder;
             cmbFilter.Items.AddRange(new object[]
             {
                 "All Properties", "Occupied", "Vacant"
@@ -24,6 +26,16 @@ namespace PMS_v1.Pages
             cmbFilter.SelectedIndex = 0;
             btnNewProperty.Values.Text = "＋  New Property";
 
+            txtSearch.Enter += (_, _) =>
+            {
+                if (txtSearch.Text == SearchPlaceholder)
+                    txtSearch.Text = string.Empty;
+            };
+            txtSearch.Leave += (_, _) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtSearch.Text))
+                    txtSearch.Text = SearchPlaceholder;
+            };
 
             txtSearch.TextChanged += (_, _) =>
                 PropertySearchChanged?.Invoke(txtSearch.Text.Trim());

@@ -20,6 +20,7 @@ namespace PMS_v1.Pages
         {
             tlpMain = new TableLayoutPanel();
             pnlHeader = new Panel();
+            lblBreadcrumb = new Label();
             lblTitle = new Label();
             lblBreadcrumb = new Label();
             tlpMetrics = new TableLayoutPanel();
@@ -48,10 +49,13 @@ namespace PMS_v1.Pages
             tlpMain.Dock = DockStyle.Fill;
             tlpMain.Location = new Point(0, 0);
             tlpMain.Name = "tlpMain";
+            tlpMain.Padding = new Padding(42, 18, 42, 12);
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle());
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMain.Size = new Size(1314, 1251);
             tlpMain.TabIndex = 0;
@@ -62,6 +66,7 @@ namespace PMS_v1.Pages
             pnlHeader.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Controls.Add(lblBreadcrumb);
+            pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Dock = DockStyle.Fill;
             pnlHeader.Location = new Point(3, 3);
             pnlHeader.Name = "pnlHeader";
@@ -93,6 +98,17 @@ namespace PMS_v1.Pages
             lblBreadcrumb.Size = new Size(140, 31);
             lblBreadcrumb.TabIndex = 0;
             lblBreadcrumb.Text = "Home / Properties";
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
+            lblTitle.Location = new Point(0, 43);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(108, 32);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Properties";
             // 
             // tlpMetrics
             // 
@@ -225,6 +241,7 @@ namespace PMS_v1.Pages
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tlpMain);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "PropertiesModule";
             Size = new Size(1314, 1251);
             tlpMain.ResumeLayout(false);

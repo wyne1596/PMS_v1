@@ -1,3 +1,5 @@
+using MySql.Data.MySqlClient;
+using PMS_v1.Database;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -18,6 +20,7 @@ namespace PMS_v1.Pages
             LayoutActionRow();
             pnlActions.Resize += (_, _) => LayoutActionRow();
             dgvPayments.CellPainting += DgvPayments_CellPainting;
+            LoadStats();
         }
 
         private void ConfigurePaymentGrid()
@@ -158,6 +161,35 @@ namespace PMS_v1.Pages
             graphics.DrawLine(pen, 8, 16, 39, 16);
             graphics.DrawLine(pen, 40, 32, 9, 32);
             return icon;
+        }
+
+        // Load statcards
+        private void LoadStats()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                                   COUNT(CASE WHEN STATUS = 'Completed' THEN 1 END) AS Completed,
+                                   COUNT(CASE WHEN STATUS = 'Pending' THEN 1 END) AS Pending,
+                                   COUNT(CASE WHEN STATUS = 'Failed' THEN 1 END) AS Failed,
+                                   COUNT(CASE WHEN STATUS = 'Refunded' THEN 1 END) AS Refunded
+                               FROM payment";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        statCardCompleted.CardNumber = reader["Completed"].ToString();
+                        statCardPending.CardNumber = reader["Pending"].ToString();
+                        statCardFailed.CardNumber = reader["Failed"].ToString();
+                        statCardRefunded.CardNumber = reader["Refunded"].ToString();
+                    }
+                }
+            }
         }
     }
 }

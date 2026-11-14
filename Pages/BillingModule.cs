@@ -1,3 +1,5 @@
+using MySql.Data.MySqlClient;
+using PMS_v1.Database;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -19,6 +21,7 @@ namespace PMS_v1.Pages
             txtSearch.TextChanged += (_, _) => ApplyBillFilters();
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyBillFilters();
             dgvBills.CellPainting += DgvBills_CellPainting;
+            LoadStats();
         }
 
         private void ConfigureBillingGrid()
@@ -157,6 +160,37 @@ namespace PMS_v1.Pages
                 Color.FromArgb(45, 93, 120),
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
             e.Handled = true;
+        }
+
+        // Load statcards
+        private void LoadStats()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                                   COUNT(CASE WHEN STATUS = 'Paid' THEN 1 END) AS Paid,
+                                   COUNT(CASE WHEN STATUS = 'Partially Paid' THEN 1 END) AS PartiallyPaid,
+                                   COUNT(CASE WHEN STATUS = 'Unpaid' THEN 1 END) AS Unpaid,
+                                   COUNT(CASE WHEN STATUS = 'Overdue' THEN 1 END) AS Overdue,
+                                   COUNT(CASE WHEN STATUS = 'Cancelled' THEN 1 END) AS Canceled
+                               FROM billing";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        statCardPaid.CardNumber = reader["Paid"].ToString();
+                        statCardPartiallyPaid.CardNumber = reader["PartiallyPaid"].ToString();
+                        statCardUnpaid.CardNumber = reader["Unpaid"].ToString();
+                        statCardOverdue.CardNumber = reader["Overdue"].ToString();
+                        statCardCanceled.CardNumber = reader["Canceled"].ToString();
+                    }
+                }
+            }
         }
     }
 }

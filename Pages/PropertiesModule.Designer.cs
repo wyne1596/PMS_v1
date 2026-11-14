@@ -20,8 +20,8 @@ namespace PMS_v1.Pages
         {
             tlpMain = new TableLayoutPanel();
             pnlHeader = new Panel();
-            lblTitle = new Label();
             lblBreadcrumb = new Label();
+            lblTitle = new Label();
             tlpMetrics = new TableLayoutPanel();
             statCardTotalProperties = new PMS_v1.UserControls.AppearanceIconStatcard();
             statCardTotalUnits = new PMS_v1.UserControls.AppearanceIconStatcard();
@@ -72,18 +72,6 @@ namespace PMS_v1.Pages
             pnlHeader.Size = new Size(1224, 72);
             pnlHeader.TabIndex = 0;
             // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Dock = DockStyle.Top;
-            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
-            lblTitle.Location = new Point(17, 0);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(164, 41);
-            lblTitle.TabIndex = 1;
-            lblTitle.Text = "Properties";
-            // 
             // lblBreadcrumb
             // 
             lblBreadcrumb.AutoSize = true;
@@ -96,6 +84,18 @@ namespace PMS_v1.Pages
             lblBreadcrumb.Size = new Size(140, 31);
             lblBreadcrumb.TabIndex = 0;
             lblBreadcrumb.Text = "Home / Properties";
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Dock = DockStyle.Top;
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
+            lblTitle.Location = new Point(17, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(164, 41);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Properties";
             // 
             // tlpMetrics
             // 

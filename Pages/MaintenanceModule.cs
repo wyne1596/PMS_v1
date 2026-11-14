@@ -1,3 +1,5 @@
+using MySql.Data.MySqlClient;
+using PMS_v1.Database;
 using System.Drawing.Drawing2D;
 
 namespace PMS_v1.Pages
@@ -17,6 +19,7 @@ namespace PMS_v1.Pages
             txtSearch.TextChanged += (_, _) => ApplyRequestFilters();
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyRequestFilters();
             dgvRequests.CellPainting += DgvRequests_CellPainting;
+            LoadStats();
         }
 
         private void ConfigureMaintenanceGrid()
@@ -197,6 +200,34 @@ namespace PMS_v1.Pages
         private void statCardCanceled_Load(object sender, EventArgs e)
         {
 
+        }
+
+        // Load statcards
+        // statCardCanceled is not loaded: maintenance_request.STATUS has no Canceled value.
+        private void LoadStats()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                                   COUNT(CASE WHEN STATUS IN ('Resolved', 'Closed') THEN 1 END) AS Completed,
+                                   COUNT(CASE WHEN STATUS = 'Open' THEN 1 END) AS Scheduled,
+                                   COUNT(CASE WHEN STATUS = 'In Progress' THEN 1 END) AS InProgress
+                               FROM maintenance_request";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        statCardCompleted.CardNumber = reader["Completed"].ToString();
+                        statCardScheduled.CardNumber = reader["Scheduled"].ToString();
+                        statCardInProgress.CardNumber = reader["InProgress"].ToString();
+                    }
+                }
+            }
         }
     }
 }

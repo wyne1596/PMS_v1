@@ -26,7 +26,9 @@ namespace pms_UI
 
             sideMenuFull1.PageRequested += SideMenu_PageRequested;
             sideMenuCompact1.PageRequested += SideMenu_PageRequested;
-         
+
+            ShowPage("Dashboard", () => new DashboardModule());
+
         }
 
         private void ToggleMenu()

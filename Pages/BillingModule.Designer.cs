@@ -53,7 +53,7 @@ namespace PMS_v1.Pages
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle());
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 154F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMain.Size = new Size(1314, 1251);
@@ -115,7 +115,7 @@ namespace PMS_v1.Pages
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1308, 154);
+            tlpMetrics.Size = new Size(1308, 148);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardPaid
@@ -128,7 +128,7 @@ namespace PMS_v1.Pages
             statCardPaid.Location = new Point(15, 0);
             statCardPaid.Margin = new Padding(15, 0, 7, 0);
             statCardPaid.Name = "statCardPaid";
-            statCardPaid.Size = new Size(239, 154);
+            statCardPaid.Size = new Size(239, 148);
             statCardPaid.TabIndex = 0;
             // 
             // statCardPartiallyPaid
@@ -141,7 +141,7 @@ namespace PMS_v1.Pages
             statCardPartiallyPaid.Location = new Point(268, 0);
             statCardPartiallyPaid.Margin = new Padding(7, 0, 7, 0);
             statCardPartiallyPaid.Name = "statCardPartiallyPaid";
-            statCardPartiallyPaid.Size = new Size(247, 154);
+            statCardPartiallyPaid.Size = new Size(247, 148);
             statCardPartiallyPaid.TabIndex = 1;
             // 
             // statCardUnpaid
@@ -154,7 +154,7 @@ namespace PMS_v1.Pages
             statCardUnpaid.Location = new Point(529, 0);
             statCardUnpaid.Margin = new Padding(7, 0, 7, 0);
             statCardUnpaid.Name = "statCardUnpaid";
-            statCardUnpaid.Size = new Size(247, 154);
+            statCardUnpaid.Size = new Size(247, 148);
             statCardUnpaid.TabIndex = 2;
             // 
             // statCardOverdue
@@ -167,7 +167,7 @@ namespace PMS_v1.Pages
             statCardOverdue.Location = new Point(790, 0);
             statCardOverdue.Margin = new Padding(7, 0, 7, 0);
             statCardOverdue.Name = "statCardOverdue";
-            statCardOverdue.Size = new Size(247, 154);
+            statCardOverdue.Size = new Size(247, 148);
             statCardOverdue.TabIndex = 3;
             // 
             // statCardCanceled
@@ -180,7 +180,7 @@ namespace PMS_v1.Pages
             statCardCanceled.Location = new Point(1051, 0);
             statCardCanceled.Margin = new Padding(7, 0, 15, 0);
             statCardCanceled.Name = "statCardCanceled";
-            statCardCanceled.Size = new Size(242, 154);
+            statCardCanceled.Size = new Size(242, 148);
             statCardCanceled.TabIndex = 4;
             // 
             // pnlActions
@@ -189,7 +189,7 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewBill);
             pnlActions.Dock = DockStyle.Fill;
-            pnlActions.Location = new Point(15, 237);
+            pnlActions.Location = new Point(15, 231);
             pnlActions.Margin = new Padding(15, 3, 15, 3);
             pnlActions.Name = "pnlActions";
             pnlActions.Size = new Size(1284, 90);
@@ -242,17 +242,17 @@ namespace PMS_v1.Pages
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 8;
+            roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvBills);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(15, 333);
+            roundedPanelTable.Location = new Point(15, 327);
             roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
             roundedPanelTable.Name = "roundedPanelTable";
             roundedPanelTable.Padding = new Padding(6, 7, 6, 7);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1284, 915);
+            roundedPanelTable.Size = new Size(1284, 921);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvBills
@@ -269,7 +269,7 @@ namespace PMS_v1.Pages
             dgvBills.RowHeadersVisible = false;
             dgvBills.RowHeadersWidth = 51;
             dgvBills.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBills.Size = new Size(1264, 889);
+            dgvBills.Size = new Size(1264, 895);
             dgvBills.TabIndex = 0;
             // 
             // BillingModule

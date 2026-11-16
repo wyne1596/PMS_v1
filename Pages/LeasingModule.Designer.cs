@@ -54,7 +54,7 @@
             tlpMainSkeleton.Name = "tlpMainSkeleton";
             tlpMainSkeleton.RowCount = 4;
             tlpMainSkeleton.RowStyles.Add(new RowStyle());
-            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
+            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 154F));
             tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
             tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMainSkeleton.Size = new Size(1314, 1251);
@@ -114,7 +114,7 @@
             tlpMetricsRow.Name = "tlpMetricsRow";
             tlpMetricsRow.RowCount = 1;
             tlpMetricsRow.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetricsRow.Size = new Size(1308, 154);
+            tlpMetricsRow.Size = new Size(1308, 148);
             tlpMetricsRow.TabIndex = 1;
             // 
             // statCardActive
@@ -126,7 +126,7 @@
             statCardActive.Location = new Point(15, 0);
             statCardActive.Margin = new Padding(15, 0, 7, 0);
             statCardActive.Name = "statCardActive";
-            statCardActive.Size = new Size(305, 154);
+            statCardActive.Size = new Size(305, 148);
             statCardActive.TabIndex = 0;
             // 
             // statCardPending
@@ -138,7 +138,7 @@
             statCardPending.Location = new Point(334, 0);
             statCardPending.Margin = new Padding(7, 0, 7, 0);
             statCardPending.Name = "statCardPending";
-            statCardPending.Size = new Size(313, 154);
+            statCardPending.Size = new Size(313, 148);
             statCardPending.TabIndex = 1;
             // 
             // statCardExpired
@@ -150,7 +150,7 @@
             statCardExpired.Location = new Point(661, 0);
             statCardExpired.Margin = new Padding(7, 0, 7, 0);
             statCardExpired.Name = "statCardExpired";
-            statCardExpired.Size = new Size(313, 154);
+            statCardExpired.Size = new Size(313, 148);
             statCardExpired.TabIndex = 2;
             // 
             // statCardTerminated
@@ -163,7 +163,7 @@
             statCardTerminated.Location = new Point(988, 0);
             statCardTerminated.Margin = new Padding(7, 0, 15, 0);
             statCardTerminated.Name = "statCardTerminated";
-            statCardTerminated.Size = new Size(305, 154);
+            statCardTerminated.Size = new Size(305, 148);
             statCardTerminated.TabIndex = 3;
             // 
             // pnlCommandActionRow
@@ -172,7 +172,7 @@
             pnlCommandActionRow.Controls.Add(cmbFilterDropdown);
             pnlCommandActionRow.Controls.Add(btnNewLease);
             pnlCommandActionRow.Dock = DockStyle.Fill;
-            pnlCommandActionRow.Location = new Point(15, 237);
+            pnlCommandActionRow.Location = new Point(15, 231);
             pnlCommandActionRow.Margin = new Padding(15, 3, 15, 3);
             pnlCommandActionRow.Name = "pnlCommandActionRow";
             pnlCommandActionRow.Size = new Size(1284, 90);
@@ -227,17 +227,17 @@
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 8;
+            roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvLeases);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(15, 333);
+            roundedPanelTable.Location = new Point(15, 327);
             roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
             roundedPanelTable.Name = "roundedPanelTable";
             roundedPanelTable.Padding = new Padding(6, 7, 6, 7);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1284, 915);
+            roundedPanelTable.Size = new Size(1284, 921);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvLeases
@@ -254,7 +254,7 @@
             dgvLeases.RowHeadersVisible = false;
             dgvLeases.RowHeadersWidth = 51;
             dgvLeases.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvLeases.Size = new Size(1264, 889);
+            dgvLeases.Size = new Size(1264, 895);
             dgvLeases.TabIndex = 3;
             // 
             // LeasingModule

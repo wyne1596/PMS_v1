@@ -52,7 +52,7 @@ namespace PMS_v1.Pages
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle());
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 154F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMain.Size = new Size(1314, 1251);
@@ -222,7 +222,7 @@ namespace PMS_v1.Pages
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 8;
+            roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvPayments);
             roundedPanelTable.Dock = DockStyle.Fill;
             roundedPanelTable.Location = new Point(15, 333);

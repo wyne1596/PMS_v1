@@ -14,6 +14,7 @@ namespace PMS_v1.Pages
             InitializeComponent();
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
+            PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvBills);
             ConfigureBillingGrid();
             LayoutActionRow();
 
@@ -22,6 +23,7 @@ namespace PMS_v1.Pages
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyBillFilters();
             dgvBills.CellPainting += DgvBills_CellPainting;
             LoadStats();
+            LoadBills();
         }
 
         private void ConfigureBillingGrid()
@@ -188,6 +190,43 @@ namespace PMS_v1.Pages
                         statCardUnpaid.CardNumber = reader["Unpaid"].ToString();
                         statCardOverdue.CardNumber = reader["Overdue"].ToString();
                         statCardCanceled.CardNumber = reader["Canceled"].ToString();
+                    }
+                }
+            }
+        }
+
+        // Load bills into the table
+        private void LoadBills()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                                    b.BILLING_ID,
+                                    CONCAT(r.FIRST_NAME, ' ', r.LAST_NAME) AS Tenant,
+                                    b.DUE_DATE,
+                                    b.STATUS
+                               FROM billing b
+                               JOIN lease l ON l.LEASE_ID = b.LEASE_ID
+                               JOIN resident r ON r.RESIDENT_ID = l.RESIDENT_ID
+                               ORDER BY b.DUE_DATE DESC, b.BILLING_ID DESC";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    dgvBills.Rows.Clear();
+
+                    while (reader.Read())
+                    {
+                        string status = reader["STATUS"].ToString() ?? string.Empty;
+
+                        dgvBills.Rows.Add(
+                            "B-" + Convert.ToInt32(reader["BILLING_ID"]).ToString("D4"),
+                            reader["Tenant"].ToString(),
+                            Convert.ToDateTime(reader["DUE_DATE"]).ToString("MMM dd, yyyy"),
+                            status == "Cancelled" ? "Canceled" : status);   // keep the page's "Canceled" spelling so the filter matches
                     }
                 }
             }

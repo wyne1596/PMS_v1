@@ -56,9 +56,9 @@
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 13.60424F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 3.26855135F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 83.03887F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 154F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMain.Size = new Size(1194, 1207);
             tlpMain.TabIndex = 0;
             // 

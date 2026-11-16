@@ -27,7 +27,7 @@ namespace PMS_v1.Pages
 
         private void LeasingModule_Load(object sender, EventArgs e)
         {
-            
+
         }
         private void btnNewLease_Click(object sender, EventArgs e)
         {
@@ -171,6 +171,11 @@ namespace PMS_v1.Pages
                     }
                 }
             }
+        }
+
+        private void statCardActive_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

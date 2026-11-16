@@ -12,12 +12,6 @@ namespace PMS_v1.UserControls
     public partial class SideMenuCompact : UserControl
     {
         public event Action<string>? PageRequested;
-        private readonly Dictionary<Button, Action> buttonStyleRefreshers = new();
-        private Button? activePageButton;
-        private const int ActiveButtonHeightIncrease = 6;
-        private static readonly Color ActiveBackColor = Color.FromArgb(0, 98, 204);
-        private static readonly Color ActiveBorderColor = Color.FromArgb(135, 206, 250);
-
         public SideMenuCompact()
         {
             InitializeComponent();
@@ -49,25 +43,6 @@ namespace PMS_v1.UserControls
             btnLogout.Click += (s, e) => PageRequested?.Invoke("Logout");
         }
 
-        public void SetActivePage(string page)
-        {
-            activePageButton = page switch
-            {
-                "Dashboard" => btnDashboard,
-                "Units" => btnUnits,
-                "Leasing" => btnLeasing,
-                "Billing" => btnBilling,
-                "Payment" => btnPayment,
-                "Maintenance" => btnMaintenance,
-                "Reports" => btnReports,
-                "Settings" => btnSettings,
-                _ => null
-            };
-
-            foreach (Action refreshStyle in buttonStyleRefreshers.Values)
-                refreshStyle();
-        }
-
         private void StyleButtons(Control root, Color normal, Color hover)
         {
             foreach (Control c in root.Controls)
@@ -80,7 +55,6 @@ namespace PMS_v1.UserControls
 
         private void StyleButton(Button b, Color normal, Color hover)
         {
-            int normalHeight = b.Height;
             b.FlatStyle = FlatStyle.Flat;
             b.FlatAppearance.BorderSize = 0;
             b.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -93,25 +67,10 @@ namespace PMS_v1.UserControls
             Image? src = b.Image;
             Image? normalImg = src != null ? Tint(src, normal) : null;
             Image? hoverImg = src != null ? Tint(src, hover) : null;
+            if (normalImg != null) b.Image = normalImg;
 
-            void ApplyStyle(bool hovered)
-            {
-                bool active = b == activePageButton;
-                b.ForeColor = active ? normal : hovered ? hover : normal;
-                b.BackColor = active ? ActiveBackColor : Color.Transparent;
-                b.FlatAppearance.BorderSize = active ? 2 : 0;
-                b.FlatAppearance.BorderColor = ActiveBorderColor;
-                b.Height = active ? normalHeight + ActiveButtonHeightIncrease : normalHeight;
-
-                if (!active && hovered && hoverImg != null) b.Image = hoverImg;
-                else if (normalImg != null) b.Image = normalImg;
-            }
-
-            buttonStyleRefreshers[b] = () =>
-                ApplyStyle(b.ClientRectangle.Contains(b.PointToClient(Cursor.Position)));
-            b.MouseEnter += (s, e) => ApplyStyle(true);
-            b.MouseLeave += (s, e) => ApplyStyle(false);
-            ApplyStyle(false);
+            b.MouseEnter += (s, e) => { b.ForeColor = hover; if (hoverImg != null) b.Image = hoverImg; };
+            b.MouseLeave += (s, e) => { b.ForeColor = normal; if (normalImg != null) b.Image = normalImg; };
         }
 
         // Recolors an image to one color, keeping its transparency

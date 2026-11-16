@@ -2,18 +2,14 @@ using Krypton.Toolkit;
 using pms_UI.User_Controls;
 using PMS_v1.Pages;
 using PMS_v1.UserControls;
-using System.Diagnostics;
 
 namespace pms_UI
 {
     public partial class Main : Form
     {
         private int fullWidth, compactWidth, targetWidth;
-        private int animationStartWidth;
         private bool menuExpanded = true;
-        private const int MenuAnimationDurationMilliseconds = 220;
-        private readonly Stopwatch menuAnimationStopwatch = new();
-        private readonly System.Windows.Forms.Timer menuTimer = new System.Windows.Forms.Timer { Interval = 16 };
+        private readonly System.Windows.Forms.Timer menuTimer = new System.Windows.Forms.Timer { Interval = 5 };
 
         public Main()
         {
@@ -40,7 +36,6 @@ namespace pms_UI
             if (menuTimer.Enabled) return;           // ignore clicks while animating
 
             menuExpanded = !menuExpanded;
-            animationStartWidth = pnlSideMenu.Width;
             targetWidth = menuExpanded ? fullWidth : compactWidth;
 
             if (menuExpanded)                        // show the full menu first, then it is revealed as it grows
@@ -48,30 +43,29 @@ namespace pms_UI
                 sideMenuFull1.Visible = true;            // show before hiding, so there's no blank frame
                 sideMenuCompact1.Visible = false;
             }
-            menuAnimationStopwatch.Restart();
+            pnlContent.SuspendLayout();
             menuTimer.Start();
         }
         private void MenuTimer_Tick(object? sender, EventArgs e)
         {
-            double progress = Math.Min(
-                menuAnimationStopwatch.Elapsed.TotalMilliseconds / MenuAnimationDurationMilliseconds,
-                1d);
-            double easedProgress = progress * progress * (3d - 2d * progress);
+            int diff = targetWidth - pnlSideMenu.Width;
+            int step = Math.Max(Math.Abs(diff) / 2, 2) * Math.Sign(diff);   // fast at first, slows down at the end
 
-            pnlSideMenu.Width = animationStartWidth +
-                (int)Math.Round((targetWidth - animationStartWidth) * easedProgress);
-
-            if (progress >= 1d)
+            if (Math.Abs(diff) <= Math.Abs(step))
             {
                 pnlSideMenu.Width = targetWidth;
                 menuTimer.Stop();
-                menuAnimationStopwatch.Stop();
+                pnlContent.ResumeLayout(true);
 
                 if (!menuExpanded)                   // finished collapsing, so swap to the icon-only menu
                 {
                     sideMenuCompact1.Visible = true;
                     sideMenuFull1.Visible = false;
                 }
+            }
+            else
+            {
+                pnlSideMenu.Width += step;
             }
         }
         private readonly Dictionary<string, UserControl> _pages = new();
@@ -119,8 +113,6 @@ namespace pms_UI
             page.BringToFront();
             if (_current != null) _current.Visible = false;
             _current = page;
-            sideMenuFull1.SetActivePage(key);
-            sideMenuCompact1.SetActivePage(key);
             pnlContent.ResumeLayout(true);
         }
 

@@ -165,6 +165,11 @@ namespace PMS_v1.UserControls
             panel.Padding = Padding.Empty;
             grid.Dock = DockStyle.Fill;
 
+            // Tables that add their columns in code get header text aligned with the cells under it.
+            // (The Dashboard defines its columns in the designer, so it is left as it is.)
+            if (grid.Columns.Count == 0)
+                grid.ColumnAdded += (_, e) => AlignHeaderWithCells(e.Column);
+
             void ClipCorners()
             {
                 if (grid.Width <= 0 || grid.Height <= 0) return;
@@ -185,6 +190,21 @@ namespace PMS_v1.UserControls
 
             grid.SizeChanged += (_, _) => ClipCorners();
             ClipCorners();
+        }
+
+        // Header text uses the same alignment and padding as the cells below it.
+        private static void AlignHeaderWithCells(DataGridViewColumn column)
+        {
+            DataGridView? grid = column.DataGridView;
+            if (grid == null) return;
+
+            DataGridViewCellStyle own = column.DefaultCellStyle;
+            DataGridViewCellStyle body = grid.DefaultCellStyle;
+
+            column.HeaderCell.Style.Alignment = own.Alignment != DataGridViewContentAlignment.NotSet
+                ? own.Alignment : body.Alignment;
+            column.HeaderCell.Style.Padding = own.Padding != Padding.Empty
+                ? own.Padding : body.Padding;
         }
 
         internal static void LayoutActions(Control actionRow, Control search, Control filter, Control action)

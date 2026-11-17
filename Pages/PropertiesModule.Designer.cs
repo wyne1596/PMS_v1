@@ -31,11 +31,15 @@ namespace PMS_v1.Pages
             txtSearch = new Krypton.Toolkit.KryptonTextBox();
             cmbFilter = new Krypton.Toolkit.KryptonComboBox();
             btnNewProperty = new Krypton.Toolkit.KryptonButton();
+            roundedPanelTable = new PMS_v1.RoundedPanel();
+            dgvProperties = new DataGridView();
             tlpMain.SuspendLayout();
             pnlHeader.SuspendLayout();
             tlpMetrics.SuspendLayout();
             pnlActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cmbFilter).BeginInit();
+            roundedPanelTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProperties).BeginInit();
             SuspendLayout();
             // 
             // tlpMain
@@ -45,6 +49,7 @@ namespace PMS_v1.Pages
             tlpMain.Controls.Add(pnlHeader, 0, 0);
             tlpMain.Controls.Add(tlpMetrics, 0, 1);
             tlpMain.Controls.Add(pnlActions, 0, 2);
+            tlpMain.Controls.Add(roundedPanelTable, 0, 3);
             tlpMain.Dock = DockStyle.Fill;
             tlpMain.Location = new Point(0, 0);
             tlpMain.Margin = new Padding(3, 2, 3, 2);
@@ -54,8 +59,6 @@ namespace PMS_v1.Pages
             tlpMain.RowStyles.Add(new RowStyle());
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 54F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMain.Size = new Size(1150, 938);
             tlpMain.TabIndex = 0;
@@ -227,6 +230,40 @@ namespace PMS_v1.Pages
             btnNewProperty.Values.DropDownArrowColor = Color.Empty;
             btnNewProperty.Values.Text = "＋  New Property";
             // 
+            // roundedPanelTable
+            // 
+            roundedPanelTable.BackColor = Color.White;
+            roundedPanelTable.BorderColor = Color.Transparent;
+            roundedPanelTable.BorderRadius = 10;
+            roundedPanelTable.Controls.Add(dgvProperties);
+            roundedPanelTable.Dock = DockStyle.Fill;
+            roundedPanelTable.Location = new Point(15, 333);
+            roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
+            roundedPanelTable.Name = "roundedPanelTable";
+            roundedPanelTable.Padding = new Padding(6, 7, 6, 7);
+            roundedPanelTable.ShadowColor = Color.Black;
+            roundedPanelTable.ShadowOpacity = 28;
+            roundedPanelTable.ShadowSize = 4;
+            roundedPanelTable.Size = new Size(1284, 915);
+            roundedPanelTable.TabIndex = 3;
+            // 
+            // dgvProperties
+            // 
+            dgvProperties.BackgroundColor = Color.White;
+            dgvProperties.BorderStyle = BorderStyle.None;
+            dgvProperties.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvProperties.ColumnHeadersHeight = 42;
+            dgvProperties.Dock = DockStyle.Fill;
+            dgvProperties.GridColor = Color.FromArgb(233, 236, 239);
+            dgvProperties.Location = new Point(6, 7);
+            dgvProperties.Margin = new Padding(0);
+            dgvProperties.Name = "dgvProperties";
+            dgvProperties.RowHeadersVisible = false;
+            dgvProperties.RowHeadersWidth = 51;
+            dgvProperties.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProperties.Size = new Size(1272, 901);
+            dgvProperties.TabIndex = 0;
+            // 
             // PropertiesModule
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -243,6 +280,8 @@ namespace PMS_v1.Pages
             pnlActions.ResumeLayout(false);
             pnlActions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)cmbFilter).EndInit();
+            roundedPanelTable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvProperties).EndInit();
             ResumeLayout(false);
         }
 
@@ -261,5 +300,7 @@ namespace PMS_v1.Pages
         private Krypton.Toolkit.KryptonTextBox txtSearch;
         private Krypton.Toolkit.KryptonComboBox cmbFilter;
         private Krypton.Toolkit.KryptonButton btnNewProperty;
+        private PMS_v1.RoundedPanel roundedPanelTable;
+        private DataGridView dgvProperties;
     }
 }

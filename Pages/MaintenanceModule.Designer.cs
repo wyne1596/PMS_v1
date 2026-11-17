@@ -228,7 +228,7 @@ namespace PMS_v1.Pages
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 8;
+            roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvRequests);
             roundedPanelTable.Dock = DockStyle.Fill;
             roundedPanelTable.Location = new Point(13, 251);

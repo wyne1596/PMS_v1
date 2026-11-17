@@ -10,6 +10,7 @@ namespace PMS_v1.Pages
         public DashboardModule()
         {
             InitializeComponent();
+            PMS_v1.UserControls.ModulePageLayout.ApplyMetricsRow(tlpMain, 1, tlpMetrics);
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvRecent);
 
             LoadStats();

@@ -264,6 +264,16 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Icon__12_ {
+            get {
+                object obj = ResourceManager.GetObject("Icon (12)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icon__2_ {
             get {
                 object obj = ResourceManager.GetObject("Icon (2)", resourceCulture);
@@ -317,16 +327,6 @@ namespace PMS_v1.Resources {
         internal static System.Drawing.Bitmap Icon__7_ {
             get {
                 object obj = ResourceManager.GetObject("Icon (7)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon__8_ {
-            get {
-                object obj = ResourceManager.GetObject("Icon (8)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

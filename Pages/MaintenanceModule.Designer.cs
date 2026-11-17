@@ -121,10 +121,10 @@ namespace PMS_v1.Pages
             // statCardCompleted
             // 
             statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardIcon = Resources.Resources.Icon__8_;
-            statCardCompleted.IconSlotPadding = new Padding(10, 20, 10, 20);
+            statCardCompleted.CardIcon = Resources.Resources.Icon__12_;
             statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
+            statCardCompleted.IconSlotPadding = new Padding(10, 25, 10, 30);
             statCardCompleted.Location = new Point(13, 0);
             statCardCompleted.Margin = new Padding(13, 0, 6, 0);
             statCardCompleted.Name = "statCardCompleted";
@@ -135,9 +135,9 @@ namespace PMS_v1.Pages
             // 
             statCardScheduled.CardCaption = "Scheduled";
             statCardScheduled.CardIcon = Resources.Resources.Icon__9_;
-            statCardScheduled.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardScheduled.CardNumber = "00";
             statCardScheduled.Dock = DockStyle.Fill;
+            statCardScheduled.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardScheduled.Location = new Point(292, 0);
             statCardScheduled.Margin = new Padding(6, 0, 6, 0);
             statCardScheduled.Name = "statCardScheduled";
@@ -148,9 +148,9 @@ namespace PMS_v1.Pages
             // 
             statCardInProgress.CardCaption = "In Progress";
             statCardInProgress.CardIcon = Resources.Resources.Icon__10_;
-            statCardInProgress.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardInProgress.CardNumber = "00";
             statCardInProgress.Dock = DockStyle.Fill;
+            statCardInProgress.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardInProgress.Location = new Point(578, 0);
             statCardInProgress.Margin = new Padding(6, 0, 6, 0);
             statCardInProgress.Name = "statCardInProgress";
@@ -162,9 +162,9 @@ namespace PMS_v1.Pages
             statCardCanceled.BackgroundImage = Resources.Resources.Icon__11_;
             statCardCanceled.CardCaption = "Canceled";
             statCardCanceled.CardIcon = Resources.Resources.Icon__11_;
-            statCardCanceled.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
+            statCardCanceled.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardCanceled.Location = new Point(864, 0);
             statCardCanceled.Margin = new Padding(6, 0, 13, 0);
             statCardCanceled.Name = "statCardCanceled";

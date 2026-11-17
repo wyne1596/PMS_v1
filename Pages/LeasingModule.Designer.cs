@@ -123,10 +123,10 @@
             // statCardActive
             // 
             statCardActive.CardCaption = "Active";
-            statCardActive.CardIcon = Resources.Resources.Icon__8_;
-            statCardActive.IconSlotPadding = new Padding(10, 20, 10, 20);
+            statCardActive.CardIcon = Resources.Resources.Icon__12_;
             statCardActive.CardNumber = "00";
             statCardActive.Dock = DockStyle.Fill;
+            statCardActive.IconSlotPadding = new Padding(10, 25, 10, 30);
             statCardActive.Location = new Point(13, 0);
             statCardActive.Margin = new Padding(13, 0, 6, 0);
             statCardActive.Name = "statCardActive";
@@ -138,9 +138,9 @@
             // 
             statCardPending.CardCaption = "Pending";
             statCardPending.CardIcon = Resources.Resources.Icon__9_;
-            statCardPending.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
+            statCardPending.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardPending.Location = new Point(292, 0);
             statCardPending.Margin = new Padding(6, 0, 6, 0);
             statCardPending.Name = "statCardPending";
@@ -151,9 +151,9 @@
             // 
             statCardExpired.CardCaption = "Expired";
             statCardExpired.CardIcon = Resources.Resources.Icon__10_;
-            statCardExpired.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardExpired.CardNumber = "00";
             statCardExpired.Dock = DockStyle.Fill;
+            statCardExpired.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardExpired.Location = new Point(578, 0);
             statCardExpired.Margin = new Padding(6, 0, 6, 0);
             statCardExpired.Name = "statCardExpired";
@@ -165,9 +165,9 @@
             statCardTerminated.BackgroundImage = Resources.Resources.Icon__11_;
             statCardTerminated.CardCaption = "Terminated";
             statCardTerminated.CardIcon = Resources.Resources.Icon__11_;
-            statCardTerminated.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardTerminated.CardNumber = "00";
             statCardTerminated.Dock = DockStyle.Fill;
+            statCardTerminated.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardTerminated.Location = new Point(864, 0);
             statCardTerminated.Margin = new Padding(6, 0, 13, 0);
             statCardTerminated.Name = "statCardTerminated";

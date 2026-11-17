@@ -192,5 +192,10 @@ namespace PMS_v1.Pages
                 }
             }
         }
+
+        private void statCardPartiallyPaid_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

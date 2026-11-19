@@ -13,7 +13,11 @@ namespace PMS_v1.Pages
         public UnitsModule()
         {
             InitializeComponent();
+            PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
+                tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
+            PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvUnits);
             ConfigureUnitActions();
+            ConfigureUnitsGrid();
             LayoutActionRow();
             pnlActions.Resize += (_, _) => LayoutActionRow();
             LoadStats();
@@ -26,7 +30,7 @@ namespace PMS_v1.Pages
                 "All Units", "Vacant", "Occupied"
             });
             cmbFilter.SelectedIndex = 0;
-            btnNewProperty.Values.Text = "＋  New Property";
+            btnNewProperty.Values.Text = "＋  New Unit";
 
 
             txtSearch.TextChanged += (_, _) =>
@@ -34,6 +38,60 @@ namespace PMS_v1.Pages
             cmbFilter.SelectedIndexChanged += (_, _) =>
                 UnitAvailabilityChanged?.Invoke(Convert.ToString(cmbFilter.SelectedItem) ?? "All Units");
             btnNewProperty.Click += (_, _) => NewPropertyRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        // Table: same look as the other pages (columns follow the units table)
+        private void ConfigureUnitsGrid()
+        {
+            PMS_v1.UserControls.ModulePageLayout.ApplyStandardGridStyle(dgvUnits);
+
+            dgvUnits.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Unit",
+                HeaderText = "UNIT",
+                FillWeight = 16,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+            dgvUnits.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Floor",
+                HeaderText = "FLOOR",
+                FillWeight = 14,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+            dgvUnits.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Type",
+                HeaderText = "TYPE",
+                FillWeight = 26,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+            dgvUnits.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "BaseRent",
+                HeaderText = "BASE RENT",
+                FillWeight = 22,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleRight,
+                    Padding = new Padding(8, 0, 14, 0)
+                }
+            });
+            dgvUnits.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Status",
+                HeaderText = "STATUS",
+                FillWeight = 22,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
+                    Padding = new Padding(4, 0, 4, 0)
+                }
+            });
+
+            PMS_v1.UserControls.ModulePageLayout.AttachStatusBadge(dgvUnits, "Status");
         }
 
         private void LayoutActionRow()

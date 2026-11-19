@@ -121,9 +121,10 @@ namespace PMS_v1.Pages
             // statCardCompleted
             // 
             statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardIcon = Resources.Resources.CompletedPayment;
+            statCardCompleted.CardIcon = Resources.Resources.Icon__12_;
             statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
+            statCardCompleted.IconSlotPadding = new Padding(10, 25, 10, 30);
             statCardCompleted.Location = new Point(13, 0);
             statCardCompleted.Margin = new Padding(13, 0, 6, 0);
             statCardCompleted.Name = "statCardCompleted";
@@ -133,9 +134,10 @@ namespace PMS_v1.Pages
             // statCardPending
             // 
             statCardPending.CardCaption = "Pending";
-            statCardPending.CardIcon = Resources.Resources.PendingPayment;
+            statCardPending.CardIcon = Resources.Resources.Icon__9_;
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
+            statCardPending.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardPending.Location = new Point(292, 0);
             statCardPending.Margin = new Padding(6, 0, 6, 0);
             statCardPending.Name = "statCardPending";
@@ -145,9 +147,10 @@ namespace PMS_v1.Pages
             // statCardFailed
             // 
             statCardFailed.CardCaption = "Failed";
-            statCardFailed.CardIcon = Resources.Resources.FailedPayment;
+            statCardFailed.CardIcon = Resources.Resources.Icon__11_;
             statCardFailed.CardNumber = "00";
             statCardFailed.Dock = DockStyle.Fill;
+            statCardFailed.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardFailed.Location = new Point(578, 0);
             statCardFailed.Margin = new Padding(6, 0, 6, 0);
             statCardFailed.Name = "statCardFailed";
@@ -156,11 +159,12 @@ namespace PMS_v1.Pages
             // 
             // statCardRefunded
             // 
-            statCardRefunded.BackgroundImage = Resources.Resources.RefundedPayment;
+            statCardRefunded.BackgroundImage = Resources.Resources.fa7_solid_exchange_alt;
             statCardRefunded.CardCaption = "Refunded";
-            statCardRefunded.CardIcon = Resources.Resources.RefundedPayment;
+            statCardRefunded.CardIcon = Resources.Resources.fa7_solid_exchange_alt;
             statCardRefunded.CardNumber = "00";
             statCardRefunded.Dock = DockStyle.Fill;
+            statCardRefunded.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardRefunded.Location = new Point(864, 0);
             statCardRefunded.Margin = new Padding(6, 0, 13, 0);
             statCardRefunded.Name = "statCardRefunded";
@@ -222,7 +226,7 @@ namespace PMS_v1.Pages
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 8;
+            roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvPayments);
             roundedPanelTable.Dock = DockStyle.Fill;
             roundedPanelTable.Location = new Point(13, 251);

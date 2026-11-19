@@ -121,9 +121,10 @@ namespace PMS_v1.Pages
             // statCardCompleted
             // 
             statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardIcon = Resources.Resources.Successful;
+            statCardCompleted.CardIcon = Resources.Resources.Icon__12_;
             statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
+            statCardCompleted.IconSlotPadding = new Padding(10, 25, 10, 30);
             statCardCompleted.Location = new Point(13, 0);
             statCardCompleted.Margin = new Padding(13, 0, 6, 0);
             statCardCompleted.Name = "statCardCompleted";
@@ -133,9 +134,10 @@ namespace PMS_v1.Pages
             // statCardScheduled
             // 
             statCardScheduled.CardCaption = "Scheduled";
-            statCardScheduled.CardIcon = Resources.Resources.Pending;
+            statCardScheduled.CardIcon = Resources.Resources.Icon__9_;
             statCardScheduled.CardNumber = "00";
             statCardScheduled.Dock = DockStyle.Fill;
+            statCardScheduled.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardScheduled.Location = new Point(292, 0);
             statCardScheduled.Margin = new Padding(6, 0, 6, 0);
             statCardScheduled.Name = "statCardScheduled";
@@ -145,9 +147,10 @@ namespace PMS_v1.Pages
             // statCardInProgress
             // 
             statCardInProgress.CardCaption = "In Progress";
-            statCardInProgress.CardIcon = Resources.Resources.InProgress;
+            statCardInProgress.CardIcon = Resources.Resources.Icon__10_;
             statCardInProgress.CardNumber = "00";
             statCardInProgress.Dock = DockStyle.Fill;
+            statCardInProgress.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardInProgress.Location = new Point(578, 0);
             statCardInProgress.Margin = new Padding(6, 0, 6, 0);
             statCardInProgress.Name = "statCardInProgress";
@@ -156,11 +159,12 @@ namespace PMS_v1.Pages
             // 
             // statCardCanceled
             // 
-            statCardCanceled.BackgroundImage = Resources.Resources.Failed;
+            statCardCanceled.BackgroundImage = Resources.Resources.Icon__11_;
             statCardCanceled.CardCaption = "Canceled";
-            statCardCanceled.CardIcon = Resources.Resources.Failed;
+            statCardCanceled.CardIcon = Resources.Resources.Icon__11_;
             statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
+            statCardCanceled.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardCanceled.Location = new Point(864, 0);
             statCardCanceled.Margin = new Padding(6, 0, 13, 0);
             statCardCanceled.Name = "statCardCanceled";
@@ -224,7 +228,7 @@ namespace PMS_v1.Pages
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 8;
+            roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvRequests);
             roundedPanelTable.Dock = DockStyle.Fill;
             roundedPanelTable.Location = new Point(13, 251);

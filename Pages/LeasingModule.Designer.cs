@@ -123,21 +123,24 @@
             // statCardActive
             // 
             statCardActive.CardCaption = "Active";
-            statCardActive.CardIcon = Resources.Resources.ActiveLease;
+            statCardActive.CardIcon = Resources.Resources.Icon__12_;
             statCardActive.CardNumber = "00";
             statCardActive.Dock = DockStyle.Fill;
+            statCardActive.IconSlotPadding = new Padding(10, 25, 10, 30);
             statCardActive.Location = new Point(13, 0);
             statCardActive.Margin = new Padding(13, 0, 6, 0);
             statCardActive.Name = "statCardActive";
             statCardActive.Size = new Size(267, 116);
             statCardActive.TabIndex = 0;
+            statCardActive.Load += statCardActive_Load;
             // 
             // statCardPending
             // 
             statCardPending.CardCaption = "Pending";
-            statCardPending.CardIcon = Resources.Resources.PendingLease;
+            statCardPending.CardIcon = Resources.Resources.Icon__9_;
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
+            statCardPending.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardPending.Location = new Point(292, 0);
             statCardPending.Margin = new Padding(6, 0, 6, 0);
             statCardPending.Name = "statCardPending";
@@ -147,9 +150,10 @@
             // statCardExpired
             // 
             statCardExpired.CardCaption = "Expired";
-            statCardExpired.CardIcon = Resources.Resources.ExpiredLeases;
+            statCardExpired.CardIcon = Resources.Resources.Icon__10_;
             statCardExpired.CardNumber = "00";
             statCardExpired.Dock = DockStyle.Fill;
+            statCardExpired.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardExpired.Location = new Point(578, 0);
             statCardExpired.Margin = new Padding(6, 0, 6, 0);
             statCardExpired.Name = "statCardExpired";
@@ -158,11 +162,12 @@
             // 
             // statCardTerminated
             // 
-            statCardTerminated.BackgroundImage = Resources.Resources.TerminatedLease;
+            statCardTerminated.BackgroundImage = Resources.Resources.Icon__11_;
             statCardTerminated.CardCaption = "Terminated";
-            statCardTerminated.CardIcon = Resources.Resources.TerminatedLease;
+            statCardTerminated.CardIcon = Resources.Resources.Icon__11_;
             statCardTerminated.CardNumber = "00";
             statCardTerminated.Dock = DockStyle.Fill;
+            statCardTerminated.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardTerminated.Location = new Point(864, 0);
             statCardTerminated.Margin = new Padding(6, 0, 13, 0);
             statCardTerminated.Name = "statCardTerminated";
@@ -227,7 +232,7 @@
             // 
             roundedPanelTable.BackColor = Color.White;
             roundedPanelTable.BorderColor = Color.Transparent;
-            roundedPanelTable.BorderRadius = 8;
+            roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvLeases);
             roundedPanelTable.Dock = DockStyle.Fill;
             roundedPanelTable.Location = new Point(13, 251);

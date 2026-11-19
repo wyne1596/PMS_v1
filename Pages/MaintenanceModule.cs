@@ -11,6 +11,7 @@ namespace PMS_v1.Pages
             InitializeComponent();
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
+            PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvRequests);
             ConfigureMaintenanceGrid();
             LayoutActionRow();
 
@@ -18,20 +19,20 @@ namespace PMS_v1.Pages
             txtSearch.TextChanged += (_, _) => ApplyRequestFilters();
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyRequestFilters();
             dgvRequests.CellPainting += DgvRequests_CellPainting;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            if (DesignMode || System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             LoadStats();
         }
 
         private void ConfigureMaintenanceGrid()
         {
-            statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardNumber = "00";
-            statCardScheduled.CardCaption = "Scheduled";
-            statCardScheduled.CardNumber = "00";
-            statCardInProgress.CardCaption = "In Progress";
-            statCardInProgress.CardNumber = "00";
-            statCardCanceled.CardCaption = "Canceled";
-            statCardCanceled.CardNumber = "00";
-
             cmbFilter.Items.AddRange(new object[] { "All Statuses", "Completed", "Scheduled", "In Progress", "Canceled" });
             cmbFilter.SelectedIndex = 0;
 

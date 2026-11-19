@@ -18,6 +18,7 @@ namespace PMS_v1.Pages
             InitializeComponent();
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMainSkeleton, pnlHeaderBlock, tlpMetricsRow, pnlCommandActionRow, roundedPanelTable);
+            PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvLeases);
             ConfigureLeaseGrid();
             LayoutCommandActionRow();
             pnlCommandActionRow.Resize += (_, _) => LayoutCommandActionRow();
@@ -27,7 +28,7 @@ namespace PMS_v1.Pages
 
         private void LeasingModule_Load(object sender, EventArgs e)
         {
-            
+
         }
         private void btnNewLease_Click(object sender, EventArgs e)
         {
@@ -171,6 +172,11 @@ namespace PMS_v1.Pages
                     }
                 }
             }
+        }
+
+        private void statCardActive_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

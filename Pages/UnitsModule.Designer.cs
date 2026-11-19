@@ -31,11 +31,15 @@ namespace PMS_v1.Pages
             txtSearch = new Krypton.Toolkit.KryptonTextBox();
             cmbFilter = new Krypton.Toolkit.KryptonComboBox();
             btnNewProperty = new Krypton.Toolkit.KryptonButton();
+            roundedPanelTable = new PMS_v1.RoundedPanel();
+            dgvUnits = new DataGridView();
             tlpMain.SuspendLayout();
             pnlHeader.SuspendLayout();
             tlpMetrics.SuspendLayout();
             pnlActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cmbFilter).BeginInit();
+            roundedPanelTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvUnits).BeginInit();
             SuspendLayout();
             // 
             // tlpMain
@@ -45,6 +49,7 @@ namespace PMS_v1.Pages
             tlpMain.Controls.Add(pnlHeader, 0, 0);
             tlpMain.Controls.Add(tlpMetrics, 0, 1);
             tlpMain.Controls.Add(pnlActions, 0, 2);
+            tlpMain.Controls.Add(roundedPanelTable, 0, 3);
             tlpMain.Dock = DockStyle.Fill;
             tlpMain.Location = new Point(0, 0);
             tlpMain.Margin = new Padding(3, 2, 3, 2);
@@ -118,9 +123,9 @@ namespace PMS_v1.Pages
             // 
             // statCardTotalUnits
             // 
-            statCardTotalUnits.BackgroundImage = Resources.Resources.TotalUnits;
+            statCardTotalUnits.BackgroundImage = Resources.Resources.Icon__4_;
             statCardTotalUnits.CardCaption = "Total Units";
-            statCardTotalUnits.CardIcon = Resources.Resources.TotalUnits;
+            statCardTotalUnits.CardIcon = Resources.Resources.Icon__4_;
             statCardTotalUnits.CardNumber = "00";
             statCardTotalUnits.Dock = DockStyle.Fill;
             statCardTotalUnits.Location = new Point(13, 0);
@@ -131,9 +136,9 @@ namespace PMS_v1.Pages
             // 
             // statCardVacantUnits
             // 
-            statCardVacantUnits.BackgroundImage = Resources.Resources.VacantUnits;
+            statCardVacantUnits.BackgroundImage = Resources.Resources.Icon__5_;
             statCardVacantUnits.CardCaption = "Vacant Units";
-            statCardVacantUnits.CardIcon = Resources.Resources.VacantUnits;
+            statCardVacantUnits.CardIcon = Resources.Resources.Icon__5_;
             statCardVacantUnits.CardNumber = "00";
             statCardVacantUnits.Dock = DockStyle.Fill;
             statCardVacantUnits.Location = new Point(292, 0);
@@ -144,9 +149,9 @@ namespace PMS_v1.Pages
             // 
             // statCardOccupiedUnits
             // 
-            statCardOccupiedUnits.BackgroundImage = Resources.Resources.OccupiedUnit;
+            statCardOccupiedUnits.BackgroundImage = Resources.Resources.Icon__6_;
             statCardOccupiedUnits.CardCaption = "Occupied Units";
-            statCardOccupiedUnits.CardIcon = Resources.Resources.OccupiedUnit;
+            statCardOccupiedUnits.CardIcon = Resources.Resources.Icon__6_;
             statCardOccupiedUnits.CardNumber = "00";
             statCardOccupiedUnits.Dock = DockStyle.Fill;
             statCardOccupiedUnits.Location = new Point(578, 0);
@@ -157,9 +162,9 @@ namespace PMS_v1.Pages
             // 
             // statCardMaintenanceUnits
             // 
-            statCardMaintenanceUnits.BackgroundImage = Resources.Resources.UnderMaintenance;
+            statCardMaintenanceUnits.BackgroundImage = Resources.Resources.Icon__7_;
             statCardMaintenanceUnits.CardCaption = "Under Maintenance";
-            statCardMaintenanceUnits.CardIcon = Resources.Resources.UnderMaintenance;
+            statCardMaintenanceUnits.CardIcon = Resources.Resources.Icon__7_;
             statCardMaintenanceUnits.CardNumber = "00";
             statCardMaintenanceUnits.Dock = DockStyle.Fill;
             statCardMaintenanceUnits.Location = new Point(864, 0);
@@ -183,7 +188,7 @@ namespace PMS_v1.Pages
             // txtSearch
             // 
             txtSearch.CueHint.Color1 = Color.FromArgb(125, 130, 134);
-            txtSearch.CueHint.CueHintText = "⌕  Search properties...";
+            txtSearch.CueHint.CueHintText = "⌕  Search units...";
             txtSearch.CueHint.Font = new Font("Century Gothic", 8.5F);
             txtSearch.Location = new Point(0, 23);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
@@ -221,7 +226,41 @@ namespace PMS_v1.Pages
             btnNewProperty.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             btnNewProperty.TabIndex = 2;
             btnNewProperty.Values.DropDownArrowColor = Color.Empty;
-            btnNewProperty.Values.Text = "＋  New Property";
+            btnNewProperty.Values.Text = "＋  New Unit";
+            // 
+            // roundedPanelTable
+            // 
+            roundedPanelTable.BackColor = Color.White;
+            roundedPanelTable.BorderColor = Color.Transparent;
+            roundedPanelTable.BorderRadius = 10;
+            roundedPanelTable.Controls.Add(dgvUnits);
+            roundedPanelTable.Dock = DockStyle.Fill;
+            roundedPanelTable.Location = new Point(15, 333);
+            roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
+            roundedPanelTable.Name = "roundedPanelTable";
+            roundedPanelTable.Padding = new Padding(6, 7, 6, 7);
+            roundedPanelTable.ShadowColor = Color.Black;
+            roundedPanelTable.ShadowOpacity = 28;
+            roundedPanelTable.ShadowSize = 4;
+            roundedPanelTable.Size = new Size(1284, 915);
+            roundedPanelTable.TabIndex = 3;
+            // 
+            // dgvUnits
+            // 
+            dgvUnits.BackgroundColor = Color.White;
+            dgvUnits.BorderStyle = BorderStyle.None;
+            dgvUnits.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvUnits.ColumnHeadersHeight = 42;
+            dgvUnits.Dock = DockStyle.Fill;
+            dgvUnits.GridColor = Color.FromArgb(233, 236, 239);
+            dgvUnits.Location = new Point(6, 7);
+            dgvUnits.Margin = new Padding(0);
+            dgvUnits.Name = "dgvUnits";
+            dgvUnits.RowHeadersVisible = false;
+            dgvUnits.RowHeadersWidth = 51;
+            dgvUnits.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUnits.Size = new Size(1272, 901);
+            dgvUnits.TabIndex = 0;
             // 
             // UnitsModule
             // 
@@ -238,6 +277,8 @@ namespace PMS_v1.Pages
             pnlActions.ResumeLayout(false);
             pnlActions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)cmbFilter).EndInit();
+            roundedPanelTable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvUnits).EndInit();
             ResumeLayout(false);
         }
 
@@ -256,5 +297,7 @@ namespace PMS_v1.Pages
         private Krypton.Toolkit.KryptonTextBox txtSearch;
         private Krypton.Toolkit.KryptonComboBox cmbFilter;
         private Krypton.Toolkit.KryptonButton btnNewProperty;
+        private PMS_v1.RoundedPanel roundedPanelTable;
+        private DataGridView dgvUnits;
     }
 }

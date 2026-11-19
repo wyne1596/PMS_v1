@@ -14,6 +14,9 @@ namespace PMS_v1.UserControls
         private const int ActionHeight = 40;
         private const int SearchAndFilterHeight = 34;
 
+        // Same metrics sizing as the Dashboard: 154px row minus 3px margin above and below = 148px cards.
+        internal const int MetricsRowHeight = 154;
+
         internal static void ApplyStandardLayout(
             TableLayoutPanel pageLayout,
             Control header,
@@ -26,46 +29,134 @@ namespace PMS_v1.UserControls
 
             pageLayout.Dock = DockStyle.Fill;
             pageLayout.Padding = Padding.Empty;
-            pageLayout.Margin = new Padding(3, 2, 3, 2);
+            pageLayout.Margin = new Padding(3, 3, 3, 3);
             pageLayout.ColumnCount = 1;
             pageLayout.RowCount = 4;
             pageLayout.ColumnStyles.Clear();
             pageLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             pageLayout.RowStyles.Clear();
             pageLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            pageLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
+            pageLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, MetricsRowHeight));
             pageLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
             pageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
             header.Dock = DockStyle.Fill;
-            header.Margin = new Padding(3, 2, 3, 2);
+            header.Margin = new Padding(3, 3, 3, 3);
+            LayoutMetricCards(metrics);
+
+            actions.Dock = DockStyle.Fill;
+            actions.Margin = new Padding(15, 3, 15, 3);
+            content.Dock = DockStyle.Fill;
+            content.Margin = new Padding(15, 3, 15, 3);
+
+            metrics.ResumeLayout(true);
+            pageLayout.ResumeLayout(true);
+        }
+
+        // Lets a page with its own table (the Dashboard) use exactly the same metrics row as the module pages.
+        internal static void ApplyMetricsRow(TableLayoutPanel pageLayout, int rowIndex, TableLayoutPanel metrics)
+        {
+            pageLayout.RowStyles[rowIndex] = new RowStyle(SizeType.Absolute, MetricsRowHeight);
+            LayoutMetricCards(metrics);
+        }
+
+        // Equal-width columns, cards fill their cell, 15px outer / 7px inner gaps (as on the Dashboard).
+        private static void LayoutMetricCards(TableLayoutPanel metrics)
+        {
+            metrics.SuspendLayout();
             metrics.Dock = DockStyle.Fill;
-            metrics.Margin = new Padding(3, 2, 3, 2);
+            metrics.Margin = new Padding(3, 3, 3, 3);
             metrics.ColumnCount = metrics.Controls.Count;
             metrics.ColumnStyles.Clear();
 
-            if (metrics.ColumnCount > 0)
+            int cardCount = metrics.Controls.Count;
+            if (cardCount > 0)
             {
-                float columnWidth = 100F / metrics.ColumnCount;
-                for (int i = 0; i < metrics.ColumnCount; i++)
+                float columnWidth = 100F / cardCount;
+                for (int i = 0; i < cardCount; i++)
                     metrics.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, columnWidth));
             }
 
-            int cardCount = metrics.Controls.Count;
             for (int i = 0; i < cardCount; i++)
             {
                 Control card = metrics.GetControlFromPosition(i, 0) ?? metrics.Controls[i];
                 card.Dock = DockStyle.Fill;
-                card.Margin = new Padding(i == 0 ? 13 : 6, 0, i == cardCount - 1 ? 13 : 6, 0);
+                card.Margin = new Padding(i == 0 ? 15 : 7, 0, i == cardCount - 1 ? 15 : 7, 0);
             }
 
-            actions.Dock = DockStyle.Fill;
-            actions.Margin = new Padding(13, 2, 13, 2);
-            content.Dock = DockStyle.Fill;
-            content.Margin = new Padding(13, 2, 13, 2);
-
             metrics.ResumeLayout(true);
-            pageLayout.ResumeLayout(true);
+        }
+
+        // Same table look as Billing / Payment / Maintenance / Leasing.
+        internal static void ApplyStandardGridStyle(DataGridView grid)
+        {
+            grid.AutoGenerateColumns = false;
+            grid.AllowUserToAddRows = false;
+            grid.AllowUserToDeleteRows = false;
+            grid.AllowUserToResizeRows = false;
+            grid.MultiSelect = false;
+            grid.ReadOnly = true;
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            grid.EnableHeadersVisualStyles = false;
+            grid.RowTemplate.Height = 42;
+            grid.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(74, 151, 196),
+                ForeColor = Color.White,
+                Font = new Font("Century Gothic", 9F, FontStyle.Bold),
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                SelectionBackColor = Color.FromArgb(74, 151, 196),
+                SelectionForeColor = Color.White
+            };
+            grid.DefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.White,
+                ForeColor = Color.FromArgb(44, 49, 53),
+                Font = new Font("Century Gothic", 9F),
+                Alignment = DataGridViewContentAlignment.MiddleLeft,
+                Padding = new Padding(12, 0, 8, 0),
+                SelectionBackColor = Color.White,
+                SelectionForeColor = Color.FromArgb(44, 49, 53)
+            };
+            grid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.White,
+                SelectionBackColor = Color.White,
+                SelectionForeColor = Color.FromArgb(44, 49, 53)
+            };
+        }
+
+        // Draws the rounded status pill used on the other pages' STATUS column.
+        internal static void AttachStatusBadge(DataGridView grid, string columnName)
+        {
+            grid.CellPainting += (sender, e) =>
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex != grid.Columns[columnName].Index)
+                    return;
+
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
+
+                string status = Convert.ToString(e.FormattedValue) ?? string.Empty;
+                Font font = e.CellStyle.Font ?? grid.Font;
+                Size textSize = TextRenderer.MeasureText(status, font);
+                int badgeWidth = Math.Min(e.CellBounds.Width - 8, textSize.Width + 14);
+                int badgeHeight = Math.Min(24, e.CellBounds.Height - 8);
+                var badgeBounds = new Rectangle(
+                    e.CellBounds.Left + (e.CellBounds.Width - badgeWidth) / 2,
+                    e.CellBounds.Top + (e.CellBounds.Height - badgeHeight) / 2,
+                    badgeWidth,
+                    badgeHeight);
+
+                using (var badge = new SolidBrush(Color.FromArgb(218, 237, 248)))
+                    e.Graphics.FillRectangle(badge, badgeBounds);
+
+                TextRenderer.DrawText(e.Graphics, status, font, badgeBounds,
+                    Color.FromArgb(45, 93, 120),
+                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
+                e.Handled = true;
+            };
         }
 
         // For DataGridViews: fills the rounded panel and clips the grid corners so the header follows the curve.
@@ -73,6 +164,11 @@ namespace PMS_v1.UserControls
         {
             panel.Padding = Padding.Empty;
             grid.Dock = DockStyle.Fill;
+
+            // Tables that add their columns in code get header text aligned with the cells under it.
+            // (The Dashboard defines its columns in the designer, so it is left as it is.)
+            if (grid.Columns.Count == 0)
+                grid.ColumnAdded += (_, e) => AlignHeaderWithCells(e.Column);
 
             void ClipCorners()
             {
@@ -94,6 +190,21 @@ namespace PMS_v1.UserControls
 
             grid.SizeChanged += (_, _) => ClipCorners();
             ClipCorners();
+        }
+
+        // Header text uses the same alignment and padding as the cells below it.
+        private static void AlignHeaderWithCells(DataGridViewColumn column)
+        {
+            DataGridView? grid = column.DataGridView;
+            if (grid == null) return;
+
+            DataGridViewCellStyle own = column.DefaultCellStyle;
+            DataGridViewCellStyle body = grid.DefaultCellStyle;
+
+            column.HeaderCell.Style.Alignment = own.Alignment != DataGridViewContentAlignment.NotSet
+                ? own.Alignment : body.Alignment;
+            column.HeaderCell.Style.Padding = own.Padding != Padding.Empty
+                ? own.Padding : body.Padding;
         }
 
         internal static void LayoutActions(Control actionRow, Control search, Control filter, Control action)

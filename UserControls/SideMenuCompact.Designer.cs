@@ -155,7 +155,7 @@
             btnBilling.FlatStyle = FlatStyle.Flat;
             btnBilling.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnBilling.ForeColor = Color.White;
-            btnBilling.Image = Resources.Resources.bill1;
+            btnBilling.Image = Resources.Resources.Bill;
             btnBilling.Location = new Point(0, 260);
             btnBilling.Name = "btnBilling";
             btnBilling.Size = new Size(95, 80);
@@ -200,7 +200,7 @@
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = Color.White;
-            btnDashboard.Image = Resources.Resources.Icon;
+            btnDashboard.Image = Resources.Resources.Dashboard;
             btnDashboard.Location = new Point(0, 20);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(95, 80);
@@ -222,7 +222,7 @@
             // pnlHead
             // 
             pnlHead.BackColor = Color.Transparent;
-            pnlHead.BackgroundImage = Resources.Resources.Logo;
+            pnlHead.BackgroundImage = Resources.Resources.BaktuTenantLogo;
             pnlHead.BackgroundImageLayout = ImageLayout.Center;
             pnlHead.Dock = DockStyle.Top;
             pnlHead.Location = new Point(0, 0);

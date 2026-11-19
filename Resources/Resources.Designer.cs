@@ -22,7 +22,7 @@ namespace PMS_v1.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace PMS_v1.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PMS_v1.Resources.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace PMS_v1.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,9 +63,9 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap attention {
+        public static System.Drawing.Bitmap AccentGreen {
             get {
-                object obj = ResourceManager.GetObject("attention", resourceCulture);
+                object obj = ResourceManager.GetObject("AccentGreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap audience {
+        public static System.Drawing.Bitmap ActiveLease {
             get {
-                object obj = ResourceManager.GetObject("audience", resourceCulture);
+                object obj = ResourceManager.GetObject("ActiveLease", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BG {
+        public static System.Drawing.Bitmap Background {
             get {
-                object obj = ResourceManager.GetObject("BG", resourceCulture);
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,7 +93,27 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Bill {
+        public static System.Drawing.Bitmap BaktuTenantLogo {
+            get {
+                object obj = ResourceManager.GetObject("BaktuTenantLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap BaktuTenantLogoName {
+            get {
+                object obj = ResourceManager.GetObject("BaktuTenantLogoName", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Bill {
             get {
                 object obj = ResourceManager.GetObject("Bill", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,9 +123,9 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bill1 {
+        public static System.Drawing.Bitmap Billing {
             get {
-                object obj = ResourceManager.GetObject("bill1", resourceCulture);
+                object obj = ResourceManager.GetObject("Billing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +133,9 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btnGreen {
+        public static System.Drawing.Bitmap BTHeaderLogo {
             get {
-                object obj = ResourceManager.GetObject("btnGreen", resourceCulture);
+                object obj = ResourceManager.GetObject("BTHeaderLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +143,9 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ButtonBlue {
+        public static System.Drawing.Bitmap BTLogoName {
             get {
-                object obj = ResourceManager.GetObject("ButtonBlue", resourceCulture);
+                object obj = ResourceManager.GetObject("BTLogoName", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,7 +153,27 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap check {
+        public static System.Drawing.Bitmap BTLogoOnly {
+            get {
+                object obj = ResourceManager.GetObject("BTLogoOnly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CanceledBills {
+            get {
+                object obj = ResourceManager.GetObject("CanceledBills", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap check {
             get {
                 object obj = ResourceManager.GetObject("check", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +183,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap check1 {
+        public static System.Drawing.Bitmap check1 {
             get {
                 object obj = ResourceManager.GetObject("check1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +193,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap check2 {
+        public static System.Drawing.Bitmap check2 {
             get {
                 object obj = ResourceManager.GetObject("check2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +203,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap check3 {
+        public static System.Drawing.Bitmap check3 {
             get {
                 object obj = ResourceManager.GetObject("check3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +213,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle {
+        public static System.Drawing.Bitmap circle {
             get {
                 object obj = ResourceManager.GetObject("circle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +223,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle__1_ {
+        public static System.Drawing.Bitmap circle__1_ {
             get {
                 object obj = ResourceManager.GetObject("circle (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +233,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clock {
+        public static System.Drawing.Bitmap clock {
             get {
                 object obj = ResourceManager.GetObject("clock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +243,27 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Divider {
+        public static System.Drawing.Bitmap CompletedPayment {
+            get {
+                object obj = ResourceManager.GetObject("CompletedPayment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Dashboard {
+            get {
+                object obj = ResourceManager.GetObject("Dashboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Divider {
             get {
                 object obj = ResourceManager.GetObject("Divider", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +273,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DividerCompact {
+        public static System.Drawing.Bitmap DividerCompact {
             get {
                 object obj = ResourceManager.GetObject("DividerCompact", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +283,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exclamation {
+        public static System.Drawing.Bitmap exclamation {
             get {
                 object obj = ResourceManager.GetObject("exclamation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +293,17 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap EyeClose {
+        public static System.Drawing.Bitmap ExpiredLeases {
+            get {
+                object obj = ResourceManager.GetObject("ExpiredLeases", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap EyeClose {
             get {
                 object obj = ResourceManager.GetObject("EyeClose", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +313,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap EyeClosed {
+        public static System.Drawing.Bitmap EyeClosed {
             get {
                 object obj = ResourceManager.GetObject("EyeClosed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +323,37 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap familiar_group_of_four_persons_composed_by_two_women_with_male_and_female_kids_in_a_house {
+        public static System.Drawing.Bitmap EyeOpen {
+            get {
+                object obj = ResourceManager.GetObject("EyeOpen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Failed {
+            get {
+                object obj = ResourceManager.GetObject("Failed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap FailedPayment {
+            get {
+                object obj = ResourceManager.GetObject("FailedPayment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap familiar_group_of_four_persons_composed_by_two_women_with_male_and_female_kids_in_a_house {
             get {
                 object obj = ResourceManager.GetObject("familiar-group-of-four-persons-composed-by-two-women-with-male-and-female-kids-in" +
                         "-a-house", resourceCulture);
@@ -264,27 +364,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Header_Logo {
-            get {
-                object obj = ResourceManager.GetObject("Header Logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap HeaderBlack {
-            get {
-                object obj = ResourceManager.GetObject("HeaderBlack", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap hourglass {
+        public static System.Drawing.Bitmap hourglass {
             get {
                 object obj = ResourceManager.GetObject("hourglass", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -294,9 +374,9 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Icon {
+        public static System.Drawing.Bitmap InProgress {
             get {
-                object obj = ResourceManager.GetObject("Icon", resourceCulture);
+                object obj = ResourceManager.GetObject("InProgress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -304,7 +384,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Lease {
+        public static System.Drawing.Bitmap Lease {
             get {
                 object obj = ResourceManager.GetObject("Lease", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -314,37 +394,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LoginEye {
-            get {
-                object obj = ResourceManager.GetObject("LoginEye", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Logo {
-            get {
-                object obj = ResourceManager.GetObject("Logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LOGO__1__1 {
-            get {
-                object obj = ResourceManager.GetObject("LOGO (1) 1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Logout {
+        public static System.Drawing.Bitmap Logout {
             get {
                 object obj = ResourceManager.GetObject("Logout", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -354,7 +404,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Maintenance {
+        public static System.Drawing.Bitmap Maintenance {
             get {
                 object obj = ResourceManager.GetObject("Maintenance", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -364,7 +414,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Maintenance1 {
+        public static System.Drawing.Bitmap Maintenance1 {
             get {
                 object obj = ResourceManager.GetObject("Maintenance1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -374,7 +424,47 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Payment {
+        public static System.Drawing.Bitmap OccupiedUnit {
+            get {
+                object obj = ResourceManager.GetObject("OccupiedUnit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap OverdueBills {
+            get {
+                object obj = ResourceManager.GetObject("OverdueBills", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap PaidBills {
+            get {
+                object obj = ResourceManager.GetObject("PaidBills", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap PartiallyPaidBills {
+            get {
+                object obj = ResourceManager.GetObject("PartiallyPaidBills", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Payment {
             get {
                 object obj = ResourceManager.GetObject("Payment", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -384,7 +474,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Payment1 {
+        public static System.Drawing.Bitmap Payment1 {
             get {
                 object obj = ResourceManager.GetObject("Payment1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -394,7 +484,37 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pound {
+        public static System.Drawing.Bitmap Pending {
+            get {
+                object obj = ResourceManager.GetObject("Pending", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap PendingLease {
+            get {
+                object obj = ResourceManager.GetObject("PendingLease", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap PendingPayment {
+            get {
+                object obj = ResourceManager.GetObject("PendingPayment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap pound {
             get {
                 object obj = ResourceManager.GetObject("pound", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -404,7 +524,17 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Property {
+        public static System.Drawing.Bitmap PrimaryBlue {
+            get {
+                object obj = ResourceManager.GetObject("PrimaryBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Property {
             get {
                 object obj = ResourceManager.GetObject("Property", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -414,7 +544,17 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap remove {
+        public static System.Drawing.Bitmap RefundedPayment {
+            get {
+                object obj = ResourceManager.GetObject("RefundedPayment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap remove {
             get {
                 object obj = ResourceManager.GetObject("remove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -424,7 +564,27 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Reports {
+        public static System.Drawing.Bitmap RentOverdue {
+            get {
+                object obj = ResourceManager.GetObject("RentOverdue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap RepairsNeeded {
+            get {
+                object obj = ResourceManager.GetObject("RepairsNeeded", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Reports {
             get {
                 object obj = ResourceManager.GetObject("Reports", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -434,7 +594,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Search {
+        public static System.Drawing.Bitmap Search {
             get {
                 object obj = ResourceManager.GetObject("Search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -444,7 +604,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Settings {
+        public static System.Drawing.Bitmap Settings {
             get {
                 object obj = ResourceManager.GetObject("Settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -454,7 +614,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Settings1 {
+        public static System.Drawing.Bitmap Settings1 {
             get {
                 object obj = ResourceManager.GetObject("Settings1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -464,7 +624,7 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SideMenu {
+        public static System.Drawing.Bitmap SideMenu {
             get {
                 object obj = ResourceManager.GetObject("SideMenu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -474,9 +634,79 @@ namespace PMS_v1.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap swap {
+        public static System.Drawing.Bitmap Successful {
+            get {
+                object obj = ResourceManager.GetObject("Successful", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap swap {
             get {
                 object obj = ResourceManager.GetObject("swap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap TerminatedLease {
+            get {
+                object obj = ResourceManager.GetObject("TerminatedLease", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap TotalUnits {
+            get {
+                object obj = ResourceManager.GetObject("TotalUnits", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap TotalUnpaidBalance {
+            get {
+                object obj = ResourceManager.GetObject("TotalUnpaidBalance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap UnderMaintenance {
+            get {
+                object obj = ResourceManager.GetObject("UnderMaintenance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap UnpaidBills {
+            get {
+                object obj = ResourceManager.GetObject("UnpaidBills", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap VacantUnits {
+            get {
+                object obj = ResourceManager.GetObject("VacantUnits", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

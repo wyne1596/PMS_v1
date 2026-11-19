@@ -185,7 +185,7 @@
             btnSignUp.Size = new Size(523, 80);
             btnSignUp.StateCommon.Back.Color1 = Color.Transparent;
             btnSignUp.StateCommon.Back.Color2 = Color.Transparent;
-            btnSignUp.StateCommon.Back.Image = Resources.Resources.ButtonBlue;
+            btnSignUp.StateCommon.Back.Image = Resources.Resources.PrimaryBlue;
             btnSignUp.StateCommon.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.Stretch;
             btnSignUp.StateCommon.Border.Color1 = Color.FromArgb(224, 224, 224);
             btnSignUp.StateCommon.Border.Color2 = Color.FromArgb(224, 224, 224);
@@ -508,7 +508,7 @@
             pnlBackground.StateCommon.Color2 = Color.PaleTurquoise;
             pnlBackground.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear50;
             pnlBackground.StateCommon.GraphicsHint = Krypton.Toolkit.PaletteGraphicsHint.HighQuality;
-            pnlBackground.StateCommon.Image = Resources.Resources.BG;
+            pnlBackground.StateCommon.Image = Resources.Resources.Background;
             pnlBackground.StateCommon.ImageStyle = Krypton.Toolkit.PaletteImageStyle.TileFlipY;
             pnlBackground.TabIndex = 2;
             // 

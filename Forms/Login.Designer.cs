@@ -62,13 +62,14 @@
             // 
             pnlBackground.Dock = DockStyle.Fill;
             pnlBackground.Location = new Point(0, 0);
+            pnlBackground.Margin = new Padding(3, 2, 3, 2);
             pnlBackground.Name = "pnlBackground";
-            pnlBackground.Size = new Size(1422, 977);
+            pnlBackground.Size = new Size(1199, 562);
             pnlBackground.StateCommon.Color1 = Color.SteelBlue;
             pnlBackground.StateCommon.Color2 = Color.PaleTurquoise;
             pnlBackground.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear50;
             pnlBackground.StateCommon.GraphicsHint = Krypton.Toolkit.PaletteGraphicsHint.HighQuality;
-            pnlBackground.StateCommon.Image = Resources.Resources.BG;
+            pnlBackground.StateCommon.Image = Resources.Resources.Background;
             pnlBackground.StateCommon.ImageStyle = Krypton.Toolkit.PaletteImageStyle.TileFlipY;
             pnlBackground.TabIndex = 0;
             // 
@@ -78,9 +79,10 @@
             pnlLogin.Controls.Add(pnlLoginhere);
             pnlLogin.Controls.Add(pnlLogo);
             pnlLogin.Dock = DockStyle.Right;
-            pnlLogin.Location = new Point(784, 0);
+            pnlLogin.Location = new Point(641, 0);
+            pnlLogin.Margin = new Padding(3, 2, 3, 2);
             pnlLogin.Name = "pnlLogin";
-            pnlLogin.Size = new Size(638, 977);
+            pnlLogin.Size = new Size(558, 562);
             pnlLogin.TabIndex = 1;
             // 
             // pnlLoginhere
@@ -92,9 +94,10 @@
             pnlLoginhere.Controls.Add(panel2);
             pnlLoginhere.Controls.Add(panel1);
             pnlLoginhere.Dock = DockStyle.Fill;
-            pnlLoginhere.Location = new Point(0, 205);
+            pnlLoginhere.Location = new Point(0, 154);
+            pnlLoginhere.Margin = new Padding(3, 2, 3, 2);
             pnlLoginhere.Name = "pnlLoginhere";
-            pnlLoginhere.Size = new Size(638, 772);
+            pnlLoginhere.Size = new Size(558, 408);
             pnlLoginhere.TabIndex = 1;
             // 
             // panel6
@@ -102,10 +105,11 @@
             panel6.Controls.Add(lnklblSignUp);
             panel6.Controls.Add(label2);
             panel6.Dock = DockStyle.Top;
-            panel6.Location = new Point(0, 496);
+            panel6.Location = new Point(0, 372);
+            panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Padding = new Padding(60, 0, 0, 0);
-            panel6.Size = new Size(638, 164);
+            panel6.Padding = new Padding(52, 0, 0, 0);
+            panel6.Size = new Size(558, 123);
             panel6.TabIndex = 7;
             // 
             // lnklblSignUp
@@ -114,9 +118,9 @@
             lnklblSignUp.Dock = DockStyle.Left;
             lnklblSignUp.Font = new Font("Century Gothic", 10.2F);
             lnklblSignUp.ForeColor = Color.Black;
-            lnklblSignUp.Location = new Point(277, 0);
+            lnklblSignUp.Location = new Point(232, 0);
             lnklblSignUp.Name = "lnklblSignUp";
-            lnklblSignUp.Size = new Size(116, 21);
+            lnklblSignUp.Size = new Size(99, 19);
             lnklblSignUp.TabIndex = 1;
             lnklblSignUp.TabStop = true;
             lnklblSignUp.Text = "Sign up here.";
@@ -128,9 +132,9 @@
             label2.Dock = DockStyle.Left;
             label2.Font = new Font("Century Gothic", 10.2F);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(60, 0);
+            label2.Location = new Point(52, 0);
             label2.Name = "label2";
-            label2.Size = new Size(217, 21);
+            label2.Size = new Size(180, 19);
             label2.TabIndex = 0;
             label2.Text = "Don't have an account?";
             // 
@@ -139,21 +143,23 @@
             panel5.Controls.Add(btnLogin);
             panel5.Dock = DockStyle.Top;
             panel5.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panel5.Location = new Point(0, 346);
+            panel5.Location = new Point(0, 260);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Padding = new Padding(65, 50, 50, 20);
-            panel5.Size = new Size(638, 150);
+            panel5.Padding = new Padding(57, 38, 44, 15);
+            panel5.Size = new Size(558, 112);
             panel5.TabIndex = 6;
             // 
             // btnLogin
             // 
             btnLogin.Dock = DockStyle.Fill;
-            btnLogin.Location = new Point(65, 50);
+            btnLogin.Location = new Point(57, 38);
+            btnLogin.Margin = new Padding(3, 2, 3, 2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(523, 80);
+            btnLogin.Size = new Size(457, 59);
             btnLogin.StateCommon.Back.Color1 = Color.Transparent;
             btnLogin.StateCommon.Back.Color2 = Color.Transparent;
-            btnLogin.StateCommon.Back.Image = Resources.Resources.ButtonBlue;
+            btnLogin.StateCommon.Back.Image = Resources.Resources.PrimaryBlue;
             btnLogin.StateCommon.Back.ImageStyle = Krypton.Toolkit.PaletteImageStyle.Stretch;
             btnLogin.StateCommon.Border.Color1 = Color.FromArgb(224, 224, 224);
             btnLogin.StateCommon.Border.Color2 = Color.FromArgb(224, 224, 224);
@@ -172,10 +178,11 @@
             // 
             panel4.Controls.Add(txtPassword);
             panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(0, 254);
+            panel4.Location = new Point(0, 191);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Padding = new Padding(65, 5, 50, 20);
-            panel4.Size = new Size(638, 92);
+            panel4.Padding = new Padding(57, 4, 44, 15);
+            panel4.Size = new Size(558, 69);
             panel4.TabIndex = 5;
             // 
             // txtPassword
@@ -185,9 +192,10 @@
             txtPassword.CueHint.CueHintText = "Enter Password";
             txtPassword.CueHint.Font = new Font("Century Gothic", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPassword.Dock = DockStyle.Fill;
-            txtPassword.Location = new Point(65, 5);
+            txtPassword.Location = new Point(57, 4);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(523, 79);
+            txtPassword.Size = new Size(457, 71);
             txtPassword.StateCommon.Back.Color1 = SystemColors.ControlLight;
             txtPassword.StateCommon.Border.Color1 = SystemColors.ControlLight;
             txtPassword.StateCommon.Border.Color2 = SystemColors.ControlLight;
@@ -213,18 +221,20 @@
             // 
             panel3.Controls.Add(lblPassword);
             panel3.Dock = DockStyle.Top;
-            panel3.Location = new Point(0, 206);
+            panel3.Location = new Point(0, 155);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Padding = new Padding(52, 20, 20, 20);
-            panel3.Size = new Size(638, 48);
+            panel3.Padding = new Padding(46, 15, 18, 15);
+            panel3.Size = new Size(558, 36);
             panel3.TabIndex = 4;
             // 
             // lblPassword
             // 
             lblPassword.Dock = DockStyle.Top;
-            lblPassword.Location = new Point(52, 20);
+            lblPassword.Location = new Point(46, 15);
+            lblPassword.Margin = new Padding(3, 2, 3, 2);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(566, 34);
+            lblPassword.Size = new Size(494, 29);
             lblPassword.StateCommon.LongText.Color1 = Color.Red;
             lblPassword.StateCommon.Padding = new Padding(-1, -1, 462, 10);
             lblPassword.StateCommon.ShortText.Color1 = Color.DimGray;
@@ -238,10 +248,11 @@
             // 
             panel2.Controls.Add(txtUsername);
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 114);
+            panel2.Location = new Point(0, 86);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Padding = new Padding(65, 5, 50, 20);
-            panel2.Size = new Size(638, 92);
+            panel2.Padding = new Padding(57, 4, 44, 15);
+            panel2.Size = new Size(558, 69);
             panel2.TabIndex = 4;
             // 
             // txtUsername
@@ -250,9 +261,10 @@
             txtUsername.CueHint.CueHintText = "Enter Username";
             txtUsername.CueHint.Font = new Font("Century Gothic", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsername.Dock = DockStyle.Fill;
-            txtUsername.Location = new Point(65, 5);
+            txtUsername.Location = new Point(57, 4);
+            txtUsername.Margin = new Padding(3, 2, 3, 2);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(523, 79);
+            txtUsername.Size = new Size(457, 71);
             txtUsername.StateCommon.Back.Color1 = SystemColors.ControlLight;
             txtUsername.StateCommon.Border.Color1 = SystemColors.ControlLight;
             txtUsername.StateCommon.Border.Color2 = SystemColors.ControlLight;
@@ -269,17 +281,19 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Padding = new Padding(50, 20, 20, 20);
-            panel1.Size = new Size(638, 114);
+            panel1.Padding = new Padding(44, 15, 18, 15);
+            panel1.Size = new Size(558, 86);
             panel1.TabIndex = 3;
             // 
             // lblUsername
             // 
             lblUsername.Dock = DockStyle.Top;
-            lblUsername.Location = new Point(50, 60);
+            lblUsername.Location = new Point(44, 47);
+            lblUsername.Margin = new Padding(3, 2, 3, 2);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(568, 63);
+            lblUsername.Size = new Size(496, 58);
             lblUsername.StateCommon.LongText.Color1 = Color.Red;
             lblUsername.StateCommon.Padding = new Padding(-1, 30, 460, 10);
             lblUsername.StateCommon.ShortText.Color1 = Color.DimGray;
@@ -294,9 +308,9 @@
             label1.AutoSize = true;
             label1.Dock = DockStyle.Top;
             label1.Font = new Font("Century Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(50, 20);
+            label1.Location = new Point(44, 15);
             label1.Name = "label1";
-            label1.Size = new Size(104, 40);
+            label1.Size = new Size(83, 32);
             label1.TabIndex = 0;
             label1.Text = "Login";
             // 
@@ -305,17 +319,19 @@
             pnlLogo.BackgroundImageLayout = ImageLayout.Center;
             pnlLogo.Dock = DockStyle.Top;
             pnlLogo.Location = new Point(0, 0);
+            pnlLogo.Margin = new Padding(3, 2, 3, 2);
             pnlLogo.Name = "pnlLogo";
-            pnlLogo.Size = new Size(638, 205);
+            pnlLogo.Size = new Size(558, 154);
             pnlLogo.TabIndex = 0;
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1422, 977);
+            ClientSize = new Size(1199, 562);
             Controls.Add(pnlLogin);
             Controls.Add(pnlBackground);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
             Text = "Login";
             WindowState = FormWindowState.Maximized;

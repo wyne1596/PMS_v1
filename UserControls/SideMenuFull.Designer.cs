@@ -48,7 +48,7 @@
             // pnlHead
             // 
             pnlHead.BackColor = Color.Transparent;
-            pnlHead.BackgroundImage = PMS_v1.Resources.Resources.Header_Logo;
+            pnlHead.BackgroundImage = PMS_v1.Resources.Resources.BTHeaderLogo;
             pnlHead.BackgroundImageLayout = ImageLayout.Center;
             pnlHead.Dock = DockStyle.Top;
             pnlHead.Location = new Point(0, 0);
@@ -197,7 +197,7 @@
             btnBilling.FlatStyle = FlatStyle.Flat;
             btnBilling.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnBilling.ForeColor = Color.White;
-            btnBilling.Image = PMS_v1.Resources.Resources.bill1;
+            btnBilling.Image = PMS_v1.Resources.Resources.Bill;
             btnBilling.ImageAlign = ContentAlignment.MiddleLeft;
             btnBilling.Location = new Point(0, 260);
             btnBilling.Name = "btnBilling";
@@ -254,7 +254,7 @@
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = Color.White;
-            btnDashboard.Image = PMS_v1.Resources.Resources.Icon;
+            btnDashboard.Image = PMS_v1.Resources.Resources.Dashboard;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
             btnDashboard.Location = new Point(0, 20);
             btnDashboard.Name = "btnDashboard";

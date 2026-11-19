@@ -1,6 +1,5 @@
 using MySql.Data.MySqlClient;
 using PMS_v1.Database;
-using System.Drawing.Drawing2D;
 
 namespace PMS_v1.Pages
 {
@@ -26,13 +25,10 @@ namespace PMS_v1.Pages
         {
             statCardCompleted.CardCaption = "Completed";
             statCardCompleted.CardNumber = "00";
-            statCardCompleted.CardIcon = PMS_v1.Resources.Resources.check;
             statCardScheduled.CardCaption = "Scheduled";
             statCardScheduled.CardNumber = "00";
-            statCardScheduled.CardIcon = PMS_v1.Resources.Resources.clock;
             statCardInProgress.CardCaption = "In Progress";
             statCardInProgress.CardNumber = "00";
-            statCardInProgress.CardIcon = CreateInProgressIcon();
             statCardCanceled.CardCaption = "Canceled";
             statCardCanceled.CardNumber = "00";
 
@@ -161,40 +157,6 @@ namespace PMS_v1.Pages
                 Color.FromArgb(45, 93, 120),
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
             e.Handled = true;
-        }
-
-        private static Bitmap CreateInProgressIcon()
-        {
-            var icon = new Bitmap(48, 48);
-            using Graphics graphics = Graphics.FromImage(icon);
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            graphics.Clear(Color.Transparent);
-
-            using var blue = new SolidBrush(Color.FromArgb(74, 151, 196));
-            using var white = new SolidBrush(Color.White);
-            using var gearPen = new Pen(Color.FromArgb(74, 151, 196), 2.5F);
-
-            Point[] hourglass =
-            {
-                new(8, 7), new(29, 7), new(29, 11), new(22, 19),
-                new(22, 22), new(29, 30), new(29, 35), new(8, 35),
-                new(8, 30), new(15, 22), new(15, 19), new(8, 11)
-            };
-            graphics.FillPolygon(blue, hourglass);
-            graphics.FillPolygon(white, new[] { new Point(12, 11), new Point(25, 11), new Point(19, 18) });
-            graphics.FillPolygon(white, new[] { new Point(19, 25), new Point(25, 31), new Point(12, 31) });
-
-            graphics.DrawLine(gearPen, 34, 26, 34, 31);
-            graphics.DrawLine(gearPen, 34, 37, 34, 42);
-            graphics.DrawLine(gearPen, 27, 34, 32, 34);
-            graphics.DrawLine(gearPen, 36, 34, 41, 34);
-            graphics.DrawLine(gearPen, 29, 29, 32, 32);
-            graphics.DrawLine(gearPen, 36, 36, 39, 39);
-            graphics.DrawLine(gearPen, 29, 39, 32, 36);
-            graphics.DrawLine(gearPen, 36, 32, 39, 29);
-            graphics.DrawEllipse(gearPen, 30, 30, 8, 8);
-
-            return icon;
         }
 
         private void statCardCanceled_Load(object sender, EventArgs e)

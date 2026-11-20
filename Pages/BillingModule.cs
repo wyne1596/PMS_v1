@@ -235,5 +235,16 @@ namespace PMS_v1.Pages
                 }
             }
         }
+
+        private void btnNewBill_Click(object sender, EventArgs e)
+        {
+            using (var f = new RecordForm(FormMode.New, "Bill", FormDefinitions.Bill()))
+            {
+                if (f.ShowDialog(this.FindForm()) == DialogResult.OK)
+                {
+                    // backend: read f.Values["amount"], f.Values["dueDate"], and so on
+                }
+            }
+        }
     }
 }

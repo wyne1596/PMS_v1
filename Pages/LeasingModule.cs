@@ -178,5 +178,16 @@ namespace PMS_v1.Pages
         {
 
         }
+
+        private void btnNewLease_Click_1(object sender, EventArgs e)
+        {
+            using (var f = new RecordForm(FormMode.New, "Lease", FormDefinitions.Lease()))
+            {
+                if (f.ShowDialog(this.FindForm()) == DialogResult.OK)
+                {
+                    // backend: read f.Values["amount"], f.Values["dueDate"], and so on
+                }
+            }
+        }
     }
 }

@@ -134,9 +134,9 @@ namespace PMS_v1.Pages
             // 
             // statCardTotalUnits
             // 
-            statCardTotalUnits.BackgroundImage = Resources.Resources.Lease;
+            statCardTotalUnits.BackgroundImage = Resources.Resources.icoLease;
             statCardTotalUnits.CardCaption = "Total Units";
-            statCardTotalUnits.CardIcon = Resources.Resources.Lease;
+            statCardTotalUnits.CardIcon = Resources.Resources.icoLease;
             statCardTotalUnits.CardNumber = "00";
             statCardTotalUnits.Dock = DockStyle.Fill;
             statCardTotalUnits.Location = new Point(313, 0);
@@ -147,9 +147,9 @@ namespace PMS_v1.Pages
             // 
             // statCardUnitsOccupied
             // 
-            statCardUnitsOccupied.BackgroundImage = Resources.Resources.check;
+            statCardUnitsOccupied.BackgroundImage = Resources.Resources.OccupiedUnit;
             statCardUnitsOccupied.CardCaption = "Units Occupied";
-            statCardUnitsOccupied.CardIcon = Resources.Resources.check;
+            statCardUnitsOccupied.CardIcon = Resources.Resources.OccupiedUnit;
             statCardUnitsOccupied.CardNumber = "00";
             statCardUnitsOccupied.Dock = DockStyle.Fill;
             statCardUnitsOccupied.Location = new Point(619, 0);
@@ -160,9 +160,9 @@ namespace PMS_v1.Pages
             // 
             // statCardTotalTenants
             // 
-            statCardTotalTenants.BackgroundImage = Resources.Resources.Payment;
+            statCardTotalTenants.BackgroundImage = Resources.Resources.icoPayment;
             statCardTotalTenants.CardCaption = "Total Tenants";
-            statCardTotalTenants.CardIcon = Resources.Resources.Payment;
+            statCardTotalTenants.CardIcon = Resources.Resources.icoPayment;
             statCardTotalTenants.CardNumber = "00";
             statCardTotalTenants.Dock = DockStyle.Fill;
             statCardTotalTenants.Location = new Point(925, 0);

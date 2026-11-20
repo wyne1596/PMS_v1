@@ -27,10 +27,10 @@ namespace PMS_v1.Pages
         {
             statCardCompleted.CardCaption = "Completed";
             statCardCompleted.CardNumber = "00";
-            statCardCompleted.CardIcon = PMS_v1.Resources.Resources.check;
+            statCardCompleted.CardIcon = PMS_v1.Resources.Resources.Successful;
             statCardScheduled.CardCaption = "Scheduled";
             statCardScheduled.CardNumber = "00";
-            statCardScheduled.CardIcon = PMS_v1.Resources.Resources.clock;
+            statCardScheduled.CardIcon = PMS_v1.Resources.Resources.InProgress;
             statCardInProgress.CardCaption = "In Progress";
             statCardInProgress.CardNumber = "00";
             statCardInProgress.CardIcon = CreateInProgressIcon();

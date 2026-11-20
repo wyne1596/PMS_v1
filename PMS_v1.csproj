@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Resources\07_Reports\" />
   </ItemGroup>
 
   <ItemGroup>

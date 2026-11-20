@@ -53,7 +53,7 @@ namespace PMS_v1.Pages
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle());
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 116F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMain.Size = new Size(1150, 938);
@@ -115,60 +115,56 @@ namespace PMS_v1.Pages
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1144, 116);
+            tlpMetrics.Size = new Size(1144, 112);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardCompleted
             // 
             statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardIcon = Resources.Resources.Icon__12_;
+            statCardCompleted.CardIcon = Resources.Resources.Successful;
             statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
-            statCardCompleted.IconSlotPadding = new Padding(10, 25, 10, 30);
             statCardCompleted.Location = new Point(13, 0);
             statCardCompleted.Margin = new Padding(13, 0, 6, 0);
             statCardCompleted.Name = "statCardCompleted";
-            statCardCompleted.Size = new Size(267, 116);
+            statCardCompleted.Size = new Size(267, 112);
             statCardCompleted.TabIndex = 0;
             // 
             // statCardScheduled
             // 
             statCardScheduled.CardCaption = "Scheduled";
-            statCardScheduled.CardIcon = Resources.Resources.Icon__9_;
+            statCardScheduled.CardIcon = Resources.Resources.Pending;
             statCardScheduled.CardNumber = "00";
             statCardScheduled.Dock = DockStyle.Fill;
-            statCardScheduled.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardScheduled.Location = new Point(292, 0);
             statCardScheduled.Margin = new Padding(6, 0, 6, 0);
             statCardScheduled.Name = "statCardScheduled";
-            statCardScheduled.Size = new Size(274, 116);
+            statCardScheduled.Size = new Size(274, 112);
             statCardScheduled.TabIndex = 1;
             // 
             // statCardInProgress
             // 
             statCardInProgress.CardCaption = "In Progress";
-            statCardInProgress.CardIcon = Resources.Resources.Icon__10_;
+            statCardInProgress.CardIcon = Resources.Resources.Pending;
             statCardInProgress.CardNumber = "00";
             statCardInProgress.Dock = DockStyle.Fill;
-            statCardInProgress.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardInProgress.Location = new Point(578, 0);
             statCardInProgress.Margin = new Padding(6, 0, 6, 0);
             statCardInProgress.Name = "statCardInProgress";
-            statCardInProgress.Size = new Size(274, 116);
+            statCardInProgress.Size = new Size(274, 112);
             statCardInProgress.TabIndex = 2;
             // 
             // statCardCanceled
             // 
-            statCardCanceled.BackgroundImage = Resources.Resources.Icon__11_;
+            statCardCanceled.BackgroundImage = Resources.Resources.Failed;
             statCardCanceled.CardCaption = "Canceled";
-            statCardCanceled.CardIcon = Resources.Resources.Icon__11_;
+            statCardCanceled.CardIcon = Resources.Resources.Failed;
             statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
-            statCardCanceled.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardCanceled.Location = new Point(864, 0);
             statCardCanceled.Margin = new Padding(6, 0, 13, 0);
             statCardCanceled.Name = "statCardCanceled";
-            statCardCanceled.Size = new Size(267, 116);
+            statCardCanceled.Size = new Size(267, 112);
             statCardCanceled.TabIndex = 3;
             statCardCanceled.Load += statCardCanceled_Load;
             // 
@@ -178,7 +174,7 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewRequest);
             pnlActions.Dock = DockStyle.Fill;
-            pnlActions.Location = new Point(13, 179);
+            pnlActions.Location = new Point(13, 175);
             pnlActions.Margin = new Padding(13, 2, 13, 2);
             pnlActions.Name = "pnlActions";
             pnlActions.Size = new Size(1124, 68);
@@ -231,14 +227,14 @@ namespace PMS_v1.Pages
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvRequests);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(13, 251);
+            roundedPanelTable.Location = new Point(13, 247);
             roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
             roundedPanelTable.Name = "roundedPanelTable";
             roundedPanelTable.Padding = new Padding(5);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1124, 685);
+            roundedPanelTable.Size = new Size(1124, 689);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvRequests
@@ -255,7 +251,7 @@ namespace PMS_v1.Pages
             dgvRequests.RowHeadersVisible = false;
             dgvRequests.RowHeadersWidth = 51;
             dgvRequests.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRequests.Size = new Size(1106, 663);
+            dgvRequests.Size = new Size(1106, 667);
             dgvRequests.TabIndex = 0;
             // 
             // MaintenanceModule

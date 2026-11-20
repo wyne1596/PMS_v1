@@ -55,7 +55,7 @@
             tlpMainSkeleton.Name = "tlpMainSkeleton";
             tlpMainSkeleton.RowCount = 4;
             tlpMainSkeleton.RowStyles.Add(new RowStyle());
-            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
+            tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 116F));
             tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
             tlpMainSkeleton.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMainSkeleton.Size = new Size(1150, 938);
@@ -117,61 +117,56 @@
             tlpMetricsRow.Name = "tlpMetricsRow";
             tlpMetricsRow.RowCount = 1;
             tlpMetricsRow.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetricsRow.Size = new Size(1144, 116);
+            tlpMetricsRow.Size = new Size(1144, 112);
             tlpMetricsRow.TabIndex = 1;
             // 
             // statCardActive
             // 
             statCardActive.CardCaption = "Active";
-            statCardActive.CardIcon = Resources.Resources.Icon__12_;
+            statCardActive.CardIcon = Resources.Resources.ActiveLease;
             statCardActive.CardNumber = "00";
             statCardActive.Dock = DockStyle.Fill;
-            statCardActive.IconSlotPadding = new Padding(10, 25, 10, 30);
             statCardActive.Location = new Point(13, 0);
             statCardActive.Margin = new Padding(13, 0, 6, 0);
             statCardActive.Name = "statCardActive";
-            statCardActive.Size = new Size(267, 116);
+            statCardActive.Size = new Size(267, 112);
             statCardActive.TabIndex = 0;
-            statCardActive.Load += statCardActive_Load;
             // 
             // statCardPending
             // 
             statCardPending.CardCaption = "Pending";
-            statCardPending.CardIcon = Resources.Resources.Icon__9_;
+            statCardPending.CardIcon = Resources.Resources.PendingLease;
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
-            statCardPending.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardPending.Location = new Point(292, 0);
             statCardPending.Margin = new Padding(6, 0, 6, 0);
             statCardPending.Name = "statCardPending";
-            statCardPending.Size = new Size(274, 116);
+            statCardPending.Size = new Size(274, 112);
             statCardPending.TabIndex = 1;
             // 
             // statCardExpired
             // 
             statCardExpired.CardCaption = "Expired";
-            statCardExpired.CardIcon = Resources.Resources.Icon__10_;
+            statCardExpired.CardIcon = Resources.Resources.ExpiredLease;
             statCardExpired.CardNumber = "00";
             statCardExpired.Dock = DockStyle.Fill;
-            statCardExpired.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardExpired.Location = new Point(578, 0);
             statCardExpired.Margin = new Padding(6, 0, 6, 0);
             statCardExpired.Name = "statCardExpired";
-            statCardExpired.Size = new Size(274, 116);
+            statCardExpired.Size = new Size(274, 112);
             statCardExpired.TabIndex = 2;
             // 
             // statCardTerminated
             // 
-            statCardTerminated.BackgroundImage = Resources.Resources.Icon__11_;
+            statCardTerminated.BackgroundImage = Resources.Resources.TerminatedLease;
             statCardTerminated.CardCaption = "Terminated";
-            statCardTerminated.CardIcon = Resources.Resources.Icon__11_;
+            statCardTerminated.CardIcon = Resources.Resources.TerminatedLease;
             statCardTerminated.CardNumber = "00";
             statCardTerminated.Dock = DockStyle.Fill;
-            statCardTerminated.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardTerminated.Location = new Point(864, 0);
             statCardTerminated.Margin = new Padding(6, 0, 13, 0);
             statCardTerminated.Name = "statCardTerminated";
-            statCardTerminated.Size = new Size(267, 116);
+            statCardTerminated.Size = new Size(267, 112);
             statCardTerminated.TabIndex = 3;
             // 
             // pnlCommandActionRow
@@ -180,7 +175,7 @@
             pnlCommandActionRow.Controls.Add(cmbFilterDropdown);
             pnlCommandActionRow.Controls.Add(btnNewLease);
             pnlCommandActionRow.Dock = DockStyle.Fill;
-            pnlCommandActionRow.Location = new Point(13, 179);
+            pnlCommandActionRow.Location = new Point(13, 175);
             pnlCommandActionRow.Margin = new Padding(13, 2, 13, 2);
             pnlCommandActionRow.Name = "pnlCommandActionRow";
             pnlCommandActionRow.Size = new Size(1124, 68);
@@ -235,14 +230,14 @@
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvLeases);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(13, 251);
+            roundedPanelTable.Location = new Point(13, 247);
             roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
             roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(5);
+            roundedPanelTable.Padding = new Padding(5, 5, 5, 5);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1124, 685);
+            roundedPanelTable.Size = new Size(1124, 689);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvLeases
@@ -259,7 +254,7 @@
             dgvLeases.RowHeadersVisible = false;
             dgvLeases.RowHeadersWidth = 51;
             dgvLeases.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvLeases.Size = new Size(1106, 663);
+            dgvLeases.Size = new Size(1106, 667);
             dgvLeases.TabIndex = 3;
             // 
             // LeasingModule

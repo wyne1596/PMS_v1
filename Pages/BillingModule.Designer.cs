@@ -54,7 +54,7 @@ namespace PMS_v1.Pages
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle());
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 116F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMain.Size = new Size(1150, 938);
@@ -118,78 +118,77 @@ namespace PMS_v1.Pages
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1144, 116);
+            tlpMetrics.Size = new Size(1144, 112);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardPaid
             // 
-            statCardPaid.BackgroundImage = Resources.Resources.Icon__12_;
+            statCardPaid.BackgroundImage = Resources.Resources.PaidBills;
             statCardPaid.CardCaption = "Paid";
-            statCardPaid.CardIcon = Resources.Resources.Icon__12_;
+            statCardPaid.CardIcon = Resources.Resources.PaidBills;
             statCardPaid.CardNumber = "00";
             statCardPaid.Dock = DockStyle.Fill;
-            statCardPaid.IconSlotPadding = new Padding(10, 25, 10, 30);
+            statCardPaid.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardPaid.Location = new Point(13, 0);
             statCardPaid.Margin = new Padding(13, 0, 6, 0);
             statCardPaid.Name = "statCardPaid";
-            statCardPaid.Size = new Size(209, 116);
+            statCardPaid.Size = new Size(209, 112);
             statCardPaid.TabIndex = 0;
             // 
             // statCardPartiallyPaid
             // 
-            statCardPartiallyPaid.BackgroundImage = Resources.Resources.Icon__9_;
+            statCardPartiallyPaid.BackgroundImage = Resources.Resources.PartiallyPaidBills;
             statCardPartiallyPaid.CardCaption = "Partially Paid";
-            statCardPartiallyPaid.CardIcon = Resources.Resources.Icon__9_;
+            statCardPartiallyPaid.CardIcon = Resources.Resources.PartiallyPaidBills;
             statCardPartiallyPaid.CardNumber = "00";
             statCardPartiallyPaid.Dock = DockStyle.Fill;
-            statCardPartiallyPaid.IconSlotPadding = new Padding(10, 20, 10, 20);
+            statCardPartiallyPaid.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardPartiallyPaid.Location = new Point(234, 0);
             statCardPartiallyPaid.Margin = new Padding(6, 0, 6, 0);
             statCardPartiallyPaid.Name = "statCardPartiallyPaid";
-            statCardPartiallyPaid.Size = new Size(216, 116);
+            statCardPartiallyPaid.Size = new Size(216, 112);
             statCardPartiallyPaid.TabIndex = 1;
-            statCardPartiallyPaid.Load += statCardPartiallyPaid_Load;
             // 
             // statCardUnpaid
             // 
-            statCardUnpaid.BackgroundImage = Resources.Resources.Icon__10_;
+            statCardUnpaid.BackgroundImage = Resources.Resources.UnpaidBills;
             statCardUnpaid.CardCaption = "Unpaid";
-            statCardUnpaid.CardIcon = Resources.Resources.Icon__10_;
+            statCardUnpaid.CardIcon = Resources.Resources.UnpaidBills;
             statCardUnpaid.CardNumber = "00";
             statCardUnpaid.Dock = DockStyle.Fill;
-            statCardUnpaid.IconSlotPadding = new Padding(10, 20, 10, 20);
+            statCardUnpaid.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardUnpaid.Location = new Point(462, 0);
             statCardUnpaid.Margin = new Padding(6, 0, 6, 0);
             statCardUnpaid.Name = "statCardUnpaid";
-            statCardUnpaid.Size = new Size(216, 116);
+            statCardUnpaid.Size = new Size(216, 112);
             statCardUnpaid.TabIndex = 2;
             // 
             // statCardOverdue
             // 
-            statCardOverdue.BackgroundImage = Resources.Resources.Icon__11_;
+            statCardOverdue.BackgroundImage = Resources.Resources.OverdueBills;
             statCardOverdue.CardCaption = "Overdue";
-            statCardOverdue.CardIcon = Resources.Resources.Icon__11_;
+            statCardOverdue.CardIcon = Resources.Resources.OverdueBills;
             statCardOverdue.CardNumber = "00";
             statCardOverdue.Dock = DockStyle.Fill;
-            statCardOverdue.IconSlotPadding = new Padding(10, 20, 10, 20);
+            statCardOverdue.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardOverdue.Location = new Point(690, 0);
             statCardOverdue.Margin = new Padding(6, 0, 6, 0);
             statCardOverdue.Name = "statCardOverdue";
-            statCardOverdue.Size = new Size(216, 116);
+            statCardOverdue.Size = new Size(216, 112);
             statCardOverdue.TabIndex = 3;
             // 
             // statCardCanceled
             // 
-            statCardCanceled.BackgroundImage = Resources.Resources.Icon__11_;
+            statCardCanceled.BackgroundImage = Resources.Resources.CanceledBills;
             statCardCanceled.CardCaption = "Canceled";
-            statCardCanceled.CardIcon = Resources.Resources.Icon__11_;
+            statCardCanceled.CardIcon = Resources.Resources.CanceledBills;
             statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
-            statCardCanceled.IconSlotPadding = new Padding(10, 20, 10, 20);
+            statCardCanceled.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardCanceled.Location = new Point(918, 0);
             statCardCanceled.Margin = new Padding(6, 0, 13, 0);
             statCardCanceled.Name = "statCardCanceled";
-            statCardCanceled.Size = new Size(213, 116);
+            statCardCanceled.Size = new Size(213, 112);
             statCardCanceled.TabIndex = 4;
             // 
             // pnlActions
@@ -198,7 +197,7 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewBill);
             pnlActions.Dock = DockStyle.Fill;
-            pnlActions.Location = new Point(13, 179);
+            pnlActions.Location = new Point(13, 175);
             pnlActions.Margin = new Padding(13, 2, 13, 2);
             pnlActions.Name = "pnlActions";
             pnlActions.Size = new Size(1124, 68);
@@ -251,14 +250,14 @@ namespace PMS_v1.Pages
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvBills);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(13, 251);
+            roundedPanelTable.Location = new Point(13, 247);
             roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
             roundedPanelTable.Name = "roundedPanelTable";
             roundedPanelTable.Padding = new Padding(5);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1124, 685);
+            roundedPanelTable.Size = new Size(1124, 689);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvBills
@@ -275,7 +274,7 @@ namespace PMS_v1.Pages
             dgvBills.RowHeadersVisible = false;
             dgvBills.RowHeadersWidth = 51;
             dgvBills.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBills.Size = new Size(1106, 663);
+            dgvBills.Size = new Size(1106, 667);
             dgvBills.TabIndex = 0;
             // 
             // BillingModule

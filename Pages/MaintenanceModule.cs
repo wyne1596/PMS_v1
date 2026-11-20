@@ -20,20 +20,23 @@ namespace PMS_v1.Pages
             txtSearch.TextChanged += (_, _) => ApplyRequestFilters();
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyRequestFilters();
             dgvRequests.CellPainting += DgvRequests_CellPainting;
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-
-            if (DesignMode || System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
-                return;
-
             LoadStats();
         }
 
         private void ConfigureMaintenanceGrid()
         {
+            statCardCompleted.CardCaption = "Completed";
+            statCardCompleted.CardNumber = "00";
+            statCardCompleted.CardIcon = PMS_v1.Resources.Resources.Successful;
+            statCardScheduled.CardCaption = "Scheduled";
+            statCardScheduled.CardNumber = "00";
+            statCardScheduled.CardIcon = PMS_v1.Resources.Resources.InProgress;
+            statCardInProgress.CardCaption = "In Progress";
+            statCardInProgress.CardNumber = "00";
+            statCardInProgress.CardIcon = CreateInProgressIcon();
+            statCardCanceled.CardCaption = "Canceled";
+            statCardCanceled.CardNumber = "00";
+
             cmbFilter.Items.AddRange(new object[] { "All Statuses", "Completed", "Scheduled", "In Progress", "Canceled" });
             cmbFilter.SelectedIndex = 0;
 

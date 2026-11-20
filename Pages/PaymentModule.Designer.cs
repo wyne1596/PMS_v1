@@ -53,7 +53,7 @@ namespace PMS_v1.Pages
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle());
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 116F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpMain.Size = new Size(1150, 938);
@@ -115,60 +115,56 @@ namespace PMS_v1.Pages
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1144, 116);
+            tlpMetrics.Size = new Size(1144, 112);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardCompleted
             // 
             statCardCompleted.CardCaption = "Completed";
-            statCardCompleted.CardIcon = Resources.Resources.Icon__12_;
+            statCardCompleted.CardIcon = Resources.Resources.CompletedPayment;
             statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
-            statCardCompleted.IconSlotPadding = new Padding(10, 25, 10, 30);
             statCardCompleted.Location = new Point(13, 0);
             statCardCompleted.Margin = new Padding(13, 0, 6, 0);
             statCardCompleted.Name = "statCardCompleted";
-            statCardCompleted.Size = new Size(267, 116);
+            statCardCompleted.Size = new Size(267, 112);
             statCardCompleted.TabIndex = 0;
             // 
             // statCardPending
             // 
             statCardPending.CardCaption = "Pending";
-            statCardPending.CardIcon = Resources.Resources.Icon__9_;
+            statCardPending.CardIcon = Resources.Resources.PendingPayment;
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
-            statCardPending.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardPending.Location = new Point(292, 0);
             statCardPending.Margin = new Padding(6, 0, 6, 0);
             statCardPending.Name = "statCardPending";
-            statCardPending.Size = new Size(274, 116);
+            statCardPending.Size = new Size(274, 112);
             statCardPending.TabIndex = 1;
             // 
             // statCardFailed
             // 
             statCardFailed.CardCaption = "Failed";
-            statCardFailed.CardIcon = Resources.Resources.Icon__11_;
+            statCardFailed.CardIcon = Resources.Resources.FailedPayment;
             statCardFailed.CardNumber = "00";
             statCardFailed.Dock = DockStyle.Fill;
-            statCardFailed.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardFailed.Location = new Point(578, 0);
             statCardFailed.Margin = new Padding(6, 0, 6, 0);
             statCardFailed.Name = "statCardFailed";
-            statCardFailed.Size = new Size(274, 116);
+            statCardFailed.Size = new Size(274, 112);
             statCardFailed.TabIndex = 2;
             // 
             // statCardRefunded
             // 
-            statCardRefunded.BackgroundImage = Resources.Resources.fa7_solid_exchange_alt;
+            statCardRefunded.BackgroundImage = Resources.Resources.RefundedPayment;
             statCardRefunded.CardCaption = "Refunded";
-            statCardRefunded.CardIcon = Resources.Resources.fa7_solid_exchange_alt;
+            statCardRefunded.CardIcon = Resources.Resources.RefundedPayment;
             statCardRefunded.CardNumber = "00";
             statCardRefunded.Dock = DockStyle.Fill;
-            statCardRefunded.IconSlotPadding = new Padding(10, 20, 10, 20);
             statCardRefunded.Location = new Point(864, 0);
             statCardRefunded.Margin = new Padding(6, 0, 13, 0);
             statCardRefunded.Name = "statCardRefunded";
-            statCardRefunded.Size = new Size(267, 116);
+            statCardRefunded.Size = new Size(267, 112);
             statCardRefunded.TabIndex = 3;
             // 
             // pnlActions
@@ -177,7 +173,7 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewTransaction);
             pnlActions.Dock = DockStyle.Fill;
-            pnlActions.Location = new Point(13, 179);
+            pnlActions.Location = new Point(13, 175);
             pnlActions.Margin = new Padding(13, 2, 13, 2);
             pnlActions.Name = "pnlActions";
             pnlActions.Size = new Size(1124, 68);
@@ -229,14 +225,14 @@ namespace PMS_v1.Pages
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvPayments);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(13, 251);
+            roundedPanelTable.Location = new Point(13, 247);
             roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
             roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(5);
+            roundedPanelTable.Padding = new Padding(5, 5, 5, 5);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1124, 685);
+            roundedPanelTable.Size = new Size(1124, 689);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvPayments
@@ -253,7 +249,7 @@ namespace PMS_v1.Pages
             dgvPayments.RowHeadersVisible = false;
             dgvPayments.RowHeadersWidth = 51;
             dgvPayments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPayments.Size = new Size(1106, 663);
+            dgvPayments.Size = new Size(1106, 667);
             dgvPayments.TabIndex = 0;
             // 
             // PaymentModule

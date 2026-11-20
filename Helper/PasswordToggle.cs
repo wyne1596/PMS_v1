@@ -16,7 +16,7 @@ namespace PMS_v1.Helper
             {
                 bool hidden = box.UseSystemPasswordChar;
                 box.UseSystemPasswordChar = !hidden;
-                spec.Image = hidden ? Resources.Resources.LoginEye : Resources.Resources.EyeClose;
+                spec.Image = hidden ? Resources.Resources.EyeOpen : Resources.Resources.EyeClose;
             };
         }
     }

@@ -48,23 +48,25 @@
             // pnlHead
             // 
             pnlHead.BackColor = Color.Transparent;
-            pnlHead.BackgroundImage = PMS_v1.Resources.Resources.Header_Logo;
+            pnlHead.BackgroundImage = PMS_v1.Resources.Resources.HeaderLogo;
             pnlHead.BackgroundImageLayout = ImageLayout.Center;
             pnlHead.Dock = DockStyle.Top;
             pnlHead.Location = new Point(0, 0);
+            pnlHead.Margin = new Padding(3, 2, 3, 2);
             pnlHead.Name = "pnlHead";
-            pnlHead.Size = new Size(290, 109);
+            pnlHead.Size = new Size(254, 82);
             pnlHead.TabIndex = 0;
             // 
             // pnlDivider
             // 
             pnlDivider.BackColor = Color.Transparent;
-            pnlDivider.BackgroundImage = PMS_v1.Resources.Resources.Divider;
+            pnlDivider.BackgroundImage = PMS_v1.Resources.Resources.navDivider;
             pnlDivider.BackgroundImageLayout = ImageLayout.Center;
             pnlDivider.Dock = DockStyle.Top;
-            pnlDivider.Location = new Point(0, 109);
+            pnlDivider.Location = new Point(0, 82);
+            pnlDivider.Margin = new Padding(3, 2, 3, 2);
             pnlDivider.Name = "pnlDivider";
-            pnlDivider.Size = new Size(290, 40);
+            pnlDivider.Size = new Size(254, 30);
             pnlDivider.TabIndex = 1;
             // 
             // pnlFoot
@@ -73,9 +75,10 @@
             pnlFoot.Controls.Add(btnLogout);
             pnlFoot.Controls.Add(btnSettings);
             pnlFoot.Dock = DockStyle.Bottom;
-            pnlFoot.Location = new Point(0, 839);
+            pnlFoot.Location = new Point(0, 629);
+            pnlFoot.Margin = new Padding(3, 2, 3, 2);
             pnlFoot.Name = "pnlFoot";
-            pnlFoot.Size = new Size(290, 186);
+            pnlFoot.Size = new Size(254, 140);
             pnlFoot.TabIndex = 2;
             // 
             // btnLogout
@@ -85,12 +88,13 @@
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Image = PMS_v1.Resources.Resources.Logout;
+            btnLogout.Image = PMS_v1.Resources.Resources.icoLogout;
             btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLogout.Location = new Point(0, 80);
+            btnLogout.Location = new Point(0, 60);
+            btnLogout.Margin = new Padding(3, 2, 3, 2);
             btnLogout.Name = "btnLogout";
-            btnLogout.Padding = new Padding(52, 0, 0, 0);
-            btnLogout.Size = new Size(290, 80);
+            btnLogout.Padding = new Padding(46, 0, 0, 0);
+            btnLogout.Size = new Size(254, 60);
             btnLogout.TabIndex = 8;
             btnLogout.Text = " Logout";
             btnLogout.TextAlign = ContentAlignment.MiddleLeft;
@@ -104,12 +108,13 @@
             btnSettings.FlatStyle = FlatStyle.Flat;
             btnSettings.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSettings.ForeColor = Color.White;
-            btnSettings.Image = PMS_v1.Resources.Resources.Settings;
+            btnSettings.Image = PMS_v1.Resources.Resources.icoSettings;
             btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
             btnSettings.Location = new Point(0, 0);
+            btnSettings.Margin = new Padding(3, 2, 3, 2);
             btnSettings.Name = "btnSettings";
-            btnSettings.Padding = new Padding(50, 0, 0, 0);
-            btnSettings.Size = new Size(290, 80);
+            btnSettings.Padding = new Padding(44, 0, 0, 0);
+            btnSettings.Size = new Size(254, 60);
             btnSettings.TabIndex = 7;
             btnSettings.Text = "  Settings";
             btnSettings.TextAlign = ContentAlignment.MiddleLeft;
@@ -127,10 +132,11 @@
             pnlMenu.Controls.Add(btnUnits);
             pnlMenu.Controls.Add(btnDashboard);
             pnlMenu.Dock = DockStyle.Fill;
-            pnlMenu.Location = new Point(0, 149);
+            pnlMenu.Location = new Point(0, 112);
+            pnlMenu.Margin = new Padding(3, 2, 3, 2);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Padding = new Padding(0, 20, 0, 0);
-            pnlMenu.Size = new Size(290, 876);
+            pnlMenu.Padding = new Padding(0, 15, 0, 0);
+            pnlMenu.Size = new Size(254, 657);
             pnlMenu.TabIndex = 3;
             // 
             // btnReports
@@ -142,10 +148,11 @@
             btnReports.ForeColor = Color.White;
             btnReports.Image = PMS_v1.Resources.Resources.Reports;
             btnReports.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReports.Location = new Point(0, 500);
+            btnReports.Location = new Point(0, 375);
+            btnReports.Margin = new Padding(3, 2, 3, 2);
             btnReports.Name = "btnReports";
-            btnReports.Padding = new Padding(50, 0, 0, 0);
-            btnReports.Size = new Size(290, 80);
+            btnReports.Padding = new Padding(44, 0, 0, 0);
+            btnReports.Size = new Size(254, 60);
             btnReports.TabIndex = 6;
             btnReports.Text = " Reports";
             btnReports.TextAlign = ContentAlignment.MiddleLeft;
@@ -159,12 +166,13 @@
             btnMaintenance.FlatStyle = FlatStyle.Flat;
             btnMaintenance.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnMaintenance.ForeColor = Color.White;
-            btnMaintenance.Image = PMS_v1.Resources.Resources.Maintenance1;
+            btnMaintenance.Image = PMS_v1.Resources.Resources.icoMaintenance;
             btnMaintenance.ImageAlign = ContentAlignment.MiddleLeft;
-            btnMaintenance.Location = new Point(0, 420);
+            btnMaintenance.Location = new Point(0, 315);
+            btnMaintenance.Margin = new Padding(3, 2, 3, 2);
             btnMaintenance.Name = "btnMaintenance";
-            btnMaintenance.Padding = new Padding(50, 0, 0, 0);
-            btnMaintenance.Size = new Size(290, 80);
+            btnMaintenance.Padding = new Padding(44, 0, 0, 0);
+            btnMaintenance.Size = new Size(254, 60);
             btnMaintenance.TabIndex = 5;
             btnMaintenance.Text = " Maintenance";
             btnMaintenance.TextAlign = ContentAlignment.MiddleLeft;
@@ -178,12 +186,13 @@
             btnPayment.FlatStyle = FlatStyle.Flat;
             btnPayment.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPayment.ForeColor = Color.White;
-            btnPayment.Image = PMS_v1.Resources.Resources.Payment1;
+            btnPayment.Image = PMS_v1.Resources.Resources.icoPayment;
             btnPayment.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPayment.Location = new Point(0, 340);
+            btnPayment.Location = new Point(0, 255);
+            btnPayment.Margin = new Padding(3, 2, 3, 2);
             btnPayment.Name = "btnPayment";
-            btnPayment.Padding = new Padding(51, 0, 0, 0);
-            btnPayment.Size = new Size(290, 80);
+            btnPayment.Padding = new Padding(45, 0, 0, 0);
+            btnPayment.Size = new Size(254, 60);
             btnPayment.TabIndex = 4;
             btnPayment.Text = "  Payment";
             btnPayment.TextAlign = ContentAlignment.MiddleLeft;
@@ -197,12 +206,13 @@
             btnBilling.FlatStyle = FlatStyle.Flat;
             btnBilling.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnBilling.ForeColor = Color.White;
-            btnBilling.Image = PMS_v1.Resources.Resources.bill1;
+            btnBilling.Image = PMS_v1.Resources.Resources.icoBill;
             btnBilling.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBilling.Location = new Point(0, 260);
+            btnBilling.Location = new Point(0, 195);
+            btnBilling.Margin = new Padding(3, 2, 3, 2);
             btnBilling.Name = "btnBilling";
-            btnBilling.Padding = new Padding(52, 0, 0, 0);
-            btnBilling.Size = new Size(290, 80);
+            btnBilling.Padding = new Padding(46, 0, 0, 0);
+            btnBilling.Size = new Size(254, 60);
             btnBilling.TabIndex = 3;
             btnBilling.Text = "  Billing";
             btnBilling.TextAlign = ContentAlignment.MiddleLeft;
@@ -216,12 +226,13 @@
             btnLeasing.FlatStyle = FlatStyle.Flat;
             btnLeasing.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLeasing.ForeColor = Color.White;
-            btnLeasing.Image = PMS_v1.Resources.Resources.Lease;
+            btnLeasing.Image = PMS_v1.Resources.Resources.icoLease;
             btnLeasing.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLeasing.Location = new Point(0, 180);
+            btnLeasing.Location = new Point(0, 135);
+            btnLeasing.Margin = new Padding(3, 2, 3, 2);
             btnLeasing.Name = "btnLeasing";
-            btnLeasing.Padding = new Padding(51, 0, 0, 0);
-            btnLeasing.Size = new Size(290, 80);
+            btnLeasing.Padding = new Padding(45, 0, 0, 0);
+            btnLeasing.Size = new Size(254, 60);
             btnLeasing.TabIndex = 2;
             btnLeasing.Text = " Leasing";
             btnLeasing.TextAlign = ContentAlignment.MiddleLeft;
@@ -237,10 +248,11 @@
             btnUnits.ForeColor = Color.White;
             btnUnits.Image = PMS_v1.Resources.Resources.Property;
             btnUnits.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUnits.Location = new Point(0, 100);
+            btnUnits.Location = new Point(0, 75);
+            btnUnits.Margin = new Padding(3, 2, 3, 2);
             btnUnits.Name = "btnUnits";
-            btnUnits.Padding = new Padding(50, 0, 0, 0);
-            btnUnits.Size = new Size(290, 80);
+            btnUnits.Padding = new Padding(44, 0, 0, 0);
+            btnUnits.Size = new Size(254, 60);
             btnUnits.TabIndex = 1;
             btnUnits.Text = " Units";
             btnUnits.TextAlign = ContentAlignment.MiddleLeft;
@@ -254,12 +266,13 @@
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = Color.White;
-            btnDashboard.Image = PMS_v1.Resources.Resources.Icon;
+            btnDashboard.Image = PMS_v1.Resources.Resources.icoDashboard;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(0, 20);
+            btnDashboard.Location = new Point(0, 15);
+            btnDashboard.Margin = new Padding(3, 2, 3, 2);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Padding = new Padding(50, 0, 0, 0);
-            btnDashboard.Size = new Size(290, 80);
+            btnDashboard.Padding = new Padding(44, 0, 0, 0);
+            btnDashboard.Size = new Size(254, 60);
             btnDashboard.TabIndex = 0;
             btnDashboard.Text = " Dashboard";
             btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
@@ -268,7 +281,7 @@
             // 
             // SideMenuFull
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SteelBlue;
             BackgroundImageLayout = ImageLayout.Stretch;
@@ -277,8 +290,9 @@
             Controls.Add(pnlDivider);
             Controls.Add(pnlHead);
             DoubleBuffered = true;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SideMenuFull";
-            Size = new Size(290, 1025);
+            Size = new Size(254, 769);
             pnlFoot.ResumeLayout(false);
             pnlMenu.ResumeLayout(false);
             ResumeLayout(false);

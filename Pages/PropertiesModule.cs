@@ -9,6 +9,7 @@ namespace PMS_v1.Pages
         public PropertiesModule()
         {
             InitializeComponent();
+            statCardUnitsOccupied.CardIcon = null!;
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvProperties);

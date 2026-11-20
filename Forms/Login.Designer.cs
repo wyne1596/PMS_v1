@@ -56,7 +56,7 @@
             pnlBackground.StateCommon.Color2 = Color.PaleTurquoise;
             pnlBackground.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear50;
             pnlBackground.StateCommon.GraphicsHint = Krypton.Toolkit.PaletteGraphicsHint.HighQuality;
-            pnlBackground.StateCommon.Image = Resources.Resources.BG;
+            pnlBackground.StateCommon.Image = Resources.Resources.Background;
             pnlBackground.StateCommon.ImageStyle = Krypton.Toolkit.PaletteImageStyle.TileFlipY;
             pnlBackground.Dock = DockStyle.Fill;
             pnlBackground.Location = new Point(0, 0);

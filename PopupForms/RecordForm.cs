@@ -307,7 +307,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                     {
                         Format = DateTimePickerFormat.Custom,
                         CustomFormat = "MMM dd, yyyy",
-                        ShowCheckBox = !field.Required       // optional date: untick = no date
+                        // optional date: untick = no date
                     };
                     if (field.DefaultValue is DateTime) dtp.Value = (DateTime)field.DefaultValue;
                     if (!field.Required) dtp.Checked = field.DefaultValue is DateTime;

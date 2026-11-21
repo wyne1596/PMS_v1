@@ -127,6 +127,7 @@
             statCardUnpaid.CardIcon = Resources.Resources.TotalUnpaidBalance;
             statCardUnpaid.CardNumber = "₱0";
             statCardUnpaid.Dock = DockStyle.Fill;
+            statCardUnpaid.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardUnpaid.Location = new Point(17, 0);
             statCardUnpaid.Margin = new Padding(17, 0, 8, 0);
             statCardUnpaid.Name = "statCardUnpaid";
@@ -139,6 +140,7 @@
             statCardExpired.CardIcon = Resources.Resources.ExpiredLease;
             statCardExpired.CardNumber = "00";
             statCardExpired.Dock = DockStyle.Fill;
+            statCardExpired.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardExpired.Location = new Point(305, 0);
             statCardExpired.Margin = new Padding(8, 0, 8, 0);
             statCardExpired.Name = "statCardExpired";
@@ -151,6 +153,7 @@
             statCardOverdue.CardIcon = Resources.Resources.RentOverdue;
             statCardOverdue.CardNumber = "00";
             statCardOverdue.Dock = DockStyle.Fill;
+            statCardOverdue.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardOverdue.Location = new Point(602, 0);
             statCardOverdue.Margin = new Padding(8, 0, 8, 0);
             statCardOverdue.Name = "statCardOverdue";
@@ -163,6 +166,7 @@
             statCardRepairs.CardIcon = Resources.Resources.RepairsNeeded;
             statCardRepairs.CardNumber = "00";
             statCardRepairs.Dock = DockStyle.Fill;
+            statCardRepairs.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardRepairs.Location = new Point(899, 0);
             statCardRepairs.Margin = new Padding(8, 0, 17, 0);
             statCardRepairs.Name = "statCardRepairs";

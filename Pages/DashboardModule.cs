@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using PMS_v1.Database;
+using PMS_v1.Helper;
 using System;
 using System.Windows.Forms;
 
@@ -16,6 +18,7 @@ namespace PMS_v1.Pages
             ConfigureRecentGrid();
             LoadStats();
             LoadRecentTransactions();
+            lblGreeting.Text = $"Welcome, {Helper.Session.Role}";
         }
 
         // Recent transactions table: the newest payments, same look as the other pages

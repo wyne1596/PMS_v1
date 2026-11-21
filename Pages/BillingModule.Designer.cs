@@ -125,6 +125,7 @@ namespace PMS_v1.Pages
             statCardPaid.CardIcon = Resources.Resources.PaidBills;
             statCardPaid.CardNumber = "00";
             statCardPaid.Dock = DockStyle.Fill;
+            statCardPaid.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardPaid.Location = new Point(15, 0);
             statCardPaid.Margin = new Padding(15, 0, 7, 0);
             statCardPaid.Name = "statCardPaid";
@@ -138,6 +139,7 @@ namespace PMS_v1.Pages
             statCardPartiallyPaid.CardIcon = Resources.Resources.PartiallyPaidBills;
             statCardPartiallyPaid.CardNumber = "00";
             statCardPartiallyPaid.Dock = DockStyle.Fill;
+            statCardPartiallyPaid.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardPartiallyPaid.Location = new Point(268, 0);
             statCardPartiallyPaid.Margin = new Padding(7, 0, 7, 0);
             statCardPartiallyPaid.Name = "statCardPartiallyPaid";
@@ -151,6 +153,7 @@ namespace PMS_v1.Pages
             statCardUnpaid.CardIcon = Resources.Resources.UnpaidBills;
             statCardUnpaid.CardNumber = "00";
             statCardUnpaid.Dock = DockStyle.Fill;
+            statCardUnpaid.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardUnpaid.Location = new Point(529, 0);
             statCardUnpaid.Margin = new Padding(7, 0, 7, 0);
             statCardUnpaid.Name = "statCardUnpaid";
@@ -164,6 +167,7 @@ namespace PMS_v1.Pages
             statCardOverdue.CardIcon = Resources.Resources.OverdueBills;
             statCardOverdue.CardNumber = "00";
             statCardOverdue.Dock = DockStyle.Fill;
+            statCardOverdue.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardOverdue.Location = new Point(790, 0);
             statCardOverdue.Margin = new Padding(7, 0, 7, 0);
             statCardOverdue.Name = "statCardOverdue";
@@ -177,6 +181,7 @@ namespace PMS_v1.Pages
             statCardCanceled.CardIcon = Resources.Resources.CanceledBills;
             statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
+            statCardCanceled.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardCanceled.Location = new Point(1051, 0);
             statCardCanceled.Margin = new Padding(7, 0, 15, 0);
             statCardCanceled.Name = "statCardCanceled";

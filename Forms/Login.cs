@@ -27,6 +27,8 @@ namespace PMS_v1.Forms
             btnLogin.StateNormal.Content.ShortText.Color1 = Color.White;
             btnLogin.StateTracking.Content.ShortText.Color1 = Color.FromArgb(116, 219, 219);   // hover
             btnLogin.StatePressed.Content.ShortText.Color1 = Color.White;     // clicked
+
+            AcceptButton = btnLogin;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -61,7 +63,7 @@ namespace PMS_v1.Forms
                             MessageBox.Show("INVALID USERNAME OR PASSWORD.");
                             return;
                         }
-                        //Session.Role = reader.GetString("ROLE");
+                        Helper.Session.Role = reader.GetString("ROLE");
 
                         string fullName = reader.GetString("FIRST_NAME") + " " + reader.GetString("LAST_NAME");
                         string position = reader.IsDBNull(reader.GetOrdinal("POSITION"))

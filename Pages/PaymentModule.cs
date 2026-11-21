@@ -109,8 +109,7 @@ namespace PMS_v1.Pages
                 SortMode = DataGridViewColumnSortMode.NotSortable,
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
-                    Alignment = DataGridViewContentAlignment.MiddleRight,
-                    Padding = new Padding(1, 0, 1, 0)
+                    Alignment = DataGridViewContentAlignment.MiddleRight
                 }
             });
             dgvPayments.Columns.Add(new DataGridViewTextBoxColumn
@@ -121,7 +120,7 @@ namespace PMS_v1.Pages
                 SortMode = DataGridViewColumnSortMode.NotSortable,
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
-                    Padding = new Padding(0, 0, 0, 0)
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
                 }
             });
             dgvPayments.Columns.Add(new DataGridViewTextBoxColumn

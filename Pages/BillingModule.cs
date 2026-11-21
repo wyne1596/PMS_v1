@@ -94,7 +94,7 @@ namespace PMS_v1.Pages
                 SortMode = DataGridViewColumnSortMode.NotSortable,
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
-                    Alignment = DataGridViewContentAlignment.MiddleRight,
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
                     Padding = new Padding(8, 0, 14, 0)
                 }
             });

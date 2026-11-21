@@ -124,6 +124,7 @@ namespace PMS_v1.Pages
             statCardCompleted.CardIcon = Resources.Resources.Successful;
             statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
+            statCardCompleted.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardCompleted.Location = new Point(13, 0);
             statCardCompleted.Margin = new Padding(13, 0, 6, 0);
             statCardCompleted.Name = "statCardCompleted";
@@ -136,6 +137,7 @@ namespace PMS_v1.Pages
             statCardScheduled.CardIcon = Resources.Resources.Pending;
             statCardScheduled.CardNumber = "00";
             statCardScheduled.Dock = DockStyle.Fill;
+            statCardScheduled.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardScheduled.Location = new Point(292, 0);
             statCardScheduled.Margin = new Padding(6, 0, 6, 0);
             statCardScheduled.Name = "statCardScheduled";
@@ -148,6 +150,7 @@ namespace PMS_v1.Pages
             statCardInProgress.CardIcon = Resources.Resources.Pending;
             statCardInProgress.CardNumber = "00";
             statCardInProgress.Dock = DockStyle.Fill;
+            statCardInProgress.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardInProgress.Location = new Point(578, 0);
             statCardInProgress.Margin = new Padding(6, 0, 6, 0);
             statCardInProgress.Name = "statCardInProgress";
@@ -161,6 +164,7 @@ namespace PMS_v1.Pages
             statCardCanceled.CardIcon = Resources.Resources.Failed;
             statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
+            statCardCanceled.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardCanceled.Location = new Point(864, 0);
             statCardCanceled.Margin = new Padding(6, 0, 13, 0);
             statCardCanceled.Name = "statCardCanceled";
@@ -219,6 +223,7 @@ namespace PMS_v1.Pages
             btnNewRequest.TabIndex = 2;
             btnNewRequest.Values.DropDownArrowColor = Color.Empty;
             btnNewRequest.Values.Text = "＋  New Requests";
+            btnNewRequest.Click += btnNewRequest_Click;
             // 
             // roundedPanelTable
             // 

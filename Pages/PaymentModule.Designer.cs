@@ -124,6 +124,7 @@ namespace PMS_v1.Pages
             statCardCompleted.CardIcon = Resources.Resources.CompletedPayment;
             statCardCompleted.CardNumber = "00";
             statCardCompleted.Dock = DockStyle.Fill;
+            statCardCompleted.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardCompleted.Location = new Point(13, 0);
             statCardCompleted.Margin = new Padding(13, 0, 6, 0);
             statCardCompleted.Name = "statCardCompleted";
@@ -136,6 +137,7 @@ namespace PMS_v1.Pages
             statCardPending.CardIcon = Resources.Resources.PendingPayment;
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
+            statCardPending.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardPending.Location = new Point(292, 0);
             statCardPending.Margin = new Padding(6, 0, 6, 0);
             statCardPending.Name = "statCardPending";
@@ -148,6 +150,7 @@ namespace PMS_v1.Pages
             statCardFailed.CardIcon = Resources.Resources.FailedPayment;
             statCardFailed.CardNumber = "00";
             statCardFailed.Dock = DockStyle.Fill;
+            statCardFailed.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardFailed.Location = new Point(578, 0);
             statCardFailed.Margin = new Padding(6, 0, 6, 0);
             statCardFailed.Name = "statCardFailed";
@@ -161,6 +164,7 @@ namespace PMS_v1.Pages
             statCardRefunded.CardIcon = Resources.Resources.RefundedPayment;
             statCardRefunded.CardNumber = "00";
             statCardRefunded.Dock = DockStyle.Fill;
+            statCardRefunded.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardRefunded.Location = new Point(864, 0);
             statCardRefunded.Margin = new Padding(6, 0, 13, 0);
             statCardRefunded.Name = "statCardRefunded";
@@ -217,6 +221,7 @@ namespace PMS_v1.Pages
             btnNewTransaction.TabIndex = 2;
             btnNewTransaction.Values.DropDownArrowColor = Color.Empty;
             btnNewTransaction.Values.Text = "＋  New Transaction";
+            btnNewTransaction.Click += btnNewTransaction_Click;
             // 
             // roundedPanelTable
             // 
@@ -228,7 +233,7 @@ namespace PMS_v1.Pages
             roundedPanelTable.Location = new Point(13, 247);
             roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
             roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(5, 5, 5, 5);
+            roundedPanelTable.Padding = new Padding(5);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;

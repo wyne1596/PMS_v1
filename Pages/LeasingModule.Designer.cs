@@ -126,6 +126,7 @@
             statCardActive.CardIcon = Resources.Resources.ActiveLease;
             statCardActive.CardNumber = "00";
             statCardActive.Dock = DockStyle.Fill;
+            statCardActive.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardActive.Location = new Point(13, 0);
             statCardActive.Margin = new Padding(13, 0, 6, 0);
             statCardActive.Name = "statCardActive";
@@ -138,6 +139,7 @@
             statCardPending.CardIcon = Resources.Resources.PendingLease;
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
+            statCardPending.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardPending.Location = new Point(292, 0);
             statCardPending.Margin = new Padding(6, 0, 6, 0);
             statCardPending.Name = "statCardPending";
@@ -150,6 +152,7 @@
             statCardExpired.CardIcon = Resources.Resources.ExpiredLease;
             statCardExpired.CardNumber = "00";
             statCardExpired.Dock = DockStyle.Fill;
+            statCardExpired.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardExpired.Location = new Point(578, 0);
             statCardExpired.Margin = new Padding(6, 0, 6, 0);
             statCardExpired.Name = "statCardExpired";
@@ -163,6 +166,7 @@
             statCardTerminated.CardIcon = Resources.Resources.TerminatedLease;
             statCardTerminated.CardNumber = "00";
             statCardTerminated.Dock = DockStyle.Fill;
+            statCardTerminated.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardTerminated.Location = new Point(864, 0);
             statCardTerminated.Margin = new Padding(6, 0, 13, 0);
             statCardTerminated.Name = "statCardTerminated";
@@ -222,6 +226,7 @@
             btnNewLease.TabIndex = 2;
             btnNewLease.Values.DropDownArrowColor = Color.Empty;
             btnNewLease.Values.Text = "+   New Lease";
+            btnNewLease.Click += btnNewLease_Click_1;
             // 
             // roundedPanelTable
             // 
@@ -233,7 +238,7 @@
             roundedPanelTable.Location = new Point(13, 247);
             roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
             roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(5, 5, 5, 5);
+            roundedPanelTable.Padding = new Padding(5);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;

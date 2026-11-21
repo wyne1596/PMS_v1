@@ -28,7 +28,7 @@ namespace PMS_v1.Pages
 
         private void LeasingModule_Load(object sender, EventArgs e)
         {
-            
+
         }
         private void btnNewLease_Click(object sender, EventArgs e)
         {
@@ -170,6 +170,22 @@ namespace PMS_v1.Pages
                         statCardExpired.CardNumber = reader["Expired"].ToString();
                         statCardTerminated.CardNumber = reader["Terminate"].ToString();
                     }
+                }
+            }
+        }
+
+        private void statCardActive_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNewLease_Click_1(object sender, EventArgs e)
+        {
+            using (var f = new RecordForm(FormMode.New, "Lease", FormDefinitions.Lease()))
+            {
+                if (f.ShowDialog(this.FindForm()) == DialogResult.OK)
+                {
+                    // backend: read f.Values["amount"], f.Values["dueDate"], and so on
                 }
             }
         }

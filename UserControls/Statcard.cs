@@ -34,6 +34,15 @@ namespace PMS_v1.UserControls
             set { label1.Text = value; label1.Invalidate(); }
         }
 
+        [Category("Appearance")]
+        [Description("Sets the inset around the stat card icon slot.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Padding IconSlotPadding
+        {
+            get => panel1.Padding;
+            set { panel1.Padding = value; panel1.PerformLayout(); }
+        }
+
         [Category("Custom Properties")]
         [Description("Sets the card icon graphic safely inside its designated left slot.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]

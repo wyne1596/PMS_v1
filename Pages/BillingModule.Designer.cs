@@ -128,6 +128,7 @@ namespace PMS_v1.Pages
             statCardPaid.CardIcon = Resources.Resources.PaidBills;
             statCardPaid.CardNumber = "00";
             statCardPaid.Dock = DockStyle.Fill;
+            statCardPaid.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardPaid.Location = new Point(13, 0);
             statCardPaid.Margin = new Padding(13, 0, 6, 0);
             statCardPaid.Name = "statCardPaid";
@@ -141,6 +142,7 @@ namespace PMS_v1.Pages
             statCardPartiallyPaid.CardIcon = Resources.Resources.PartiallyPaidBills;
             statCardPartiallyPaid.CardNumber = "00";
             statCardPartiallyPaid.Dock = DockStyle.Fill;
+            statCardPartiallyPaid.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardPartiallyPaid.Location = new Point(234, 0);
             statCardPartiallyPaid.Margin = new Padding(6, 0, 6, 0);
             statCardPartiallyPaid.Name = "statCardPartiallyPaid";
@@ -154,6 +156,7 @@ namespace PMS_v1.Pages
             statCardUnpaid.CardIcon = Resources.Resources.UnpaidBills;
             statCardUnpaid.CardNumber = "00";
             statCardUnpaid.Dock = DockStyle.Fill;
+            statCardUnpaid.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardUnpaid.Location = new Point(462, 0);
             statCardUnpaid.Margin = new Padding(6, 0, 6, 0);
             statCardUnpaid.Name = "statCardUnpaid";
@@ -167,6 +170,7 @@ namespace PMS_v1.Pages
             statCardOverdue.CardIcon = Resources.Resources.OverdueBills;
             statCardOverdue.CardNumber = "00";
             statCardOverdue.Dock = DockStyle.Fill;
+            statCardOverdue.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardOverdue.Location = new Point(690, 0);
             statCardOverdue.Margin = new Padding(6, 0, 6, 0);
             statCardOverdue.Name = "statCardOverdue";
@@ -180,6 +184,7 @@ namespace PMS_v1.Pages
             statCardCanceled.CardIcon = Resources.Resources.CanceledBills;
             statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
+            statCardCanceled.IconSlotPadding = new Padding(5, 12, 5, 12);
             statCardCanceled.Location = new Point(918, 0);
             statCardCanceled.Margin = new Padding(6, 0, 13, 0);
             statCardCanceled.Name = "statCardCanceled";
@@ -237,6 +242,7 @@ namespace PMS_v1.Pages
             btnNewBill.TabIndex = 2;
             btnNewBill.Values.DropDownArrowColor = Color.Empty;
             btnNewBill.Values.Text = "＋  New Bill";
+            btnNewBill.Click += btnNewBill_Click;
             // 
             // roundedPanelTable
             // 
@@ -248,7 +254,7 @@ namespace PMS_v1.Pages
             roundedPanelTable.Location = new Point(13, 247);
             roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
             roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(5, 5, 5, 5);
+            roundedPanelTable.Padding = new Padding(5);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;

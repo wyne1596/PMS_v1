@@ -123,6 +123,7 @@
             statCardActive.CardIcon = Resources.Resources.ActiveLease;
             statCardActive.CardNumber = "00";
             statCardActive.Dock = DockStyle.Fill;
+            statCardActive.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardActive.Location = new Point(15, 0);
             statCardActive.Margin = new Padding(15, 0, 7, 0);
             statCardActive.Name = "statCardActive";
@@ -135,6 +136,7 @@
             statCardPending.CardIcon = Resources.Resources.PendingLease;
             statCardPending.CardNumber = "00";
             statCardPending.Dock = DockStyle.Fill;
+            statCardPending.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardPending.Location = new Point(334, 0);
             statCardPending.Margin = new Padding(7, 0, 7, 0);
             statCardPending.Name = "statCardPending";
@@ -147,6 +149,7 @@
             statCardExpired.CardIcon = Resources.Resources.ExpiredLease;
             statCardExpired.CardNumber = "00";
             statCardExpired.Dock = DockStyle.Fill;
+            statCardExpired.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardExpired.Location = new Point(661, 0);
             statCardExpired.Margin = new Padding(7, 0, 7, 0);
             statCardExpired.Name = "statCardExpired";
@@ -160,6 +163,7 @@
             statCardTerminated.CardIcon = Resources.Resources.TerminatedLease;
             statCardTerminated.CardNumber = "00";
             statCardTerminated.Dock = DockStyle.Fill;
+            statCardTerminated.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardTerminated.Location = new Point(988, 0);
             statCardTerminated.Margin = new Padding(7, 0, 15, 0);
             statCardTerminated.Name = "statCardTerminated";

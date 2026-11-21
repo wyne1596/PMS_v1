@@ -32,8 +32,8 @@
             roundedPanelTable = new RoundedPanel();
             dgvRecent = new DataGridView();
             colTenant = new DataGridViewTextBoxColumn();
-            colUnit = new DataGridViewTextBoxColumn();
-            colLeaseEnds = new DataGridViewTextBoxColumn();
+            colAmount = new DataGridViewTextBoxColumn();
+            colDate = new DataGridViewTextBoxColumn();
             colStatus = new DataGridViewTextBoxColumn();
             tlpMain.SuspendLayout();
             pnlHeader.SuspendLayout();
@@ -222,7 +222,7 @@
             dgvRecent.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvRecent.ColumnHeadersHeight = 44;
             dgvRecent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvRecent.Columns.AddRange(new DataGridViewColumn[] { colTenant, colUnit, colLeaseEnds, colStatus });
+            dgvRecent.Columns.AddRange(new DataGridViewColumn[] { colTenant, colAmount, colDate, colStatus });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -249,31 +249,31 @@
             // 
             // colTenant
             // 
-            colTenant.FillWeight = 40F;
+            colTenant.FillWeight = 36F;
             colTenant.HeaderText = "TENANT";
             colTenant.MinimumWidth = 6;
             colTenant.Name = "colTenant";
             colTenant.ReadOnly = true;
             // 
-            // colUnit
+            // colAmount
             // 
-            colUnit.FillWeight = 18F;
-            colUnit.HeaderText = "UNIT";
-            colUnit.MinimumWidth = 6;
-            colUnit.Name = "colUnit";
-            colUnit.ReadOnly = true;
+            colAmount.FillWeight = 22F;
+            colAmount.HeaderText = "AMOUNT";
+            colAmount.MinimumWidth = 6;
+            colAmount.Name = "colAmount";
+            colAmount.ReadOnly = true;
             // 
-            // colLeaseEnds
+            // colDate
             // 
-            colLeaseEnds.FillWeight = 24F;
-            colLeaseEnds.HeaderText = "LEASE ENDS";
-            colLeaseEnds.MinimumWidth = 6;
-            colLeaseEnds.Name = "colLeaseEnds";
-            colLeaseEnds.ReadOnly = true;
+            colDate.FillWeight = 22F;
+            colDate.HeaderText = "DATE";
+            colDate.MinimumWidth = 6;
+            colDate.Name = "colDate";
+            colDate.ReadOnly = true;
             // 
             // colStatus
             // 
-            colStatus.FillWeight = 18F;
+            colStatus.FillWeight = 20F;
             colStatus.HeaderText = "STATUS";
             colStatus.MinimumWidth = 6;
             colStatus.Name = "colStatus";
@@ -312,8 +312,8 @@
         private PMS_v1.RoundedPanel roundedPanelTable;
         private DataGridView dgvRecent;
         private DataGridViewTextBoxColumn colTenant;
-        private DataGridViewTextBoxColumn colUnit;
-        private DataGridViewTextBoxColumn colLeaseEnds;
+        private DataGridViewTextBoxColumn colAmount;
+        private DataGridViewTextBoxColumn colDate;
         private DataGridViewTextBoxColumn colStatus;
         private Label lblRecentTransactions;
     }

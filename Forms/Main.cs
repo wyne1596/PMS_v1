@@ -122,6 +122,7 @@ namespace pms_UI
             {
                 case "Dashboard": ShowPage("Dashboard", () => new DashboardModule()); break;
                 case "Units": ShowPage("Units", () => new UnitsModule()); break;
+                case "Residents": ShowPage("Residents", () => new ResidentsModule()); break;
                 case "Leasing": ShowPage("Leasing", () => new LeasingModule()); break;
                 case "Billing": ShowPage("Billing", () => new BillingModule()); break;
                 case "Payment": ShowPage("Payment", () => new PaymentModule()); break;

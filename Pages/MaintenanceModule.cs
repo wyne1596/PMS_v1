@@ -14,6 +14,7 @@ namespace PMS_v1.Pages
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvRequests);
             ConfigureMaintenanceGrid();
+            PMS_v1.UserControls.GridHelper.ShowSelection(dgvRequests);
             LayoutActionRow();
 
             pnlActions.Resize += (_, _) => LayoutActionRow();
@@ -21,6 +22,7 @@ namespace PMS_v1.Pages
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyRequestFilters();
             dgvRequests.CellPainting += DgvRequests_CellPainting;
             LoadStats();
+            LoadRequests();
         }
 
         private void ConfigureMaintenanceGrid()
@@ -114,7 +116,7 @@ namespace PMS_v1.Pages
 
         private void LayoutActionRow()
         {
-            PMS_v1.UserControls.ModulePageLayout.LayoutActions(
+            PMS_v1.UserControls.ActionRowLayout.PackRight(
                 pnlActions, txtSearch, cmbFilter, btnNewRequest);
         }
 
@@ -123,6 +125,7 @@ namespace PMS_v1.Pages
             string searchText = txtSearch.Text.Trim();
             string selectedStatus = cmbFilter.SelectedIndex <= 0 ? string.Empty : cmbFilter.Text;
 
+            dgvRequests.CurrentCell = null;   // a grid can't hide the row that holds the current cell
             foreach (DataGridViewRow row in dgvRequests.Rows)
             {
                 bool matchesSearch = string.IsNullOrEmpty(searchText) ||
@@ -139,29 +142,7 @@ namespace PMS_v1.Pages
 
         private void DgvRequests_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvRequests.Columns["Status"].Index)
-                return;
-
-            e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
-
-            string status = Convert.ToString(e.FormattedValue) ?? string.Empty;
-            Font font = e.CellStyle.Font ?? dgvRequests.Font;
-            Size textSize = TextRenderer.MeasureText(status, font);
-            int badgeWidth = Math.Min(e.CellBounds.Width - 8, textSize.Width + 14);
-            int badgeHeight = Math.Min(24, e.CellBounds.Height - 8);
-            var badgeBounds = new Rectangle(
-                e.CellBounds.Left + (e.CellBounds.Width - badgeWidth) / 2,
-                e.CellBounds.Top + (e.CellBounds.Height - badgeHeight) / 2,
-                badgeWidth,
-                badgeHeight);
-
-            using (var badge = new SolidBrush(Color.FromArgb(218, 237, 248)))
-                e.Graphics.FillRectangle(badge, badgeBounds);
-
-            TextRenderer.DrawText(e.Graphics, status, font, badgeBounds,
-                Color.FromArgb(45, 93, 120),
-                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
-            e.Handled = true;
+            PMS_v1.UserControls.StatusBadge.Paint(dgvRequests, e, "Status");
         }
 
         private static Bitmap CreateInProgressIcon()
@@ -229,6 +210,49 @@ namespace PMS_v1.Pages
                     }
                 }
             }
+        }
+
+        // Load requests into the table.
+        // Shown statuses match the stat cards and the filter: Open = Scheduled, Resolved/Closed = Completed.
+        private void LoadRequests()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT m.REPORT_ID, u.UNIT_NO, m.PROBLEM, m.STATUS
+                               FROM maintenance_request m
+                               LEFT JOIN units u ON u.UNIT_ID = m.UNIT_ID
+                               ORDER BY m.DATE_REPORTED DESC, m.REPORT_ID DESC";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    dgvRequests.Rows.Clear();
+
+                    while (reader.Read())
+                    {
+                        string status = reader["STATUS"].ToString() ?? string.Empty;
+                        string shownStatus = status switch
+                        {
+                            "Open" => "Scheduled",
+                            "Resolved" or "Closed" => "Completed",
+                            _ => status
+                        };
+
+                        int rowIndex = dgvRequests.Rows.Add(
+                            "R-" + Convert.ToInt32(reader["REPORT_ID"]).ToString("D4"),
+                            reader["UNIT_NO"] is DBNull ? "Common area" : reader["UNIT_NO"].ToString(),
+                            reader["PROBLEM"].ToString(),
+                            shownStatus);
+
+                        dgvRequests.Rows[rowIndex].Tag = Convert.ToInt32(reader["REPORT_ID"]);
+                    }
+                }
+            }
+
+            ApplyRequestFilters();
         }
 
         private void btnNewRequest_Click(object sender, EventArgs e)

@@ -18,16 +18,20 @@ namespace PMS_v1.Pages
             if (statCardRefunded.CardIcon is null)
                 statCardRefunded.CardIcon = CreateRefundIcon();
             ConfigurePaymentGrid();
+            PMS_v1.UserControls.GridHelper.ShowSelection(dgvPayments);
             LayoutActionRow();
             pnlActions.Resize += (_, _) => LayoutActionRow();
             dgvPayments.CellPainting += DgvPayments_CellPainting;
+            txtSearch.TextChanged += (_, _) => ApplyPaymentFilters();
+            cmbFilter.SelectedIndexChanged += (_, _) => ApplyPaymentFilters();
             LoadStats();
             LoadPayments();
         }
 
         private void ConfigurePaymentGrid()
         {
-            cmbFilter.Text = "Filter";
+            cmbFilter.Items.AddRange(new object[] { "All Statuses", "Completed", "Pending", "Failed", "Refunded" });
+            cmbFilter.SelectedIndex = 0;
             btnNewTransaction.Values.Text = "＋  New Transaction";
 
             statCardCompleted.CardCaption = "Completed";
@@ -134,37 +138,32 @@ namespace PMS_v1.Pages
             });
         }
 
+        private void ApplyPaymentFilters()
+        {
+            string search = txtSearch.Text.Trim();
+            string status = cmbFilter.SelectedIndex <= 0 ? string.Empty : cmbFilter.Text;
+
+            PMS_v1.UserControls.GridHelper.Filter(dgvPayments, row =>
+            {
+                bool matchesSearch = string.IsNullOrEmpty(search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Reference", search) || PMS_v1.UserControls.GridHelper.Has(row, "Tenant", search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Mode", search) || PMS_v1.UserControls.GridHelper.Has(row, "Amount", search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Date", search) || PMS_v1.UserControls.GridHelper.Has(row, "Status", search);
+                bool matchesStatus = string.IsNullOrEmpty(status) ||
+                    string.Equals(row.Cells["Status"].Value?.ToString(), status, StringComparison.OrdinalIgnoreCase);
+                return matchesSearch && matchesStatus;
+            });
+        }
+
         private void LayoutActionRow()
         {
-            PMS_v1.UserControls.ModulePageLayout.LayoutActions(
+            PMS_v1.UserControls.ActionRowLayout.PackRight(
                 pnlActions, txtSearch, cmbFilter, btnNewTransaction);
         }
 
         private void DgvPayments_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvPayments.Columns["Status"].Index)
-                return;
-
-            e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
-
-            string status = Convert.ToString(e.FormattedValue) ?? string.Empty;
-            Font font = e.CellStyle.Font ?? dgvPayments.Font;
-            Size textSize = TextRenderer.MeasureText(status, font);
-            int badgeWidth = Math.Min(e.CellBounds.Width - 8, textSize.Width + 14);
-            int badgeHeight = Math.Min(24, e.CellBounds.Height - 8);
-            var badgeBounds = new Rectangle(
-                e.CellBounds.Left + (e.CellBounds.Width - badgeWidth) / 2,
-                e.CellBounds.Top + (e.CellBounds.Height - badgeHeight) / 2,
-                badgeWidth,
-                badgeHeight);
-
-            using (var badge = new SolidBrush(Color.FromArgb(218, 237, 248)))
-                e.Graphics.FillRectangle(badge, badgeBounds);
-
-            TextRenderer.DrawText(e.Graphics, status, font, badgeBounds,
-                Color.FromArgb(45, 93, 120),
-                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
-            e.Handled = true;
+            PMS_v1.UserControls.StatusBadge.Paint(dgvPayments, e, "Status");
         }
 
         private static Bitmap CreateRefundIcon()
@@ -219,32 +218,41 @@ namespace PMS_v1.Pages
                 conn.Open();
 
                 string query = @"
-                               SELECT
+                                SELECT
+                                    p.PAYMENT_ID,
+                                    p.REF_NO,
                                     CONCAT(r.FIRST_NAME, ' ', r.LAST_NAME) AS Tenant,
-                                    p.REF_NO,p.MODE,p.AMOUNT,p.PAYMENT_DATE as DATE, p.STATUS                             
-                               FROM payment p
-                               LEFT JOIN resident r ON p.RESIDENT_ID = r.RESIDENT_ID
-                               ORDER BY b.PAYMENT_DATE DESC";
+                                    p.`MODE`        AS PayMode,
+                                    p.AMOUNT,
+                                    p.PAYMENT_DATE  AS PaymentDate,
+                                    p.STATUS
+                                FROM payment p
+                                JOIN billing b  ON b.BILLING_ID  = p.BILLING_ID
+                                JOIN lease l    ON l.LEASE_ID    = b.LEASE_ID
+                                JOIN resident r ON r.RESIDENT_ID = l.RESIDENT_ID
+                                ORDER BY p.PAYMENT_DATE DESC, p.PAYMENT_ID DESC";
 
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
                 {
                     dgvPayments.Rows.Clear();
 
                     while (reader.Read())
                     {
-                        string status = reader["STATUS"].ToString() ?? string.Empty;
-
-                        dgvPayments.Rows.Add(
+                        int index = dgvPayments.Rows.Add(
                             reader["REF_NO"].ToString(),
                             reader["Tenant"].ToString(),
-                            reader["MODE"].ToString(),
-                            "₱"+reader["AMOUNT"].ToString(),
-                            Convert.ToDateTime(reader["DUE_DATE"]).ToString("MMM dd, yyyy"),
-                            status);  
+                            reader["PayMode"].ToString(),
+                            "₱" + Convert.ToDecimal(reader["AMOUNT"]).ToString("N2"),
+                            Convert.ToDateTime(reader["PaymentDate"]).ToString("MMM dd, yyyy"),
+                            reader["STATUS"].ToString());
+
+                        dgvPayments.Rows[index].Tag = Convert.ToInt32(reader["PAYMENT_ID"]);
                     }
                 }
             }
+
+            ApplyPaymentFilters();
         }
 
         private void btnNewTransaction_Click(object sender, EventArgs e)

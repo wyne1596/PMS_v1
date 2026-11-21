@@ -16,6 +16,7 @@ namespace PMS_v1.Pages
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvBills);
             ConfigureBillingGrid();
+            PMS_v1.UserControls.GridHelper.ShowSelection(dgvBills);
             LayoutActionRow();
 
             pnlActions.Resize += (_, _) => LayoutActionRow();
@@ -113,7 +114,7 @@ namespace PMS_v1.Pages
 
         private void LayoutActionRow()
         {
-            PMS_v1.UserControls.ModulePageLayout.LayoutActions(
+            PMS_v1.UserControls.ActionRowLayout.PackRight(
                 pnlActions, txtSearch, cmbFilter, btnNewBill);
         }
 
@@ -122,6 +123,7 @@ namespace PMS_v1.Pages
             string searchText = txtSearch.Text.Trim();
             string selectedStatus = cmbFilter.SelectedIndex <= 0 ? string.Empty : cmbFilter.Text;
 
+            dgvBills.CurrentCell = null;   // a grid can't hide the row that holds the current cell
             foreach (DataGridViewRow row in dgvBills.Rows)
             {
                 bool matchesSearch = string.IsNullOrEmpty(searchText) ||
@@ -138,29 +140,7 @@ namespace PMS_v1.Pages
 
         private void DgvBills_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvBills.Columns["Status"].Index)
-                return;
-
-            e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
-
-            string status = Convert.ToString(e.FormattedValue) ?? string.Empty;
-            Font font = e.CellStyle.Font ?? dgvBills.Font;
-            Size textSize = TextRenderer.MeasureText(status, font);
-            int badgeWidth = Math.Min(e.CellBounds.Width - 8, textSize.Width + 14);
-            int badgeHeight = Math.Min(24, e.CellBounds.Height - 8);
-            var badgeBounds = new Rectangle(
-                e.CellBounds.Left + (e.CellBounds.Width - badgeWidth) / 2,
-                e.CellBounds.Top + (e.CellBounds.Height - badgeHeight) / 2,
-                badgeWidth,
-                badgeHeight);
-
-            using (var badge = new SolidBrush(Color.FromArgb(218, 237, 248)))
-                e.Graphics.FillRectangle(badge, badgeBounds);
-
-            TextRenderer.DrawText(e.Graphics, status, font, badgeBounds,
-                Color.FromArgb(45, 93, 120),
-                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
-            e.Handled = true;
+            PMS_v1.UserControls.StatusBadge.Paint(dgvBills, e, "Status");
         }
 
         // Load statcards
@@ -225,14 +205,18 @@ namespace PMS_v1.Pages
                     {
                         string status = reader["STATUS"].ToString() ?? string.Empty;
 
-                        dgvBills.Rows.Add(
+                        int rowIndex = dgvBills.Rows.Add(
                             "B-" + Convert.ToInt32(reader["BILLING_ID"]).ToString("D4"),
                             reader["Tenant"].ToString(),
                             Convert.ToDateTime(reader["DUE_DATE"]).ToString("MMM dd, yyyy"),
                             status == "Cancelled" ? "Canceled" : status);   // keep the page's "Canceled" spelling so the filter matches
+
+                        dgvBills.Rows[rowIndex].Tag = Convert.ToInt32(reader["BILLING_ID"]);
                     }
                 }
             }
+
+            ApplyBillFilters();
         }
 
         private void btnNewBill_Click(object sender, EventArgs e)

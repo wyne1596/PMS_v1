@@ -20,11 +20,14 @@ namespace PMS_v1.Pages
                 tlpMainSkeleton, pnlHeaderBlock, tlpMetricsRow, pnlCommandActionRow, roundedPanelTable);
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvLeases);
             ConfigureLeaseGrid();
+            PMS_v1.UserControls.GridHelper.ShowSelection(dgvLeases);
             LayoutCommandActionRow();
             pnlCommandActionRow.Resize += (_, _) => LayoutCommandActionRow();
             dgvLeases.CellPainting += DgvLeases_CellPainting;
+            txtSearchInput.TextChanged += (_, _) => ApplyLeaseFilters();
+            cmbFilterDropdown.SelectedIndexChanged += (_, _) => ApplyLeaseFilters();
             LoadStats();
-            //LoadLease();
+            LoadLease();
         }
 
         private void LeasingModule_Load(object sender, EventArgs e)
@@ -38,7 +41,8 @@ namespace PMS_v1.Pages
 
         private void ConfigureLeaseGrid()
         {
-            cmbFilterDropdown.Text = "Filter";
+            cmbFilterDropdown.Items.AddRange(new object[] { "All Statuses", "Active", "Pending", "Expired", "Terminated" });
+            cmbFilterDropdown.SelectedIndex = 0;
             btnNewLease.Values.Text = "＋  New Lease";
 
             dgvLeases.AutoGenerateColumns = false;
@@ -113,37 +117,31 @@ namespace PMS_v1.Pages
             });
         }
 
+        private void ApplyLeaseFilters()
+        {
+            string search = txtSearchInput.Text.Trim();
+            string status = cmbFilterDropdown.SelectedIndex <= 0 ? string.Empty : cmbFilterDropdown.Text;
+
+            PMS_v1.UserControls.GridHelper.Filter(dgvLeases, row =>
+            {
+                bool matchesSearch = string.IsNullOrEmpty(search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Tenant", search) || PMS_v1.UserControls.GridHelper.Has(row, "Unit", search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "LeaseEnds", search) || PMS_v1.UserControls.GridHelper.Has(row, "Status", search);
+                bool matchesStatus = string.IsNullOrEmpty(status) ||
+                    string.Equals(row.Cells["Status"].Value?.ToString(), status, StringComparison.OrdinalIgnoreCase);
+                return matchesSearch && matchesStatus;
+            });
+        }
+
         private void LayoutCommandActionRow()
         {
-            PMS_v1.UserControls.ModulePageLayout.LayoutActions(
+            PMS_v1.UserControls.ActionRowLayout.PackRight(
                 pnlCommandActionRow, txtSearchInput, cmbFilterDropdown, btnNewLease);
         }
 
         private void DgvLeases_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvLeases.Columns["Status"].Index)
-                return;
-
-            e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
-
-            string status = Convert.ToString(e.FormattedValue) ?? string.Empty;
-            Font font = e.CellStyle.Font ?? dgvLeases.Font;
-            Size textSize = TextRenderer.MeasureText(status, font);
-            int badgeWidth = Math.Min(e.CellBounds.Width - 8, textSize.Width + 14);
-            int badgeHeight = Math.Min(24, e.CellBounds.Height - 8);
-            var badgeBounds = new Rectangle(
-                e.CellBounds.Left + (e.CellBounds.Width - badgeWidth) / 2,
-                e.CellBounds.Top + (e.CellBounds.Height - badgeHeight) / 2,
-                badgeWidth,
-                badgeHeight);
-
-            using (var badge = new SolidBrush(Color.FromArgb(218, 237, 248)))
-                e.Graphics.FillRectangle(badge, badgeBounds);
-
-            TextRenderer.DrawText(e.Graphics, status, font, badgeBounds,
-                Color.FromArgb(45, 93, 120),
-                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding);
-            e.Handled = true;
+            PMS_v1.UserControls.StatusBadge.Paint(dgvLeases, e, "Status");
         }
 
         //Load statcards
@@ -184,6 +182,7 @@ namespace PMS_v1.Pages
                 string query = @"
                                SELECT
                                     CONCAT(r.FIRST_NAME, ' ', r.LAST_NAME) AS Tenant,
+                                    l.LEASE_ID,
                                     u.UNIT_NO,
                                     l.END_DATE AS LeaseEnds, l.STATUS
                                FROM lease l
@@ -199,12 +198,31 @@ namespace PMS_v1.Pages
                     {
                         string status = reader["STATUS"].ToString() ?? string.Empty;
 
-                        dgvLeases.Rows.Add(
+                        int rowIndex = dgvLeases.Rows.Add(
                             reader["Tenant"].ToString(),
                             reader["UNIT_NO"].ToString(),
                             Convert.ToDateTime(reader["LeaseEnds"]).ToString("MMM dd, yyyy"),
                             status);
+
+                        dgvLeases.Rows[rowIndex].Tag = Convert.ToInt32(reader["LEASE_ID"]);
                     }
+                }
+            }
+
+            ApplyLeaseFilters();
+        }
+
+        private void btnNewLease_Click_1(object sender, EventArgs e)
+        {
+            using (var f = new RecordForm(FormMode.New, "Lease", FormDefinitions.Lease()))
+            {
+                f.Validator = FormDefinitions.ValidateLease;
+                f.SetOptions("unit", Lookups.VacantUnits());       // a list of new ComboItem(unitId, "Unit 101")
+                f.SetOptions("resident", Lookups.Residents());
+                if (f.ShowDialog(FindForm()) == DialogResult.OK)
+                {
+                    int unitId = (int)f.Values["unit"];
+                    // INSERT with @parameters here
                 }
             }
         }

@@ -26,6 +26,7 @@ namespace pms_UI.User_Controls
 
             btnDashboard.Click += (s, e) => PageRequested?.Invoke("Dashboard");
             btnUnits.Click += (s, e) => PageRequested?.Invoke("Units");
+            btnResidents.Click += (s, e) => PageRequested?.Invoke("Residents");
             btnLeasing.Click += (s, e) => PageRequested?.Invoke("Leasing");
             btnBilling.Click += (s, e) => PageRequested?.Invoke("Billing");
             btnPayment.Click += (s, e) => PageRequested?.Invoke("Payment");

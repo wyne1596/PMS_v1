@@ -18,8 +18,11 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvUnits);
             ConfigureUnitActions();
             ConfigureUnitsGrid();
+            PMS_v1.UserControls.GridHelper.ShowSelection(dgvUnits);
             LayoutActionRow();
             pnlActions.Resize += (_, _) => LayoutActionRow();
+            txtSearch.TextChanged += (_, _) => ApplyUnitFilters();
+            cmbFilter.SelectedIndexChanged += (_, _) => ApplyUnitFilters();
             LoadStats();
             LoadUnits();
         }
@@ -28,7 +31,7 @@ namespace PMS_v1.Pages
         {
             cmbFilter.Items.AddRange(new object[]
             {
-                "All Units", "Vacant", "Occupied"
+                "All Units", "Vacant", "Occupied", "Under Maintenance"
             });
             cmbFilter.SelectedIndex = 0;
 
@@ -91,12 +94,29 @@ namespace PMS_v1.Pages
                 }
             });
 
-            PMS_v1.UserControls.ModulePageLayout.AttachStatusBadge(dgvUnits, "Status");
+            PMS_v1.UserControls.StatusBadge.Attach(dgvUnits, "Status");
+        }
+
+        private void ApplyUnitFilters()
+        {
+            string search = txtSearch.Text.Trim();
+            string status = cmbFilter.SelectedIndex <= 0 ? string.Empty : cmbFilter.Text;
+
+            PMS_v1.UserControls.GridHelper.Filter(dgvUnits, row =>
+            {
+                bool matchesSearch = string.IsNullOrEmpty(search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Unit", search) || PMS_v1.UserControls.GridHelper.Has(row, "Floor", search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Type", search) || PMS_v1.UserControls.GridHelper.Has(row, "BaseRent", search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Status", search);
+                bool matchesStatus = string.IsNullOrEmpty(status) ||
+                    string.Equals(row.Cells["Status"].Value?.ToString(), status, StringComparison.OrdinalIgnoreCase);
+                return matchesSearch && matchesStatus;
+            });
         }
 
         private void LayoutActionRow()
         {
-            PMS_v1.UserControls.ModulePageLayout.LayoutActions(
+            PMS_v1.UserControls.ActionRowLayout.PackRight(
                 pnlActions, txtSearch, cmbFilter, btnNewProperty);
         }
 
@@ -123,7 +143,7 @@ namespace PMS_v1.Pages
                         statCardTotalUnits.CardNumber = reader["TotalUnits"].ToString();
                         statCardVacantUnits.CardNumber = reader["VacantUnits"].ToString();
                         statCardOccupiedUnits.CardNumber = reader["OccupiedUnits"].ToString();
-                        statCardMaintenanceUnits.CardNumber = reader["MaintenanceUnits"].ToString();    
+                        statCardMaintenanceUnits.CardNumber = reader["MaintenanceUnits"].ToString();
                     }
                 }
             }
@@ -137,7 +157,7 @@ namespace PMS_v1.Pages
 
                 string query = @"
                                SELECT
-                               UNIT_NO, FLOOR_NO, UNIT_TYPE, BASE_RENT, STATUS FROM units     
+                               UNIT_ID, UNIT_NO, FLOOR_NO, UNIT_TYPE, BASE_RENT, STATUS FROM units     
                                ORDER BY FLOOR_NO ASC";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
@@ -149,15 +169,19 @@ namespace PMS_v1.Pages
                     {
                         string status = reader["STATUS"].ToString() ?? string.Empty;
 
-                        dgvUnits.Rows.Add(
-                            Convert.ToInt32(reader["UNIT_NO"]).ToString(),
+                        int rowIndex = dgvUnits.Rows.Add(
+                            reader["UNIT_NO"].ToString(),   // UNIT_NO is varchar, so "101A" must not crash
                             reader["FLOOR_NO"].ToString(),
                             reader["UNIT_TYPE"].ToString(),
-                            "₱" + reader["BASE_RENT"].ToString(),
-                            status);   
+                            "₱" + Convert.ToDecimal(reader["BASE_RENT"]).ToString("N2"),
+                            status);
+
+                        dgvUnits.Rows[rowIndex].Tag = Convert.ToInt32(reader["UNIT_ID"]);
                     }
                 }
             }
+
+            ApplyUnitFilters();
         }
     }
 }

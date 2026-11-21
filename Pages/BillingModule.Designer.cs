@@ -50,14 +50,13 @@ namespace PMS_v1.Pages
             tlpMain.Controls.Add(roundedPanelTable, 0, 3);
             tlpMain.Dock = DockStyle.Fill;
             tlpMain.Location = new Point(0, 0);
-            tlpMain.Margin = new Padding(3, 2, 3, 2);
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle());
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 116F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 155F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMain.Size = new Size(1150, 938);
+            tlpMain.Size = new Size(1314, 1251);
             tlpMain.TabIndex = 0;
             // 
             // pnlHeader
@@ -67,11 +66,10 @@ namespace PMS_v1.Pages
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Controls.Add(lblBreadcrumb);
             pnlHeader.Dock = DockStyle.Fill;
-            pnlHeader.Location = new Point(3, 2);
-            pnlHeader.Margin = new Padding(3, 2, 3, 2);
+            pnlHeader.Location = new Point(3, 3);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Padding = new Padding(13, 0, 0, 0);
-            pnlHeader.Size = new Size(1144, 53);
+            pnlHeader.Padding = new Padding(15, 0, 0, 0);
+            pnlHeader.Size = new Size(1308, 68);
             pnlHeader.TabIndex = 0;
             // 
             // lblTitle
@@ -80,9 +78,9 @@ namespace PMS_v1.Pages
             lblTitle.Dock = DockStyle.Top;
             lblTitle.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
-            lblTitle.Location = new Point(13, 25);
+            lblTitle.Location = new Point(15, 31);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(80, 28);
+            lblTitle.Size = new Size(100, 37);
             lblTitle.TabIndex = 1;
             lblTitle.Text = "Billing";
             // 
@@ -92,10 +90,10 @@ namespace PMS_v1.Pages
             lblBreadcrumb.Dock = DockStyle.Top;
             lblBreadcrumb.Font = new Font("Century Gothic", 8.5F);
             lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
-            lblBreadcrumb.Location = new Point(13, 0);
+            lblBreadcrumb.Location = new Point(15, 0);
             lblBreadcrumb.Name = "lblBreadcrumb";
-            lblBreadcrumb.Padding = new Padding(3, 0, 0, 8);
-            lblBreadcrumb.Size = new Size(91, 25);
+            lblBreadcrumb.Padding = new Padding(3, 0, 0, 11);
+            lblBreadcrumb.Size = new Size(110, 31);
             lblBreadcrumb.TabIndex = 0;
             lblBreadcrumb.Text = "Home / Billing";
             // 
@@ -113,12 +111,11 @@ namespace PMS_v1.Pages
             tlpMetrics.Controls.Add(statCardOverdue, 3, 0);
             tlpMetrics.Controls.Add(statCardCanceled, 4, 0);
             tlpMetrics.Dock = DockStyle.Fill;
-            tlpMetrics.Location = new Point(3, 59);
-            tlpMetrics.Margin = new Padding(3, 2, 3, 2);
+            tlpMetrics.Location = new Point(3, 77);
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1144, 112);
+            tlpMetrics.Size = new Size(1308, 149);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardPaid
@@ -128,10 +125,10 @@ namespace PMS_v1.Pages
             statCardPaid.CardIcon = Resources.Resources.PaidBills;
             statCardPaid.CardNumber = "00";
             statCardPaid.Dock = DockStyle.Fill;
-            statCardPaid.Location = new Point(13, 0);
-            statCardPaid.Margin = new Padding(13, 0, 6, 0);
+            statCardPaid.Location = new Point(15, 0);
+            statCardPaid.Margin = new Padding(15, 0, 7, 0);
             statCardPaid.Name = "statCardPaid";
-            statCardPaid.Size = new Size(209, 112);
+            statCardPaid.Size = new Size(239, 149);
             statCardPaid.TabIndex = 0;
             // 
             // statCardPartiallyPaid
@@ -141,10 +138,10 @@ namespace PMS_v1.Pages
             statCardPartiallyPaid.CardIcon = Resources.Resources.PartiallyPaidBills;
             statCardPartiallyPaid.CardNumber = "00";
             statCardPartiallyPaid.Dock = DockStyle.Fill;
-            statCardPartiallyPaid.Location = new Point(234, 0);
-            statCardPartiallyPaid.Margin = new Padding(6, 0, 6, 0);
+            statCardPartiallyPaid.Location = new Point(268, 0);
+            statCardPartiallyPaid.Margin = new Padding(7, 0, 7, 0);
             statCardPartiallyPaid.Name = "statCardPartiallyPaid";
-            statCardPartiallyPaid.Size = new Size(216, 112);
+            statCardPartiallyPaid.Size = new Size(247, 149);
             statCardPartiallyPaid.TabIndex = 1;
             // 
             // statCardUnpaid
@@ -154,10 +151,10 @@ namespace PMS_v1.Pages
             statCardUnpaid.CardIcon = Resources.Resources.UnpaidBills;
             statCardUnpaid.CardNumber = "00";
             statCardUnpaid.Dock = DockStyle.Fill;
-            statCardUnpaid.Location = new Point(462, 0);
-            statCardUnpaid.Margin = new Padding(6, 0, 6, 0);
+            statCardUnpaid.Location = new Point(529, 0);
+            statCardUnpaid.Margin = new Padding(7, 0, 7, 0);
             statCardUnpaid.Name = "statCardUnpaid";
-            statCardUnpaid.Size = new Size(216, 112);
+            statCardUnpaid.Size = new Size(247, 149);
             statCardUnpaid.TabIndex = 2;
             // 
             // statCardOverdue
@@ -167,10 +164,10 @@ namespace PMS_v1.Pages
             statCardOverdue.CardIcon = Resources.Resources.OverdueBills;
             statCardOverdue.CardNumber = "00";
             statCardOverdue.Dock = DockStyle.Fill;
-            statCardOverdue.Location = new Point(690, 0);
-            statCardOverdue.Margin = new Padding(6, 0, 6, 0);
+            statCardOverdue.Location = new Point(790, 0);
+            statCardOverdue.Margin = new Padding(7, 0, 7, 0);
             statCardOverdue.Name = "statCardOverdue";
-            statCardOverdue.Size = new Size(216, 112);
+            statCardOverdue.Size = new Size(247, 149);
             statCardOverdue.TabIndex = 3;
             // 
             // statCardCanceled
@@ -180,10 +177,10 @@ namespace PMS_v1.Pages
             statCardCanceled.CardIcon = Resources.Resources.CanceledBills;
             statCardCanceled.CardNumber = "00";
             statCardCanceled.Dock = DockStyle.Fill;
-            statCardCanceled.Location = new Point(918, 0);
-            statCardCanceled.Margin = new Padding(6, 0, 13, 0);
+            statCardCanceled.Location = new Point(1051, 0);
+            statCardCanceled.Margin = new Padding(7, 0, 15, 0);
             statCardCanceled.Name = "statCardCanceled";
-            statCardCanceled.Size = new Size(213, 112);
+            statCardCanceled.Size = new Size(242, 149);
             statCardCanceled.TabIndex = 4;
             // 
             // pnlActions
@@ -192,10 +189,10 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewBill);
             pnlActions.Dock = DockStyle.Fill;
-            pnlActions.Location = new Point(13, 175);
-            pnlActions.Margin = new Padding(13, 2, 13, 2);
+            pnlActions.Location = new Point(15, 232);
+            pnlActions.Margin = new Padding(15, 3, 15, 3);
             pnlActions.Name = "pnlActions";
-            pnlActions.Size = new Size(1124, 68);
+            pnlActions.Size = new Size(1284, 90);
             pnlActions.TabIndex = 2;
             // 
             // txtSearch
@@ -203,9 +200,10 @@ namespace PMS_v1.Pages
             txtSearch.CueHint.Color1 = Color.FromArgb(125, 130, 134);
             txtSearch.CueHint.CueHintText = "⌕  Search bill or tenant...";
             txtSearch.CueHint.Font = new Font("Century Gothic", 8.5F);
-            txtSearch.Location = new Point(0, 17);
+            txtSearch.Location = new Point(0, 23);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(580, 31);
+            txtSearch.Size = new Size(663, 35);
             txtSearch.StateCommon.Back.Color1 = Color.White;
             txtSearch.StateCommon.Border.Color1 = Color.FromArgb(222, 226, 230);
             txtSearch.StateCommon.Border.Rounding = 12F;
@@ -214,9 +212,10 @@ namespace PMS_v1.Pages
             // cmbFilter
             // 
             cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbFilter.Location = new Point(700, 17);
+            cmbFilter.Location = new Point(800, 23);
+            cmbFilter.Margin = new Padding(3, 4, 3, 4);
             cmbFilter.Name = "cmbFilter";
-            cmbFilter.Size = new Size(150, 30);
+            cmbFilter.Size = new Size(171, 34);
             cmbFilter.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbFilter.StateCommon.ComboBox.Border.Color1 = Color.FromArgb(222, 226, 230);
             cmbFilter.StateCommon.ComboBox.Border.Rounding = 12F;
@@ -224,9 +223,10 @@ namespace PMS_v1.Pages
             // 
             // btnNewBill
             // 
-            btnNewBill.Location = new Point(870, 15);
+            btnNewBill.Location = new Point(994, 20);
+            btnNewBill.Margin = new Padding(3, 4, 3, 4);
             btnNewBill.Name = "btnNewBill";
-            btnNewBill.Size = new Size(172, 40);
+            btnNewBill.Size = new Size(197, 53);
             btnNewBill.StateCommon.Back.Color1 = Color.FromArgb(141, 198, 63);
             btnNewBill.StateCommon.Back.Color2 = Color.FromArgb(91, 154, 42);
             btnNewBill.StateCommon.Back.ColorAngle = 90F;
@@ -245,14 +245,14 @@ namespace PMS_v1.Pages
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvBills);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(13, 247);
-            roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
+            roundedPanelTable.Location = new Point(15, 328);
+            roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
             roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(5, 5, 5, 5);
+            roundedPanelTable.Padding = new Padding(6, 7, 6, 7);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1124, 689);
+            roundedPanelTable.Size = new Size(1284, 920);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvBills
@@ -263,23 +263,24 @@ namespace PMS_v1.Pages
             dgvBills.ColumnHeadersHeight = 42;
             dgvBills.Dock = DockStyle.Fill;
             dgvBills.GridColor = Color.FromArgb(233, 236, 239);
-            dgvBills.Location = new Point(9, 11);
+            dgvBills.Location = new Point(10, 13);
             dgvBills.Margin = new Padding(0);
             dgvBills.Name = "dgvBills";
             dgvBills.RowHeadersVisible = false;
             dgvBills.RowHeadersWidth = 51;
             dgvBills.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBills.Size = new Size(1106, 667);
+            dgvBills.Size = new Size(1264, 894);
             dgvBills.TabIndex = 0;
             // 
             // BillingModule
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(237, 240, 241);
             Controls.Add(tlpMain);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "BillingModule";
-            Size = new Size(1150, 938);
+            Size = new Size(1314, 1251);
             tlpMain.ResumeLayout(false);
             tlpMain.PerformLayout();
             pnlHeader.ResumeLayout(false);

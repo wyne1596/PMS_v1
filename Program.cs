@@ -20,8 +20,8 @@ namespace pms_UI
             //    var login = new Login();
             //    if (login.ShowDialog() != DialogResult.OK) break;
 
-            //    var main = new Main();
-            //Application.Run(main);
+            var main = new Main();
+            Application.Run(main);
 
             //    if (!main.LoggedOut) break;   // closed with X, so exit the app
             //}

@@ -53,14 +53,13 @@
             tlpMain.Controls.Add(roundedPanelTable, 0, 3);
             tlpMain.Dock = DockStyle.Fill;
             tlpMain.Location = new Point(0, 0);
-            tlpMain.Margin = new Padding(3, 2, 3, 2);
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 116F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 155F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMain.Size = new Size(1045, 905);
+            tlpMain.Size = new Size(1194, 1207);
             tlpMain.TabIndex = 0;
             // 
             // pnlHeader
@@ -69,11 +68,10 @@
             pnlHeader.Controls.Add(lblGreeting);
             pnlHeader.Controls.Add(lblWelcome);
             pnlHeader.Dock = DockStyle.Fill;
-            pnlHeader.Location = new Point(3, 2);
-            pnlHeader.Margin = new Padding(3, 2, 3, 2);
+            pnlHeader.Location = new Point(3, 3);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Padding = new Padding(13, 0, 0, 0);
-            pnlHeader.Size = new Size(1039, 52);
+            pnlHeader.Padding = new Padding(15, 0, 0, 0);
+            pnlHeader.Size = new Size(1188, 69);
             pnlHeader.TabIndex = 0;
             // 
             // lblGreeting
@@ -83,9 +81,9 @@
             lblGreeting.Dock = DockStyle.Top;
             lblGreeting.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGreeting.ForeColor = Color.FromArgb(51, 51, 51);
-            lblGreeting.Location = new Point(13, 25);
+            lblGreeting.Location = new Point(15, 31);
             lblGreeting.Name = "lblGreeting";
-            lblGreeting.Size = new Size(128, 26);
+            lblGreeting.Size = new Size(165, 34);
             lblGreeting.TabIndex = 1;
             lblGreeting.Text = "Hello, User!";
             // 
@@ -96,10 +94,10 @@
             lblWelcome.Dock = DockStyle.Top;
             lblWelcome.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblWelcome.ForeColor = Color.FromArgb(108, 117, 125);
-            lblWelcome.Location = new Point(13, 0);
+            lblWelcome.Location = new Point(15, 0);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Padding = new Padding(3, 0, 0, 8);
-            lblWelcome.Size = new Size(179, 25);
+            lblWelcome.Padding = new Padding(3, 0, 0, 11);
+            lblWelcome.Size = new Size(218, 31);
             lblWelcome.TabIndex = 0;
             lblWelcome.Text = "Welcome to the dashboard.";
             // 
@@ -116,12 +114,11 @@
             tlpMetrics.Controls.Add(statCardOverdue, 2, 0);
             tlpMetrics.Controls.Add(statCardRepairs, 3, 0);
             tlpMetrics.Dock = DockStyle.Fill;
-            tlpMetrics.Location = new Point(3, 58);
-            tlpMetrics.Margin = new Padding(3, 2, 3, 2);
+            tlpMetrics.Location = new Point(3, 78);
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1039, 112);
+            tlpMetrics.Size = new Size(1188, 149);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardUnpaid
@@ -130,10 +127,10 @@
             statCardUnpaid.CardIcon = Resources.Resources.TotalUnpaidBalance;
             statCardUnpaid.CardNumber = "₱0";
             statCardUnpaid.Dock = DockStyle.Fill;
-            statCardUnpaid.Location = new Point(15, 0);
-            statCardUnpaid.Margin = new Padding(15, 0, 7, 0);
+            statCardUnpaid.Location = new Point(17, 0);
+            statCardUnpaid.Margin = new Padding(17, 0, 8, 0);
             statCardUnpaid.Name = "statCardUnpaid";
-            statCardUnpaid.Size = new Size(237, 112);
+            statCardUnpaid.Size = new Size(272, 149);
             statCardUnpaid.TabIndex = 0;
             // 
             // statCardExpired
@@ -142,10 +139,10 @@
             statCardExpired.CardIcon = Resources.Resources.ExpiredLease;
             statCardExpired.CardNumber = "00";
             statCardExpired.Dock = DockStyle.Fill;
-            statCardExpired.Location = new Point(266, 0);
-            statCardExpired.Margin = new Padding(7, 0, 7, 0);
+            statCardExpired.Location = new Point(305, 0);
+            statCardExpired.Margin = new Padding(8, 0, 8, 0);
             statCardExpired.Name = "statCardExpired";
-            statCardExpired.Size = new Size(245, 112);
+            statCardExpired.Size = new Size(281, 149);
             statCardExpired.TabIndex = 1;
             // 
             // statCardOverdue
@@ -154,10 +151,10 @@
             statCardOverdue.CardIcon = Resources.Resources.RentOverdue;
             statCardOverdue.CardNumber = "00";
             statCardOverdue.Dock = DockStyle.Fill;
-            statCardOverdue.Location = new Point(525, 0);
-            statCardOverdue.Margin = new Padding(7, 0, 7, 0);
+            statCardOverdue.Location = new Point(602, 0);
+            statCardOverdue.Margin = new Padding(8, 0, 8, 0);
             statCardOverdue.Name = "statCardOverdue";
-            statCardOverdue.Size = new Size(245, 112);
+            statCardOverdue.Size = new Size(281, 149);
             statCardOverdue.TabIndex = 2;
             // 
             // statCardRepairs
@@ -166,10 +163,10 @@
             statCardRepairs.CardIcon = Resources.Resources.RepairsNeeded;
             statCardRepairs.CardNumber = "00";
             statCardRepairs.Dock = DockStyle.Fill;
-            statCardRepairs.Location = new Point(784, 0);
-            statCardRepairs.Margin = new Padding(7, 0, 15, 0);
+            statCardRepairs.Location = new Point(899, 0);
+            statCardRepairs.Margin = new Padding(8, 0, 17, 0);
             statCardRepairs.Name = "statCardRepairs";
-            statCardRepairs.Size = new Size(240, 112);
+            statCardRepairs.Size = new Size(272, 149);
             statCardRepairs.TabIndex = 3;
             // 
             // lblRecentTransactions
@@ -178,11 +175,11 @@
             lblRecentTransactions.Dock = DockStyle.Fill;
             lblRecentTransactions.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRecentTransactions.ForeColor = Color.FromArgb(51, 51, 51);
-            lblRecentTransactions.Location = new Point(0, 172);
+            lblRecentTransactions.Location = new Point(0, 230);
             lblRecentTransactions.Margin = new Padding(0);
             lblRecentTransactions.Name = "lblRecentTransactions";
-            lblRecentTransactions.Padding = new Padding(13, 0, 0, 0);
-            lblRecentTransactions.Size = new Size(1045, 28);
+            lblRecentTransactions.Padding = new Padding(15, 0, 0, 0);
+            lblRecentTransactions.Size = new Size(1194, 37);
             lblRecentTransactions.TabIndex = 2;
             lblRecentTransactions.Text = "Recent Transactions";
             lblRecentTransactions.TextAlign = ContentAlignment.BottomLeft;
@@ -194,14 +191,14 @@
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvRecent);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(15, 203);
-            roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
+            roundedPanelTable.Location = new Point(17, 271);
+            roundedPanelTable.Margin = new Padding(17, 4, 17, 4);
             roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(6, 7, 6, 7);
+            roundedPanelTable.Padding = new Padding(7, 9, 7, 9);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1015, 699);
+            roundedPanelTable.Size = new Size(1160, 932);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvRecent
@@ -238,8 +235,8 @@
             dgvRecent.Dock = DockStyle.Fill;
             dgvRecent.EnableHeadersVisualStyles = false;
             dgvRecent.GridColor = Color.FromArgb(233, 236, 239);
-            dgvRecent.Location = new Point(10, 13);
-            dgvRecent.Margin = new Padding(3, 4, 3, 4);
+            dgvRecent.Location = new Point(11, 15);
+            dgvRecent.Margin = new Padding(3, 5, 3, 5);
             dgvRecent.MultiSelect = false;
             dgvRecent.Name = "dgvRecent";
             dgvRecent.ReadOnly = true;
@@ -247,7 +244,7 @@
             dgvRecent.RowHeadersWidth = 51;
             dgvRecent.RowTemplate.Height = 46;
             dgvRecent.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRecent.Size = new Size(995, 673);
+            dgvRecent.Size = new Size(1138, 902);
             dgvRecent.TabIndex = 0;
             // 
             // colTenant
@@ -284,13 +281,14 @@
             // 
             // DashboardModule
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(236, 240, 241);
             Controls.Add(tlpMain);
             DoubleBuffered = true;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "DashboardModule";
-            Size = new Size(1045, 905);
+            Size = new Size(1194, 1207);
             tlpMain.ResumeLayout(false);
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();

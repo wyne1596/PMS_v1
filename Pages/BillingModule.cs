@@ -33,7 +33,6 @@ namespace PMS_v1.Pages
                 "All Statuses", "Paid", "Partially Paid", "Unpaid", "Overdue", "Canceled"
             });
             cmbFilter.SelectedIndex = 0;
-            btnNewBill.Values.Text = "＋  New Bill";
 
             dgvBills.AutoGenerateColumns = false;
             dgvBills.AllowUserToAddRows = false;

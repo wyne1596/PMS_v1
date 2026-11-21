@@ -21,6 +21,7 @@ namespace PMS_v1.Pages
             LayoutActionRow();
             pnlActions.Resize += (_, _) => LayoutActionRow();
             LoadStats();
+            LoadUnits();
         }
 
         private void ConfigureUnitActions()
@@ -30,7 +31,6 @@ namespace PMS_v1.Pages
                 "All Units", "Vacant", "Occupied"
             });
             cmbFilter.SelectedIndex = 0;
-            btnNewProperty.Values.Text = "＋  New Unit";
 
 
             txtSearch.TextChanged += (_, _) =>
@@ -124,6 +124,37 @@ namespace PMS_v1.Pages
                         statCardVacantUnits.CardNumber = reader["VacantUnits"].ToString();
                         statCardOccupiedUnits.CardNumber = reader["OccupiedUnits"].ToString();
                         statCardMaintenanceUnits.CardNumber = reader["MaintenanceUnits"].ToString();    
+                    }
+                }
+            }
+        }
+
+        private void LoadUnits()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                               UNIT_NO, FLOOR_NO, UNIT_TYPE, BASE_RENT, STATUS FROM units     
+                               ORDER BY FLOOR_NO ASC";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    dgvUnits.Rows.Clear();
+
+                    while (reader.Read())
+                    {
+                        string status = reader["STATUS"].ToString() ?? string.Empty;
+
+                        dgvUnits.Rows.Add(
+                            Convert.ToInt32(reader["UNIT_NO"]).ToString(),
+                            reader["FLOOR_NO"].ToString(),
+                            reader["UNIT_TYPE"].ToString(),
+                            "₱" + reader["BASE_RENT"].ToString(),
+                            status);   
                     }
                 }
             }

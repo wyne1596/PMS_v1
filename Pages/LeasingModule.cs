@@ -24,6 +24,7 @@ namespace PMS_v1.Pages
             pnlCommandActionRow.Resize += (_, _) => LayoutCommandActionRow();
             dgvLeases.CellPainting += DgvLeases_CellPainting;
             LoadStats();
+            //LoadLease();
         }
 
         private void LeasingModule_Load(object sender, EventArgs e)
@@ -169,6 +170,40 @@ namespace PMS_v1.Pages
                         statCardPending.CardNumber = reader["Pending"].ToString();
                         statCardExpired.CardNumber = reader["Expired"].ToString();
                         statCardTerminated.CardNumber = reader["Terminate"].ToString();
+                    }
+                }
+            }
+        }
+
+        private void LoadLease()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                                    CONCAT(r.FIRST_NAME, ' ', r.LAST_NAME) AS Tenant,
+                                    u.UNIT_NO,
+                                    l.END_DATE AS LeaseEnds, l.STATUS
+                               FROM lease l
+                               LEFT JOIN resident r ON l.RESIDENT_ID = r.RESIDENT_ID
+                               LEFT JOIN units u ON l.UNIT_ID = u.UNIT_ID
+                               ORDER BY l.END_DATE DESC";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    dgvLeases.Rows.Clear();
+
+                    while (reader.Read())
+                    {
+                        string status = reader["STATUS"].ToString() ?? string.Empty;
+
+                        dgvLeases.Rows.Add(
+                            reader["Tenant"].ToString(),
+                            reader["UNIT_NO"].ToString(),
+                            Convert.ToDateTime(reader["LeaseEnds"]).ToString("MMM dd, yyyy"),
+                            status);
                     }
                 }
             }

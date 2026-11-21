@@ -22,6 +22,7 @@ namespace PMS_v1.Pages
             pnlActions.Resize += (_, _) => LayoutActionRow();
             dgvPayments.CellPainting += DgvPayments_CellPainting;
             LoadStats();
+            LoadPayments();
         }
 
         private void ConfigurePaymentGrid()
@@ -86,7 +87,14 @@ namespace PMS_v1.Pages
             {
                 Name = "Tenant",
                 HeaderText = "TENANT",
-                FillWeight = 43,
+                FillWeight = 20,
+                SortMode = DataGridViewColumnSortMode.NotSortable
+            });
+            dgvPayments.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Mode",
+                HeaderText = "MODE",
+                FillWeight = 15,
                 SortMode = DataGridViewColumnSortMode.NotSortable
             });
             dgvPayments.Columns.Add(new DataGridViewTextBoxColumn
@@ -98,7 +106,18 @@ namespace PMS_v1.Pages
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
                     Alignment = DataGridViewContentAlignment.MiddleRight,
-                    Padding = new Padding(8, 0, 14, 0)
+                    Padding = new Padding(1, 0, 1, 0)
+                }
+            });
+            dgvPayments.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Date",
+                HeaderText = "DATE",
+                FillWeight = 18,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Padding = new Padding(0, 0, 0, 0)
                 }
             });
             dgvPayments.Columns.Add(new DataGridViewTextBoxColumn
@@ -110,7 +129,7 @@ namespace PMS_v1.Pages
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
                     Alignment = DataGridViewContentAlignment.MiddleCenter,
-                    Padding = new Padding(4, 0, 4, 0)
+                    Padding = new Padding(0, 0, 4, 0)
                 }
             });
         }
@@ -188,6 +207,41 @@ namespace PMS_v1.Pages
                         statCardPending.CardNumber = reader["Pending"].ToString();
                         statCardFailed.CardNumber = reader["Failed"].ToString();
                         statCardRefunded.CardNumber = reader["Refunded"].ToString();
+                    }
+                }
+            }
+        }
+
+        private void LoadPayments()
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                               SELECT
+                                    CONCAT(r.FIRST_NAME, ' ', r.LAST_NAME) AS Tenant,
+                                    p.REF_NO,p.MODE,p.AMOUNT,p.PAYMENT_DATE as DATE, p.STATUS                             
+                               FROM payment p
+                               LEFT JOIN resident r ON p.RESIDENT_ID = r.RESIDENT_ID
+                               ORDER BY b.PAYMENT_DATE DESC";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    dgvPayments.Rows.Clear();
+
+                    while (reader.Read())
+                    {
+                        string status = reader["STATUS"].ToString() ?? string.Empty;
+
+                        dgvPayments.Rows.Add(
+                            reader["REF_NO"].ToString(),
+                            reader["Tenant"].ToString(),
+                            reader["MODE"].ToString(),
+                            "₱"+reader["AMOUNT"].ToString(),
+                            Convert.ToDateTime(reader["DUE_DATE"]).ToString("MMM dd, yyyy"),
+                            status);  
                     }
                 }
             }

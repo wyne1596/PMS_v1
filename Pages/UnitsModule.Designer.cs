@@ -52,14 +52,13 @@ namespace PMS_v1.Pages
             tlpMain.Controls.Add(roundedPanelTable, 0, 3);
             tlpMain.Dock = DockStyle.Fill;
             tlpMain.Location = new Point(0, 0);
-            tlpMain.Margin = new Padding(3, 2, 3, 2);
             tlpMain.Name = "tlpMain";
             tlpMain.RowCount = 4;
             tlpMain.RowStyles.Add(new RowStyle());
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 116F));
-            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 155F));
+            tlpMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 96F));
             tlpMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMain.Size = new Size(1150, 938);
+            tlpMain.Size = new Size(1314, 1251);
             tlpMain.TabIndex = 0;
             // 
             // pnlHeader
@@ -69,11 +68,10 @@ namespace PMS_v1.Pages
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Controls.Add(lblBreadcrumb);
             pnlHeader.Dock = DockStyle.Fill;
-            pnlHeader.Location = new Point(3, 2);
-            pnlHeader.Margin = new Padding(3, 2, 3, 2);
+            pnlHeader.Location = new Point(3, 3);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Padding = new Padding(13, 0, 0, 0);
-            pnlHeader.Size = new Size(1144, 53);
+            pnlHeader.Padding = new Padding(15, 0, 0, 0);
+            pnlHeader.Size = new Size(1308, 68);
             pnlHeader.TabIndex = 0;
             // 
             // lblTitle
@@ -82,9 +80,9 @@ namespace PMS_v1.Pages
             lblTitle.Dock = DockStyle.Top;
             lblTitle.Font = new Font("Century Gothic", 18F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(33, 37, 41);
-            lblTitle.Location = new Point(13, 25);
+            lblTitle.Location = new Point(15, 31);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(65, 28);
+            lblTitle.Size = new Size(83, 37);
             lblTitle.TabIndex = 1;
             lblTitle.Text = "Units";
             // 
@@ -94,10 +92,10 @@ namespace PMS_v1.Pages
             lblBreadcrumb.Dock = DockStyle.Top;
             lblBreadcrumb.Font = new Font("Century Gothic", 8.5F);
             lblBreadcrumb.ForeColor = Color.FromArgb(108, 117, 125);
-            lblBreadcrumb.Location = new Point(13, 0);
+            lblBreadcrumb.Location = new Point(15, 0);
             lblBreadcrumb.Name = "lblBreadcrumb";
-            lblBreadcrumb.Padding = new Padding(3, 0, 0, 8);
-            lblBreadcrumb.Size = new Size(85, 25);
+            lblBreadcrumb.Padding = new Padding(3, 0, 0, 11);
+            lblBreadcrumb.Size = new Size(104, 31);
             lblBreadcrumb.TabIndex = 0;
             lblBreadcrumb.Text = "Home / Units";
             // 
@@ -113,12 +111,11 @@ namespace PMS_v1.Pages
             tlpMetrics.Controls.Add(statCardOccupiedUnits, 2, 0);
             tlpMetrics.Controls.Add(statCardMaintenanceUnits, 3, 0);
             tlpMetrics.Dock = DockStyle.Fill;
-            tlpMetrics.Location = new Point(3, 59);
-            tlpMetrics.Margin = new Padding(3, 2, 3, 2);
+            tlpMetrics.Location = new Point(3, 77);
             tlpMetrics.Name = "tlpMetrics";
             tlpMetrics.RowCount = 1;
             tlpMetrics.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpMetrics.Size = new Size(1144, 112);
+            tlpMetrics.Size = new Size(1308, 149);
             tlpMetrics.TabIndex = 1;
             // 
             // statCardTotalUnits
@@ -128,10 +125,10 @@ namespace PMS_v1.Pages
             statCardTotalUnits.CardIcon = Resources.Resources.TotalUnits;
             statCardTotalUnits.CardNumber = "00";
             statCardTotalUnits.Dock = DockStyle.Fill;
-            statCardTotalUnits.Location = new Point(13, 0);
-            statCardTotalUnits.Margin = new Padding(13, 0, 6, 0);
+            statCardTotalUnits.Location = new Point(15, 0);
+            statCardTotalUnits.Margin = new Padding(15, 0, 7, 0);
             statCardTotalUnits.Name = "statCardTotalUnits";
-            statCardTotalUnits.Size = new Size(267, 112);
+            statCardTotalUnits.Size = new Size(305, 149);
             statCardTotalUnits.TabIndex = 0;
             // 
             // statCardVacantUnits
@@ -141,10 +138,10 @@ namespace PMS_v1.Pages
             statCardVacantUnits.CardIcon = Resources.Resources.VacantUnits;
             statCardVacantUnits.CardNumber = "00";
             statCardVacantUnits.Dock = DockStyle.Fill;
-            statCardVacantUnits.Location = new Point(292, 0);
-            statCardVacantUnits.Margin = new Padding(6, 0, 6, 0);
+            statCardVacantUnits.Location = new Point(334, 0);
+            statCardVacantUnits.Margin = new Padding(7, 0, 7, 0);
             statCardVacantUnits.Name = "statCardVacantUnits";
-            statCardVacantUnits.Size = new Size(274, 112);
+            statCardVacantUnits.Size = new Size(313, 149);
             statCardVacantUnits.TabIndex = 1;
             // 
             // statCardOccupiedUnits
@@ -154,10 +151,10 @@ namespace PMS_v1.Pages
             statCardOccupiedUnits.CardIcon = Resources.Resources.OccupiedUnit;
             statCardOccupiedUnits.CardNumber = "00";
             statCardOccupiedUnits.Dock = DockStyle.Fill;
-            statCardOccupiedUnits.Location = new Point(578, 0);
-            statCardOccupiedUnits.Margin = new Padding(6, 0, 6, 0);
+            statCardOccupiedUnits.Location = new Point(661, 0);
+            statCardOccupiedUnits.Margin = new Padding(7, 0, 7, 0);
             statCardOccupiedUnits.Name = "statCardOccupiedUnits";
-            statCardOccupiedUnits.Size = new Size(274, 112);
+            statCardOccupiedUnits.Size = new Size(313, 149);
             statCardOccupiedUnits.TabIndex = 2;
             // 
             // statCardMaintenanceUnits
@@ -167,10 +164,10 @@ namespace PMS_v1.Pages
             statCardMaintenanceUnits.CardIcon = Resources.Resources.UnderMaintenance;
             statCardMaintenanceUnits.CardNumber = "00";
             statCardMaintenanceUnits.Dock = DockStyle.Fill;
-            statCardMaintenanceUnits.Location = new Point(864, 0);
-            statCardMaintenanceUnits.Margin = new Padding(6, 0, 13, 0);
+            statCardMaintenanceUnits.Location = new Point(988, 0);
+            statCardMaintenanceUnits.Margin = new Padding(7, 0, 15, 0);
             statCardMaintenanceUnits.Name = "statCardMaintenanceUnits";
-            statCardMaintenanceUnits.Size = new Size(267, 112);
+            statCardMaintenanceUnits.Size = new Size(305, 149);
             statCardMaintenanceUnits.TabIndex = 3;
             // 
             // pnlActions
@@ -179,10 +176,10 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewProperty);
             pnlActions.Dock = DockStyle.Fill;
-            pnlActions.Location = new Point(13, 175);
-            pnlActions.Margin = new Padding(13, 2, 13, 2);
+            pnlActions.Location = new Point(15, 232);
+            pnlActions.Margin = new Padding(15, 3, 15, 3);
             pnlActions.Name = "pnlActions";
-            pnlActions.Size = new Size(1124, 68);
+            pnlActions.Size = new Size(1284, 90);
             pnlActions.TabIndex = 2;
             // 
             // txtSearch
@@ -190,10 +187,10 @@ namespace PMS_v1.Pages
             txtSearch.CueHint.Color1 = Color.FromArgb(125, 130, 134);
             txtSearch.CueHint.CueHintText = "⌕  Search units...";
             txtSearch.CueHint.Font = new Font("Century Gothic", 8.5F);
-            txtSearch.Location = new Point(0, 23);
-            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Location = new Point(0, 31);
+            txtSearch.Margin = new Padding(3, 5, 3, 5);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(663, 31);
+            txtSearch.Size = new Size(758, 35);
             txtSearch.StateCommon.Back.Color1 = Color.White;
             txtSearch.StateCommon.Border.Color1 = Color.FromArgb(222, 226, 230);
             txtSearch.StateCommon.Border.Rounding = 12F;
@@ -202,10 +199,10 @@ namespace PMS_v1.Pages
             // cmbFilter
             // 
             cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbFilter.Location = new Point(703, 24);
-            cmbFilter.Margin = new Padding(3, 4, 3, 4);
+            cmbFilter.Location = new Point(803, 32);
+            cmbFilter.Margin = new Padding(3, 5, 3, 5);
             cmbFilter.Name = "cmbFilter";
-            cmbFilter.Size = new Size(171, 30);
+            cmbFilter.Size = new Size(195, 34);
             cmbFilter.StateCommon.ComboBox.Back.Color1 = Color.White;
             cmbFilter.StateCommon.ComboBox.Border.Color1 = Color.FromArgb(222, 226, 230);
             cmbFilter.StateCommon.ComboBox.Border.Rounding = 12F;
@@ -213,10 +210,10 @@ namespace PMS_v1.Pages
             // 
             // btnNewProperty
             // 
-            btnNewProperty.Location = new Point(916, 23);
-            btnNewProperty.Margin = new Padding(3, 4, 3, 4);
+            btnNewProperty.Location = new Point(1047, 31);
+            btnNewProperty.Margin = new Padding(3, 5, 3, 5);
             btnNewProperty.Name = "btnNewProperty";
-            btnNewProperty.Size = new Size(172, 40);
+            btnNewProperty.Size = new Size(197, 53);
             btnNewProperty.StateCommon.Back.Color1 = Color.FromArgb(141, 198, 63);
             btnNewProperty.StateCommon.Back.Color2 = Color.FromArgb(91, 154, 42);
             btnNewProperty.StateCommon.Back.ColorAngle = 90F;
@@ -226,7 +223,7 @@ namespace PMS_v1.Pages
             btnNewProperty.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             btnNewProperty.TabIndex = 2;
             btnNewProperty.Values.DropDownArrowColor = Color.Empty;
-            btnNewProperty.Values.Text = "＋  New Unit";
+            btnNewProperty.Values.Text = "Edit Unit";
             // 
             // roundedPanelTable
             // 
@@ -235,14 +232,14 @@ namespace PMS_v1.Pages
             roundedPanelTable.BorderRadius = 10;
             roundedPanelTable.Controls.Add(dgvUnits);
             roundedPanelTable.Dock = DockStyle.Fill;
-            roundedPanelTable.Location = new Point(13, 247);
-            roundedPanelTable.Margin = new Padding(13, 2, 13, 2);
+            roundedPanelTable.Location = new Point(15, 328);
+            roundedPanelTable.Margin = new Padding(15, 3, 15, 3);
             roundedPanelTable.Name = "roundedPanelTable";
-            roundedPanelTable.Padding = new Padding(5, 5, 5, 5);
+            roundedPanelTable.Padding = new Padding(6, 7, 6, 7);
             roundedPanelTable.ShadowColor = Color.Black;
             roundedPanelTable.ShadowOpacity = 28;
             roundedPanelTable.ShadowSize = 4;
-            roundedPanelTable.Size = new Size(1124, 689);
+            roundedPanelTable.Size = new Size(1284, 920);
             roundedPanelTable.TabIndex = 3;
             // 
             // dgvUnits
@@ -253,22 +250,23 @@ namespace PMS_v1.Pages
             dgvUnits.ColumnHeadersHeight = 42;
             dgvUnits.Dock = DockStyle.Fill;
             dgvUnits.GridColor = Color.FromArgb(233, 236, 239);
-            dgvUnits.Location = new Point(9, 11);
+            dgvUnits.Location = new Point(10, 13);
             dgvUnits.Margin = new Padding(0);
             dgvUnits.Name = "dgvUnits";
             dgvUnits.RowHeadersVisible = false;
             dgvUnits.RowHeadersWidth = 51;
             dgvUnits.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUnits.Size = new Size(1106, 667);
+            dgvUnits.Size = new Size(1264, 894);
             dgvUnits.TabIndex = 0;
             // 
             // UnitsModule
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tlpMain);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "UnitsModule";
-            Size = new Size(1150, 938);
+            Size = new Size(1314, 1251);
             tlpMain.ResumeLayout(false);
             tlpMain.PerformLayout();
             pnlHeader.ResumeLayout(false);

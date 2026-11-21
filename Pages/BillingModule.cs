@@ -194,6 +194,10 @@ namespace PMS_v1.Pages
             }
         }
 
+        private void statCardPartiallyPaid_Load(object sender, EventArgs e)
+        {
+        }
+
         // Load bills into the table
         private void LoadBills()
         {
@@ -227,6 +231,17 @@ namespace PMS_v1.Pages
                             Convert.ToDateTime(reader["DUE_DATE"]).ToString("MMM dd, yyyy"),
                             status == "Cancelled" ? "Canceled" : status);   // keep the page's "Canceled" spelling so the filter matches
                     }
+                }
+            }
+        }
+
+        private void btnNewBill_Click(object sender, EventArgs e)
+        {
+            using (var f = new RecordForm(FormMode.New, "Bill", FormDefinitions.Bill()))
+            {
+                if (f.ShowDialog(this.FindForm()) == DialogResult.OK)
+                {
+                    // backend: read f.Values["amount"], f.Values["dueDate"], and so on
                 }
             }
         }

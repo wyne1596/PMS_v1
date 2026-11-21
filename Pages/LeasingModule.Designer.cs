@@ -222,6 +222,7 @@
             btnNewLease.TabIndex = 2;
             btnNewLease.Values.DropDownArrowColor = Color.Empty;
             btnNewLease.Values.Text = "+   New Lease";
+            btnNewLease.Click += btnNewLease_Click_1;
             // 
             // roundedPanelTable
             // 

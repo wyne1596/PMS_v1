@@ -237,6 +237,7 @@ namespace PMS_v1.Pages
             btnNewBill.TabIndex = 2;
             btnNewBill.Values.DropDownArrowColor = Color.Empty;
             btnNewBill.Values.Text = "＋  New Bill";
+            btnNewBill.Click += btnNewBill_Click;
             // 
             // roundedPanelTable
             // 

@@ -217,6 +217,7 @@ namespace PMS_v1.Pages
             btnNewTransaction.TabIndex = 2;
             btnNewTransaction.Values.DropDownArrowColor = Color.Empty;
             btnNewTransaction.Values.Text = "＋  New Transaction";
+            btnNewTransaction.Click += btnNewTransaction_Click;
             // 
             // roundedPanelTable
             // 

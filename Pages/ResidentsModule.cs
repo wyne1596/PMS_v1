@@ -12,6 +12,11 @@ namespace PMS_v1.Pages
         public ResidentsModule()
         {
             InitializeComponent();
+
+            // staff can add and edit residents but not delete them
+            btnDeleteResident.Visible = PMS_v1.Helper.Session.CanDelete;
+            mnuDelete.Visible = PMS_v1.Helper.Session.CanDelete;
+
             PMS_v1.UserControls.ModulePageLayout.ApplyStandardLayout(
                 tlpMain, pnlHeader, tlpMetrics, pnlActions, roundedPanelTable);
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvResidents);
@@ -286,6 +291,7 @@ namespace PMS_v1.Pages
 
         private void DeleteSelected()
         {
+            if (!PMS_v1.Helper.Session.CanDelete) return;
             if (!RequireSelection(out int id)) return;
             string name = dgvResidents.CurrentRow.Cells["Resident"].Value?.ToString() ?? "this resident";
 

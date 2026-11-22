@@ -40,6 +40,7 @@ namespace PMS_v1.UserControls
             btnMaintenance.Click += (s, e) => PageRequested?.Invoke("Maintenance");
             btnReports.Click += (s, e) => PageRequested?.Invoke("Reports");
             btnSettings.Click += (s, e) => PageRequested?.Invoke("Settings");
+            btnSettings.Visible = PMS_v1.Helper.Session.CanOpenSettings;   // admins and managers
             btnLogout.Click += (s, e) => PageRequested?.Invoke("Logout");
         }
 

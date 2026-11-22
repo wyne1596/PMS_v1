@@ -63,12 +63,31 @@ namespace PMS_v1.Forms
                             MessageBox.Show("INVALID USERNAME OR PASSWORD.");
                             return;
                         }
+
+                        // Settings can mark an account Inactive / Suspended / Locked; only Active accounts may sign in
+                        string accountStatus = reader.GetString("ACCOUNT_STATUS");
+                        if (accountStatus != "Active")
+                        {
+                            MessageBox.Show($"This account is {accountStatus.ToLower()}.\nContact your administrator.");
+                            return;
+                        }
+
                         Helper.Session.Role = reader.GetString("ROLE");
+                        Helper.Session.UserId = reader.GetInt32("USER_ID");
+                        Helper.Session.PersonnelId = reader.GetInt32("PERSONNEL_ID");
 
                         string fullName = reader.GetString("FIRST_NAME") + " " + reader.GetString("LAST_NAME");
                         string position = reader.IsDBNull(reader.GetOrdinal("POSITION"))
                                                    ? "" : reader.GetString("POSITION");
                         string employeeNo = reader.GetString("EMPLOYEE_NO");
+
+                        using (var c2 = Db.GetConnection())
+                        using (var up = new MySqlCommand("UPDATE `SYSTEM_USER` SET LAST_LOGIN = NOW() WHERE USER_ID = @id", c2))
+                        {
+                            up.Parameters.AddWithValue("@id", Helper.Session.UserId);
+                            c2.Open();
+                            up.ExecuteNonQuery();
+                        }
 
                         MessageBox.Show($"Welcome, {fullName}.\nPosition: {position}.\nNo. : {employeeNo}", "Login Successful");
 

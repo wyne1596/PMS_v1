@@ -81,7 +81,7 @@ namespace pms_UI
             {
                 PreloadPage("Units", () => new UnitsModule());
                 PreloadPage("Leasing", () => new LeasingModule());
-                
+
             });
         }
 
@@ -127,6 +127,15 @@ namespace pms_UI
                 case "Billing": ShowPage("Billing", () => new BillingModule()); break;
                 case "Payment": ShowPage("Payment", () => new PaymentModule()); break;
                 case "Maintenance": ShowPage("Maintenance", () => new MaintenanceModule()); break;
+                case "Settings":
+                    if (!PMS_v1.Helper.Session.CanOpenSettings)
+                    {
+                        MessageBox.Show(this, "Settings is available to administrators and managers only.", "Access denied",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    }
+                    ShowPage("Settings", () => new SettingsModule());
+                    break;
                 case "Logout": Logout(); break;
             }
         }

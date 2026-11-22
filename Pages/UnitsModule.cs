@@ -33,7 +33,6 @@ namespace PMS_v1.Pages
             ctxRow.Opening += (_, e) =>
             {
                 if (SelectedId == null) { e.Cancel = true; return; }   // nothing under the mouse
-                mnuEdit.Visible = Session.IsAdmin;                     // only admins can edit
             };
             LoadStats();
             LoadUnits();
@@ -54,8 +53,6 @@ namespace PMS_v1.Pages
                 UnitAvailabilityChanged?.Invoke(Convert.ToString(cmbFilter.SelectedItem) ?? "All Units");
             btnNewProperty.Click += (_, _) => NewPropertyRequested?.Invoke(this, EventArgs.Empty);
 
-            // "Edit Unit" is for admins only: hidden for everyone else
-            btnNewProperty.Visible = Session.IsAdmin;
             btnNewProperty.Click += (_, _) => EditSelected();
         }
 
@@ -132,12 +129,8 @@ namespace PMS_v1.Pages
 
         private void LayoutActionRow()
         {
-            if (Session.IsAdmin)
-                PMS_v1.UserControls.ActionRowLayout.PackRight(
-                    pnlActions, txtSearch, cmbFilter, btnViewUnit, btnNewProperty);
-            else
-                PMS_v1.UserControls.ActionRowLayout.PackRight(
-                    pnlActions, txtSearch, cmbFilter, btnViewUnit);
+            PMS_v1.UserControls.ActionRowLayout.PackRight(
+                pnlActions, txtSearch, cmbFilter, btnViewUnit, btnNewProperty);
         }
 
         // Load stats
@@ -239,17 +232,11 @@ namespace PMS_v1.Pages
             }
         }
 
-        // ---------- EDIT (admin only) ----------
+        // ---------- EDIT ----------
         private void mnuEdit_Click(object? sender, EventArgs e) => EditSelected();
 
         private void EditSelected()
         {
-            if (!Session.IsAdmin)
-            {
-                MessageBox.Show(this, "Only an admin can edit units.", "Not allowed",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
             if (!RequireSelection(out int id)) return;
 
             if (UnitDetailForm.EditUnit(this.FindForm(), id))

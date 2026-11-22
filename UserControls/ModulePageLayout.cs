@@ -87,7 +87,8 @@ namespace PMS_v1.UserControls
             metrics.ResumeLayout(true);
         }
 
-        // Same table look as Billing / Payment / Maintenance / Leasing.
+        // Same table look as Billing / Payment / Maintenance / Leasing. One place for every page,
+        // including the light-blue chosen row, so a page does not need to call GridHelper.ShowSelection.
         internal static void ApplyStandardGridStyle(DataGridView grid)
         {
             grid.AutoGenerateColumns = false;
@@ -117,13 +118,13 @@ namespace PMS_v1.UserControls
                 Font = new Font("Century Gothic", 9F),
                 Alignment = DataGridViewContentAlignment.MiddleLeft,
                 Padding = new Padding(12, 0, 8, 0),
-                SelectionBackColor = Color.White,
+                SelectionBackColor = GridHelper.SelectionBack,   // light blue so the chosen row is visible
                 SelectionForeColor = Color.FromArgb(44, 49, 53)
             };
             grid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.White,
-                SelectionBackColor = Color.White,
+                SelectionBackColor = GridHelper.SelectionBack,   // light blue so the chosen row is visible
                 SelectionForeColor = Color.FromArgb(44, 49, 53)
             };
         }

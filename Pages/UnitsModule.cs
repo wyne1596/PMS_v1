@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using PMS_v1.Database;
+using PMS_v1.Helper;
 
 namespace PMS_v1.Pages
 {
@@ -18,11 +19,22 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvUnits);
             ConfigureUnitActions();
             ConfigureUnitsGrid();
-            PMS_v1.UserControls.GridHelper.ShowSelection(dgvUnits);
             LayoutActionRow();
             pnlActions.Resize += (_, _) => LayoutActionRow();
             txtSearch.TextChanged += (_, _) => ApplyUnitFilters();
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyUnitFilters();
+            dgvUnits.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0) ViewSelected(); };
+            dgvUnits.CellMouseDown += (_, e) =>
+            {
+                // right-click selects the row under the mouse so the menu acts on it
+                if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+                    dgvUnits.CurrentCell = dgvUnits.Rows[e.RowIndex].Cells[0];
+            };
+            ctxRow.Opening += (_, e) =>
+            {
+                if (SelectedId == null) { e.Cancel = true; return; }   // nothing under the mouse
+                mnuEdit.Visible = Session.IsAdmin;                     // only admins can edit
+            };
             LoadStats();
             LoadUnits();
         }
@@ -41,6 +53,10 @@ namespace PMS_v1.Pages
             cmbFilter.SelectedIndexChanged += (_, _) =>
                 UnitAvailabilityChanged?.Invoke(Convert.ToString(cmbFilter.SelectedItem) ?? "All Units");
             btnNewProperty.Click += (_, _) => NewPropertyRequested?.Invoke(this, EventArgs.Empty);
+
+            // "Edit Unit" is for admins only: hidden for everyone else
+            btnNewProperty.Visible = Session.IsAdmin;
+            btnNewProperty.Click += (_, _) => EditSelected();
         }
 
         // Table: same look as the other pages (columns follow the units table)
@@ -116,8 +132,12 @@ namespace PMS_v1.Pages
 
         private void LayoutActionRow()
         {
-            PMS_v1.UserControls.ActionRowLayout.PackRight(
-                pnlActions, txtSearch, cmbFilter, btnNewProperty);
+            if (Session.IsAdmin)
+                PMS_v1.UserControls.ActionRowLayout.PackRight(
+                    pnlActions, txtSearch, cmbFilter, btnViewUnit, btnNewProperty);
+            else
+                PMS_v1.UserControls.ActionRowLayout.PackRight(
+                    pnlActions, txtSearch, cmbFilter, btnViewUnit);
         }
 
         // Load stats
@@ -157,8 +177,9 @@ namespace PMS_v1.Pages
 
                 string query = @"
                                SELECT
-                               UNIT_ID, UNIT_NO, FLOOR_NO, UNIT_TYPE, BASE_RENT, STATUS FROM units     
-                               ORDER BY FLOOR_NO ASC";
+                               UNIT_ID, UNIT_NO, FLOOR_NO, UNIT_TYPE, BASE_RENT, STATUS FROM units
+                               ORDER BY CASE WHEN STATUS = 'Vacant' THEN 0 ELSE 1 END,   -- vacant units first
+                                        FLOOR_NO ASC, UNIT_NO ASC";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -182,6 +203,57 @@ namespace PMS_v1.Pages
             }
 
             ApplyUnitFilters();
+        }
+
+        // ---------- helpers ----------
+        private int? SelectedId => dgvUnits.CurrentRow?.Tag as int?;
+
+        private bool RequireSelection(out int id)
+        {
+            if (SelectedId is int value) { id = value; return true; }
+            id = 0;
+            MessageBox.Show(this, "Select a unit in the table first.", "No unit selected",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        private void Refresh_()
+        {
+            LoadStats();
+            LoadUnits();
+        }
+
+        // ---------- VIEW (everyone) ----------
+        private void btnViewUnit_Click(object? sender, EventArgs e) => ViewSelected();
+        private void mnuView_Click(object? sender, EventArgs e) => ViewSelected();
+
+        private void ViewSelected()
+        {
+            if (!RequireSelection(out int id)) return;
+
+            using (var f = new UnitDetailForm(id))
+            {
+                if (!f.Found) { Refresh_(); return; }   // deleted by someone else
+                f.ShowDialog(this.FindForm());
+                if (f.Changed) Refresh_();               // an admin edited it in the form
+            }
+        }
+
+        // ---------- EDIT (admin only) ----------
+        private void mnuEdit_Click(object? sender, EventArgs e) => EditSelected();
+
+        private void EditSelected()
+        {
+            if (!Session.IsAdmin)
+            {
+                MessageBox.Show(this, "Only an admin can edit units.", "Not allowed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (!RequireSelection(out int id)) return;
+
+            if (UnitDetailForm.EditUnit(this.FindForm(), id))
+                Refresh_();
         }
     }
 }

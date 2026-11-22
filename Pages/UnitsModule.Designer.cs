@@ -18,6 +18,7 @@ namespace PMS_v1.Pages
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tlpMain = new TableLayoutPanel();
             pnlHeader = new Panel();
             lblTitle = new Label();
@@ -31,8 +32,12 @@ namespace PMS_v1.Pages
             txtSearch = new Krypton.Toolkit.KryptonTextBox();
             cmbFilter = new Krypton.Toolkit.KryptonComboBox();
             btnNewProperty = new Krypton.Toolkit.KryptonButton();
+            btnViewUnit = new Krypton.Toolkit.KryptonButton();
             roundedPanelTable = new RoundedPanel();
             dgvUnits = new DataGridView();
+            ctxRow = new ContextMenuStrip(components);
+            mnuView = new ToolStripMenuItem();
+            mnuEdit = new ToolStripMenuItem();
             tlpMain.SuspendLayout();
             pnlHeader.SuspendLayout();
             tlpMetrics.SuspendLayout();
@@ -40,6 +45,7 @@ namespace PMS_v1.Pages
             ((System.ComponentModel.ISupportInitialize)cmbFilter).BeginInit();
             roundedPanelTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUnits).BeginInit();
+            ctxRow.SuspendLayout();
             SuspendLayout();
             // 
             // tlpMain
@@ -125,6 +131,7 @@ namespace PMS_v1.Pages
             statCardTotalUnits.CardIcon = Resources.Resources.TotalUnits;
             statCardTotalUnits.CardNumber = "00";
             statCardTotalUnits.Dock = DockStyle.Fill;
+            statCardTotalUnits.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardTotalUnits.Location = new Point(15, 0);
             statCardTotalUnits.Margin = new Padding(15, 0, 7, 0);
             statCardTotalUnits.Name = "statCardTotalUnits";
@@ -138,6 +145,7 @@ namespace PMS_v1.Pages
             statCardVacantUnits.CardIcon = Resources.Resources.VacantUnits;
             statCardVacantUnits.CardNumber = "00";
             statCardVacantUnits.Dock = DockStyle.Fill;
+            statCardVacantUnits.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardVacantUnits.Location = new Point(334, 0);
             statCardVacantUnits.Margin = new Padding(7, 0, 7, 0);
             statCardVacantUnits.Name = "statCardVacantUnits";
@@ -151,6 +159,7 @@ namespace PMS_v1.Pages
             statCardOccupiedUnits.CardIcon = Resources.Resources.OccupiedUnit;
             statCardOccupiedUnits.CardNumber = "00";
             statCardOccupiedUnits.Dock = DockStyle.Fill;
+            statCardOccupiedUnits.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardOccupiedUnits.Location = new Point(661, 0);
             statCardOccupiedUnits.Margin = new Padding(7, 0, 7, 0);
             statCardOccupiedUnits.Name = "statCardOccupiedUnits";
@@ -164,6 +173,7 @@ namespace PMS_v1.Pages
             statCardMaintenanceUnits.CardIcon = Resources.Resources.UnderMaintenance;
             statCardMaintenanceUnits.CardNumber = "00";
             statCardMaintenanceUnits.Dock = DockStyle.Fill;
+            statCardMaintenanceUnits.IconSlotPadding = new Padding(6, 16, 6, 16);
             statCardMaintenanceUnits.Location = new Point(988, 0);
             statCardMaintenanceUnits.Margin = new Padding(7, 0, 15, 0);
             statCardMaintenanceUnits.Name = "statCardMaintenanceUnits";
@@ -175,6 +185,7 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(txtSearch);
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewProperty);
+            pnlActions.Controls.Add(btnViewUnit);
             pnlActions.Dock = DockStyle.Fill;
             pnlActions.Location = new Point(15, 232);
             pnlActions.Margin = new Padding(15, 3, 15, 3);
@@ -190,7 +201,7 @@ namespace PMS_v1.Pages
             txtSearch.Location = new Point(0, 31);
             txtSearch.Margin = new Padding(3, 5, 3, 5);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(758, 35);
+            txtSearch.Size = new Size(716, 35);
             txtSearch.StateCommon.Back.Color1 = Color.White;
             txtSearch.StateCommon.Border.Color1 = Color.FromArgb(222, 226, 230);
             txtSearch.StateCommon.Border.Rounding = 12F;
@@ -199,7 +210,7 @@ namespace PMS_v1.Pages
             // cmbFilter
             // 
             cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbFilter.Location = new Point(803, 32);
+            cmbFilter.Location = new Point(728, 32);
             cmbFilter.Margin = new Padding(3, 5, 3, 5);
             cmbFilter.Name = "cmbFilter";
             cmbFilter.Size = new Size(195, 34);
@@ -210,7 +221,7 @@ namespace PMS_v1.Pages
             // 
             // btnNewProperty
             // 
-            btnNewProperty.Location = new Point(1047, 31);
+            btnNewProperty.Location = new Point(1077, 31);
             btnNewProperty.Margin = new Padding(3, 5, 3, 5);
             btnNewProperty.Name = "btnNewProperty";
             btnNewProperty.Size = new Size(197, 53);
@@ -224,6 +235,24 @@ namespace PMS_v1.Pages
             btnNewProperty.TabIndex = 2;
             btnNewProperty.Values.DropDownArrowColor = Color.Empty;
             btnNewProperty.Values.Text = "Edit Unit";
+            // 
+            // btnViewUnit
+            // 
+            btnViewUnit.Location = new Point(935, 31);
+            btnViewUnit.Margin = new Padding(3, 5, 3, 5);
+            btnViewUnit.Name = "btnViewUnit";
+            btnViewUnit.Size = new Size(130, 53);
+            btnViewUnit.StateCommon.Back.Color1 = Color.FromArgb(74, 151, 196);
+            btnViewUnit.StateCommon.Back.Color2 = Color.FromArgb(52, 120, 165);
+            btnViewUnit.StateCommon.Back.ColorAngle = 90F;
+            btnViewUnit.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
+            btnViewUnit.StateCommon.Border.Rounding = 12F;
+            btnViewUnit.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnViewUnit.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            btnViewUnit.TabIndex = 3;
+            btnViewUnit.Values.DropDownArrowColor = Color.Empty;
+            btnViewUnit.Values.Text = "View Unit";
+            btnViewUnit.Click += btnViewUnit_Click;
             // 
             // roundedPanelTable
             // 
@@ -248,6 +277,7 @@ namespace PMS_v1.Pages
             dgvUnits.BorderStyle = BorderStyle.None;
             dgvUnits.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvUnits.ColumnHeadersHeight = 42;
+            dgvUnits.ContextMenuStrip = ctxRow;
             dgvUnits.Dock = DockStyle.Fill;
             dgvUnits.GridColor = Color.FromArgb(233, 236, 239);
             dgvUnits.Location = new Point(10, 13);
@@ -258,6 +288,28 @@ namespace PMS_v1.Pages
             dgvUnits.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUnits.Size = new Size(1264, 894);
             dgvUnits.TabIndex = 0;
+            // 
+            // ctxRow
+            // 
+            ctxRow.Font = new Font("Century Gothic", 9F);
+            ctxRow.ImageScalingSize = new Size(20, 20);
+            ctxRow.Items.AddRange(new ToolStripItem[] { mnuView, mnuEdit });
+            ctxRow.Name = "ctxRow";
+            ctxRow.Size = new Size(149, 52);
+            // 
+            // mnuView
+            // 
+            mnuView.Name = "mnuView";
+            mnuView.Size = new Size(148, 24);
+            mnuView.Text = "View Unit";
+            mnuView.Click += mnuView_Click;
+            // 
+            // mnuEdit
+            // 
+            mnuEdit.Name = "mnuEdit";
+            mnuEdit.Size = new Size(148, 24);
+            mnuEdit.Text = "Edit Unit";
+            mnuEdit.Click += mnuEdit_Click;
             // 
             // UnitsModule
             // 
@@ -277,6 +329,7 @@ namespace PMS_v1.Pages
             ((System.ComponentModel.ISupportInitialize)cmbFilter).EndInit();
             roundedPanelTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvUnits).EndInit();
+            ctxRow.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -295,6 +348,10 @@ namespace PMS_v1.Pages
         private Krypton.Toolkit.KryptonTextBox txtSearch;
         private Krypton.Toolkit.KryptonComboBox cmbFilter;
         private Krypton.Toolkit.KryptonButton btnNewProperty;
+        private Krypton.Toolkit.KryptonButton btnViewUnit;
+        private ContextMenuStrip ctxRow;
+        private ToolStripMenuItem mnuView;
+        private ToolStripMenuItem mnuEdit;
         private PMS_v1.RoundedPanel roundedPanelTable;
         private DataGridView dgvUnits;
     }

@@ -72,13 +72,13 @@ namespace PMS_v1.Pages
                 Font = new Font("Century Gothic", 9F),
                 Alignment = DataGridViewContentAlignment.MiddleLeft,
                 Padding = new Padding(12, 0, 8, 0),
-                SelectionBackColor = Color.White,
+                SelectionBackColor = Color.FromArgb(232, 243, 250),
                 SelectionForeColor = Color.FromArgb(44, 49, 53)
             };
             dgvLeases.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.White,
-                SelectionBackColor = Color.White,
+                SelectionBackColor = Color.FromArgb(232, 243, 250),
                 SelectionForeColor = Color.FromArgb(44, 49, 53)
             };
 

@@ -40,42 +40,7 @@ namespace PMS_v1.Pages
             cmbFilter.Items.AddRange(new object[] { "All Residents", "With Active Lease", "No Active Lease" });
             cmbFilter.SelectedIndex = 0;
 
-            dgvResidents.AutoGenerateColumns = false;
-            dgvResidents.AllowUserToAddRows = false;
-            dgvResidents.AllowUserToDeleteRows = false;
-            dgvResidents.AllowUserToResizeRows = false;
-            dgvResidents.MultiSelect = false;
-            dgvResidents.ReadOnly = true;
-            dgvResidents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvResidents.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvResidents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvResidents.EnableHeadersVisualStyles = false;
-            dgvResidents.RowTemplate.Height = 42;
-            dgvResidents.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
-            {
-                BackColor = Color.FromArgb(74, 151, 196),
-                ForeColor = Color.White,
-                Font = new Font("Century Gothic", 9F, FontStyle.Bold),
-                Alignment = DataGridViewContentAlignment.MiddleCenter,
-                SelectionBackColor = Color.FromArgb(74, 151, 196),
-                SelectionForeColor = Color.White
-            };
-            dgvResidents.DefaultCellStyle = new DataGridViewCellStyle
-            {
-                BackColor = Color.White,
-                ForeColor = Color.FromArgb(44, 49, 53),
-                Font = new Font("Century Gothic", 9F),
-                Alignment = DataGridViewContentAlignment.MiddleLeft,
-                Padding = new Padding(12, 0, 8, 0),
-                SelectionBackColor = Color.FromArgb(232, 243, 250),   // light blue so the chosen row is visible
-                SelectionForeColor = Color.FromArgb(44, 49, 53)
-            };
-            dgvResidents.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
-            {
-                BackColor = Color.White,
-                SelectionBackColor = Color.FromArgb(232, 243, 250),
-                SelectionForeColor = Color.FromArgb(44, 49, 53)
-            };
+            PMS_v1.UserControls.ModulePageLayout.ApplyStandardGridStyle(dgvResidents);
 
             AddColumn("Resident", "RESIDENT", 24);
             AddColumn("Contact", "CONTACT NO.", 16);
@@ -110,26 +75,22 @@ namespace PMS_v1.Pages
             string search = txtSearch.Text.Trim();
             int filter = cmbFilter.SelectedIndex;   // 0 all, 1 with lease, 2 no lease
 
-            // a grid can't hide the row that holds the current cell
-            dgvResidents.CurrentCell = null;
-
-            foreach (DataGridViewRow row in dgvResidents.Rows)
+            PMS_v1.UserControls.GridHelper.Filter(dgvResidents, row =>
             {
                 bool matchesSearch = string.IsNullOrEmpty(search) ||
-                    Has(row, "Resident", search) || Has(row, "Contact", search) ||
-                    Has(row, "Email", search) || Has(row, "Emergency", search);
+                    PMS_v1.UserControls.GridHelper.Has(row, "Resident", search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Contact", search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Email", search) ||
+                    PMS_v1.UserControls.GridHelper.Has(row, "Emergency", search);
 
                 string lease = row.Cells["Lease"].Value?.ToString();
                 bool matchesLease = filter <= 0 ||
                     (filter == 1 && lease == "Active") ||
                     (filter == 2 && lease == "None");
 
-                row.Visible = matchesSearch && matchesLease;
-            }
+                return matchesSearch && matchesLease;
+            });
         }
-
-        private static bool Has(DataGridViewRow row, string column, string text) =>
-            row.Cells[column].Value?.ToString()?.Contains(text, StringComparison.OrdinalIgnoreCase) == true;
 
         // ---------- lease badge ----------
         private void DgvResidents_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)

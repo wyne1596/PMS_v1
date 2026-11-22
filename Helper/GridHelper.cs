@@ -7,11 +7,13 @@ namespace PMS_v1.UserControls
     /// <summary>Small grid fixes shared by the module pages.</summary>
     public static class GridHelper
     {
-        private static readonly Color SelectionBack = Color.FromArgb(232, 243, 250);
+        // light blue for the chosen row; ModulePageLayout.ApplyStandardGridStyle uses the same color
+        internal static readonly Color SelectionBack = Color.FromArgb(232, 243, 250);
 
         /// <summary>
-        /// The pages paint selected rows white, so the chosen row is invisible.
-        /// Call this after the grid's styles are set to give it a light-blue highlight.
+        /// Gives a grid the light-blue chosen-row highlight.
+        /// ModulePageLayout.ApplyStandardGridStyle already does this, so a page that uses it
+        /// does not need to call this. Only a grid that styles itself needs it.
         /// </summary>
         public static void ShowSelection(DataGridView grid)
         {

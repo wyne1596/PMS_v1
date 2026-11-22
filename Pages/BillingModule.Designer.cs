@@ -15,6 +15,7 @@ namespace PMS_v1.Pages
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tlpMain = new TableLayoutPanel();
             pnlHeader = new Panel();
             lblTitle = new Label();
@@ -29,8 +30,15 @@ namespace PMS_v1.Pages
             txtSearch = new Krypton.Toolkit.KryptonTextBox();
             cmbFilter = new Krypton.Toolkit.KryptonComboBox();
             btnNewBill = new Krypton.Toolkit.KryptonButton();
+            btnRecordPayment = new Krypton.Toolkit.KryptonButton();
+            btnViewBill = new Krypton.Toolkit.KryptonButton();
+            btnEditBill = new Krypton.Toolkit.KryptonButton();
             roundedPanelTable = new RoundedPanel();
             dgvBills = new DataGridView();
+            ctxRow = new ContextMenuStrip(components);
+            mnuEdit = new ToolStripMenuItem();
+            mnuRecordPayment = new ToolStripMenuItem();
+            mnuPrintBill = new ToolStripMenuItem();
             tlpMain.SuspendLayout();
             pnlHeader.SuspendLayout();
             tlpMetrics.SuspendLayout();
@@ -38,6 +46,7 @@ namespace PMS_v1.Pages
             ((System.ComponentModel.ISupportInitialize)cmbFilter).BeginInit();
             roundedPanelTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBills).BeginInit();
+            ctxRow.SuspendLayout();
             SuspendLayout();
             // 
             // tlpMain
@@ -193,6 +202,9 @@ namespace PMS_v1.Pages
             pnlActions.Controls.Add(txtSearch);
             pnlActions.Controls.Add(cmbFilter);
             pnlActions.Controls.Add(btnNewBill);
+            pnlActions.Controls.Add(btnRecordPayment);
+            pnlActions.Controls.Add(btnViewBill);
+            pnlActions.Controls.Add(btnEditBill);
             pnlActions.Dock = DockStyle.Fill;
             pnlActions.Location = new Point(15, 232);
             pnlActions.Margin = new Padding(15, 3, 15, 3);
@@ -208,7 +220,7 @@ namespace PMS_v1.Pages
             txtSearch.Location = new Point(0, 23);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(663, 35);
+            txtSearch.Size = new Size(426, 35);
             txtSearch.StateCommon.Back.Color1 = Color.White;
             txtSearch.StateCommon.Border.Color1 = Color.FromArgb(222, 226, 230);
             txtSearch.StateCommon.Border.Rounding = 12F;
@@ -217,7 +229,7 @@ namespace PMS_v1.Pages
             // cmbFilter
             // 
             cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbFilter.Location = new Point(800, 23);
+            cmbFilter.Location = new Point(438, 23);
             cmbFilter.Margin = new Padding(3, 4, 3, 4);
             cmbFilter.Name = "cmbFilter";
             cmbFilter.Size = new Size(171, 34);
@@ -228,7 +240,7 @@ namespace PMS_v1.Pages
             // 
             // btnNewBill
             // 
-            btnNewBill.Location = new Point(994, 20);
+            btnNewBill.Location = new Point(1077, 20);
             btnNewBill.Margin = new Padding(3, 4, 3, 4);
             btnNewBill.Name = "btnNewBill";
             btnNewBill.Size = new Size(197, 53);
@@ -243,6 +255,60 @@ namespace PMS_v1.Pages
             btnNewBill.Values.DropDownArrowColor = Color.Empty;
             btnNewBill.Values.Text = "＋  New Bill";
             btnNewBill.Click += btnNewBill_Click;
+            // 
+            // btnRecordPayment
+            // 
+            btnRecordPayment.Location = new Point(885, 20);
+            btnRecordPayment.Margin = new Padding(3, 4, 3, 4);
+            btnRecordPayment.Name = "btnRecordPayment";
+            btnRecordPayment.Size = new Size(180, 53);
+            btnRecordPayment.StateCommon.Back.Color1 = Color.FromArgb(74, 151, 196);
+            btnRecordPayment.StateCommon.Back.Color2 = Color.FromArgb(52, 120, 165);
+            btnRecordPayment.StateCommon.Back.ColorAngle = 90F;
+            btnRecordPayment.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
+            btnRecordPayment.StateCommon.Border.Rounding = 12F;
+            btnRecordPayment.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnRecordPayment.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            btnRecordPayment.TabIndex = 4;
+            btnRecordPayment.Values.DropDownArrowColor = Color.Empty;
+            btnRecordPayment.Values.Text = "Record Payment";
+            btnRecordPayment.Click += btnRecordPayment_Click;
+            // 
+            // btnViewBill
+            // 
+            btnViewBill.Location = new Point(744, 20);
+            btnViewBill.Margin = new Padding(3, 4, 3, 4);
+            btnViewBill.Name = "btnViewBill";
+            btnViewBill.Size = new Size(130, 53);
+            btnViewBill.StateCommon.Back.Color1 = Color.FromArgb(74, 151, 196);
+            btnViewBill.StateCommon.Back.Color2 = Color.FromArgb(52, 120, 165);
+            btnViewBill.StateCommon.Back.ColorAngle = 90F;
+            btnViewBill.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
+            btnViewBill.StateCommon.Border.Rounding = 12F;
+            btnViewBill.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnViewBill.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            btnViewBill.TabIndex = 5;
+            btnViewBill.Values.DropDownArrowColor = Color.Empty;
+            btnViewBill.Values.Text = "View Bill";
+            btnViewBill.Click += btnPrintBill_Click;
+            // 
+            // btnEditBill
+            // 
+            btnEditBill.Location = new Point(621, 20);
+            btnEditBill.Margin = new Padding(3, 4, 3, 4);
+            btnEditBill.Name = "btnEditBill";
+            btnEditBill.Size = new Size(110, 53);
+            btnEditBill.StateCommon.Back.Color1 = Color.FromArgb(74, 151, 196);
+            btnEditBill.StateCommon.Back.Color2 = Color.FromArgb(52, 120, 165);
+            btnEditBill.StateCommon.Back.ColorAngle = 90F;
+            btnEditBill.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
+            btnEditBill.StateCommon.Border.Rounding = 12F;
+            btnEditBill.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnEditBill.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            btnEditBill.TabIndex = 3;
+            btnEditBill.Values.DropDownArrowColor = Color.Empty;
+            btnEditBill.Values.Text = "Edit";
+            btnEditBill.Click += btnEditBill_Click;
             // 
             // roundedPanelTable
             // 
@@ -267,6 +333,7 @@ namespace PMS_v1.Pages
             dgvBills.BorderStyle = BorderStyle.None;
             dgvBills.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvBills.ColumnHeadersHeight = 42;
+            dgvBills.ContextMenuStrip = ctxRow;
             dgvBills.Dock = DockStyle.Fill;
             dgvBills.GridColor = Color.FromArgb(233, 236, 239);
             dgvBills.Location = new Point(10, 13);
@@ -277,6 +344,35 @@ namespace PMS_v1.Pages
             dgvBills.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBills.Size = new Size(1264, 894);
             dgvBills.TabIndex = 0;
+            // 
+            // ctxRow
+            // 
+            ctxRow.Font = new Font("Century Gothic", 9F);
+            ctxRow.ImageScalingSize = new Size(20, 20);
+            ctxRow.Items.AddRange(new ToolStripItem[] { mnuEdit, mnuRecordPayment, mnuPrintBill });
+            ctxRow.Name = "ctxRow";
+            ctxRow.Size = new Size(201, 76);
+            // 
+            // mnuEdit
+            // 
+            mnuEdit.Name = "mnuEdit";
+            mnuEdit.Size = new Size(200, 24);
+            mnuEdit.Text = "Edit";
+            mnuEdit.Click += mnuEdit_Click;
+            // 
+            // mnuRecordPayment
+            // 
+            mnuRecordPayment.Name = "mnuRecordPayment";
+            mnuRecordPayment.Size = new Size(200, 24);
+            mnuRecordPayment.Text = "Record Payment";
+            mnuRecordPayment.Click += mnuRecordPayment_Click;
+            // 
+            // mnuPrintBill
+            // 
+            mnuPrintBill.Name = "mnuPrintBill";
+            mnuPrintBill.Size = new Size(200, 24);
+            mnuPrintBill.Text = "Print Bill";
+            mnuPrintBill.Click += mnuPrintBill_Click;
             // 
             // BillingModule
             // 
@@ -297,6 +393,7 @@ namespace PMS_v1.Pages
             ((System.ComponentModel.ISupportInitialize)cmbFilter).EndInit();
             roundedPanelTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvBills).EndInit();
+            ctxRow.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -316,7 +413,15 @@ namespace PMS_v1.Pages
         private Krypton.Toolkit.KryptonTextBox txtSearch;
         private Krypton.Toolkit.KryptonComboBox cmbFilter;
         private Krypton.Toolkit.KryptonButton btnNewBill;
+        private Krypton.Toolkit.KryptonButton btnEditBill;
+        private Krypton.Toolkit.KryptonButton btnRecordPayment;
+        private Krypton.Toolkit.KryptonButton btnView;
+        private ContextMenuStrip ctxRow;
+        private ToolStripMenuItem mnuEdit;
+        private ToolStripMenuItem mnuRecordPayment;
+        private ToolStripMenuItem mnuPrintBill;
         private PMS_v1.RoundedPanel roundedPanelTable;
         private DataGridView dgvBills;
+        private Krypton.Toolkit.KryptonButton btnViewBill;
     }
 }

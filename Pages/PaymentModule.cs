@@ -24,8 +24,8 @@ namespace PMS_v1.Pages
             dgvPayments.CellPainting += DgvPayments_CellPainting;
             txtSearch.TextChanged += (_, _) => ApplyPaymentFilters();
             cmbFilter.SelectedIndexChanged += (_, _) => ApplyPaymentFilters();
-            LoadStats();
-            LoadPayments();
+            //LoadStats();
+            //LoadPayments();
         }
 
         private void ConfigurePaymentGrid()
@@ -182,7 +182,7 @@ namespace PMS_v1.Pages
         }
 
         // Load statcards
-        private void LoadStats()
+        /*private void LoadStats()
         {
             using (var conn = Db.GetConnection())
             {
@@ -209,8 +209,8 @@ namespace PMS_v1.Pages
                 }
             }
         }
-
-        private void LoadPayments()
+*/
+/*        private void LoadPayments()
         {
             using (var conn = Db.GetConnection())
             {
@@ -253,7 +253,7 @@ namespace PMS_v1.Pages
 
             ApplyPaymentFilters();
         }
-
+*/
         private void btnNewTransaction_Click(object sender, EventArgs e)
         {
             using (var f = new RecordForm(FormMode.New, "Transaction", FormDefinitions.Payment()))

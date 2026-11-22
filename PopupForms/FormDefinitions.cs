@@ -45,8 +45,9 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
         }
 
         // ---------------- units ----------------
-        // Occupied is set by leases, so it is not a choice here.
-        public static FormField[] Unit()
+        // Occupied is set by leases, so it is not a choice. For a unit that is already
+        // occupied, pass occupied: true and the status shows as "Occupied", locked.
+        public static FormField[] Unit(bool occupied = false)
         {
             return new[]
             {
@@ -56,7 +57,8 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                     Options = UnitFurnishing, DefaultValue = "Unfurnished" },
                 new FormField { Key = "baseRent", Label = "Base rent", Type = FieldType.Money },
                 new FormField { Key = "status", Label = "Status", Type = FieldType.Dropdown,
-                    Options = new[] { "Vacant", "Under Maintenance" }, DefaultValue = "Vacant" }
+                    Options = occupied ? new[] { "Occupied" } : new[] { "Vacant", "Under Maintenance" },
+                    DefaultValue = occupied ? "Occupied" : "Vacant", ReadOnly = occupied }
             };
         }
 
@@ -93,12 +95,15 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
 
         // ---------------- billing ----------------
         // lease: fill from database with ACTIVE leases, text like "Maria Santos - Unit 101".
-        // Status is not asked: a new bill is always Unpaid, and payments change it later.
-        public static FormField[] Bill()
+        //        In Edit, fill it with just the bill's own lease (it is read-only).
+        // Status is not asked: it is worked out from the payments (v_billing view),
+        // so a new bill is always Unpaid. Edit adds "Cancel bill", the only way to cancel.
+        public static FormField[] Bill(FormMode mode = FormMode.New)
         {
-            return new[]
+            bool edit = mode == FormMode.Edit;
+            var list = new List<FormField>
             {
-                new FormField { Key = "lease", Label = "Tenant / unit", Type = FieldType.Dropdown },
+                new FormField { Key = "lease", Label = "Tenant / unit", Type = FieldType.Dropdown, ReadOnly = edit },
                 new FormField { Key = "billType", Label = "Bill type", Type = FieldType.Dropdown,
                     Options = new[] { "Rent", "Utilities", "Penalty", "Association Dues", "Other" },
                     DefaultValue = "Rent" },
@@ -108,6 +113,19 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                     DefaultValue = DateTime.Today.AddDays(10) },
                 new FormField { Key = "amount", Label = "Amount", Type = FieldType.Money }
             };
+
+            if (edit)
+            {
+                list.Add(new FormField
+                {
+                    Key = "cancelled",
+                    Label = "Cancel bill",
+                    Type = FieldType.Dropdown,
+                    Options = new[] { "No", "Yes" },
+                    DefaultValue = "No"
+                });
+            }
+            return list.ToArray();
         }
 
         public static string ValidateBill(Dictionary<string, object> v)
@@ -118,6 +136,11 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
         }
 
         // ---------------- payments ----------------
+        // Payments are no longer a table of their own: billing keeps a running AMOUNT_PAID
+        // plus the last payment's date, mode and reference no. Only money that actually
+        // arrived is recorded, so there is no status field.
+        // refNo: leave it blank and the page creates one (like BT-20261103-0001);
+        //        type it to keep an outside number, such as a bank or e-wallet transaction no.
         // bill: fill from database with unpaid / partially paid bills,
         //       text like "B-0007 - Maria Santos - P6,000.00 left".
         // Add a Validator in the page to stop an amount above the remaining balance.
@@ -132,10 +155,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                     DefaultValue = "Cash" },
                 new FormField { Key = "paymentDate", Label = "Payment date", Type = FieldType.Date,
                     DefaultValue = DateTime.Today },
-                new FormField { Key = "refNo", Label = "Reference no.", MaxLength = 45, Required = false },
-                new FormField { Key = "status", Label = "Status", Type = FieldType.Dropdown,
-                    Options = new[] { "Pending", "Completed", "Failed", "Refunded" },
-                    DefaultValue = "Completed" }
+                new FormField { Key = "refNo", Label = "Reference no.", MaxLength = 45, Required = false }
             };
         }
 

@@ -16,8 +16,8 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.ModulePageLayout.FitGridToRoundedPanel(roundedPanelTable, dgvRecent);
 
             ConfigureRecentGrid();
-            LoadStats();
-            LoadRecentTransactions();
+            //LoadStats();
+            //LoadRecentTransactions();
             lblGreeting.Text = $"Welcome, {Helper.Session.Role}";
         }
 
@@ -42,7 +42,7 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.StatusBadge.Attach(dgvRecent, "colStatus");
         }
 
-        private void LoadRecentTransactions()
+       /* private void LoadRecentTransactions()
         {
             using (var conn = Db.GetConnection())
             {
@@ -82,9 +82,9 @@ namespace PMS_v1.Pages
 
             dgvRecent.ClearSelection();   // read-only overview: don't start with the first row highlighted
         }
-
+*/
         // Load statcards
-        private void LoadStats()
+       /* private void LoadStats()
         {
             using (var conn = Db.GetConnection())
             {
@@ -117,6 +117,6 @@ namespace PMS_v1.Pages
                     }
                 }
             }
-        }
+        }*/
     }
 }

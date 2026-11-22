@@ -23,10 +23,10 @@ namespace pms_UI
                 var main = new Main();
                 Application.Run(main);
 
-                if (!main.LoggedOut) break;   // closed with X, so exit the app
-            }
-
-
+            if (!main.LoggedOut) break;   // closed with X, so exit the app
         }
+
+
     }
+}
 }

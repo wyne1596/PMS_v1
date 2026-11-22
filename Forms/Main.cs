@@ -126,6 +126,7 @@ namespace pms_UI
                 case "Leasing": ShowPage("Leasing", () => new LeasingModule()); break;
                 case "Billing": ShowPage("Billing", () => new BillingModule()); break;
                 case "Payment": ShowPage("Payment", () => new PaymentModule()); break;
+                case "Reports": ShowPage("Reports", () => new ReportsModule()); break;
                 case "Maintenance": ShowPage("Maintenance", () => new MaintenanceModule()); break;
                 case "Settings":
                     if (!PMS_v1.Helper.Session.CanOpenSettings)

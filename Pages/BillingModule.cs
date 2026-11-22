@@ -194,9 +194,9 @@ namespace PMS_v1.Pages
                             reader["UNIT_NO"].ToString(),
                             reader["BILL_TYPE"].ToString(),
                             Convert.ToDateTime(reader["DUE_DATE"]).ToString("MMM dd, yyyy"),
-                            Convert.ToDecimal(reader["AMOUNT"]).ToString("N2", CultureInfo.InvariantCulture),
-                            Convert.ToDecimal(reader["AMOUNT_PAID"]).ToString("N2", CultureInfo.InvariantCulture),
-                            Convert.ToDecimal(reader["BALANCE"]).ToString("N2", CultureInfo.InvariantCulture),
+                            "₱" + Convert.ToDecimal(reader["AMOUNT"]).ToString("N2", CultureInfo.InvariantCulture),
+                            "₱" + Convert.ToDecimal(reader["AMOUNT_PAID"]).ToString("N2", CultureInfo.InvariantCulture),
+                            "₱" + Convert.ToDecimal(reader["BALANCE"]).ToString("N2", CultureInfo.InvariantCulture),
                             mode.Length == 0 ? "-" : mode,
                             status == "Cancelled" ? "Canceled" : status);   // keep the page's "Canceled" spelling so the filter matches
 
@@ -305,7 +305,7 @@ namespace PMS_v1.Pages
             using (var conn = Db.GetConnection())
             using (var cmd = new MySqlCommand(
                 "SELECT LEASE_ID, BILL_TYPE, BILL_DATE, DUE_DATE, AMOUNT, AMOUNT_PAID, CANCELLED " +
-                "FROM billing WHERE BILLING_ID = @id", conn))
+                "FROM v_billing WHERE BILLING_ID = @id", conn))
             {
                 cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
@@ -363,6 +363,10 @@ namespace PMS_v1.Pages
                 {
                     MessageBox.Show(this, "Check the amount and the dates, then try again.");
                 }
+                catch (MySqlException ex) when (ex.Number == 1644)   // the database refused it (trigger); its message says why
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
             }
         }
 
@@ -378,17 +382,17 @@ namespace PMS_v1.Pages
             ["Debit Card"] = "DC"
         };
 
-        // The running number continues from the highest one already on a bill, so it keeps
-        // counting up across all modes and dates. (LAST_REF_NO is unique, so a clash is rejected.)
-        private static string NextReferenceNo(MySqlConnection conn, string mode, DateTime paymentDate)
+        // The running number continues from the highest one already on a payment, so it keeps
+        // counting up across all modes and dates. (REF_NO is unique, so a clash is rejected.)
+        private static string NextReferenceNo(MySqlConnection conn, MySqlTransaction tx, string mode, DateTime paymentDate)
         {
             ModeCode.TryGetValue(mode, out var code);
 
             int next;
             using (var cmd = new MySqlCommand(
-                @"SELECT COALESCE(MAX(CAST(SUBSTRING_INDEX(LAST_REF_NO, '-', -1) AS UNSIGNED)), 0) + 1
-                  FROM billing
-                  WHERE LAST_REF_NO REGEXP '^[A-Z]{2}-[0-9]{8}-[0-9]+$'", conn))
+                @"SELECT COALESCE(MAX(CAST(SUBSTRING_INDEX(REF_NO, '-', -1) AS UNSIGNED)), 0) + 1
+                  FROM payment
+                  WHERE REF_NO REGEXP '^[A-Z]{2}-[0-9]{8}-[0-9]+$'", conn, tx))
             {
                 next = Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -399,7 +403,8 @@ namespace PMS_v1.Pages
         }
 
         // ---------- RECORD PAYMENT ----------
-        // Payments are added to the bill's running total (AMOUNT_PAID); there is no payment table.
+        // Each payment is saved as its own row in the payment table. The bill's paid amount,
+        // balance and status are worked out from those rows by the v_billing view.
         private void mnuRecordPayment_Click(object? sender, EventArgs e) => btnRecordPayment_Click(sender, e);
 
         private void btnRecordPayment_Click(object? sender, EventArgs e)
@@ -411,8 +416,8 @@ namespace PMS_v1.Pages
             using (var cmd = new MySqlCommand(
                 @"SELECT b.BILLING_ID,
                          CONCAT(r.FIRST_NAME, ' ', r.LAST_NAME) AS Tenant,
-                         (b.AMOUNT - b.AMOUNT_PAID) AS Balance
-                  FROM billing b
+                         b.BALANCE
+                  FROM v_billing b
                   JOIN lease l ON l.LEASE_ID = b.LEASE_ID
                   JOIN resident r ON r.RESIDENT_ID = l.RESIDENT_ID
                   WHERE b.CANCELLED = 0 AND b.AMOUNT_PAID < b.AMOUNT
@@ -474,40 +479,60 @@ namespace PMS_v1.Pages
                         // same number; the unique key rejects the second save, so draw a fresh one and retry.
                         for (int attempt = 1; ; attempt++)
                         {
-                            if (typedRef == null)
-                                refNo = NextReferenceNo(conn, (string)v["mode"], (DateTime)v["paymentDate"]);
-                            try
+                            using (var tx = conn.BeginTransaction())
                             {
-                                using (var cmd = new MySqlCommand(
-                                    "UPDATE billing SET AMOUNT_PAID = AMOUNT_PAID + @amount, LAST_PAYMENT_DATE = @payDate, " +
-                                    "LAST_PAYMENT_MODE = @mode, LAST_REF_NO = @refNo " +
-                                    "WHERE BILLING_ID = @id AND CANCELLED = 0", conn))
+                                try
                                 {
-                                    cmd.Parameters.AddWithValue("@amount", v["amount"]);
-                                    cmd.Parameters.AddWithValue("@payDate", v["paymentDate"]);
-                                    cmd.Parameters.AddWithValue("@mode", v["mode"]);
-                                    cmd.Parameters.AddWithValue("@refNo", refNo);
-                                    cmd.Parameters.AddWithValue("@id", v["bill"]);
-                                    cmd.ExecuteNonQuery();
+                                    // Lock the bill first, so two people paying it at once are handled one after the other.
+                                    using (var lockCmd = new MySqlCommand(
+                                        "SELECT BILLING_ID FROM billing WHERE BILLING_ID = @id FOR UPDATE", conn, tx))
+                                    {
+                                        lockCmd.Parameters.AddWithValue("@id", v["bill"]);
+                                        lockCmd.ExecuteScalar();
+                                    }
+
+                                    if (typedRef == null)
+                                        refNo = NextReferenceNo(conn, tx, (string)v["mode"], (DateTime)v["paymentDate"]);
+
+                                    using (var cmd = new MySqlCommand(
+                                        "INSERT INTO payment (BILLING_ID, AMOUNT, PAYMENT_DATE, PAYMENT_MODE, REF_NO, PERSONNEL_ID) " +
+                                        "VALUES (@id, @amount, @payDate, @mode, @refNo, @personnel)", conn, tx))
+                                    {
+                                        cmd.Parameters.AddWithValue("@id", v["bill"]);
+                                        cmd.Parameters.AddWithValue("@amount", v["amount"]);
+                                        cmd.Parameters.AddWithValue("@payDate", v["paymentDate"]);
+                                        cmd.Parameters.AddWithValue("@mode", v["mode"]);
+                                        cmd.Parameters.AddWithValue("@refNo", refNo);
+                                        cmd.Parameters.AddWithValue("@personnel",
+                                            PMS_v1.Helper.Session.PersonnelId > 0
+                                                ? PMS_v1.Helper.Session.PersonnelId
+                                                : (object)DBNull.Value);
+                                        cmd.ExecuteNonQuery();
+                                    }
+
+                                    tx.Commit();
+                                    break;
                                 }
-                                break;
+                                catch (MySqlException ex) when (ex.Number == 1062 && typedRef == null && attempt < 3)
+                                {
+                                    tx.Rollback();   // that number was just taken; the loop draws a fresh one
+                                }
                             }
-                            catch (MySqlException ex) when (ex.Number == 1062 && typedRef == null && attempt < 3) { }
                         }
                     }
                     Refresh_();
                     MessageBox.Show(this, "Payment recorded.\r\nReference no.: " + refNo, "Payment saved",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (MySqlException ex) when (ex.Number == 1062)   // LAST_REF_NO is unique
+                catch (MySqlException ex) when (ex.Number == 1062)   // REF_NO is unique
                 {
                     MessageBox.Show(this, typedRef == null
                         ? "Couldn't create a reference number for this payment. Please try again."
                         : "That reference number has already been used.");
                 }
-                catch (MySqlException ex) when (ex.Number == 3819)   // payment would exceed the bill
+                catch (MySqlException ex) when (ex.Number == 1644)   // the database refused it (trigger): more than the balance, or a canceled bill
                 {
-                    MessageBox.Show(this, "That payment is more than what's left on the bill.");
+                    MessageBox.Show(this, ex.Message);
                 }
             }
         }
@@ -527,4 +552,4 @@ namespace PMS_v1.Pages
             }
         }
     }
-}
+}   

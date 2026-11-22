@@ -27,5 +27,17 @@ namespace PMS_v1
         public static List<ComboItem> Residents() => Load(
             "SELECT RESIDENT_ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) FROM resident " +
             "ORDER BY LAST_NAME, FIRST_NAME");
+
+        // every unit, for the maintenance form (the form adds its own "Common area" choice)
+        public static List<ComboItem> AllUnits() => Load(
+            "SELECT UNIT_ID, CONCAT('Unit ', UNIT_NO) FROM units " +
+            "ORDER BY FLOOR_NO, UNIT_NO");
+
+        // active personnel for "Assigned to"; includeId keeps the person already assigned in the list even if no longer active
+        public static List<ComboItem> Technicians(int? includeId = null) => Load(
+            "SELECT PERSONNEL_ID, CONCAT(FIRST_NAME, ' ', LAST_NAME) FROM personnel " +
+            "WHERE EMPLOYMENT_STATUS = 'Active'" +
+            (includeId.HasValue ? " OR PERSONNEL_ID = " + includeId.Value : "") +
+            " ORDER BY LAST_NAME, FIRST_NAME");
     }
 }

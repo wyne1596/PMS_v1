@@ -136,9 +136,9 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
         }
 
         // ---------------- payments ----------------
-        // Payments are no longer a table of their own: billing keeps a running AMOUNT_PAID
-        // plus the last payment's date, mode and reference no. Only money that actually
-        // arrived is recorded, so there is no status field.
+        // Each payment is a row in the payment table; the bill's paid amount, balance and status
+        // come from those rows (v_billing view). Only money that actually arrived is recorded,
+        // so there is no status field (a returned payment is marked Refunded in the database).
         // refNo: leave it blank and the page creates one (like BT-20261103-0001);
         //        type it to keep an outside number, such as a bank or e-wallet transaction no.
         // bill: fill from database with unpaid / partially paid bills,
@@ -170,6 +170,8 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                 new FormField { Key = "unit", Label = "Unit", Type = FieldType.Dropdown },
                 new FormField { Key = "resident", Label = "Reported by", Type = FieldType.Dropdown, Required = false },
                 new FormField { Key = "problem", Label = "Problem", Type = FieldType.LongText, MaxLength = 255 },
+                new FormField { Key = "maintenanceType", Label = "Type", Type = FieldType.Dropdown,
+                    Options = new[] { "Plumbing", "Electrical", "Appliance", "Structural", "Other" } },
                 new FormField { Key = "priority", Label = "Priority", Type = FieldType.Dropdown,
                     Options = new[] { "Low", "Medium", "High", "Urgent" }, DefaultValue = "Medium" },
                 new FormField { Key = "dateReported", Label = "Date reported", Type = FieldType.Date,

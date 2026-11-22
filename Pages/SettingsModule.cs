@@ -250,6 +250,7 @@ namespace PMS_v1.Pages
             cmbEmploymentStatus.SelectedItem = "Active";
             btnSaveEmployee.Values.Text = "Add Employee";
             tlpEmployee.Enabled = true;                    // admins and managers can both add
+            SetEmployeeFieldsReadOnly(false);
             btnSaveEmployee.Enabled = true;
             flpEmployeeButtons.Enabled = true;
 
@@ -293,9 +294,11 @@ namespace PMS_v1.Pages
                     cmbEmploymentStatus.SelectedItem = Convert.ToString(r["EMPLOYMENT_STATUS"]);
                     btnSaveEmployee.Values.Text = "Save Changes";
                     btnGenerate.Enabled = false;
-                    tlpEmployee.Enabled = Session.IsAdmin;         // managers can view existing employees, not edit them
-                    flpEmployeeButtons.Enabled = true;             // keeps "New" usable; Save is blocked below for managers
-                    btnSaveEmployee.Enabled = Session.IsAdmin;
+                    tlpEmployee.Enabled = true;
+                    SetEmployeeFieldsReadOnly(!Session.IsAdmin);   // managers can only change the employment status
+                    flpEmployeeButtons.Enabled = true;
+                    btnSaveEmployee.Enabled = true;
+                    if (!Session.IsAdmin) btnSaveEmployee.Values.Text = "Update Status";
 
                     ShowAccount(r["USER_ID"] is DBNull ? null : new AccountInfo
                     {
@@ -307,6 +310,16 @@ namespace PMS_v1.Pages
                     });
                 }
             }
+        }
+
+        // everything except Employment Status becomes read-only (used for managers on existing employees)
+        private void SetEmployeeFieldsReadOnly(bool readOnly)
+        {
+            txtFirstName.ReadOnly = readOnly;
+            txtLastName.ReadOnly = readOnly;
+            txtPosition.ReadOnly = readOnly;
+            txtContact.ReadOnly = readOnly;
+            txtEmail.ReadOnly = readOnly;
         }
 
         private sealed class AccountInfo
@@ -383,7 +396,12 @@ namespace PMS_v1.Pages
             string email = txtEmail.Text.Trim();
             string status = cmbEmploymentStatus.Text;
 
-            if (_personnelId != null && !Session.IsAdmin) return;   // managers can add, not edit
+            // managers can add employees and change the employment status of existing ones, nothing else
+            if (_personnelId != null && !Session.IsAdmin)
+            {
+                SaveStatusOnly(status);
+                return;
+            }
 
             string? error =
                 first.Length == 0 || last.Length == 0 ? "First name and last name are required." :
@@ -447,6 +465,35 @@ namespace PMS_v1.Pages
             }
 
             MessageBox.Show(this, "Couldn't generate a free employee number. Please try again.");
+        }
+
+        private void SaveStatusOnly(string status)
+        {
+            if (_personnelId is not int id) return;
+            if (Array.IndexOf(EmploymentStatuses, status) < 0)
+            {
+                MessageBox.Show(this, "Choose an employment status.", "Check the form");
+                return;
+            }
+
+            try
+            {
+                using (var conn = Db.GetConnection())
+                using (var cmd = new MySqlCommand(
+                    "UPDATE personnel SET EMPLOYMENT_STATUS=@status WHERE PERSONNEL_ID=@id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                RefreshGrids();
+                LoadEditor(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
         }
 
         // ---------- save account ----------

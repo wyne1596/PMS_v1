@@ -60,7 +60,12 @@ namespace PMS_v1.UserControls
                 ["Inactive"] = Gray,
                 ["Resigned"] = Gray,
                 // money going back
-                ["Refunded"] = Purple
+                ["Refunded"] = Purple,
+                // maintenance priority
+                ["Low"] = Green,
+                ["Medium"] = Amber,
+                ["High"] = Orange,
+                ["Urgent"] = Red
             };
 
         public static (Color Back, Color Fore) ColorsFor(string status) =>

@@ -65,7 +65,8 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
         // ---------------- lease ----------------
         // unit: fill from database with VACANT units only; resident: fill from database.
         // Pre-fill monthlyRent from the chosen unit's base rent in the page.
-        public static FormField[] Lease(FormMode mode = FormMode.New)
+        // startLocked (Edit only): the start date can change only while the lease is still Pending
+        public static FormField[] Lease(FormMode mode = FormMode.New, bool startLocked = false)
         {
             bool edit = mode == FormMode.Edit;
             return new[]
@@ -73,7 +74,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                 new FormField { Key = "resident", Label = "Tenant", Type = FieldType.Dropdown, ReadOnly = edit },
                 new FormField { Key = "unit", Label = "Unit", Type = FieldType.Dropdown, ReadOnly = edit },
                 new FormField { Key = "startDate", Label = "Start date", Type = FieldType.Date,
-                    DefaultValue = DateTime.Today },
+                    DefaultValue = DateTime.Today, ReadOnly = startLocked },
                 new FormField { Key = "endDate", Label = "End date", Type = FieldType.Date,
                     DefaultValue = DateTime.Today.AddYears(1) },
                 new FormField { Key = "monthlyRent", Label = "Monthly rent", Type = FieldType.Money },

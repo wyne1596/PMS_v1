@@ -205,7 +205,7 @@ namespace PMS_v1.Pages
             // cmbFilter
             // 
             cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbFilter.Location = new Point(800, 23);
+            cmbFilter.Location = new Point(686, 24);
             cmbFilter.Margin = new Padding(3, 4, 3, 4);
             cmbFilter.Name = "cmbFilter";
             cmbFilter.Size = new Size(171, 34);
@@ -216,7 +216,7 @@ namespace PMS_v1.Pages
             // 
             // btnNewRequest
             // 
-            btnNewRequest.Location = new Point(994, 20);
+            btnNewRequest.Location = new Point(1045, 23);
             btnNewRequest.Margin = new Padding(3, 4, 3, 4);
             btnNewRequest.Name = "btnNewRequest";
             btnNewRequest.Size = new Size(217, 53);
@@ -234,7 +234,7 @@ namespace PMS_v1.Pages
             // 
             // btnEditRequest
             // 
-            btnEditRequest.Location = new Point(846, 20);
+            btnEditRequest.Location = new Point(879, 23);
             btnEditRequest.Margin = new Padding(3, 4, 3, 4);
             btnEditRequest.Name = "btnEditRequest";
             btnEditRequest.Size = new Size(126, 53);

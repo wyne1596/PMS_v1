@@ -17,6 +17,7 @@
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tlpMainSkeleton = new TableLayoutPanel();
             pnlHeaderBlock = new Panel();
             lblModuleTitle = new Label();
@@ -29,9 +30,14 @@
             pnlCommandActionRow = new Panel();
             txtSearchInput = new Krypton.Toolkit.KryptonTextBox();
             cmbFilterDropdown = new Krypton.Toolkit.KryptonComboBox();
+            btnViewLease = new Krypton.Toolkit.KryptonButton();
+            btnEditLease = new Krypton.Toolkit.KryptonButton();
             btnNewLease = new Krypton.Toolkit.KryptonButton();
             roundedPanelTable = new RoundedPanel();
             dgvLeases = new DataGridView();
+            ctxRow = new ContextMenuStrip(components);
+            mnuView = new ToolStripMenuItem();
+            mnuEdit = new ToolStripMenuItem();
             tlpMainSkeleton.SuspendLayout();
             pnlHeaderBlock.SuspendLayout();
             tlpMetricsRow.SuspendLayout();
@@ -39,6 +45,7 @@
             ((System.ComponentModel.ISupportInitialize)cmbFilterDropdown).BeginInit();
             roundedPanelTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvLeases).BeginInit();
+            ctxRow.SuspendLayout();
             SuspendLayout();
             // 
             // tlpMainSkeleton
@@ -174,6 +181,8 @@
             // 
             pnlCommandActionRow.Controls.Add(txtSearchInput);
             pnlCommandActionRow.Controls.Add(cmbFilterDropdown);
+            pnlCommandActionRow.Controls.Add(btnViewLease);
+            pnlCommandActionRow.Controls.Add(btnEditLease);
             pnlCommandActionRow.Controls.Add(btnNewLease);
             pnlCommandActionRow.Dock = DockStyle.Fill;
             pnlCommandActionRow.Location = new Point(15, 232);
@@ -208,6 +217,44 @@
             cmbFilterDropdown.StateCommon.ComboBox.Border.Rounding = 12F;
             cmbFilterDropdown.TabIndex = 1;
             cmbFilterDropdown.Text = "Filter";
+            // 
+            // btnViewLease
+            // 
+            btnViewLease.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnViewLease.Location = new Point(940, 16);
+            btnViewLease.Margin = new Padding(3, 4, 3, 4);
+            btnViewLease.Name = "btnViewLease";
+            btnViewLease.Size = new Size(130, 53);
+            btnViewLease.StateCommon.Back.Color1 = Color.FromArgb(74, 151, 196);
+            btnViewLease.StateCommon.Back.Color2 = Color.FromArgb(52, 120, 165);
+            btnViewLease.StateCommon.Back.ColorAngle = 90F;
+            btnViewLease.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
+            btnViewLease.StateCommon.Border.Rounding = 12F;
+            btnViewLease.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnViewLease.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            btnViewLease.TabIndex = 3;
+            btnViewLease.Values.DropDownArrowColor = Color.Empty;
+            btnViewLease.Values.Text = "View Lease";
+            btnViewLease.Click += btnViewLease_Click;
+            // 
+            // btnEditLease
+            // 
+            btnEditLease.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnEditLease.Location = new Point(800, 16);
+            btnEditLease.Margin = new Padding(3, 4, 3, 4);
+            btnEditLease.Name = "btnEditLease";
+            btnEditLease.Size = new Size(130, 53);
+            btnEditLease.StateCommon.Back.Color1 = Color.FromArgb(74, 151, 196);
+            btnEditLease.StateCommon.Back.Color2 = Color.FromArgb(52, 120, 165);
+            btnEditLease.StateCommon.Back.ColorAngle = 90F;
+            btnEditLease.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Linear;
+            btnEditLease.StateCommon.Border.Rounding = 12F;
+            btnEditLease.StateCommon.Content.ShortText.Color1 = Color.White;
+            btnEditLease.StateCommon.Content.ShortText.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
+            btnEditLease.TabIndex = 4;
+            btnEditLease.Values.DropDownArrowColor = Color.Empty;
+            btnEditLease.Values.Text = "Edit Lease";
+            btnEditLease.Click += btnEditLease_Click;
             // 
             // btnNewLease
             // 
@@ -251,6 +298,7 @@
             dgvLeases.BorderStyle = BorderStyle.None;
             dgvLeases.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvLeases.ColumnHeadersHeight = 42;
+            dgvLeases.ContextMenuStrip = ctxRow;
             dgvLeases.Dock = DockStyle.Fill;
             dgvLeases.GridColor = Color.FromArgb(233, 236, 239);
             dgvLeases.Location = new Point(10, 13);
@@ -261,6 +309,28 @@
             dgvLeases.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvLeases.Size = new Size(1264, 894);
             dgvLeases.TabIndex = 3;
+            // 
+            // ctxRow
+            // 
+            ctxRow.Font = new Font("Century Gothic", 9F);
+            ctxRow.ImageScalingSize = new Size(20, 20);
+            ctxRow.Items.AddRange(new ToolStripItem[] { mnuView, mnuEdit });
+            ctxRow.Name = "ctxRow";
+            ctxRow.Size = new Size(164, 52);
+            // 
+            // mnuView
+            // 
+            mnuView.Name = "mnuView";
+            mnuView.Size = new Size(163, 24);
+            mnuView.Text = "View Lease";
+            mnuView.Click += mnuView_Click;
+            // 
+            // mnuEdit
+            // 
+            mnuEdit.Name = "mnuEdit";
+            mnuEdit.Size = new Size(163, 24);
+            mnuEdit.Text = "Edit Lease";
+            mnuEdit.Click += mnuEdit_Click;
             // 
             // LeasingModule
             // 
@@ -281,6 +351,7 @@
             ((System.ComponentModel.ISupportInitialize)cmbFilterDropdown).EndInit();
             roundedPanelTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvLeases).EndInit();
+            ctxRow.ResumeLayout(false);
             ResumeLayout(false);
         }
         #endregion
@@ -289,7 +360,6 @@
         private System.Windows.Forms.Label lblBreadcrumb;
         private System.Windows.Forms.Label lblModuleTitle;
         private System.Windows.Forms.TableLayoutPanel tlpMetricsRow;
-        // 🚀 Cleaned-up 4 Statcard Fields
         private PMS_v1.UserControls.Statcard statCardActive;
         private PMS_v1.UserControls.Statcard statCardPending;
         private PMS_v1.UserControls.Statcard statCardExpired;
@@ -298,7 +368,12 @@
         private Krypton.Toolkit.KryptonTextBox txtSearchInput;
         private Krypton.Toolkit.KryptonComboBox cmbFilterDropdown;
         private Krypton.Toolkit.KryptonButton btnNewLease;
+        private Krypton.Toolkit.KryptonButton btnViewLease;
+        private Krypton.Toolkit.KryptonButton btnEditLease;
         private PMS_v1.RoundedPanel roundedPanelTable;
         private System.Windows.Forms.DataGridView dgvLeases;
+        private ContextMenuStrip ctxRow;
+        private ToolStripMenuItem mnuView;
+        private ToolStripMenuItem mnuEdit;
     }
 }

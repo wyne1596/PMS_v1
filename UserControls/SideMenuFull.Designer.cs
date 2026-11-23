@@ -36,7 +36,6 @@
             pnlMenu = new Panel();
             btnReports = new Button();
             btnMaintenance = new Button();
-            btnPayment = new Button();
             btnBilling = new Button();
             btnLeasing = new Button();
             btnUnits = new Button();
@@ -122,7 +121,6 @@
             pnlMenu.BackColor = Color.Transparent;
             pnlMenu.Controls.Add(btnReports);
             pnlMenu.Controls.Add(btnMaintenance);
-            pnlMenu.Controls.Add(btnPayment);
             pnlMenu.Controls.Add(btnBilling);
             pnlMenu.Controls.Add(btnLeasing);
             pnlMenu.Controls.Add(btnResidents);
@@ -172,25 +170,6 @@
             btnMaintenance.TextAlign = ContentAlignment.MiddleLeft;
             btnMaintenance.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMaintenance.UseVisualStyleBackColor = true;
-            // 
-            // btnPayment
-            // 
-            btnPayment.Dock = DockStyle.Top;
-            btnPayment.FlatAppearance.BorderSize = 0;
-            btnPayment.FlatStyle = FlatStyle.Flat;
-            btnPayment.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPayment.ForeColor = Color.White;
-            btnPayment.Image = PMS_v1.Resources.Resources.icoPayment;
-            btnPayment.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPayment.Location = new Point(0, 420);
-            btnPayment.Name = "btnPayment";
-            btnPayment.Padding = new Padding(51, 0, 0, 0);
-            btnPayment.Size = new Size(290, 80);
-            btnPayment.TabIndex = 4;
-            btnPayment.Text = "  Payment";
-            btnPayment.TextAlign = ContentAlignment.MiddleLeft;
-            btnPayment.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnPayment.UseVisualStyleBackColor = true;
             // 
             // btnBilling
             // 
@@ -317,7 +296,6 @@
         private Button btnLeasing;
         private Button btnReports;
         private Button btnMaintenance;
-        private Button btnPayment;
         private Button btnLogout;
         private Button btnSettings;
         private Button btnResidents;

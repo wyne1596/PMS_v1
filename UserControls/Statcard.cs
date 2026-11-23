@@ -14,6 +14,17 @@ namespace PMS_v1.UserControls
         public Statcard()
         {
             InitializeComponent();
+            ForwardChildClicks(this);
+        }
+
+        // A click on the icon, number or caption counts as a click on the card itself.
+        private void ForwardChildClicks(Control parent)
+        {
+            foreach (Control child in parent.Controls)
+            {
+                child.Click += (_, e) => OnClick(e);
+                ForwardChildClicks(child);
+            }
         }
 
         [Category("Custom Properties")]

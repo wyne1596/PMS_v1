@@ -34,9 +34,9 @@
             pnlMenu = new Panel();
             btnReports = new Button();
             btnMaintenance = new Button();
-            btnPayment = new Button();
             btnBilling = new Button();
             btnLeasing = new Button();
+            btnResidents = new Button();
             btnUnits = new Button();
             btnDashboard = new Button();
             pnlDivider = new Panel();
@@ -51,10 +51,9 @@
             pnlFoot.Controls.Add(btnLogout);
             pnlFoot.Controls.Add(btnSettings);
             pnlFoot.Dock = DockStyle.Bottom;
-            pnlFoot.Location = new Point(0, 629);
-            pnlFoot.Margin = new Padding(3, 2, 3, 2);
+            pnlFoot.Location = new Point(0, 838);
             pnlFoot.Name = "pnlFoot";
-            pnlFoot.Size = new Size(83, 140);
+            pnlFoot.Size = new Size(95, 187);
             pnlFoot.TabIndex = 6;
             // 
             // btnLogout
@@ -64,10 +63,10 @@
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(0, 60);
-            btnLogout.Margin = new Padding(3, 2, 3, 2);
+            btnLogout.Image = Resources.Resources.icoLogout;
+            btnLogout.Location = new Point(0, 80);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(83, 60);
+            btnLogout.Size = new Size(95, 80);
             btnLogout.TabIndex = 8;
             btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLogout.UseVisualStyleBackColor = true;
@@ -81,9 +80,8 @@
             btnSettings.ForeColor = Color.White;
             btnSettings.Image = Resources.Resources.icoSettings;
             btnSettings.Location = new Point(0, 0);
-            btnSettings.Margin = new Padding(3, 2, 3, 2);
             btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(83, 60);
+            btnSettings.Size = new Size(95, 80);
             btnSettings.TabIndex = 7;
             btnSettings.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSettings.UseVisualStyleBackColor = true;
@@ -93,17 +91,16 @@
             pnlMenu.BackColor = Color.Transparent;
             pnlMenu.Controls.Add(btnReports);
             pnlMenu.Controls.Add(btnMaintenance);
-            pnlMenu.Controls.Add(btnPayment);
             pnlMenu.Controls.Add(btnBilling);
             pnlMenu.Controls.Add(btnLeasing);
+            pnlMenu.Controls.Add(btnResidents);
             pnlMenu.Controls.Add(btnUnits);
             pnlMenu.Controls.Add(btnDashboard);
             pnlMenu.Dock = DockStyle.Fill;
-            pnlMenu.Location = new Point(0, 112);
-            pnlMenu.Margin = new Padding(3, 2, 3, 2);
+            pnlMenu.Location = new Point(0, 149);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Padding = new Padding(0, 15, 0, 0);
-            pnlMenu.Size = new Size(83, 517);
+            pnlMenu.Padding = new Padding(0, 20, 0, 0);
+            pnlMenu.Size = new Size(95, 689);
             pnlMenu.TabIndex = 7;
             // 
             // btnReports
@@ -114,10 +111,9 @@
             btnReports.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnReports.ForeColor = Color.White;
             btnReports.Image = Resources.Resources.Reports;
-            btnReports.Location = new Point(0, 375);
-            btnReports.Margin = new Padding(3, 2, 3, 2);
+            btnReports.Location = new Point(0, 500);
             btnReports.Name = "btnReports";
-            btnReports.Size = new Size(83, 60);
+            btnReports.Size = new Size(95, 80);
             btnReports.TabIndex = 6;
             btnReports.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnReports.UseVisualStyleBackColor = true;
@@ -130,29 +126,12 @@
             btnMaintenance.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnMaintenance.ForeColor = Color.White;
             btnMaintenance.Image = Resources.Resources.icoMaintenance;
-            btnMaintenance.Location = new Point(0, 315);
-            btnMaintenance.Margin = new Padding(3, 2, 3, 2);
+            btnMaintenance.Location = new Point(0, 420);
             btnMaintenance.Name = "btnMaintenance";
-            btnMaintenance.Size = new Size(83, 60);
+            btnMaintenance.Size = new Size(95, 80);
             btnMaintenance.TabIndex = 5;
             btnMaintenance.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMaintenance.UseVisualStyleBackColor = true;
-            // 
-            // btnPayment
-            // 
-            btnPayment.Dock = DockStyle.Top;
-            btnPayment.FlatAppearance.BorderSize = 0;
-            btnPayment.FlatStyle = FlatStyle.Flat;
-            btnPayment.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPayment.ForeColor = Color.White;
-            btnPayment.Image = Resources.Resources.icoPayment;
-            btnPayment.Location = new Point(0, 255);
-            btnPayment.Margin = new Padding(3, 2, 3, 2);
-            btnPayment.Name = "btnPayment";
-            btnPayment.Size = new Size(83, 60);
-            btnPayment.TabIndex = 4;
-            btnPayment.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnPayment.UseVisualStyleBackColor = true;
             // 
             // btnBilling
             // 
@@ -162,10 +141,9 @@
             btnBilling.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnBilling.ForeColor = Color.White;
             btnBilling.Image = Resources.Resources.icoBill;
-            btnBilling.Location = new Point(0, 195);
-            btnBilling.Margin = new Padding(3, 2, 3, 2);
+            btnBilling.Location = new Point(0, 340);
             btnBilling.Name = "btnBilling";
-            btnBilling.Size = new Size(83, 60);
+            btnBilling.Size = new Size(95, 80);
             btnBilling.TabIndex = 3;
             btnBilling.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBilling.UseVisualStyleBackColor = true;
@@ -178,13 +156,27 @@
             btnLeasing.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLeasing.ForeColor = Color.White;
             btnLeasing.Image = Resources.Resources.icoLease;
-            btnLeasing.Location = new Point(0, 135);
-            btnLeasing.Margin = new Padding(3, 2, 3, 2);
+            btnLeasing.Location = new Point(0, 260);
             btnLeasing.Name = "btnLeasing";
-            btnLeasing.Size = new Size(83, 60);
+            btnLeasing.Size = new Size(95, 80);
             btnLeasing.TabIndex = 2;
             btnLeasing.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLeasing.UseVisualStyleBackColor = true;
+            // 
+            // btnResidents
+            // 
+            btnResidents.Dock = DockStyle.Top;
+            btnResidents.FlatAppearance.BorderSize = 0;
+            btnResidents.FlatStyle = FlatStyle.Flat;
+            btnResidents.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnResidents.ForeColor = Color.White;
+            btnResidents.Image = Resources.Resources.Property;
+            btnResidents.Location = new Point(0, 180);
+            btnResidents.Name = "btnResidents";
+            btnResidents.Size = new Size(95, 80);
+            btnResidents.TabIndex = 7;
+            btnResidents.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnResidents.UseVisualStyleBackColor = true;
             // 
             // btnUnits
             // 
@@ -194,10 +186,9 @@
             btnUnits.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnUnits.ForeColor = Color.White;
             btnUnits.Image = Resources.Resources.Property;
-            btnUnits.Location = new Point(0, 75);
-            btnUnits.Margin = new Padding(3, 2, 3, 2);
+            btnUnits.Location = new Point(0, 100);
             btnUnits.Name = "btnUnits";
-            btnUnits.Size = new Size(83, 60);
+            btnUnits.Size = new Size(95, 80);
             btnUnits.TabIndex = 1;
             btnUnits.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnUnits.UseVisualStyleBackColor = true;
@@ -210,10 +201,9 @@
             btnDashboard.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = Color.White;
             btnDashboard.Image = Resources.Resources.icoDashboard;
-            btnDashboard.Location = new Point(0, 15);
-            btnDashboard.Margin = new Padding(3, 2, 3, 2);
+            btnDashboard.Location = new Point(0, 20);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(83, 60);
+            btnDashboard.Size = new Size(95, 80);
             btnDashboard.TabIndex = 0;
             btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDashboard.UseVisualStyleBackColor = true;
@@ -224,10 +214,9 @@
             pnlDivider.BackgroundImage = Resources.Resources.navDividerCompact;
             pnlDivider.BackgroundImageLayout = ImageLayout.Center;
             pnlDivider.Dock = DockStyle.Top;
-            pnlDivider.Location = new Point(0, 82);
-            pnlDivider.Margin = new Padding(3, 2, 3, 2);
+            pnlDivider.Location = new Point(0, 109);
             pnlDivider.Name = "pnlDivider";
-            pnlDivider.Size = new Size(83, 30);
+            pnlDivider.Size = new Size(95, 40);
             pnlDivider.TabIndex = 5;
             // 
             // pnlHead
@@ -237,14 +226,13 @@
             pnlHead.BackgroundImageLayout = ImageLayout.Center;
             pnlHead.Dock = DockStyle.Top;
             pnlHead.Location = new Point(0, 0);
-            pnlHead.Margin = new Padding(3, 2, 3, 2);
             pnlHead.Name = "pnlHead";
-            pnlHead.Size = new Size(83, 82);
+            pnlHead.Size = new Size(95, 109);
             pnlHead.TabIndex = 4;
             // 
             // SideMenuCompact
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SteelBlue;
             BackgroundImageLayout = ImageLayout.Stretch;
@@ -253,9 +241,8 @@
             Controls.Add(pnlDivider);
             Controls.Add(pnlHead);
             DoubleBuffered = true;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "SideMenuCompact";
-            Size = new Size(83, 769);
+            Size = new Size(95, 1025);
             pnlFoot.ResumeLayout(false);
             pnlMenu.ResumeLayout(false);
             ResumeLayout(false);
@@ -268,7 +255,7 @@
         private Panel pnlMenu;
         private Button btnReports;
         private Button btnMaintenance;
-        private Button btnPayment;
+        private Button btnResidents;
         private Button btnBilling;
         private Button btnLeasing;
         private Button btnUnits;

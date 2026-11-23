@@ -13,9 +13,9 @@ using System.Windows.Forms;
 namespace PMS_v1.Pages
 {
     /// <summary>
-    /// Reports page: recent paid rental bills, filtered by Today / This Week / This Month / This Year.
+    /// Reports page: recent payments on bills, filtered by Today / This Week / This Month / This Year.
     ///
-    /// One row per payment received on a rent bill (payment table), dated by PAYMENT_DATE. A bill paid in
+    /// One row per payment received on a bill (payment table), dated by PAYMENT_DATE. A bill paid in
     /// two installments shows twice; BALANCE and STATUS are the bill's current ones (v_billing).
     /// </summary>
     public partial class ReportsModule : UserControl
@@ -26,8 +26,8 @@ namespace PMS_v1.Pages
 
         private const int DefaultPeriodIndex = 2;   // This Month
 
-        // false: every payment on a rent bill (even if the bill is only partly paid)
-        // true : only payments on rent bills that are now paid in full
+        // false: every payment on a bill (even if the bill is only partly paid)
+        // true : only payments on bills that are now paid in full
         private const bool FullyPaidOnly = false;
 
         // Columns the search box looks through
@@ -195,7 +195,6 @@ namespace PMS_v1.Pages
                       JOIN resident r ON r.RESIDENT_ID = l.RESIDENT_ID
                       JOIN units u ON u.UNIT_ID = l.UNIT_ID
                       WHERE p.STATUS = 'Completed'
-                        AND b.BILL_TYPE = 'Rent'
                         AND p.PAYMENT_DATE >= @from
                         AND p.PAYMENT_DATE <  @to" +
                         (FullyPaidOnly ? " AND b.AMOUNT_PAID >= b.AMOUNT" : "") + @"
@@ -294,7 +293,7 @@ namespace PMS_v1.Pages
             if (dgvReport.Rows.GetRowCount(DataGridViewElementStates.Visible) > 0) return;
 
             string message = dgvReport.Rows.Count == 0
-                ? "No rent payments for this period."
+                ? "No payments for this period."
                 : "No bills match your search.";
 
             var area = new Rectangle(0, dgvReport.ColumnHeadersHeight, dgvReport.ClientSize.Width,

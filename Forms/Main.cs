@@ -27,8 +27,16 @@ namespace pms_UI
             sideMenuFull1.PageRequested += SideMenu_PageRequested;
             sideMenuCompact1.PageRequested += SideMenu_PageRequested;
 
-            ShowPage("Dashboard", () => new DashboardModule());
+            ShowPage("Dashboard", () => CreateDashboard());
 
+        }
+
+        // Dashboard stat cards ask Main to open another page, the same as the side menu does
+        private DashboardModule CreateDashboard()
+        {
+            var dashboard = new DashboardModule();
+            dashboard.PageRequested += SideMenu_PageRequested;
+            return dashboard;
         }
 
         private void ToggleMenu()
@@ -120,7 +128,7 @@ namespace pms_UI
         {
             switch (page)
             {
-                case "Dashboard": ShowPage("Dashboard", () => new DashboardModule()); break;
+                case "Dashboard": ShowPage("Dashboard", () => CreateDashboard()); break;
                 case "Units": ShowPage("Units", () => new UnitsModule()); break;
                 case "Residents": ShowPage("Residents", () => new ResidentsModule()); break;
                 case "Leasing": ShowPage("Leasing", () => new LeasingModule()); break;

@@ -597,15 +597,14 @@ namespace PMS_v1.Pages
             }
         }
 
-        // ---------- PRINT ----------
-        private void mnuPrintBill_Click(object? sender, EventArgs e) => PrintSelected();
-        private void btnPrintBill_Click(object? sender, EventArgs e) => PrintSelected();
+        private void mnuViewBill_Click(object? sender, EventArgs e) => ViewSelected();
+        private void btnViewBill_Click(object? sender, EventArgs e) => ViewSelected();
 
-        private void PrintSelected()
+        private void ViewSelected()
         {
             if (!RequireSelection(out int id)) return;
 
-            using (var f = new BillPrintForm(id))
+            using (var f = new BillDetailForm(id))
             {
                 if (!f.Found) { Refresh_(); return; }   // deleted by someone else
                 f.ShowDialog(this.FindForm());

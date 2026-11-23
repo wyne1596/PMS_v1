@@ -38,7 +38,7 @@ namespace PMS_v1.Pages
             ctxRow = new ContextMenuStrip(components);
             mnuEdit = new ToolStripMenuItem();
             mnuRecordPayment = new ToolStripMenuItem();
-            mnuPrintBill = new ToolStripMenuItem();
+            mnuViewBill = new ToolStripMenuItem();
             tlpMain.SuspendLayout();
             pnlHeader.SuspendLayout();
             tlpMetrics.SuspendLayout();
@@ -290,7 +290,7 @@ namespace PMS_v1.Pages
             btnViewBill.TabIndex = 5;
             btnViewBill.Values.DropDownArrowColor = Color.Empty;
             btnViewBill.Values.Text = "View Bill";
-            btnViewBill.Click += btnPrintBill_Click;
+            btnViewBill.Click += btnViewBill_Click;
             // 
             // btnEditBill
             // 
@@ -349,7 +349,7 @@ namespace PMS_v1.Pages
             // 
             ctxRow.Font = new Font("Century Gothic", 9F);
             ctxRow.ImageScalingSize = new Size(20, 20);
-            ctxRow.Items.AddRange(new ToolStripItem[] { mnuEdit, mnuRecordPayment, mnuPrintBill });
+            ctxRow.Items.AddRange(new ToolStripItem[] { mnuEdit, mnuRecordPayment, mnuViewBill });
             ctxRow.Name = "ctxRow";
             ctxRow.Size = new Size(201, 76);
             // 
@@ -367,12 +367,12 @@ namespace PMS_v1.Pages
             mnuRecordPayment.Text = "Record Payment";
             mnuRecordPayment.Click += mnuRecordPayment_Click;
             // 
-            // mnuPrintBill
+            // mnuViewBill
             // 
-            mnuPrintBill.Name = "mnuPrintBill";
-            mnuPrintBill.Size = new Size(200, 24);
-            mnuPrintBill.Text = "Print Bill";
-            mnuPrintBill.Click += mnuPrintBill_Click;
+            mnuViewBill.Name = "mnuViewBill";
+            mnuViewBill.Size = new Size(200, 24);
+            mnuViewBill.Text = "View Bill";
+            mnuViewBill.Click += mnuViewBill_Click;
             // 
             // BillingModule
             // 
@@ -419,7 +419,7 @@ namespace PMS_v1.Pages
         private ContextMenuStrip ctxRow;
         private ToolStripMenuItem mnuEdit;
         private ToolStripMenuItem mnuRecordPayment;
-        private ToolStripMenuItem mnuPrintBill;
+        private ToolStripMenuItem mnuViewBill;
         private PMS_v1.RoundedPanel roundedPanelTable;
         private DataGridView dgvBills;
         private Krypton.Toolkit.KryptonButton btnViewBill;

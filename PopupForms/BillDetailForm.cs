@@ -19,7 +19,7 @@ namespace PMS_v1.Pages
     ///       f.ShowDialog(this.FindForm());
     ///   }
     /// </summary>
-    public partial class BillPrintForm : Form
+    public partial class BillDetailForm : Form
     {
         private static readonly Color TextMuted = Color.FromArgb(120, 120, 120);
 
@@ -36,7 +36,7 @@ namespace PMS_v1.Pages
         /// <summary>False when the bill no longer exists (nothing to show).</summary>
         public bool Found { get { return bill != null; } }
 
-        public BillPrintForm(int billingId)
+        public BillDetailForm(int billingId)
         {
             InitializeComponent();
 

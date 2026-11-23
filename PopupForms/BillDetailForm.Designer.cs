@@ -1,6 +1,6 @@
 namespace PMS_v1.Pages
 {
-    partial class BillPrintForm
+    partial class BillDetailForm
     {
         /// <summary>
         /// Required designer variable.

@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using PMS_v1.Helper;
 using PMS_v1.UserControls;
 using System;
@@ -406,7 +407,7 @@ namespace PMS_v1.Pages
             string? error =
                 first.Length == 0 || last.Length == 0 ? "First name and last name are required." :
                 first.Length > 45 || last.Length > 45 || position.Length > 45 ? "Names and position can be at most 45 characters." :
-                contact.Length > 0 && !Regex.IsMatch(contact, @"^[0-9+\-\s()]{7,20}$") ? "Contact No. looks like 09123456789." :
+                contact.Length > 0 && !Regex.IsMatch(contact, @"^09\d{9}$") ? "Contact No. must be 11 digits starting with 09, for example 09123456789." :
                 email.Length > 0 && (email.Length > 100 || !Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$")) ? "Enter a valid email address." :
                 string.IsNullOrEmpty(status) ? "Choose an employment status." : null;
 
@@ -448,18 +449,13 @@ namespace PMS_v1.Pages
                         MessageBox.Show(this, $"Employee added.\nEmployee No.: {txtEmployeeNo.Text}", "Employee added");
                     return;
                 }
-                catch (MySqlException ex) when (ex.Number == 1062 && ex.Message.Contains("uq_personnel_email"))
-                {
-                    MessageBox.Show(this, "That email is already used by another employee.");
-                    return;
-                }
-                catch (MySqlException ex) when (ex.Number == 1062 && isNew)
+                catch (MySqlException ex) when (ex.Number == 1062 && isNew && !ex.Message.Contains(ErrorRules.PersonnelEmailKey))
                 {
                     txtEmployeeNo.Text = GenerateEmployeeNo();      // number was taken a moment ago: draw another
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(this, ex.Message);
+                    ErrorHandler.Show(this, ex, ErrorRules.Personnel);
                     return;
                 }
             }
@@ -492,7 +488,7 @@ namespace PMS_v1.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                ErrorHandler.Show(this, ex);
             }
         }
 
@@ -548,13 +544,9 @@ namespace PMS_v1.Pages
                 LoadEditor(pid);
                 MessageBox.Show(this, "Account updated.");
             }
-            catch (MySqlException ex) when (ex.Number == 1062)
-            {
-                MessageBox.Show(this, "That username is already taken.");
-            }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                ErrorHandler.Show(this, ex, ErrorRules.Account);
             }
         }
 
@@ -594,7 +586,7 @@ namespace PMS_v1.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                ErrorHandler.Show(this, ex);
             }
         }
 

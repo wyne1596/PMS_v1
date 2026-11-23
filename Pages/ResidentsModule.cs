@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -35,6 +36,8 @@ namespace PMS_v1.Pages
                     dgvResidents.CurrentCell = dgvResidents.Rows[e.RowIndex].Cells[0];
             };
 
+            // Main caches its pages, so reload every time this page is shown (other pages change what it displays)
+            VisibleChanged += (_, _) => { if (Visible && !DesignMode) Refresh_(); };
             LoadStats();
             LoadResidents();
         }
@@ -219,9 +222,9 @@ namespace PMS_v1.Pages
                     }
                     Refresh_();
                 }
-                catch (MySqlException ex) when (ex.Number == 1062)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(this, "That email is already used by another resident.");
+                    ErrorHandler.Show(this, ex, ErrorRules.Resident);
                 }
             }
         }
@@ -278,9 +281,9 @@ namespace PMS_v1.Pages
                     }
                     Refresh_();
                 }
-                catch (MySqlException ex) when (ex.Number == 1062)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(this, "That email is already used by another resident.");
+                    ErrorHandler.Show(this, ex, ErrorRules.Resident);
                 }
             }
         }
@@ -309,9 +312,9 @@ namespace PMS_v1.Pages
                 }
                 Refresh_();
             }
-            catch (MySqlException ex) when (ex.Number == 1451)
+            catch (Exception ex)
             {
-                MessageBox.Show(this, "This resident has leases or other records and can't be deleted.");
+                ErrorHandler.Show(this, ex, ErrorRules.ResidentDelete);
             }
         }
     }

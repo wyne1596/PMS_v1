@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using System.Drawing.Drawing2D;
 
 namespace PMS_v1.Pages
@@ -33,6 +34,8 @@ namespace PMS_v1.Pages
             };
             mnuEdit.Visible = CanEdit;   // staff can view and add, only admins and managers can edit
             btnEditRequest.Visible = CanEdit;
+            // Main caches its pages, so reload every time this page is shown (other pages change what it displays)
+            VisibleChanged += (_, _) => { if (Visible && !DesignMode) Refresh_(); };
             LoadStats();
             LoadRequests();
         }
@@ -176,40 +179,6 @@ namespace PMS_v1.Pages
             PMS_v1.UserControls.StatusBadge.Paint(dgvRequests, e, "Priority");
         }
 
-        private static Bitmap CreateInProgressIcon()
-        {
-            var icon = new Bitmap(48, 48);
-            using Graphics graphics = Graphics.FromImage(icon);
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            graphics.Clear(Color.Transparent);
-
-            using var blue = new SolidBrush(Color.FromArgb(74, 151, 196));
-            using var white = new SolidBrush(Color.White);
-            using var gearPen = new Pen(Color.FromArgb(74, 151, 196), 2.5F);
-
-            Point[] hourglass =
-            {
-                new(8, 7), new(29, 7), new(29, 11), new(22, 19),
-                new(22, 22), new(29, 30), new(29, 35), new(8, 35),
-                new(8, 30), new(15, 22), new(15, 19), new(8, 11)
-            };
-            graphics.FillPolygon(blue, hourglass);
-            graphics.FillPolygon(white, new[] { new Point(12, 11), new Point(25, 11), new Point(19, 18) });
-            graphics.FillPolygon(white, new[] { new Point(19, 25), new Point(25, 31), new Point(12, 31) });
-
-            graphics.DrawLine(gearPen, 34, 26, 34, 31);
-            graphics.DrawLine(gearPen, 34, 37, 34, 42);
-            graphics.DrawLine(gearPen, 27, 34, 32, 34);
-            graphics.DrawLine(gearPen, 36, 34, 41, 34);
-            graphics.DrawLine(gearPen, 29, 29, 32, 32);
-            graphics.DrawLine(gearPen, 36, 36, 39, 39);
-            graphics.DrawLine(gearPen, 29, 39, 32, 36);
-            graphics.DrawLine(gearPen, 36, 32, 39, 29);
-            graphics.DrawEllipse(gearPen, 30, 30, 8, 8);
-
-            return icon;
-        }
-
         private void statCardCanceled_Load(object sender, EventArgs e)
         {
 
@@ -334,17 +303,24 @@ namespace PMS_v1.Pages
                 f.SetOptions("resident", WithFirst("None", Lookups.Residents()));
                 if (f.ShowDialog(this.FindForm()) != DialogResult.OK) return;
 
-                using (var conn = Db.GetConnection())
-                using (var cmd = new MySqlCommand(
-                    "INSERT INTO maintenance_request " +
-                    "(UNIT_ID, RESIDENT_ID, PROBLEM, MAINTENANCE_TYPE, PRIORITY, DATE_REPORTED) " +
-                    "VALUES (@unit, @resident, @problem, @type, @priority, @reported)", conn))
+                try
                 {
-                    AddRequestParams(cmd, f.Values);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    using (var conn = Db.GetConnection())
+                    using (var cmd = new MySqlCommand(
+                        "INSERT INTO maintenance_request " +
+                        "(UNIT_ID, RESIDENT_ID, PROBLEM, MAINTENANCE_TYPE, PRIORITY, DATE_REPORTED) " +
+                        "VALUES (@unit, @resident, @problem, @type, @priority, @reported)", conn))
+                    {
+                        AddRequestParams(cmd, f.Values);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    Refresh_();
                 }
-                Refresh_();
+                catch (Exception ex)
+                {
+                    ErrorHandler.Show(this, ex);
+                }
             }
         }
 
@@ -414,25 +390,32 @@ namespace PMS_v1.Pages
                 f.SetValues(current);                       // DBNull values are skipped
                 if (f.ShowDialog(this.FindForm()) != DialogResult.OK) return;
 
-                using (var conn = Db.GetConnection())
-                using (var cmd = new MySqlCommand(
-                    "UPDATE maintenance_request SET UNIT_ID=@unit, RESIDENT_ID=@resident, PROBLEM=@problem, " +
-                    "MAINTENANCE_TYPE=@type, PRIORITY=@priority, DATE_REPORTED=@reported, STATUS=@status, " +
-                    "PERSONNEL_ID=@technician, DATE_COMPLETED=@completed, COST=@cost, REPAIR_DETAILS=@repair " +
-                    "WHERE REPORT_ID=@id", conn))
+                try
                 {
-                    var v = f.Values;
-                    AddRequestParams(cmd, v);
-                    cmd.Parameters.AddWithValue("@status", v["status"] ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@technician", v["technician"] ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@completed", v["dateCompleted"] ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@cost", v["cost"] ?? 0m);
-                    cmd.Parameters.AddWithValue("@repair", v["repairDetails"] ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    using (var conn = Db.GetConnection())
+                    using (var cmd = new MySqlCommand(
+                        "UPDATE maintenance_request SET UNIT_ID=@unit, RESIDENT_ID=@resident, PROBLEM=@problem, " +
+                        "MAINTENANCE_TYPE=@type, PRIORITY=@priority, DATE_REPORTED=@reported, STATUS=@status, " +
+                        "PERSONNEL_ID=@technician, DATE_COMPLETED=@completed, COST=@cost, REPAIR_DETAILS=@repair " +
+                        "WHERE REPORT_ID=@id", conn))
+                    {
+                        var v = f.Values;
+                        AddRequestParams(cmd, v);
+                        cmd.Parameters.AddWithValue("@status", v["status"] ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@technician", v["technician"] ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@completed", v["dateCompleted"] ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@cost", v["cost"] ?? 0m);
+                        cmd.Parameters.AddWithValue("@repair", v["repairDetails"] ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    Refresh_();
                 }
-                Refresh_();
+                catch (Exception ex)
+                {
+                    ErrorHandler.Show(this, ex);
+                }
             }
         }
     }

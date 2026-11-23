@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using Org.BouncyCastle.Crypto.Generators;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using PMS_v1.Helper;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace PMS_v1.Forms
             }
 
             const string sql = @"SELECT u.USER_ID, u.PERSONNEL_ID, u.PASSWORD, u.ROLE, u.ACCOUNT_STATUS,
-                                 p.FIRST_NAME, p.LAST_NAME, p.POSITION, p.EMPLOYEE_NO
+                                 p.FIRST_NAME, p.LAST_NAME, p.POSITION, p.EMPLOYEE_NO, p.EMPLOYMENT_STATUS
                                  FROM `SYSTEM_USER` u
                                  JOIN PERSONNEL p ON p.PERSONNEL_ID = u.PERSONNEL_ID
                                  WHERE u.USERNAME = @user";
@@ -72,6 +73,14 @@ namespace PMS_v1.Forms
                             return;
                         }
 
+                        // an employee who is on leave, resigned or terminated may not sign in, even with an Active account
+                        string employmentStatus = reader.GetString("EMPLOYMENT_STATUS");
+                        if (employmentStatus != "Active")
+                        {
+                            MessageBox.Show($"This employee record is {employmentStatus.ToLower()}.\nContact your administrator.");
+                            return;
+                        }
+
                         Helper.Session.Role = reader.GetString("ROLE");
                         Helper.Session.UserId = reader.GetInt32("USER_ID");
                         Helper.Session.PersonnelId = reader.GetInt32("PERSONNEL_ID");
@@ -97,7 +106,7 @@ namespace PMS_v1.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorHandler.Show(this, ex);
             }
         }
 

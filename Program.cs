@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic.ApplicationServices;
 using PMS_v1.Forms;
+using PMS_v1.ExceptionHandler;
 
 namespace pms_UI
 {
@@ -13,6 +14,7 @@ namespace pms_UI
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            ErrorHandler.Install();   // an error nobody handled shows a message instead of closing the app
             ApplicationConfiguration.Initialize();
 
             while (true)
@@ -23,10 +25,10 @@ namespace pms_UI
                 var main = new Main();
                 Application.Run(main);
 
-            if (!main.LoggedOut) break;   // closed with X, so exit the app
+                if (!main.LoggedOut) break;   // closed with X, so exit the app
+            }
+
+
         }
-
-
     }
-}
 }

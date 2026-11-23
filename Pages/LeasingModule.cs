@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,8 @@ namespace PMS_v1.Pages
             };
             txtSearchInput.TextChanged += (_, _) => ApplyLeaseFilters();
             cmbFilterDropdown.SelectedIndexChanged += (_, _) => ApplyLeaseFilters();
+            // Main caches its pages, so reload every time this page is shown (other pages change what it displays)
+            VisibleChanged += (_, _) => { if (Visible && !DesignMode) { LoadStats(); LoadLease(); } };
             LoadStats();
             LoadLease();
         }
@@ -397,78 +400,85 @@ namespace PMS_v1.Pages
             string newStatus = (string)v["status"];
             string? problem = null;   // set when nothing could be saved
 
-            using (var conn = Db.GetConnection())
+            try
             {
-                conn.Open();
-                using (var tx = conn.BeginTransaction())
+                using (var conn = Db.GetConnection())
                 {
-                    // lock the lease, then make sure nobody changed it while the form was open
-                    object? stamp;
-                    using (var cmd = new MySqlCommand(
-                        "SELECT UPDATED_AT FROM lease WHERE LEASE_ID = @id FOR UPDATE", conn, tx))
+                    conn.Open();
+                    using (var tx = conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@id", id);
-                        stamp = cmd.ExecuteScalar();
-                    }
-
-                    if (stamp == null)
-                        problem = "This lease no longer exists.";
-                    else if (Convert.ToDateTime(stamp) != loadedUpdatedAt)
-                        problem = "This lease was changed by someone else while you were editing it. Your changes were not saved.";
-                    else
-                    {
-                        // lock the unit too, so its status can't change between the checks and the save
+                        // lock the lease, then make sure nobody changed it while the form was open
+                        object? stamp;
                         using (var cmd = new MySqlCommand(
-                            "SELECT STATUS FROM units WHERE UNIT_ID = @unit FOR UPDATE", conn, tx))
+                            "SELECT UPDATED_AT FROM lease WHERE LEASE_ID = @id FOR UPDATE", conn, tx))
                         {
-                            cmd.Parameters.AddWithValue("@unit", unitId);
-                            cmd.ExecuteScalar();
-                        }
-
-                        problem = CheckLease(conn, tx, id, unitId,
-                            (DateTime)v["startDate"], (DateTime)v["endDate"], oldStatus, newStatus);
-                    }
-
-                    if (problem == null)
-                    {
-                        using (var cmd = new MySqlCommand(
-                            "UPDATE lease SET START_DATE = @start, END_DATE = @end, MONTHLY_RENT = @rent, " +
-                            "DEPOSIT = @deposit, STATUS = @status WHERE LEASE_ID = @id", conn, tx))
-                        {
-                            cmd.Parameters.AddWithValue("@start", v["startDate"]);
-                            cmd.Parameters.AddWithValue("@end", v["endDate"]);
-                            cmd.Parameters.AddWithValue("@rent", v["monthlyRent"]);
-                            cmd.Parameters.AddWithValue("@deposit", v["deposit"] ?? 0m);
-                            cmd.Parameters.AddWithValue("@status", newStatus);
                             cmd.Parameters.AddWithValue("@id", id);
-                            cmd.ExecuteNonQuery();
+                            stamp = cmd.ExecuteScalar();
                         }
 
-                        // an Active lease makes the unit Occupied; when one ends, the unit goes back to
-                        // Vacant unless it is still Occupied by another Active lease
-                        string? unitSql = null;
-                        if (newStatus == "Active")
-                            unitSql = "UPDATE units SET STATUS = 'Occupied' WHERE UNIT_ID = @unit";
-                        else if (oldStatus == "Active")
-                            unitSql = "UPDATE units SET STATUS = 'Vacant' WHERE UNIT_ID = @unit AND STATUS = 'Occupied' " +
-                                      "AND NOT EXISTS (SELECT 1 FROM lease WHERE UNIT_ID = @unit AND STATUS = 'Active' AND LEASE_ID <> @id)";
-
-                        if (unitSql != null)
+                        if (stamp == null)
+                            problem = "This lease no longer exists.";
+                        else if (Convert.ToDateTime(stamp) != loadedUpdatedAt)
+                            problem = "This lease was changed by someone else while you were editing it. Your changes were not saved.";
+                        else
                         {
-                            using (var cmd = new MySqlCommand(unitSql, conn, tx))
+                            // lock the unit too, so its status can't change between the checks and the save
+                            using (var cmd = new MySqlCommand(
+                                "SELECT STATUS FROM units WHERE UNIT_ID = @unit FOR UPDATE", conn, tx))
                             {
                                 cmd.Parameters.AddWithValue("@unit", unitId);
+                                cmd.ExecuteScalar();
+                            }
+
+                            problem = CheckLease(conn, tx, id, unitId,
+                                (DateTime)v["startDate"], (DateTime)v["endDate"], oldStatus, newStatus);
+                        }
+
+                        if (problem == null)
+                        {
+                            using (var cmd = new MySqlCommand(
+                                "UPDATE lease SET START_DATE = @start, END_DATE = @end, MONTHLY_RENT = @rent, " +
+                                "DEPOSIT = @deposit, STATUS = @status WHERE LEASE_ID = @id", conn, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@start", v["startDate"]);
+                                cmd.Parameters.AddWithValue("@end", v["endDate"]);
+                                cmd.Parameters.AddWithValue("@rent", v["monthlyRent"]);
+                                cmd.Parameters.AddWithValue("@deposit", v["deposit"] ?? 0m);
+                                cmd.Parameters.AddWithValue("@status", newStatus);
                                 cmd.Parameters.AddWithValue("@id", id);
                                 cmd.ExecuteNonQuery();
                             }
+
+                            // an Active lease makes the unit Occupied; when one ends, the unit goes back to
+                            // Vacant unless it is still Occupied by another Active lease
+                            string? unitSql = null;
+                            if (newStatus == "Active")
+                                unitSql = "UPDATE units SET STATUS = 'Occupied' WHERE UNIT_ID = @unit";
+                            else if (oldStatus == "Active")
+                                unitSql = "UPDATE units SET STATUS = 'Vacant' WHERE UNIT_ID = @unit AND STATUS = 'Occupied' " +
+                                          "AND NOT EXISTS (SELECT 1 FROM lease WHERE UNIT_ID = @unit AND STATUS = 'Active' AND LEASE_ID <> @id)";
+
+                            if (unitSql != null)
+                            {
+                                using (var cmd = new MySqlCommand(unitSql, conn, tx))
+                                {
+                                    cmd.Parameters.AddWithValue("@unit", unitId);
+                                    cmd.Parameters.AddWithValue("@id", id);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                            tx.Commit();
                         }
-                        tx.Commit();
-                    }
-                    else
-                    {
-                        tx.Rollback();
+                        else
+                        {
+                            tx.Rollback();
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                problem = ErrorHandler.Describe(ex, ErrorRules.Lease);
             }
 
             if (problem != null)
@@ -567,9 +577,9 @@ namespace PMS_v1.Pages
                     }
                 }
             }
-            catch (MySqlException ex) when (ex.Number == 3819)   // CHECK on lease failed
+            catch (Exception ex)
             {
-                problem = "Check the dates and the rent, then try again.";
+                problem = ErrorHandler.Describe(ex, ErrorRules.Lease);
             }
 
             if (problem != null)

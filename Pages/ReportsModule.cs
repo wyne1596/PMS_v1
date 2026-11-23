@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using PMS_v1.UserControls;
 using System;
 using System.Collections.Generic;
@@ -229,8 +230,7 @@ namespace PMS_v1.Pages
             }
             catch (MySqlException)
             {
-                MessageBox.Show(this, "The report couldn't be loaded. Check the database connection and try again.",
-                    "Reports", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorHandler.ShowLoadError(this, "report", "Reports");
                 return;
             }
 

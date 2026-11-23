@@ -65,7 +65,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
 
         private const int RowHeight = 46;
         private const int LongRowHeight = 84;
-        private static readonly Regex PhonePattern = new Regex(@"^(09\d{9}|\+639\d{9})$");
+        private static readonly Regex PhonePattern = new Regex(@"^09\d{9}$");
 
         private readonly List<FormField> fields;
         private readonly Dictionary<string, Control> inputs = new Dictionary<string, Control>();
@@ -328,7 +328,8 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                     {
                         Format = DateTimePickerFormat.Custom,
                         CustomFormat = "MMM dd, yyyy",
-                        // optional date: untick = no date
+                        // optional date: untick = no date (saves as NULL)
+                        ShowCheckBox = !field.Required
                     };
                     if (field.DefaultValue is DateTime) dtp.Value = (DateTime)field.DefaultValue;
                     if (!field.Required) dtp.Checked = field.DefaultValue is DateTime;
@@ -352,8 +353,8 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                     return number;
 
                 case FieldType.Phone:
-                    var phone = new TextBox { MaxLength = 13 };
-                    phone.KeyPress += PhoneKeyPress;          // digits and + only
+                    var phone = new TextBox { MaxLength = 11 };
+                    phone.KeyPress += PhoneKeyPress;          // digits only
                     if (field.DefaultValue != null) phone.Text = field.DefaultValue.ToString();
                     return phone;
 
@@ -376,7 +377,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
 
         private static void PhoneKeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '+')
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
 
@@ -448,7 +449,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                 }
 
                 if (field.Type == FieldType.Phone && !string.IsNullOrEmpty(text) && !PhonePattern.IsMatch(text))
-                { Warn("Enter a valid mobile number, for example 09171234567.", input); return; }
+                { Warn("Enter an 11-digit mobile number starting with 09, for example 09171234567.", input); return; }
             }
 
             if (Validator != null)

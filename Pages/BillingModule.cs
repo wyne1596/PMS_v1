@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -42,6 +43,8 @@ namespace PMS_v1.Pages
                 string status = dgvBills.CurrentRow?.Cells["Status"].Value?.ToString() ?? string.Empty;
                 mnuRecordPayment.Enabled = status != "Paid" && status != "Canceled";
             };
+            // Main caches its pages, so reload every time this page is shown (other pages change what it displays)
+            VisibleChanged += (_, _) => { if (Visible && !DesignMode) Refresh_(); };
             LoadStats();
             LoadBills();
         }
@@ -302,9 +305,9 @@ namespace PMS_v1.Pages
                     }
                     Refresh_();
                 }
-                catch (MySqlException ex) when (ex.Number == 3819)   // CHECK on billing failed
+                catch (Exception ex)
                 {
-                    MessageBox.Show(this, "Check the amount and the dates, then try again.");
+                    ErrorHandler.Show(this, ex, ErrorRules.Bill);
                 }
             }
         }
@@ -378,13 +381,9 @@ namespace PMS_v1.Pages
                     }
                     Refresh_();
                 }
-                catch (MySqlException ex) when (ex.Number == 3819)   // CHECK on billing failed
+                catch (Exception ex)
                 {
-                    MessageBox.Show(this, "Check the amount and the dates, then try again.");
-                }
-                catch (MySqlException ex) when (ex.Number == 1644)   // the database refused it (trigger); its message says why
-                {
-                    MessageBox.Show(this, ex.Message);
+                    ErrorHandler.Show(this, ex, ErrorRules.Bill);
                 }
             }
         }
@@ -429,13 +428,15 @@ namespace PMS_v1.Pages
         private void btnRecordPayment_Click(object? sender, EventArgs e)
         {
             var balances = new Dictionary<int, decimal>();
+            var billDates = new Dictionary<int, DateTime>();
             var items = new List<ComboItem>();
 
             using (var conn = Db.GetConnection())
             using (var cmd = new MySqlCommand(
                 @"SELECT b.BILLING_ID,
                          CONCAT(r.FIRST_NAME, ' ', r.LAST_NAME) AS Tenant,
-                         b.BALANCE
+                         b.BALANCE,
+                         b.BILL_DATE
                   FROM v_billing b
                   JOIN lease l ON l.LEASE_ID = b.LEASE_ID
                   JOIN resident r ON r.RESIDENT_ID = l.RESIDENT_ID
@@ -450,6 +451,7 @@ namespace PMS_v1.Pages
                         int billingId = Convert.ToInt32(r["BILLING_ID"]);
                         decimal balance = Convert.ToDecimal(r["Balance"]);
                         balances[billingId] = balance;
+                        billDates[billingId] = Convert.ToDateTime(r["BILL_DATE"]).Date;
                         items.Add(new ComboItem(billingId,
                             "B-" + billingId.ToString("D4") + " - " + r["Tenant"] + " - " + Peso(balance) + " left"));
                     }
@@ -479,6 +481,13 @@ namespace PMS_v1.Pages
                     if (x["bill"] is int chosen && balances.TryGetValue(chosen, out decimal left)
                         && (decimal)x["amount"] > left)
                         return "The amount is more than what's left on the bill (" + Peso(left) + ").";
+
+                    var payDate = (DateTime)x["paymentDate"];
+                    if (payDate > DateTime.Today)
+                        return "Payment date can't be in the future.";
+                    if (x["bill"] is int billChosen && billDates.TryGetValue(billChosen, out DateTime billDate)
+                        && payDate < billDate)
+                        return "Payment date can't be before the bill date.";
                     return null;
                 };
 
@@ -543,15 +552,9 @@ namespace PMS_v1.Pages
                     MessageBox.Show(this, "Payment recorded.\r\nReference no.: " + refNo, "Payment saved",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (MySqlException ex) when (ex.Number == 1062)   // REF_NO is unique
+                catch (Exception ex)
                 {
-                    MessageBox.Show(this, typedRef == null
-                        ? "Couldn't create a reference number for this payment. Please try again."
-                        : "That reference number has already been used.");
-                }
-                catch (MySqlException ex) when (ex.Number == 1644)   // the database refused it (trigger): more than the balance, or a canceled bill
-                {
-                    MessageBox.Show(this, ex.Message);
+                    ErrorHandler.Show(this, ex, ErrorRules.Payment(typedRef != null));
                 }
             }
         }

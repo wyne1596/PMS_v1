@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using Org.BouncyCastle.Crypto.Generators;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using PMS_v1.Helper;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace PMS_v1.Forms
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            if(failedAttempts >= maxAttempts)
+            if (failedAttempts >= maxAttempts)
             { MessageBox.Show("Maximum sign-up attempts exceeded. Please try again later."); return; }
 
             string empNo = txtEmployeeNumber.Text.Trim();
@@ -119,17 +120,9 @@ namespace PMS_v1.Forms
                 MessageBox.Show("Account created.\nYou can now log in.");
                 this.Close();
             }
-            catch (MySqlException ex) when (ex.Number == 1062 && ex.Message.Contains("uq_system_user_username"))
-            {
-                MessageBox.Show("That username is already taken.");
-            }
-            catch (MySqlException ex) when (ex.Number == 1062)
-            {
-                MessageBox.Show("This employee already has an account.");
-            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorHandler.Show(this, ex, ErrorRules.SignUp);
             }
 
         }

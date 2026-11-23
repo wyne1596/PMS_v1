@@ -1,6 +1,7 @@
 #nullable disable
 using MySql.Data.MySqlClient;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using PMS_v1.Helper;
 using System;
 using System.Collections.Generic;
@@ -281,10 +282,9 @@ namespace PMS_v1.Pages
                     }
                     return true;
                 }
-                catch (MySqlException ex) when (ex.Number == 1062)   // UNIT_NO is unique
+                catch (Exception ex)
                 {
-                    MessageBox.Show(owner, "That unit number is already used by another unit.",
-                        "Can't save", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ErrorHandler.Show(owner, ex, ErrorRules.Unit);
                     return false;
                 }
             }
@@ -310,8 +310,7 @@ namespace PMS_v1.Pages
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(this, "That file couldn't be read as a picture. Choose a JPG, PNG or BMP.",
-                        "Can't use that file", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ErrorHandler.ShowInvalidPicture(this);
                     return;
                 }
 

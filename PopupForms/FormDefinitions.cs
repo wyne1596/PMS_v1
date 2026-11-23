@@ -26,8 +26,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                 new FormField { Key = "lastName", Label = "Last name", MaxLength = 45 },
                 new FormField { Key = "contact", Label = "Contact no.", Type = FieldType.Phone, Required = false },
                 new FormField { Key = "email", Label = "Email", MaxLength = 100, Required = false },
-                new FormField { Key = "birthdate", Label = "Birthdate", Type = FieldType.Date, Required = false,
-                    DefaultValue = new DateTime(2000, 1, 1) },
+                new FormField { Key = "birthdate", Label = "Birthdate", Type = FieldType.Date, Required = false },
                 new FormField { Key = "emergencyContact", Label = "Emergency no.", Type = FieldType.Phone, Required = false }
             };
         }
@@ -92,6 +91,14 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
         {
             if ((DateTime)v["endDate"] <= (DateTime)v["startDate"])
                 return "End date must be after the start date.";
+
+            if (v["status"] as string == "Active")
+            {
+                if ((DateTime)v["startDate"] > DateTime.Today)
+                    return "An Active lease can't start in the future.";
+                if ((DateTime)v["endDate"] < DateTime.Today)
+                    return "An Active lease can't have an end date that has passed.";
+            }
             return null;
         }
 
@@ -212,6 +219,15 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                 var status = v["status"] as string;
                 if ((status == "Resolved" || status == "Closed") && v["dateCompleted"] == null)
                     return "Enter the completion date for a resolved request.";
+            }
+
+            if (v.ContainsKey("dateCompleted") && v["dateCompleted"] is DateTime)
+            {
+                var completed = (DateTime)v["dateCompleted"];
+                if (completed < (DateTime)v["dateReported"])
+                    return "Completion date can't be before the date reported.";
+                if (completed > DateTime.Today)
+                    return "Completion date can't be in the future.";
             }
             return null;
         }

@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ExceptionHandler\" />
     <Folder Include="Properties\" />
     <Folder Include="Resources\07_Reports\" />
   </ItemGroup>

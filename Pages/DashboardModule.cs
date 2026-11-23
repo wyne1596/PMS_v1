@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using PMS_v1.Database;
+using PMS_v1.ExceptionHandler;
 using PMS_v1.Helper;
 using System;
 using System.Drawing;
@@ -93,8 +94,7 @@ namespace PMS_v1.Pages
             }
             catch (MySqlException)
             {
-                MessageBox.Show(this, "The dashboard couldn't be loaded. Check the database connection and try again.",
-                    "Dashboard", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorHandler.ShowLoadError(this, "dashboard", "Dashboard");
             }
         }
 

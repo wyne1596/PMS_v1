@@ -34,6 +34,8 @@ namespace PMS_v1.Pages
             {
                 if (SelectedId == null) { e.Cancel = true; return; }   // nothing under the mouse
             };
+            // Main caches its pages, so reload every time this page is shown (other pages change what it displays)
+            VisibleChanged += (_, _) => { if (Visible && !DesignMode) Refresh_(); };
             LoadStats();
             LoadUnits();
         }
@@ -243,4 +245,4 @@ namespace PMS_v1.Pages
                 Refresh_();
         }
     }
-}
+}   

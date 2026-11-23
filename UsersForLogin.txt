@@ -1,0 +1,3 @@
+﻿USE THIS IN LOGIN:
+	usernames: staff1, admin1, manager1
+	password: 123456

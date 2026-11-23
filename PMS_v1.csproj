@@ -35,8 +35,4 @@
     <Folder Include="Resources\07_Reports\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include=".github\copilot-instructions.md" />
-  </ItemGroup>
-
 </Project>

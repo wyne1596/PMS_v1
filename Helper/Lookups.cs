@@ -39,5 +39,34 @@ namespace PMS_v1
             "WHERE EMPLOYMENT_STATUS = 'Active'" +
             (includeId.HasValue ? " OR PERSONNEL_ID = " + includeId.Value : "") +
             " ORDER BY LAST_NAME, FIRST_NAME");
+
+        // a unit's base rent: copied onto a new lease, and shown (locked) on a new rent bill
+        public static decimal BaseRent(int? unitId)
+        {
+            if (!unitId.HasValue) return 0m;
+            using (var conn = Db.GetConnection())
+            using (var cmd = new MySqlCommand("SELECT BASE_RENT FROM units WHERE UNIT_ID = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", unitId.Value);
+                conn.Open();
+                object? o = cmd.ExecuteScalar();
+                return o == null || o is DBNull ? 0m : Convert.ToDecimal(o);
+            }
+        }
+
+        // the base rent of the unit a lease is for
+        public static decimal BaseRentOfLease(int? leaseId)
+        {
+            if (!leaseId.HasValue) return 0m;
+            using (var conn = Db.GetConnection())
+            using (var cmd = new MySqlCommand(
+                "SELECT u.BASE_RENT FROM lease l JOIN units u ON u.UNIT_ID = l.UNIT_ID WHERE l.LEASE_ID = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", leaseId.Value);
+                conn.Open();
+                object? o = cmd.ExecuteScalar();
+                return o == null || o is DBNull ? 0m : Convert.ToDecimal(o);
+            }
+        }
     }
 }

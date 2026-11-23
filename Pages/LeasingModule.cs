@@ -478,17 +478,120 @@ namespace PMS_v1.Pages
             LoadLease();
         }
 
+        // the checks for a new lease; runs when Save is pressed, so a problem keeps the form open
+        private static string? ValidateNewLease(Dictionary<string, object> v)
+        {
+            string? error = FormDefinitions.ValidateLease(v);
+            if (error != null) return error;
+
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+                return CheckLease(conn, null, 0, (int)v["unit"],
+                    (DateTime)v["startDate"], (DateTime)v["endDate"], string.Empty, (string)v["status"]);
+            }
+        }
+
+        // saves a new lease, all or nothing. The rent is the unit's base rent at this moment (copied, so
+        // later changes to the base rent never touch it) and the signed-in employee is recorded on the lease.
+        private void SaveNewLease(Dictionary<string, object> v)
+        {
+            int unitId = (int)v["unit"];
+            string status = (string)v["status"];
+            string? problem = null;   // set when nothing could be saved
+
+            try
+            {
+                using (var conn = Db.GetConnection())
+                {
+                    conn.Open();
+                    using (var tx = conn.BeginTransaction())
+                    {
+                        // lock the unit, then make sure it is still vacant
+                        string? unitStatus = null;
+                        decimal baseRent = 0m;
+                        using (var cmd = new MySqlCommand(
+                            "SELECT STATUS, BASE_RENT FROM units WHERE UNIT_ID = @unit FOR UPDATE", conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@unit", unitId);
+                            using (var r = cmd.ExecuteReader())
+                            {
+                                if (r.Read())
+                                {
+                                    unitStatus = r["STATUS"].ToString();
+                                    baseRent = Convert.ToDecimal(r["BASE_RENT"]);
+                                }
+                            }
+                        }
+
+                        if (unitStatus != "Vacant")
+                            problem = "This unit is no longer vacant.";
+                        else
+                            problem = CheckLease(conn, tx, 0, unitId,
+                                (DateTime)v["startDate"], (DateTime)v["endDate"], string.Empty, status);
+
+                        if (problem == null)
+                        {
+                            using (var cmd = new MySqlCommand(
+                                "INSERT INTO lease (START_DATE, END_DATE, UNIT_ID, RESIDENT_ID, MONTHLY_RENT, DEPOSIT, STATUS, EMPLOYEE_NO) " +
+                                "VALUES (@start, @end, @unit, @resident, @rent, @deposit, @status, " +
+                                "(SELECT EMPLOYEE_NO FROM personnel WHERE PERSONNEL_ID = @personnel))", conn, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@start", v["startDate"]);
+                                cmd.Parameters.AddWithValue("@end", v["endDate"]);
+                                cmd.Parameters.AddWithValue("@unit", unitId);
+                                cmd.Parameters.AddWithValue("@resident", v["resident"]);
+                                cmd.Parameters.AddWithValue("@rent", baseRent);
+                                cmd.Parameters.AddWithValue("@deposit", v["deposit"] ?? 0m);
+                                cmd.Parameters.AddWithValue("@status", status);
+                                cmd.Parameters.AddWithValue("@personnel", PMS_v1.Helper.Session.PersonnelId);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // an Active lease makes the unit Occupied
+                            if (status == "Active")
+                            {
+                                using (var cmd = new MySqlCommand(
+                                    "UPDATE units SET STATUS = 'Occupied' WHERE UNIT_ID = @unit", conn, tx))
+                                {
+                                    cmd.Parameters.AddWithValue("@unit", unitId);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                            tx.Commit();
+                        }
+                        else
+                        {
+                            tx.Rollback();
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex) when (ex.Number == 3819)   // CHECK on lease failed
+            {
+                problem = "Check the dates and the rent, then try again.";
+            }
+
+            if (problem != null)
+                MessageBox.Show(this, problem, "Lease not saved", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            LoadStats();
+            LoadLease();
+        }
+
         private void btnNewLease_Click_1(object sender, EventArgs e)
         {
             using (var f = new RecordForm(FormMode.New, "Lease", FormDefinitions.Lease()))
             {
-                f.Validator = FormDefinitions.ValidateLease;
+                f.Validator = ValidateNewLease;
                 f.SetOptions("unit", Lookups.VacantUnits());       // a list of new ComboItem(unitId, "Unit 101")
                 f.SetOptions("resident", Lookups.Residents());
+                // the rent is the unit's base rent, copied when the lease is created, and can't be edited
+                f.SetLocked("monthlyRent", true);
+                f.OnChoiceChanged("unit", () => f.SetValue("monthlyRent", Lookups.BaseRent((int?)f.GetValue("unit"))));
                 if (f.ShowDialog(FindForm()) == DialogResult.OK)
                 {
-                    int unitId = (int)f.Values["unit"];
-                    // INSERT with @parameters here
+                    SaveNewLease(f.Values);
                 }
             }
         }

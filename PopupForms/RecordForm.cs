@@ -195,6 +195,27 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                 cbo.Items.Add(option);
         }
 
+        /// <summary>
+        /// Lock or unlock one field. A locked field is shown but can't be changed, and Save does not check it.
+        /// Its value can still be set from code with SetValue.
+        /// </summary>
+        public void SetLocked(string key, bool locked)
+        {
+            Control c;
+            if (inputs.TryGetValue(key, out c)) c.Enabled = !locked;
+        }
+
+        /// <summary>
+        /// Run <paramref name="handler"/> whenever a different choice is picked in a dropdown
+        /// (for example, to fill another field from the chosen row). Call it after SetOptions / SetValues.
+        /// </summary>
+        public void OnChoiceChanged(string key, Action handler)
+        {
+            Control c;
+            var cbo = inputs.TryGetValue(key, out c) ? c as ComboBox : null;
+            if (cbo != null) cbo.SelectedIndexChanged += (s, e) => handler();
+        }
+
         // ---------- UI construction ----------
         private static int RowFor(FormField f)
         {

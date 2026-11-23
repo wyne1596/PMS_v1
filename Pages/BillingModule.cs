@@ -257,6 +257,23 @@ namespace PMS_v1.Pages
             return items;
         }
 
+        // A Rent bill always shows the unit's base rent and can't be edited; the other bill types stay editable.
+        // fillNow = false (Edit) keeps the bill's saved amount until the lease or the bill type is changed.
+        private static void WireRentAmount(RecordForm f, bool fillNow)
+        {
+            void Apply(bool fill)
+            {
+                bool rent = (f.GetValue("billType") as string) == "Rent";
+                f.SetLocked("amount", rent);
+                if (rent && fill)
+                    f.SetValue("amount", Lookups.BaseRentOfLease((int?)f.GetValue("lease")));
+            }
+
+            f.OnChoiceChanged("lease", () => Apply(true));
+            f.OnChoiceChanged("billType", () => Apply(true));
+            Apply(fillNow);
+        }
+
         // ---------- CREATE ----------
         private void btnNewBill_Click(object sender, EventArgs e)
         {
@@ -264,6 +281,7 @@ namespace PMS_v1.Pages
             {
                 f.Validator = FormDefinitions.ValidateBill;
                 f.SetOptions("lease", LeaseItems(null));
+                WireRentAmount(f, fillNow: true);   // a Rent bill shows the unit's base rent, locked
                 if (f.ShowDialog(this.FindForm()) != DialogResult.OK) return;
 
                 var v = f.Values;
@@ -338,6 +356,7 @@ namespace PMS_v1.Pages
                             : null);
                 f.SetOptions("lease", LeaseItems(leaseId));
                 f.SetValues(current);                       // DBNull values are skipped
+                WireRentAmount(f, fillNow: false);          // a Rent bill's amount is locked
                 if (f.ShowDialog(this.FindForm()) != DialogResult.OK) return;
 
                 var v = f.Values;
@@ -552,4 +571,4 @@ namespace PMS_v1.Pages
             }
         }
     }
-}   
+}

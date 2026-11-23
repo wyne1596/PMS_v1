@@ -46,7 +46,8 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
 
         // ---------------- units ----------------
         // Occupied is set by leases, so it is not a choice. For a unit that is already
-        // occupied, pass occupied: true and the status shows as "Occupied", locked.
+        // occupied, pass occupied: true and the status shows as "Occupied", locked,
+        // and the base rent is locked too until the unit is vacant again.
         public static FormField[] Unit(bool occupied = false)
         {
             return new[]
@@ -55,7 +56,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
                 new FormField { Key = "floor", Label = "Floor", Type = FieldType.Number, DefaultValue = 1 },
                 new FormField { Key = "furnishing", Label = "Furnishing", Type = FieldType.Dropdown,
                     Options = UnitFurnishing, DefaultValue = "Unfurnished" },
-                new FormField { Key = "baseRent", Label = "Base rent", Type = FieldType.Money },
+                new FormField { Key = "baseRent", Label = "Base rent", Type = FieldType.Money, ReadOnly = occupied },
                 new FormField { Key = "status", Label = "Status", Type = FieldType.Dropdown,
                     Options = occupied ? new[] { "Occupied" } : new[] { "Vacant", "Under Maintenance" },
                     DefaultValue = occupied ? "Occupied" : "Vacant", ReadOnly = occupied }

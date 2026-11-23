@@ -40,9 +40,49 @@ namespace PMS_v1.Pages
             txtSearchInput.TextChanged += (_, _) => ApplyLeaseFilters();
             cmbFilterDropdown.SelectedIndexChanged += (_, _) => ApplyLeaseFilters();
             // Main caches its pages, so reload every time this page is shown (other pages change what it displays)
-            VisibleChanged += (_, _) => { if (Visible && !DesignMode) { LoadStats(); LoadLease(); } };
+            VisibleChanged += (_, _) => { if (Visible && !DesignMode) { ExpireEndedLeases(); LoadStats(); LoadLease(); } };
+            ExpireEndedLeases();
             LoadStats();
             LoadLease();
+        }
+
+        // An Active lease whose end date has passed becomes Expired, and its unit goes back to Vacant
+        // (unless the unit still has another Active lease that has not ended). Runs whenever the page is shown.
+        private void ExpireEndedLeases()
+        {
+            try
+            {
+                using (var conn = Db.GetConnection())
+                {
+                    conn.Open();
+                    using (var tx = conn.BeginTransaction())
+                    {
+                        // units first, while the leases still show as Active
+                        using (var cmd = new MySqlCommand(
+                            "UPDATE units u SET u.STATUS = 'Vacant' WHERE u.STATUS = 'Occupied' " +
+                            "AND EXISTS (SELECT 1 FROM lease l WHERE l.UNIT_ID = u.UNIT_ID AND l.STATUS = 'Active' AND l.END_DATE < @today) " +
+                            "AND NOT EXISTS (SELECT 1 FROM lease l2 WHERE l2.UNIT_ID = u.UNIT_ID AND l2.STATUS = 'Active' AND l2.END_DATE >= @today)",
+                            conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@today", DateTime.Today);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        using (var cmd = new MySqlCommand(
+                            "UPDATE lease SET STATUS = 'Expired' WHERE STATUS = 'Active' AND END_DATE < @today", conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@today", DateTime.Today);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        tx.Commit();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Show(this, ex);
+            }
         }
 
         private void LeasingModule_Load(object sender, EventArgs e)

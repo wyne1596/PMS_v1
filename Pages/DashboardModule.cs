@@ -145,13 +145,13 @@ namespace PMS_v1.Pages
                     {
                         if (reader.Read())
                         {
-                            statCardUnpaid.CardNumber = Peso0(reader["UnpaidBalance"]);
+                            statCardUnpaid.CardNumber = Peso.Whole(reader["UnpaidBalance"]);
                             statCardExpired.CardNumber = reader["ExpiredLeases"].ToString();
                             statCardOverdue.CardNumber = reader["RentOverdue"].ToString();
                             statCardRepairs.CardNumber = reader["RepairsNeeded"].ToString();
                             statCardOccupancy.CardNumber = reader["OccupiedUnits"] + " / " + reader["TotalUnits"];
                             statCardVacant.CardNumber = reader["VacantUnits"].ToString();
-                            statCardCollected.CardNumber = Peso0(reader["CollectedThisMonth"]);
+                            statCardCollected.CardNumber = Peso.Whole(reader["CollectedThisMonth"]);
                             statCardDueSoon.CardNumber = reader["BillsDueSoon"].ToString();
                             statCardExpiring.CardNumber = reader["LeasesExpiring"].ToString();
                             statCardUrgent.CardNumber = reader["UrgentRepairs"].ToString();
@@ -199,7 +199,7 @@ namespace PMS_v1.Pages
                             reader["BILL_TYPE"].ToString(),
                             Convert.ToDateTime(reader["DUE_DATE"]).ToString("MMM dd, yyyy", CultureInfo.InvariantCulture),
                             daysLate + (daysLate == 1 ? " day" : " days"),
-                            "₱" + Convert.ToDecimal(reader["BALANCE"]).ToString("N2", CultureInfo.InvariantCulture));
+                            Peso.Format(reader["BALANCE"]));
                     }
                 }
             }
@@ -221,9 +221,5 @@ namespace PMS_v1.Pages
                     TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
             }
         }
-
-        // whole pesos on the cards
-        private static string Peso0(object value) =>
-            "₱" + Convert.ToDecimal(value).ToString("N0", CultureInfo.InvariantCulture);
     }
 }

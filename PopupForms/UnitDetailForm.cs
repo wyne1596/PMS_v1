@@ -65,11 +65,6 @@ namespace PMS_v1.Pages
             return value == null || value is DBNull ? string.Empty : value.ToString();
         }
 
-        private static string Php(decimal value)
-        {
-            return "₱ " + value.ToString("N2", CultureInfo.InvariantCulture);
-        }
-
         private static string Day(DateTime value)
         {
             return value.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture);
@@ -124,8 +119,8 @@ namespace PMS_v1.Pages
                             contact = Str(r["CONTACT_NO"]);
                             if (contact.Length == 0) contact = "-";
                             period = Day(Convert.ToDateTime(r["START_DATE"])) + " to " + Day(Convert.ToDateTime(r["END_DATE"]));
-                            leaseRent = Php(Convert.ToDecimal(r["MONTHLY_RENT"]));
-                            deposit = Php(Convert.ToDecimal(r["DEPOSIT"]));
+                            leaseRent = Peso.Format(Convert.ToDecimal(r["MONTHLY_RENT"]));
+                            deposit = Peso.Format(Convert.ToDecimal(r["DEPOSIT"]));
                         }
                     }
                 }
@@ -144,7 +139,7 @@ namespace PMS_v1.Pages
             lblUnitNo.Text = unitNo;
             lblFloor.Text = floor.Length > 0 ? floor : "-";
             lblType.Text = type;
-            lblBaseRent.Text = Php(rent);
+            lblBaseRent.Text = Peso.Format(rent);
             lblOpenRequests.Text = openRequests == 0 ? "None" : openRequests.ToString(CultureInfo.InvariantCulture);
 
             ShowStatus(status);
@@ -260,6 +255,7 @@ namespace PMS_v1.Pages
             // an occupied unit's status is set by its lease, so the form locks it
             using (var f = new RecordForm(FormMode.Edit, "Unit", FormDefinitions.Unit(status == "Occupied")))
             {
+                f.Validator = FormDefinitions.ValidateUnit;
                 f.SetValues(current);
                 if (f.ShowDialog(owner) != DialogResult.OK) return false;
 

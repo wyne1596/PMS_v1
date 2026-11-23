@@ -189,7 +189,7 @@ namespace PMS_v1.Pages
                             reader["UNIT_NO"].ToString(),   // UNIT_NO is varchar, so "101A" must not crash
                             reader["FLOOR_NO"].ToString(),
                             reader["UNIT_TYPE"].ToString(),
-                            "₱" + Convert.ToDecimal(reader["BASE_RENT"]).ToString("N2"),
+                            Peso.Format(reader["BASE_RENT"]),
                             status);
 
                         dgvUnits.Rows[rowIndex].Tag = Convert.ToInt32(reader["UNIT_ID"]);
@@ -245,4 +245,4 @@ namespace PMS_v1.Pages
                 Refresh_();
         }
     }
-}   
+}

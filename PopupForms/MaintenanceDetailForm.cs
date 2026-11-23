@@ -44,11 +44,6 @@ namespace PMS_v1.Pages
             return Convert.ToDateTime(value).ToString("MMM dd, yyyy", CultureInfo.InvariantCulture);
         }
 
-        private static string Php(decimal value)
-        {
-            return "₱ " + value.ToString("N2", CultureInfo.InvariantCulture);
-        }
-
         // "Maria Santos (09170000101)" / "Wyne Ben (Administrator)"; blank extra is left out
         private static string PersonLine(object first, object last, object extra, string whenMissing)
         {
@@ -91,7 +86,7 @@ namespace PMS_v1.Pages
                     lblPriority.Text = Str(r["PRIORITY"]);
                     lblDateReported.Text = Day(r["DATE_REPORTED"]);
                     lblDateCompleted.Text = Day(r["DATE_COMPLETED"]);
-                    lblCost.Text = Php(Convert.ToDecimal(r["COST"]));
+                    lblCost.Text = Peso.Format(Convert.ToDecimal(r["COST"]));
                     lblLastUpdated.Text = Convert.ToDateTime(r["UPDATED_AT"])
                         .ToString("MMM dd, yyyy h:mm tt", CultureInfo.InvariantCulture);
                     lblProblem.Text = Str(r["PROBLEM"]);

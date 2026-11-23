@@ -299,6 +299,7 @@ namespace PMS_v1.Pages
         {
             using (var f = new RecordForm(FormMode.New, "Request", FormDefinitions.Maintenance()))
             {
+                f.Validator = FormDefinitions.ValidateMaintenance;
                 f.SetOptions("unit", WithFirst("Common area", Lookups.AllUnits()));
                 f.SetOptions("resident", WithFirst("None", Lookups.Residents()));
                 if (f.ShowDialog(this.FindForm()) != DialogResult.OK) return;

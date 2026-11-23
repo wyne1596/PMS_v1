@@ -40,7 +40,7 @@ namespace PMS_v1.ExceptionHandler
             new ErrorRule(DuplicateKey, typedReference
                 ? "That reference number has already been used."
                 : "Couldn't create a reference number for this payment. Please try again."),
-            new ErrorRule(TriggerRefused, null)   // more than the balance, or a canceled bill
+            new ErrorRule(TriggerRefused, null)   // from the payment trigger in pms_triggers_v1.sql: more than the balance, or a canceled bill
         };
 
         // Residents: new and edit (EMAIL is unique)

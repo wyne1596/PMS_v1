@@ -65,16 +65,16 @@ namespace PMS_v1.Pages
         private void ConfigureStatCards()
         {
             statCardCollected.CardCaption = "Total Collected";
-            statCardCollected.CardNumber = "₱0";
+            statCardCollected.CardNumber = Peso.Whole(0m);
 
             statCardBills.CardCaption = "Payments";
             statCardBills.CardNumber = "0";
 
             statCardOutstanding.CardCaption = "Still Owed";
-            statCardOutstanding.CardNumber = "₱0";
+            statCardOutstanding.CardNumber = Peso.Whole(0m);
 
             statCardAverage.CardCaption = "Avg. Payment";
-            statCardAverage.CardNumber = "₱0";
+            statCardAverage.CardNumber = Peso.Whole(0m);
         }
 
         private void ConfigureReportGrid()
@@ -251,9 +251,9 @@ namespace PMS_v1.Pages
                     row.Unit,
                     row.PaidOn.ToString("MMM dd, yyyy", CultureInfo.InvariantCulture),
                     row.Mode,
-                    Money(row.Amount),
-                    Money(row.Paid),
-                    Money(row.Balance),
+                    Peso.Format(row.Amount),
+                    Peso.Format(row.Paid),
+                    Peso.Format(row.Balance),
                     row.Status);
 
                 dgvReport.Rows[index].Tag = row;
@@ -272,10 +272,10 @@ namespace PMS_v1.Pages
                     owed += row.Balance;
             }
 
-            statCardCollected.CardNumber = Peso0(collected);
+            statCardCollected.CardNumber = Peso.Whole(collected);
             statCardBills.CardNumber = rows.Count.ToString(CultureInfo.InvariantCulture);
-            statCardOutstanding.CardNumber = Peso0(owed);
-            statCardAverage.CardNumber = Peso0(rows.Count == 0 ? 0 : collected / rows.Count);
+            statCardOutstanding.CardNumber = Peso.Whole(owed);
+            statCardAverage.CardNumber = Peso.Whole(rows.Count == 0 ? 0 : collected / rows.Count);
         }
 
         private void ApplySearch()
@@ -372,11 +372,6 @@ namespace PMS_v1.Pages
             value.IndexOfAny(new[] { ',', '"', '\r', '\n' }) >= 0
                 ? "\"" + value.Replace("\"", "\"\"") + "\""
                 : value;*/
-
-        private static string Money(decimal value) => value.ToString("N2", CultureInfo.InvariantCulture);
-
-        // whole pesos on the cards, like the Dashboard
-        private static string Peso0(decimal value) => "₱" + value.ToString("N0", CultureInfo.InvariantCulture);
 
     }
 }

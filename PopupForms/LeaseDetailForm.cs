@@ -49,11 +49,6 @@ namespace PMS_v1.Pages
             return Convert.ToDateTime(value).ToString("MMM dd, yyyy", CultureInfo.InvariantCulture);
         }
 
-        private static string Php(decimal value)
-        {
-            return "₱ " + value.ToString("N2", CultureInfo.InvariantCulture);
-        }
-
         // "Maria Santos (09170000101)" / "Wyne Ben (Administrator)"; blank extra is left out
         private static string PersonLine(object first, object last, object extra, string whenMissing)
         {
@@ -121,8 +116,8 @@ namespace PMS_v1.Pages
                     lblUnitType.Text = Str(r["UNIT_TYPE"]);
                     lblStartDate.Text = Day(r["START_DATE"]);
                     lblEndDate.Text = Day(r["END_DATE"]);
-                    lblMonthlyRent.Text = Php(Convert.ToDecimal(r["MONTHLY_RENT"]));
-                    lblDeposit.Text = Php(Convert.ToDecimal(r["DEPOSIT"]));
+                    lblMonthlyRent.Text = Peso.Format(Convert.ToDecimal(r["MONTHLY_RENT"]));
+                    lblDeposit.Text = Peso.Format(Convert.ToDecimal(r["DEPOSIT"]));
                     lblRecordedBy.Text = PersonLine(r["P_FIRST"], r["P_LAST"], r["P_POSITION"], "Not specified");
                     lblLastUpdated.Text = Convert.ToDateTime(r["UPDATED_AT"])
                         .ToString("MMM dd, yyyy h:mm tt", CultureInfo.InvariantCulture);

@@ -62,6 +62,14 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
             };
         }
 
+        public static string ValidateUnit(Dictionary<string, object> v)
+        {
+            var floor = (decimal)v["floor"];
+            if (floor < 1 || floor > 10)
+                return "Floor must be between 1 and 10.";
+            return null;
+        }
+
         // ---------------- lease ----------------
         // unit: fill from database with VACANT units only; resident: fill from database.
         // Pre-fill monthlyRent from the chosen unit's base rent in the page.
@@ -151,7 +159,7 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
         // refNo: leave it blank and the page creates one (like BT-20261103-0001);
         //        type it to keep an outside number, such as a bank or e-wallet transaction no.
         // bill: fill from database with unpaid / partially paid bills,
-        //       text like "B-0007 - Maria Santos - P6,000.00 left".
+        //       text like "B-0007 - Maria Santos - ₱ 6,000.00 left".
         // Add a Validator in the page to stop an amount above the remaining balance.
         public static FormField[] Payment()
         {
@@ -214,11 +222,16 @@ namespace PMS_v1   // keep as PMS_v1 so every page can see it
 
         public static string ValidateMaintenance(Dictionary<string, object> v)
         {
+            if (v["dateReported"] is DateTime && (DateTime)v["dateReported"] > DateTime.Today)
+                return "Date reported can't be in the future.";
+
             if (v.ContainsKey("status"))
             {
                 var status = v["status"] as string;
                 if ((status == "Resolved" || status == "Closed") && v["dateCompleted"] == null)
                     return "Enter the completion date for a resolved request.";
+                if ((status == "Open" || status == "In Progress") && v["dateCompleted"] != null)
+                    return "Only a resolved or closed request can have a completion date.";
             }
 
             if (v.ContainsKey("dateCompleted") && v["dateCompleted"] is DateTime)

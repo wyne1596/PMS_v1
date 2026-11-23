@@ -103,9 +103,9 @@ namespace PMS_v1.Pages
             lblBillDate.Text = Day(bill.BillDate);
             lblDueDate.Text = Day(bill.DueDate);
 
-            lblAmount.Text = Php(bill.Amount);
-            lblPaid.Text = Php(bill.Paid);
-            lblBalance.Text = Php(bill.Balance);
+            lblAmount.Text = Peso.Format(bill.Amount);
+            lblPaid.Text = Peso.Format(bill.Paid);
+            lblBalance.Text = Peso.Format(bill.Balance);
 
             lblStatus.Text = bill.Status;
             lblStatus.ForeColor = StatusColor(bill.Status);   // the only color that depends on the data
@@ -120,11 +120,6 @@ namespace PMS_v1.Pages
                 lblLastPayment.Text = "None yet";
             }
             lblRefNo.Text = bill.RefNo.Length > 0 ? bill.RefNo : "-";
-        }
-
-        private static string Php(decimal value)
-        {
-            return "₱ " + value.ToString("N2", CultureInfo.InvariantCulture);
         }
 
         private static string Day(DateTime value)

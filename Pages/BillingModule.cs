@@ -197,9 +197,9 @@ namespace PMS_v1.Pages
                             reader["UNIT_NO"].ToString(),
                             reader["BILL_TYPE"].ToString(),
                             Convert.ToDateTime(reader["DUE_DATE"]).ToString("MMM dd, yyyy"),
-                            "₱" + Convert.ToDecimal(reader["AMOUNT"]).ToString("N2", CultureInfo.InvariantCulture),
-                            "₱" + Convert.ToDecimal(reader["AMOUNT_PAID"]).ToString("N2", CultureInfo.InvariantCulture),
-                            "₱" + Convert.ToDecimal(reader["BALANCE"]).ToString("N2", CultureInfo.InvariantCulture),
+                            Peso.Format(reader["AMOUNT"]),
+                            Peso.Format(reader["AMOUNT_PAID"]),
+                            Peso.Format(reader["BALANCE"]),
                             mode.Length == 0 ? "-" : mode,
                             status == "Cancelled" ? "Canceled" : status);   // keep the page's "Canceled" spelling so the filter matches
 
@@ -228,9 +228,6 @@ namespace PMS_v1.Pages
             LoadStats();
             LoadBills();
         }
-
-        private static string Peso(decimal value) =>
-            "P" + value.ToString("N2", CultureInfo.InvariantCulture);
 
         // Dropdown items like "Maria Santos - Unit 101".
         // New bill: every active lease.  Edit: only the bill's own lease (read-only).
@@ -277,12 +274,52 @@ namespace PMS_v1.Pages
             Apply(fillNow);
         }
 
+        // The checks for a bill that need the database; they run when Save is pressed, so a problem keeps the form open.
+        // billingId is 0 for a new bill. A bill that is being canceled is not checked.
+        private static string? CheckBillAgainstLease(Dictionary<string, object> v, int billingId)
+        {
+            if (v.ContainsKey("cancelled") && (string)v["cancelled"] == "Yes") return null;
+            if (!(v["lease"] is int leaseId)) return null;
+
+            var billDate = (DateTime)v["billDate"];
+
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand("SELECT START_DATE FROM lease WHERE LEASE_ID = @lease", conn))
+                {
+                    cmd.Parameters.AddWithValue("@lease", leaseId);
+                    object? start = cmd.ExecuteScalar();
+                    if (start != null && !(start is DBNull) && billDate < Convert.ToDateTime(start).Date)
+                        return "Bill date can't be before the lease start date.";
+                }
+
+                if ((string)v["billType"] == "Rent")
+                {
+                    var monthStart = new DateTime(billDate.Year, billDate.Month, 1);
+                    using (var cmd = new MySqlCommand(
+                        "SELECT COUNT(*) FROM billing WHERE LEASE_ID = @lease AND BILL_TYPE = 'Rent' AND CANCELLED = 0 " +
+                        "AND BILLING_ID <> @id AND BILL_DATE >= @monthStart AND BILL_DATE < @nextMonth", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@lease", leaseId);
+                        cmd.Parameters.AddWithValue("@id", billingId);
+                        cmd.Parameters.AddWithValue("@monthStart", monthStart);
+                        cmd.Parameters.AddWithValue("@nextMonth", monthStart.AddMonths(1));
+                        if (Convert.ToInt32(cmd.ExecuteScalar()) > 0)
+                            return "This lease already has a Rent bill for that month.";
+                    }
+                }
+            }
+            return null;
+        }
+
         // ---------- CREATE ----------
         private void btnNewBill_Click(object sender, EventArgs e)
         {
             using (var f = new RecordForm(FormMode.New, "Bill", FormDefinitions.Bill()))
             {
-                f.Validator = FormDefinitions.ValidateBill;
+                f.Validator = x => FormDefinitions.ValidateBill(x) ?? CheckBillAgainstLease(x, 0);
                 f.SetOptions("lease", LeaseItems(null));
                 WireRentAmount(f, fillNow: true);   // a Rent bill shows the unit's base rent, locked
                 if (f.ShowDialog(this.FindForm()) != DialogResult.OK) return;
@@ -352,11 +389,12 @@ namespace PMS_v1.Pages
                 f.Validator = x =>
                     FormDefinitions.ValidateBill(x)
                     ?? ((decimal)x["amount"] < paid
-                            ? "The amount can't be less than the " + Peso(paid) + " already paid."
+                            ? "The amount can't be less than the " + Peso.Format(paid) + " already paid."
                             : null)
                     ?? ((string)x["cancelled"] == "Yes" && paid > 0
                             ? "A bill that already has payments can't be canceled."
-                            : null);
+                            : null)
+                    ?? CheckBillAgainstLease(x, id);
                 f.SetOptions("lease", LeaseItems(leaseId));
                 f.SetValues(current);                       // DBNull values are skipped
                 WireRentAmount(f, fillNow: false);          // a Rent bill's amount is locked
@@ -453,7 +491,7 @@ namespace PMS_v1.Pages
                         balances[billingId] = balance;
                         billDates[billingId] = Convert.ToDateTime(r["BILL_DATE"]).Date;
                         items.Add(new ComboItem(billingId,
-                            "B-" + billingId.ToString("D4") + " - " + r["Tenant"] + " - " + Peso(balance) + " left"));
+                            "B-" + billingId.ToString("D4") + " - " + r["Tenant"] + " - " + Peso.Format(balance) + " left"));
                     }
                 }
             }
@@ -480,7 +518,7 @@ namespace PMS_v1.Pages
                 {
                     if (x["bill"] is int chosen && balances.TryGetValue(chosen, out decimal left)
                         && (decimal)x["amount"] > left)
-                        return "The amount is more than what's left on the bill (" + Peso(left) + ").";
+                        return "The amount is more than what's left on the bill (" + Peso.Format(left) + ").";
 
                     var payDate = (DateTime)x["paymentDate"];
                     if (payDate > DateTime.Today)

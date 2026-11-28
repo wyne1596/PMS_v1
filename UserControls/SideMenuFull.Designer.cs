@@ -1,4 +1,4 @@
-﻿namespace pms_UI.User_Controls
+﻿namespace PMS_v1.UserControls
 {
     partial class SideMenuFull
     {

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 
 
-namespace pms_UI.User_Controls
+namespace PMS_v1.UserControls
 {
     public partial class SideMenuFull : UserControl
     {

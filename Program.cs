@@ -1,8 +1,8 @@
 using Microsoft.VisualBasic.ApplicationServices;
-using PMS_v1.Forms;
+using PMS_v1.Pages.Main;
 using PMS_v1.ExceptionHandler;
 
-namespace pms_UI
+namespace PMS_v1
 {
     internal static class Program
     {

@@ -27,16 +27,16 @@ namespace PMS_v1.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            circle1 = new PMS_v1.RoundedPanel();
+            circle1 = new RoundedPanel();
             lblMark1 = new Label();
             lblStep1 = new Label();
-            circle2 = new PMS_v1.RoundedPanel();
+            circle2 = new RoundedPanel();
             lblMark2 = new Label();
             lblStep2 = new Label();
-            circle3 = new PMS_v1.RoundedPanel();
+            circle3 = new RoundedPanel();
             lblMark3 = new Label();
             lblStep3 = new Label();
-            circle4 = new PMS_v1.RoundedPanel();
+            circle4 = new RoundedPanel();
             lblMark4 = new Label();
             lblStep4 = new Label();
             line1 = new Panel();
@@ -58,6 +58,7 @@ namespace PMS_v1.UserControls
             circle1.Location = new Point(58, 18);
             circle1.Margin = new Padding(0);
             circle1.Name = "circle1";
+            circle1.ShadowColor = Color.Black;
             circle1.ShadowSize = 0;
             circle1.Size = new Size(24, 24);
             circle1.TabIndex = 0;
@@ -97,6 +98,7 @@ namespace PMS_v1.UserControls
             circle2.Location = new Point(191, 18);
             circle2.Margin = new Padding(0);
             circle2.Name = "circle2";
+            circle2.ShadowColor = Color.Black;
             circle2.ShadowSize = 0;
             circle2.Size = new Size(24, 24);
             circle2.TabIndex = 1;
@@ -136,6 +138,7 @@ namespace PMS_v1.UserControls
             circle3.Location = new Point(325, 18);
             circle3.Margin = new Padding(0);
             circle3.Name = "circle3";
+            circle3.ShadowColor = Color.Black;
             circle3.ShadowSize = 0;
             circle3.Size = new Size(24, 24);
             circle3.TabIndex = 2;
@@ -175,6 +178,7 @@ namespace PMS_v1.UserControls
             circle4.Location = new Point(458, 18);
             circle4.Margin = new Padding(0);
             circle4.Name = "circle4";
+            circle4.ShadowColor = Color.Black;
             circle4.ShadowSize = 0;
             circle4.Size = new Size(24, 24);
             circle4.TabIndex = 3;
@@ -246,7 +250,7 @@ namespace PMS_v1.UserControls
             Controls.Add(line2);
             Controls.Add(line3);
             Name = "StatusTracker";
-            Size = new Size(540, 96);
+            Size = new Size(540, 84);
             circle1.ResumeLayout(false);
             circle2.ResumeLayout(false);
             circle3.ResumeLayout(false);

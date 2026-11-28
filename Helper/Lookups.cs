@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using PMS_v1.Database;
+using PMS_v1.Data;
 
 namespace PMS_v1
 {
